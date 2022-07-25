@@ -1,6 +1,15 @@
 import Link from "@components/Link";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
+import { HiSpeakerphone, HiOutlineNewspaper, HiCalendar} from "react-icons/hi";
 
+interface IiconWrapperProps {
+  children:ReactNode
+}
+const  IconWrapper = ({children}:IiconWrapperProps)=>{
+  return (<span className="text-3xl  text-red-300"> 
+    {children} 
+    </span>)
+}
 const NavBar = () => {
   const [open, setOpen] = useState(false);
   const [flyer, setFlyer] = useState(false);
@@ -25,7 +34,7 @@ const NavBar = () => {
             <div className="-my-2 -mr-2 md:hidden">
               <button
                 type="button"
-                className="inline-flex items-center justify-center p-2 text-gray-400 bg-white rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                className="inline-flex items-center justify-center p-2 text-gray-400 bg-white rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500"
                 onClick={() => setOpen(!open)}
               >
                 <span className="sr-only">Open menu</span>
@@ -69,7 +78,7 @@ const NavBar = () => {
             
               <a
                 href="#"
-                className="inline-flex items-center justify-center px-4 py-2 ml-8 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm whitespace-nowrap hover:bg-indigo-700"
+                className="inline-flex items-center justify-center px-4 py-2 ml-8 text-base font-medium text-white bg-red-600 border border-transparent rounded-md shadow-sm whitespace-nowrap hover:bg-red-700"
               >
                 Buy Tickets
               </a>
@@ -100,14 +109,14 @@ const NavBar = () => {
                 <div>
                   <img
                     className="w-auto h-8"
-                    src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                    src="https://tailwindui.com/img/logos/workflow-mark-red-600.svg"
                     alt="Workflow"
                   />
                 </div>
                 <div className="-mr-2">
                   <button
                     type="button"
-                    className="inline-flex items-center justify-center p-2 text-gray-400 bg-white rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                    className="inline-flex items-center justify-center p-2 text-gray-400 bg-white rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500"
                     onClick={() => setOpen(!open)}
                   >
                     <span className="sr-only">Close menu</span>
@@ -137,23 +146,36 @@ const NavBar = () => {
                     className="flex items-center p-3 -m-3 rounded-md hover:bg-gray-50"
                   >
                     {/* Heroicon name: outline/chart-bar */}
-                    <svg
-                      className="flex-shrink-0 w-6 h-6 text-indigo-600"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                      />
-                    </svg>
+                    <IconWrapper>
+                    <HiSpeakerphone />  
+                    </IconWrapper>
                     <span className="ml-3 text-base font-medium text-gray-900">
-                      Analytics
+                      Speakers
+                    </span>
+                  </a>
+                  <a
+                    href="#"
+                    className="flex items-center p-3 -m-3 rounded-md hover:bg-gray-50"
+                  >
+                    {/* Heroicon name: outline/chart-bar */}
+                    
+                    <IconWrapper>
+                      <HiOutlineNewspaper />
+                    </IconWrapper>
+                    <span className="ml-3 text-base font-medium text-gray-900">
+                      Agenda
+                    </span>
+                  </a>
+                  <a
+                    href="#"
+                    className="flex items-center p-3 -m-3 rounded-md hover:bg-gray-50"
+                  >
+                    {/* Heroicon name: outline/chart-bar */}
+                   <IconWrapper>
+                    <HiCalendar />
+                   </IconWrapper>
+                    <span className="ml-3 text-base font-medium text-gray-900">
+                     EventBrite
                     </span>
                   </a>
                
@@ -161,21 +183,13 @@ const NavBar = () => {
               </div>
             </div>
             <div className="px-5 py-6 space-y-6">
-              <div className="grid grid-cols-2 gap-y-4 gap-x-8">
-                <a
-                  href="#"
-                  className="text-base font-medium text-gray-900 hover:text-gray-700"
-                >
-                  Pricing
-                </a>
-             
-              </div>
+              
               <div>
                 <a
                   href="#"
-                  className="flex items-center justify-center w-full px-4 py-2 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700"
+                  className="flex items-center justify-center w-full px-4 py-2 text-base font-medium text-white bg-red-600 border border-transparent rounded-md shadow-sm hover:bg-red-700"
                 >
-                  Sign up
+                  Buy Ticket
                 </a>
               
               </div>
