@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Button from '@components/button'
 import DateCountDown from '@components/dateCountDown'
 import { HiLocationMarker} from "react-icons/hi";
+import Link from "next/link";
 
 const HomeView = ()=>{
     return (<>
@@ -54,7 +55,15 @@ const HomeView = ()=>{
             <div className="container mx-auto">
   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-3 ">
     <div className="flex justify-center text-2xl brd border:dotted border-2 border-red-300 hover:bg-red-200 hover:opacity-80 p-4 cursor-pointer items-center">
-        Apply as a Speaker
+        <Link href='/apply/speaker'>
+
+    <a>
+                {/* <DashboardIcon src="/assets/wallet.svg" alt="wallet" /> */}
+                Apply as a Speaker
+              </a>
+        </Link>
+              
+      
     </div>
     <div className="flex justify-center text-2xl brd border:dotted border-2 border-red-300 hover:bg-red-200 hover:opacity-80 p-4 cursor-pointer items-center">
         Apply as a Sponsor
@@ -105,6 +114,37 @@ const HomeView = ()=>{
   </div>
 </div>
         </section>
+
+        <section className='max-w-6xl m-auto my-16'>
+            <h2 className='text-3xl text-semibold'>Partners</h2>
+            <hr  className='my-4'/>
+            <div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-3 my-12 ">
+    <div className="flex justify-center  shadow-2xl p-4 cursor-pointer items-center">
+      <Image src='/eth.png' 
+     width='80px' height='80px' style={{border:'1px solid red'}}
+       />
+    </div>
+    <div className="flex justify-center  shadow-2xl p-4 cursor-pointer items-center">
+      <Image src='/Epns.png' 
+      width='80px' height='80px'
+       />
+    </div>
+    <div className="flex justify-center  shadow-2xl p-4 cursor-pointer items-center">
+      <Image src='/hydro.png' 
+     width='80px' height='80px'
+       />
+    </div>
+    <div className="flex justify-center  shadow-2xl p-4 cursor-pointer items-center ">
+      <Image src='/kernel.png' 
+     width='100%' height='100%'  
+       />
+    </div>
+    </div>
+            </div>
+        </section>
+
+       
     </>)
 }
 

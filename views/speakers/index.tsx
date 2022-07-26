@@ -1,5 +1,8 @@
 
-
-export default function SpeakersView(){
+ const Speakers = ()=>{
     return (<>Speakers</>)
 }
+
+
+export default Speakers
+

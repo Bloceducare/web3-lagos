@@ -18,6 +18,9 @@
     "paths": {
       "@components/*": ["components/*"],
       "@views/*": ["views/*"],
+      "@servers/*": ["servers/*"],
+      "@config/*": ["config/*"],
+
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
