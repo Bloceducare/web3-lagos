@@ -1,6 +1,6 @@
-import Link from "next/Link";
 import { ReactNode, useState } from "react";
 import { HiSpeakerphone, HiOutlineNewspaper, HiCalendar} from "react-icons/hi";
+import Link from "next/Link";
 
 interface IiconWrapperProps {
   children:ReactNode

@@ -11,7 +11,7 @@ const HomeView = ()=>{
         <div className="flex md:items-start md:justify-between  mx-auto max-w-6xl " >
             <div className='flex flex-col max-w-md text-center md:text-left' >
               <div className='mt-2'>July, 01,2022</div>
-              <div className='my-3'>
+              <div className='my-3'> 
               <h1 className='text-5xl mb-3  leading-snug'>Ethereum Community Conference Lagos</h1>
               <div className='md:p-0  p-3'>
 
