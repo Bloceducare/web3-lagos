@@ -98,7 +98,7 @@ const handleSubmit =  (e: React.SyntheticEvent )=>{
          <div className="mb-5">
            <label htmlFor="userName" className="block mb-2 font-bold text-gray-600">Name <span className="text-red-600">* </span></label>
            <input type="text" id="name" name="userName" onChange={handleChange} 
-           placeholder="Put in your fullname." className="border border-gray-300 shadow p-3 w-full rounded mb-"
+           placeholder="Put in your full name." className="border border-gray-300 shadow p-3 w-full rounded"
            value={userName} />
          </div>
 

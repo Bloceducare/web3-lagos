@@ -3,15 +3,6 @@
 @tailwind utilities;
 
 
-body.dark {
-    /*type your styling here*/
-    background-color: none!important;
-    outline: 2px solid green;
-  }
-
-.dark{
-}
-
 .odometer-block > span {
     margin-right:1.5rem;
     font-size: 2rem;
@@ -21,9 +12,7 @@ body.dark {
 @media only screen and (max-width: 600px) {
     .odometer-block > span {
         margin:0.5rem 0rem;
-       /* border:1px solid; */
        display: block;
-       /* text-align: left!important; */
     }
     
 }
