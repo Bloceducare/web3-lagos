@@ -12,9 +12,6 @@ const  IconWrapper = ({children}:IiconWrapperProps)=>{
 }
 const NavBar = () => {
   const [open, setOpen] = useState(false);
-  const [flyer, setFlyer] = useState(false);
-  const [flyerTwo, setFlyerTwo] = useState(false);
-
   return (
     <>
       {/* This example requires Tailwind CSS v2.0+ */}
@@ -22,7 +19,8 @@ const NavBar = () => {
         <div className="px-4 mx-auto max-w-7xl sm:px-6">
           <div className="flex items-center justify-between py-6 md:justify-start md:space-x-10">
             <div className="flex justify-start lg:w-0 lg:flex-1">
-              <a href="#">
+              <Link href='/'>
+              <a>
                 <span className="sr-only">Workflow</span>
                 <img
                   className="w-auto h-8 sm:h-10"
@@ -30,6 +28,7 @@ const NavBar = () => {
                   alt=""
                 />
               </a>
+              </Link>
             </div>
             <div className="-my-2 -mr-2 md:hidden">
               <button

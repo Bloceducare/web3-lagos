@@ -44,7 +44,7 @@ const HomeView = ()=>{
             <HiLocationMarker  className='mr-2'/> Lagos Nigeria
             </div>
         </section>   
-        <section className='text-center my-6  bg-red-100 p-6'>
+        <section className='text-center my-6  bg-red-100 p-6 py-16'>
             <h1 className='text-6xl mb-2'>Apply &#38;
              </h1>
             <h1 className='text-6xl mb-12 text-red-700'>   
@@ -54,25 +54,43 @@ const HomeView = ()=>{
 
             <div className="container mx-auto">
   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-3 ">
-    <div className="flex justify-center text-2xl brd border:dotted border-2 border-red-300 hover:bg-red-200 hover:opacity-80 p-4 cursor-pointer items-center">
+    <div className="flex justify-center text-2xl brd  items-center">
         <Link href='/apply/speaker'>
 
-    <a>
-                {/* <DashboardIcon src="/assets/wallet.svg" alt="wallet" /> */}
+    <a className="border-red-300 border:dotted w-full border-2 hover:bg-red-200 hover:opacity-80 p-4 cursor-pointer">
                 Apply as a Speaker
               </a>
         </Link>
               
       
     </div>
-    <div className="flex justify-center text-2xl brd border:dotted border-2 border-red-300 hover:bg-red-200 hover:opacity-80 p-4 cursor-pointer items-center">
+    <div className="flex justify-center text-2xl brd  items-center">
+    <Link href='/apply/sponsor'>
+
+<a className="border-red-300 border:dotted w-full border-2 hover:bg-red-200 hover:opacity-80 p-4 cursor-pointer">
+    
         Apply as a Sponsor
+          </a>
+    </Link>
+    
     </div>
-    <div className="flex justify-center text-2xl brd border:dotted border-2 border-red-300 hover:bg-red-200 hover:opacity-80 p-4 cursor-pointer items-center">
+    <div className="flex justify-center text-2xl brd  items-center">
+
+    <Link href='/apply/volunteer'>
+
+<a className="border-red-300 border:dotted w-full border-2 hover:bg-red-200 hover:opacity-80 p-4 cursor-pointer">
         Apply as a Volunteer
+          </a>
+    </Link>
+    
     </div>
-    <div className="flex justify-center text-2xl brd border:dotted border-2 border-red-300 hover:bg-red-200 hover:opacity-80 p-4 cursor-pointer items-center">
-        Apply as a Media Partner
+    <div className="flex justify-center text-2xl brd  items-center">
+    <Link href='/apply/media-partner'>
+
+<a className="border-red-300 border:dotted w-full border-2 hover:bg-red-200 hover:opacity-80 p-4 cursor-pointer">
+        Apply as a Media Partner     
+          </a>
+    </Link>
     </div>
 
   </div>

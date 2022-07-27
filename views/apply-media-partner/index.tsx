@@ -1,32 +1,28 @@
 import { useState } from "react"
 import axios from 'axios'
 
-type Ispeaker = {
+type IMediaPartner = {
 userName:string,
 email:string,
 telegramID:string,
 twitterHandle:string,
 companyName:string,
-presentationTitle:string,
-pitchStory:string,
-spokenAtWeb3Before:boolean
-gender:string
-type:string
-
+type:string,
+typeOfMedia:string,
+mediaHowToContribute:string
 }
+
 const defaultUserInput = {
 userName:'',
 email:'',
 telegramID:'',
 twitterHandle:'',
 companyName:'',
-presentationTitle:'',
-pitchStory:"",
-spokenAtWeb3Before:false,
-gender:"",
-type:'speaker'
+type:'media-partner',
+typeOfMedia:"",
+mediaHowToContribute:""
 }
-const ApplyAsaSpeaker = ()=>{
+const ApplyAsaMediaPartner = ()=>{
     const [userInputs, setUserInputs] = useState(defaultUserInput)
     const [dataStatus, setDataStatus] = useState({crud:false, error:''})
     const { crud } = dataStatus
@@ -37,8 +33,7 @@ const ApplyAsaSpeaker = ()=>{
     telegramID,
     twitterHandle,
     companyName,
-    presentationTitle,
-    pitchStory,
+    mediaHowToContribute
     } = userInputs
     
     const handleChange=(e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLTextAreaElement>)=>{
@@ -50,8 +45,8 @@ const ApplyAsaSpeaker = ()=>{
     }
 
 
-    const postData = async (data:Ispeaker)=>{
-        const subData = {...data, name:data.userName, spokenAtWeb3Before:!!data.spokenAtWeb3Before}
+    const postData = async (data:IMediaPartner)=>{
+        const subData = {...data, name:data.userName}
         setDataStatus(()=>({
           error:'',
           crud:true
@@ -85,7 +80,7 @@ const handleSubmit =  (e: React.SyntheticEvent )=>{
     return (<div className="mt-12">
    
    <div className="text-center">
-   <h1 className="text-3xl text-center font-semibold text-gray-800">Speakers' Application</h1>
+   <h1 className="text-3xl text-center font-semibold text-gray-800">Media Partners' Application</h1>
  {!!dataStatus.error &&  <span className="  text-red-500">{dataStatus.error}</span>}
    </div>
 
@@ -108,18 +103,9 @@ const handleSubmit =  (e: React.SyntheticEvent )=>{
            {/* border-red-300  */}
            {/* <p className="text-sm text-red-400 mt-2">Email is required</p> */}
          </div>
-         <div className="mb-5">
-           <label className="block mb-2 font-bold text-gray-600">Presentation Title <span className="text-red-600">*</span>   </label>
-           <input type="text"  name="presentationTitle" placeholder="Put in your presentation title." className="border shadow p-3 w-full rounded" onChange={handleChange} value={presentationTitle}  />
-         
-         </div>
+       
 
-         <div className="mb-5">
-
-         <label className="block mb-2 font-bold text-gray-600">Pitch Us Your Story  <span className="text-red-600">*</span>  </label>
-         <textarea name='pitchStory' value={pitchStory} onChange={handleChange} className="rounded p-3 shadow border form-textarea mt-1 block w-full" rows={3} placeholder="Enter some long form content."></textarea>
-
-         </div>
+      
 
          <div className="mb-5">
            <label className="block mb-2 font-bold text-gray-600">Company Name  </label>
@@ -143,37 +129,48 @@ const handleSubmit =  (e: React.SyntheticEvent )=>{
          </div>
 
 
-         <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4">
          <div className="mb-5 ">
 
-         <label  className="block mb-2 font-bold text-gray-600">Spoken at a any web3 event before  </label>
-  <div className="mt-2 p-3 flex items-center" >
-    <div className="">
-    <label className="inline-flex items-center">
-      <input type="radio" className="form-radio" name="spokenAtWeb3Before" value={1} onChange={handleChange} />
-      <span className="ml-2">Yes</span>
-    </label>
-    </div>
+<label  className="block mb-2 font-bold text-gray-600"> What type of media is it?</label>
+<div className="mt-2 p-3 flex items-center" >
+<div className="mr-6">
+<label className="inline-flex items-center">
+<input type="radio" className="form-radio" name="typeOfMedia" value='print' onChange={handleChange} />
+<span className="ml-2">Print</span>
+</label>
+</div>
+<div className="mr-6">
+<label className="inline-flex items-center">
+<input type="radio" className="form-radio" name="typeOfMedia" value='broadcast' onChange={handleChange} />
+<span className="ml-2">Broadcast</span>
+</label>
+</div>
+<div className="mr-6">
+<label className="inline-flex items-center">
+<input type="radio" className="form-radio" name="typeOfMedia" value='digital' onChange={handleChange} />
+<span className="ml-2">Digital</span>
+</label>
+</div>
 
-    <div>
-    <label className="inline-flex items-center ml-6">
-      <input type="radio" className="form-radio" name="spokenAtWeb3Before" value={0} onChange={handleChange} />
-      <span className="ml-2">No</span>
-    </label>
-    </div>
-  </div>
+<div>
+<label className="inline-flex items-center">
+<input type="radio" className="form-radio" name="typeOfMedia" value='others' onChange={handleChange} />
+<span className="ml-2">Others</span>
+</label>
+</div>
+</div>
 
-         </div>
+</div>
 
-         <div className="mb-5">
-           <label  className="block mb-2 font-bold text-gray-600">Gender  </label>
-           <select className="form-select mt-1 block w-full border p-3" name='gender' onChange={handleChange}>
-    <option value='male'>Male</option>
-    <option value='female'>Female</option>
-    <option value='others'>Others</option>
-  </select>
-         </div>
-      </div> 
+
+<div className="mb-5">
+
+<label className="block mb-2 font-bold text-gray-600">How will you like to contribute?  <span className="text-red-600">*</span>  </label>
+<textarea name='mediaHowToContribute' value={mediaHowToContribute} onChange={handleChange} className="rounded p-3 shadow border form-textarea mt-1 block w-full" rows={2} placeholder="Enter some long form content."></textarea>
+
+</div>
+
+
 
          <button disabled={crud} className="block w-full bg-blue-500 text-white font-bold p-4 rounded-lg">
             {crud ? "Sending...": "Submit"}
@@ -187,9 +184,6 @@ const handleSubmit =  (e: React.SyntheticEvent )=>{
         !!message  && message 
        }
      </div>
-           
-
-
     </div>
 
     )
@@ -197,4 +191,4 @@ const handleSubmit =  (e: React.SyntheticEvent )=>{
 
 
 
-export default ApplyAsaSpeaker
+export default ApplyAsaMediaPartner

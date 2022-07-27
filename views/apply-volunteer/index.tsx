@@ -1,14 +1,15 @@
-import { useState } from "react"
+import { useState, useRef } from "react"
 import axios from 'axios'
 
-type Ispeaker = {
+
+type Ivolunteer = {
 userName:string,
 email:string,
 telegramID:string,
 twitterHandle:string,
 companyName:string,
-presentationTitle:string,
-pitchStory:string,
+location:string,
+Im:string,
 spokenAtWeb3Before:boolean
 gender:string
 type:string
@@ -20,25 +21,27 @@ email:'',
 telegramID:'',
 twitterHandle:'',
 companyName:'',
-presentationTitle:'',
-pitchStory:"",
+location:'',
+Im:"",
 spokenAtWeb3Before:false,
 gender:"",
-type:'speaker'
+type:'volunteer'
 }
-const ApplyAsaSpeaker = ()=>{
+type DetailedHTMLProps = /*unresolved*/ any
+const ApplyAsaVolunteer = ()=>{
     const [userInputs, setUserInputs] = useState(defaultUserInput)
     const [dataStatus, setDataStatus] = useState({crud:false, error:''})
     const { crud } = dataStatus
     const [message, setMessage] = useState('')
+    const ImRef = useRef<DetailedHTMLProps>()
     const  { 
     userName,
     email,
     telegramID,
     twitterHandle,
     companyName,
-    presentationTitle,
-    pitchStory,
+    location,
+    Im,
     } = userInputs
     
     const handleChange=(e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLTextAreaElement>)=>{
@@ -50,8 +53,8 @@ const ApplyAsaSpeaker = ()=>{
     }
 
 
-    const postData = async (data:Ispeaker)=>{
-        const subData = {...data, name:data.userName, spokenAtWeb3Before:!!data.spokenAtWeb3Before}
+    const postData = async (data:Ivolunteer)=>{
+        const subData = {...data, name:data.userName, spokenAtWeb3Before:!!data.spokenAtWeb3Before, Im:ImRef.current.value}
         setDataStatus(()=>({
           error:'',
           crud:true
@@ -60,36 +63,36 @@ const ApplyAsaSpeaker = ()=>{
         try {
             const result  = await axios.post('/api/participant', subData)
             setMessage(result.data.message)
-            setDataStatus(()=>({
-              error:'',
-              crud:false
-             }))
+
+            setDataStatus((prev)=>({
+                error:'',
+                crud:false
+               }))
         }
         catch(e:any){
-            
-          setDataStatus(()=>({
-            error:e?.response?.data?.message,
-            crud:false
-           }))
+            setDataStatus(()=>({
+                error:e?.response?.data?.message,
+                crud:false
+               }))
 
-           window.scroll({top: 0, left: 0});
+               window.scroll({top: 0, left: 0});
         }
+
 
     }
 
 const handleSubmit =  (e: React.SyntheticEvent )=>{
     e.preventDefault()
-    postData(userInputs)    
+    postData(userInputs)
+    
 }
     
     return (<div className="mt-12">
-   
    <div className="text-center">
-   <h1 className="text-3xl text-center font-semibold text-gray-800">Speakers' Application</h1>
+   <h1 className="text-3xl  font-semibold text-gray-800">Volunteers' Application</h1>
  {!!dataStatus.error &&  <span className="  text-red-500">{dataStatus.error}</span>}
+
    </div>
-
-
             <div className="bg-white p-10 rounded-lg shadow md:w-3/4 mx-auto lg:w-1/2">
       {
         !(!!message) && (<>
@@ -109,15 +112,25 @@ const handleSubmit =  (e: React.SyntheticEvent )=>{
            {/* <p className="text-sm text-red-400 mt-2">Email is required</p> */}
          </div>
          <div className="mb-5">
-           <label className="block mb-2 font-bold text-gray-600">Presentation Title <span className="text-red-600">*</span>   </label>
-           <input type="text"  name="presentationTitle" placeholder="Put in your presentation title." className="border shadow p-3 w-full rounded" onChange={handleChange} value={presentationTitle}  />
+           <label className="block mb-2 font-bold text-gray-600">Location <span className="text-red-600">*</span>   </label>
+           <input type="text"  name="location" placeholder="Put in your location." className="border shadow p-3 w-full rounded" onChange={handleChange} value={location}  />
          
          </div>
 
          <div className="mb-5">
 
-         <label className="block mb-2 font-bold text-gray-600">Pitch Us Your Story  <span className="text-red-600">*</span>  </label>
-         <textarea name='pitchStory' value={pitchStory} onChange={handleChange} className="rounded p-3 shadow border form-textarea mt-1 block w-full" rows={3} placeholder="Enter some long form content."></textarea>
+         <label className="block mb-2 font-bold text-gray-600">I'm  <span className="text-red-600">*</span>  </label>
+         <input 
+         ref={ImRef}
+         list="Im" name="browser" id="browser" className='border p-3 w-full' placeholder="Type or Select an Option"/>
+    <datalist id="Im">
+    <option value="Studying" /> 
+    <option value="Working" />
+    <option value="looking for something new" />
+    <option value="Retired" />
+    <option value="Researching" />
+  </datalist>
+
 
          </div>
 
@@ -126,6 +139,18 @@ const handleSubmit =  (e: React.SyntheticEvent )=>{
            <input type="text"  name="companyName" placeholder="Put in your company name." className="border shadow p-3 w-full rounded" onChange={handleChange} value={companyName}  />
          
          </div>
+
+         <div className="mb-5">
+         <label  className="block mb-2 font-bold text-gray-600">Gender  </label>
+           <select className="form-select mt-1 block w-full border p-3" name='gender' onChange={handleChange}>
+    <option selected disabled>Please Select an Option</option>
+    <option value='male'>Male</option>
+    <option value='female'>Female</option>
+    <option value='others'>Others</option>
+  </select>
+         
+         </div>
+
 
          <div>
          <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4">
@@ -141,39 +166,6 @@ const handleSubmit =  (e: React.SyntheticEvent )=>{
          </div>
       </div>
          </div>
-
-
-         <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4">
-         <div className="mb-5 ">
-
-         <label  className="block mb-2 font-bold text-gray-600">Spoken at a any web3 event before  </label>
-  <div className="mt-2 p-3 flex items-center" >
-    <div className="">
-    <label className="inline-flex items-center">
-      <input type="radio" className="form-radio" name="spokenAtWeb3Before" value={1} onChange={handleChange} />
-      <span className="ml-2">Yes</span>
-    </label>
-    </div>
-
-    <div>
-    <label className="inline-flex items-center ml-6">
-      <input type="radio" className="form-radio" name="spokenAtWeb3Before" value={0} onChange={handleChange} />
-      <span className="ml-2">No</span>
-    </label>
-    </div>
-  </div>
-
-         </div>
-
-         <div className="mb-5">
-           <label  className="block mb-2 font-bold text-gray-600">Gender  </label>
-           <select className="form-select mt-1 block w-full border p-3" name='gender' onChange={handleChange}>
-    <option value='male'>Male</option>
-    <option value='female'>Female</option>
-    <option value='others'>Others</option>
-  </select>
-         </div>
-      </div> 
 
          <button disabled={crud} className="block w-full bg-blue-500 text-white font-bold p-4 rounded-lg">
             {crud ? "Sending...": "Submit"}
@@ -197,4 +189,4 @@ const handleSubmit =  (e: React.SyntheticEvent )=>{
 
 
 
-export default ApplyAsaSpeaker
+export default ApplyAsaVolunteer

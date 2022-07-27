@@ -1,7 +1,8 @@
+import ApplyAsaVolunteer from "@views/apply-volunteer"
 
 
 const Volunteer = ()=>{
-    return (<>Volunterr</>)
+    return (<><ApplyAsaVolunteer /></>)
 }
 
 export default Volunteer
