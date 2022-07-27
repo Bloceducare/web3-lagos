@@ -1,4 +1,4 @@
-import Link from "@components/Link";
+import Link from "next/Link";
 import { ReactNode, useState } from "react";
 import { HiSpeakerphone, HiOutlineNewspaper, HiCalendar} from "react-icons/hi";
 
@@ -20,14 +20,19 @@ const NavBar = () => {
           <div className="flex items-center justify-between py-6 md:justify-start md:space-x-10">
             <div className="flex justify-start lg:w-0 lg:flex-1">
               <Link href='/'>
-              <a>
+              <a className="flex items-center">
                 <span className="sr-only">Workflow</span>
                 <img
-                  className="w-auto h-8 sm:h-10"
-                  src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                  className="w-auto h-8 sm:h-10 mr-1"
+                  src="https://upload.wikimedia.org/wikipedia/commons/0/01/Ethereum_logo_translucent.svg"
                   alt=""
                 />
+               <span className="font-semibold text-xl font-mono ">
+               Lagos
+               </span>
               </a>
+
+             
               </Link>
             </div>
             <div className="-my-2 -mr-2 md:hidden">
@@ -56,18 +61,28 @@ const NavBar = () => {
               </button>
             </div>
             <nav className="hidden space-x-10 md:flex">
+            <Link href="/agenda">
               <a
-                href="/agenda"
+              
                 className="text-base font-medium text-gray-500 hover:text-gray-900"
               >
                Agenda
               </a>
-              <Link href="/agenda">
+              </Link>
+
+              <Link href="/speakers">
               <a
-                href="eventrite"
-                // className="text-base font-medium text-gray-500 hover:text-gray-900"
+                className="text-base font-medium text-gray-500 hover:text-gray-900"
               >
-              EventBrite
+              Speakers
+              </a>
+            
+              </Link>
+              <Link href="/eventbrite">
+              <a
+                className="text-base font-medium text-gray-500 hover:text-gray-900"
+              >
+              Event Brite
               </a>
             
               </Link>
@@ -75,12 +90,14 @@ const NavBar = () => {
             </nav>
             <div className="items-center justify-end hidden md:flex md:flex-1 lg:w-0">
             
-              <a
-                href="#"
-                className="inline-flex items-center justify-center px-4 py-2 ml-8 text-base font-medium text-white bg-red-600 border border-transparent rounded-md shadow-sm whitespace-nowrap hover:bg-red-700"
-              >
+            <button 
+            disabled
+            className="inline-flex items-center justify-center px-4 py-2 ml-8 text-base font-medium text-white bg-red-600 border border-transparent rounded-md shadow-sm whitespace-nowrap hover:bg-red-700">
+
                 Buy Tickets
-              </a>
+            </button>
+             
+              
             </div>
           </div>
         </div>
@@ -98,7 +115,7 @@ const NavBar = () => {
         <div
           className={
             open
-              ? "opacity-100 scale-100 transition ease-out duration-200 absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden "
+              ? "opacity-100 scale-100 transition ease-out duration-200 absolute top-0 inset-x-0 p-2  transform origin-top-right md:hidden "
               : "opacity-0 scale-95 absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
           }
         >
@@ -108,8 +125,7 @@ const NavBar = () => {
                 <div>
                   <img
                     className="w-auto h-8"
-                    src="https://tailwindui.com/img/logos/workflow-mark-red-600.svg"
-                    alt="Workflow"
+                    src="https://upload.wikimedia.org/wikipedia/commons/0/01/Ethereum_logo_translucent.svg"
                   />
                 </div>
                 <div className="-mr-2">
@@ -140,43 +156,51 @@ const NavBar = () => {
               </div>
               <div className="mt-6">
                 <nav className="grid gap-y-8">
-                  <a
-                    href="#"
-                    className="flex items-center p-3 -m-3 rounded-md hover:bg-gray-50"
-                  >
-                    {/* Heroicon name: outline/chart-bar */}
+                
                     <IconWrapper>
-                    <HiSpeakerphone />  
-                    </IconWrapper>
+                    <Link href='/speakers'>
+<a  className="flex items-center p-3 -m-3 rounded-md hover:bg-gray-50">
+                    <HiSpeakerphone  />  
                     <span className="ml-3 text-base font-medium text-gray-900">
                       Speakers
                     </span>
-                  </a>
-                  <a
-                    href="#"
-                    className="flex items-center p-3 -m-3 rounded-md hover:bg-gray-50"
-                  >
-                    {/* Heroicon name: outline/chart-bar */}
-                    
-                    <IconWrapper>
-                      <HiOutlineNewspaper />
+         
+          </a>
+    </Link>
+    
                     </IconWrapper>
+                
+
+
+
+                    <IconWrapper>
+                    <Link href='/agenda'>
+<a  className="flex items-center p-3 -m-3 rounded-md hover:bg-gray-50">
+<HiOutlineNewspaper />
                     <span className="ml-3 text-base font-medium text-gray-900">
-                      Agenda
+                    Agenda
                     </span>
-                  </a>
-                  <a
-                    href="#"
-                    className="flex items-center p-3 -m-3 rounded-md hover:bg-gray-50"
-                  >
-                    {/* Heroicon name: outline/chart-bar */}
-                   <IconWrapper>
-                    <HiCalendar />
-                   </IconWrapper>
+         
+          </a>
+    </Link>
+    
+                    </IconWrapper>
+
+
+
+                    <IconWrapper>
+                    <Link href='/eventbrite'>
+<a  className="flex items-center p-3 -m-3 rounded-md hover:bg-gray-50">
+<HiCalendar />
                     <span className="ml-3 text-base font-medium text-gray-900">
-                     EventBrite
+                   EventBrite
                     </span>
-                  </a>
+         
+          </a>
+    </Link>
+    
+                    </IconWrapper>
+
                
                 </nav>
               </div>
@@ -184,12 +208,11 @@ const NavBar = () => {
             <div className="px-5 py-6 space-y-6">
               
               <div>
-                <a
-                  href="#"
-                  className="flex items-center justify-center w-full px-4 py-2 text-base font-medium text-white bg-red-600 border border-transparent rounded-md shadow-sm hover:bg-red-700"
-                >
-                  Buy Ticket
-                </a>
+                <button
+                disabled
+                 className="flex items-center justify-center w-full px-4 py-2 text-base font-medium text-white bg-red-600 border border-transparent rounded-md shadow-sm hover:bg-red-700">
+                        Buy Ticket
+                </button>
               
               </div>
             </div>

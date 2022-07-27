@@ -12,7 +12,7 @@ const HomeView = ()=>{
             <div className='flex flex-col max-w-md text-center md:text-left' >
               <div className='mt-2'>July, 01,2022</div>
               <div className='my-3'>
-              <h1 className='text-5xl mb-3'>Ethereum Community Conference 5</h1>
+              <h1 className='text-5xl mb-3  leading-snug'>Ethereum Community Conference Lagos</h1>
               <div className='md:p-0  p-3'>
 
               <p className='my-1 text-left'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem hic cum aspernatur nisi cumque magnam deserunt saepe aliquam, illum voluptatibus corporis. Accusantium animi ullam ea ut sit nihil nam voluptas.</p>

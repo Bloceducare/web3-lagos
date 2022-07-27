@@ -1,8 +1,13 @@
-import SpeakersView from "@views/speakers"
+import ComingSoon from "@components/coming-soon"
+// import SpeakersView from "@views/speakers"
 
 
 const Speakers = ()=>{
-    return (<><SpeakersView /></>)
+    return (<>
+    <div className='flex justify-center items-center'>
+        <ComingSoon />
+    </div>
+    </>)
 }
 
 
