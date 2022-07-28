@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import  { createRouter } from "next-connect";
 import connectDB from "@servers/config/index";
 import participantsDb from "@servers/models/participant";
+import { registrationEmail } from "@servers/mailer";
 
 connectDB();
 
@@ -57,10 +58,9 @@ router.post(async (req, res) => {
       message: `${!email ? 'email field': ''} ${!userName ? 'userName field': ''} is required`
     })
   }
-
-  if (req.method === "POST") {    
+  
     try {
-        const userRegistering = await   await participantsDb.findOne({ email })
+        const userRegistering =  await participantsDb.findOne({ email })
         if( userRegistering) {
             return res
             .status(423)
@@ -76,10 +76,11 @@ router.post(async (req, res) => {
         
         const userData:any = new participantsDb(data);
         const regSpeaker =  await userData.save()
+      const ema =  await registrationEmail("okekehinde@gmail.com", type)
             return res.status(200).json({
               status: true,
               data:regSpeaker,
-              message: `Weldone, ${userName}, Your registration was successful`,
+              message: `Welldone, ${userName}, Your registration was successful. We've sent you a confirmation, if you can't find it, please check your spam folder`,
             });
 
     } catch (e) {
@@ -88,8 +89,34 @@ router.post(async (req, res) => {
 
       })
     }
-  }
+
 });
+
+interface Iquery {
+  type?:string | string[] | undefined
+  page?:number| string
+}
+router.get(async (req, res)=>{
+ const {type}:Iquery =  req.query
+
+  try{
+    const users =   await participantsDb.find({
+      ...(!!type && {type})
+    })
+
+    return res.status(200).json({
+      status:true,
+      message:users
+    })
+
+  }
+  catch(e){
+    return res.status(500).json({
+      status:false,
+      error:'server error'
+    })
+  }
+})
 
 
 export default router.handler({

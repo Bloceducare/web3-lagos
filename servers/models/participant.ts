@@ -1,6 +1,17 @@
 import mongoose from "mongoose";
-const Schema = mongoose.Schema;
+const fs = require('fs')
 
+export function makeGetStaticProps(isBlue:string) {
+  return () => {
+    return { props: {
+      fs: Object.keys(fs).join(' '),
+      isBlue,
+    } }
+  }
+}
+
+
+const Schema = mongoose.Schema;
 const ParticipantSchema = new Schema(
   {
     userName: {

@@ -85,12 +85,12 @@ const handleSubmit =  (e: React.SyntheticEvent )=>{
     return (<div className="mt-12">
    
    <div className="text-center">
-   <h1 className="text-3xl text-center font-semibold text-gray-800">Speakers' Application</h1>
- {!!dataStatus.error &&  <span className="  text-red-500">{dataStatus.error}</span>}
+   <h1 className="text-3xl font-semibold text-center text-gray-800">Speakers' Application</h1>
+ {!!dataStatus.error &&  <span className="text-red-500 ">{dataStatus.error}</span>}
    </div>
 
 
-            <div className="bg-white p-10 rounded-lg shadow md:w-3/4 mx-auto lg:w-1/2">
+            <div className="p-10 mx-auto bg-white rounded-lg shadow md:w-3/4 lg:w-1/2">
       {
         !(!!message) && (<>
         
@@ -98,32 +98,32 @@ const handleSubmit =  (e: React.SyntheticEvent )=>{
          <div className="mb-5">
            <label htmlFor="userName" className="block mb-2 font-bold text-gray-600">Name <span className="text-red-600">* </span></label>
            <input type="text" id="name" name="userName" onChange={handleChange} 
-           placeholder="Put in your full name." className="border border-gray-300 shadow p-3 w-full rounded"
+           placeholder="Put in your full name." className="w-full p-3 border border-gray-300 rounded shadow"
            value={userName} />
          </div>
 
          <div className="mb-5">
            <label htmlFor="twitter" className="block mb-2 font-bold text-gray-600">Email <span className="text-red-600">*</span>  </label>
-           <input type="email" id="twitter" name="email" onChange={handleChange} placeholder="Put in your name."className="border shadow p-3 w-full rounded"  value={email} />
+           <input type="email" id="twitter" name="email" onChange={handleChange} placeholder="Put in your name."className="w-full p-3 border rounded shadow"  value={email} />
            {/* border-red-300  */}
-           {/* <p className="text-sm text-red-400 mt-2">Email is required</p> */}
+           {/* <p className="mt-2 text-sm text-red-400">Email is required</p> */}
          </div>
          <div className="mb-5">
            <label className="block mb-2 font-bold text-gray-600">Presentation Title <span className="text-red-600">*</span>   </label>
-           <input type="text"  name="presentationTitle" placeholder="Put in your presentation title." className="border shadow p-3 w-full rounded" onChange={handleChange} value={presentationTitle}  />
+           <input type="text"  name="presentationTitle" placeholder="Put in your presentation title." className="w-full p-3 border rounded shadow" onChange={handleChange} value={presentationTitle}  />
          
          </div>
 
          <div className="mb-5">
 
          <label className="block mb-2 font-bold text-gray-600">Pitch Us Your Story  <span className="text-red-600">*</span>  </label>
-         <textarea name='pitchStory' value={pitchStory} onChange={handleChange} className="rounded p-3 shadow border form-textarea mt-1 block w-full" rows={3} placeholder="Enter some long form content."></textarea>
+         <textarea name='pitchStory' value={pitchStory} onChange={handleChange} className="block w-full p-3 mt-1 border rounded shadow form-textarea" rows={3} placeholder="Enter some long form content."></textarea>
 
          </div>
 
          <div className="mb-5">
            <label className="block mb-2 font-bold text-gray-600">Company Name  </label>
-           <input type="text"  name="companyName" placeholder="Put in your company name." className="border shadow p-3 w-full rounded" onChange={handleChange} value={companyName}  />
+           <input type="text"  name="companyName" placeholder="Put in your company name." className="w-full p-3 border rounded shadow" onChange={handleChange} value={companyName}  />
          
          </div>
 
@@ -131,13 +131,13 @@ const handleSubmit =  (e: React.SyntheticEvent )=>{
          <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4">
          <div className="mb-5 ">
            <label  className="block mb-2 font-bold text-gray-600">Telegram ID  </label>
-           <input type="text" name="telegramID" placeholder="Put in your telegram ID" className="border shadow p-3 w-full rounded" onChange={handleChange} value={telegramID} />
+           <input type="text" name="telegramID" placeholder="Put in your telegram ID" className="w-full p-3 border rounded shadow" onChange={handleChange} value={telegramID} />
          
          </div>
 
          <div className="mb-5">
            <label  className="block mb-2 font-bold text-gray-600">Twitter Handle  </label>
-           <input type="text" name="twitterHandle" placeholder="Put in your twitter handle" className="border shadow p-3 w-full rounded" onChange={handleChange} value={twitterHandle} />      
+           <input type="text" name="twitterHandle" placeholder="Put in your twitter handle" className="w-full p-3 border rounded shadow" onChange={handleChange} value={twitterHandle} />      
          </div>
       </div>
          </div>
@@ -146,19 +146,21 @@ const handleSubmit =  (e: React.SyntheticEvent )=>{
          <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4">
          <div className="mb-5 ">
 
-         <label  className="block mb-2 font-bold text-gray-600">Spoken at a any web3 event before  </label>
-  <div className="mt-2 p-3 flex items-center" >
+         <span  className="block mb-2 font-bold text-gray-600">Spoken at a any web3 event before  </span>
+  <div className="flex items-center p-3 mt-2" >
     <div className="">
-    <label className="inline-flex items-center">
-      <input type="radio" className="form-radio" name="spokenAtWeb3Before" value={1} onChange={handleChange} />
-      <span className="ml-2">Yes</span>
+      <input id="pokenAtWeb3Before-yes" type="radio" className="form-radio" name="spokenAtWeb3Before" value={1} onChange={handleChange} />
+    <label htmlFor="pokenAtWeb3Before-yes" className="inline-flex items-center">
+      <span className="">
+        Yes
+        </span>
     </label>
     </div>
 
     <div>
-    <label className="inline-flex items-center ml-6">
-      <input type="radio" className="form-radio" name="spokenAtWeb3Before" value={0} onChange={handleChange} />
-      <span className="ml-2">No</span>
+      <input id="pokenAtWeb3Before-no" type="radio" className="form-radio" name="spokenAtWeb3Before" value={0} onChange={handleChange} />
+    <label htmlFor="pokenAtWeb3Before-no" className="inline-flex items-center ml-6">
+      <span className="">No</span>
     </label>
     </div>
   </div>
@@ -167,7 +169,7 @@ const handleSubmit =  (e: React.SyntheticEvent )=>{
 
          <div className="mb-5">
            <label  className="block mb-2 font-bold text-gray-600">Gender  </label>
-           <select className="form-select mt-1 block w-full border p-3" name='gender' onChange={handleChange}>
+           <select className="block w-full p-3 mt-1 border form-select" name='gender' onChange={handleChange}>
     <option value='male'>Male</option>
     <option value='female'>Female</option>
     <option value='others'>Others</option>
@@ -175,7 +177,7 @@ const handleSubmit =  (e: React.SyntheticEvent )=>{
          </div>
       </div> 
 
-         <button disabled={crud} className="block w-full bg-blue-500 text-white font-bold p-4 rounded-lg">
+         <button disabled={crud} className="block w-full p-4 font-bold text-white bg-blue-500 rounded-lg">
             {crud ? "Sending...": "Submit"}
             </button>
        </form>
