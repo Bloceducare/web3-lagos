@@ -39,8 +39,8 @@ async function wrappedSendMail(options:any){
 }
 
 
-export const registrationEmail = async(to:string, typeOfUser:string)=>{
-    const sendApplicationResp = template({type:typeOfUser })
+export const registrationEmail = async(to:string, typeOfUser:string, name:string)=>{
+    const sendApplicationResp = template({type:typeOfUser, name })
     const {from,emailSubject}  = mailSenderConfig
     const regMailOptions = {
         from,

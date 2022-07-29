@@ -76,7 +76,7 @@ router.post(async (req, res) => {
         
         const userData:any = new participantsDb(data);
         const regSpeaker =  await userData.save()
-      const ema =  await registrationEmail("okekehinde@gmail.com", type)
+      const ema =  await registrationEmail("okekehinde@gmail.com", type,userName)
             return res.status(200).json({
               status: true,
               data:regSpeaker,
