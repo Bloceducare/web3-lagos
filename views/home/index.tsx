@@ -3,10 +3,13 @@ import Button from '@components/button'
 import DateCountDown from '@components/dateCountDown'
 import { HiLocationMarker} from "react-icons/hi";
 import Link from "next/link";
+import CountUp from 'react-countup';
+import useTotalParticipants from './hooks/useTotalParticipants';
 
 const HomeView = ()=>{
+  const {total} = useTotalParticipants()
+  
     return (<>
-
         <div className='md:bg-green-300 pt-10 md:h-[calc(100vh_-_5rem)]'>
         <div className="flex md:items-start md:justify-between  mx-auto max-w-6xl " >
             <div className='flex flex-col max-w-md text-center md:text-left' >
@@ -25,7 +28,7 @@ const HomeView = ()=>{
             <Button variant='primary'>Learn More</Button>
                 </div>
             </div>
-            <div className='hidden md:block'>
+            <div className='hidden md:block relative' >
                 
             <Image
       src="/eth-img.jpg"
@@ -34,6 +37,32 @@ const HomeView = ()=>{
       height={400}
       className="rounded-sm"
     />
+
+<CountUp
+    className='p-2 bg-red-400 inline-grid place-items-center absolute'
+    duration={1}
+    start={0}
+    end={total}
+    >
+
+{({ countUpRef }) => (
+    <div className=' text-white p-2 px-8 bg-red-200 inline-grid place-items-center absolute -bottom-8 bg-gradient-to-r from-sky-500 to-indigo-500 -ml-24'>
+      <div>
+      <span className='text-4xl' ref={countUpRef} /> 
+      <span className='text-4xl' >
+      +
+      </span> 
+    
+      </div>
+      <div className='uppercase'>
+      attendees
+      </div>
+     
+    </div>
+  )}
+  
+
+    </CountUp>
             </div>
         </div>
         </div>  
