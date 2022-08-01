@@ -4,9 +4,10 @@ import Link from "next/link";
 
 interface IiconWrapperProps {
   children:ReactNode
+  className?:string
 }
-const  IconWrapper = ({children}:IiconWrapperProps)=>{
-  return (<span className="text-3xl  text-red-300"> 
+export const  IconWrapper = ({children, className='text-blue-900'}:IiconWrapperProps)=>{
+  return (<span className={`text-3xl  ${className}`}> 
     {children} 
     </span>)
 }
@@ -23,11 +24,11 @@ const NavBar = () => {
               <a className="flex items-center">
                 <span className="sr-only">Workflow</span>
                 <img
-                  className="w-auto h-8 sm:h-10 mr-1"
+                  className="w-auto h-8 mr-1 sm:h-10"
                   src="https://upload.wikimedia.org/wikipedia/commons/0/01/Ethereum_logo_translucent.svg"
                   alt=""
                 />
-               <span className="font-semibold text-xl font-mono ">
+               <span className="font-mono text-xl font-semibold ">
                Lagos
                </span>
               </a>

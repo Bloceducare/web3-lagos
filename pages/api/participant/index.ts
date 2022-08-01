@@ -55,7 +55,7 @@ router.post(async (req, res) => {
   if(!email || !userName) {
     return  res.status(423).json({
       status: false,
-      message: `${!email ? 'email field': ''} ${!userName ? 'userName field': ''} is required`
+      message: `${!email ? 'email field': ''} ${!userName ? 'name field': ''} is required`
     })
   }
   

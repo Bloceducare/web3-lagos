@@ -1,37 +1,92 @@
 import Image from 'next/image'
 import Button from '@components/button'
 import DateCountDown from '@components/dateCountDown'
-import { HiLocationMarker} from "react-icons/hi";
+import { HiLocationMarker, HiCalendar} from "react-icons/hi";
+import { FiTwitter, FiInstagram, FiMail } from "react-icons/fi";
 import Link from "next/link";
 import CountUp from 'react-countup';
 import useTotalParticipants from './hooks/useTotalParticipants';
+import { IconWrapper } from '@components/header';
+
+export const AddressIcon = ({className=''})=>{
+  return (<>
+  <IconWrapper className={className}>
+    <HiCalendar />
+  </IconWrapper>
+    </>)
+}
+
+export const TwitterIcon = ({className=''})=>{
+  return (<>
+  <IconWrapper className={className}>
+    <FiTwitter />
+  </IconWrapper>
+    </>)
+}
+export const InstagramIcon = ({className=''})=>{
+  return (<>
+  <IconWrapper className={className}>
+    <FiInstagram />
+  </IconWrapper>
+    </>)
+}
+export const EmailIcon = ({className=''})=>{
+  return (<>
+  <IconWrapper className={className}>
+    <FiMail />
+  </IconWrapper>
+    </>)
+}
+
+
+
 
 const HomeView = ()=>{
   const {total} = useTotalParticipants()
   
     return (<>
-        <div className='md:bg-green-300 pt-10 md:h-[calc(100vh_-_5rem)]'>
-        <div className="flex md:items-start md:justify-between  mx-auto max-w-6xl " >
+        <div className= "text-white pt-10 md:h-[calc(100vh_-_5rem)] bg-[url('/blue-bg.png')] bg-no-repeat"  >
+        <div className="flex flex-wrap justify-between max-w-6xl mx-auto md:items-start " >
             <div className='flex flex-col max-w-md text-center md:text-left' >
-              <div className='mt-2'>July, 01,2022</div>
+              <div className='flex items-center mx-auto mt-2 md:ml-0'>
+                <div className='mr-1'>
+                  <AddressIcon className='text-white' />
+                </div>
+                <div className='leading-5'>
+                  <div>October</div>
+                  <div>6-8, 2022</div>
+                </div>
+              </div>
               <div className='my-3'> 
-              <h1 className='text-5xl mb-3  leading-snug'>Ethereum Community Conference Lagos</h1>
-              <div className='md:p-0  p-3'>
+              <h1 className='mb-3 text-5xl leading-snug'>Web3 
+              <span className='font-bold'>
+              {" "}Lagos Conference  2022
+              </span>
+              </h1>
+              <div className='p-3 md:p-0'>
 
-              <p className='my-1 text-left'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem hic cum aspernatur nisi cumque magnam deserunt saepe aliquam, illum voluptatibus corporis. Accusantium animi ullam ea ut sit nihil nam voluptas.</p>
+              <p className='my-1 text-left'>
+                Join the largest Web3 conference in Lagos Nigeria, where stakeholders, industry experts, software developers are coming together to netwrok and discuss about the web3 ecosystem.  
+              </p>
 
-              <p className='my-1 text-left'> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus, accusantium minus repellendus aperiam quas saepe officia itaque minima soluta ex.</p>
+              {/* <p className='my-1 text-left'> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus, accusantium minus repellendus aperiam quas saepe officia itaque minima soluta ex.</p> */}
+
               </div>
               </div>
-                <div className='md:mt-0 mt-4'>
+                <div className='mt-4 md:mt-0'>
 
-            <Button variant='primary'>Learn More</Button>
+            <Button variant='primary' className='px-4'>
+              <a href='#more'>
+              Learn More
+                
+              </a>
+              </Button>
                 </div>
             </div>
-            <div className='hidden md:block relative' >
+            <div className='relative block' >
                 
             <Image
-      src="/eth-img.jpg"
+      src="/flying-bridge.png"
       alt="Picture of the author"
       width={400}
       height={400}
@@ -39,14 +94,14 @@ const HomeView = ()=>{
     />
 
 <CountUp
-    className='p-2 bg-red-400 inline-grid place-items-center absolute'
-    duration={1}
+    duration={2}
     start={0}
-    end={total}
+    end={5000}
+    // end={total}
     >
 
 {({ countUpRef }) => (
-    <div className=' text-white p-2 px-8 bg-red-200 inline-grid place-items-center absolute -bottom-8 bg-gradient-to-r from-sky-500 to-indigo-500 -ml-24'>
+    <div className='hidden p-2 px-8 text-white md:inline-grid place-items-center md:absolute -bottom-8 bg-gradient-to-r from-sky-500 to-indigo-500 md:-ml-24'>
       <div>
       <span className='text-4xl' ref={countUpRef} /> 
       <span className='text-4xl' >
@@ -67,68 +122,81 @@ const HomeView = ()=>{
         </div>
         </div>  
 
-        <section className='mx-auto text-center max-w-4xl md:text-center'>
+        <section className='max-w-4xl mx-auto text-center md:text-center'>
             <DateCountDown />
-            <div className='flex items-center justify-center'>
-            <HiLocationMarker  className='mr-2'/> Lagos Nigeria
+            <div className='flex items-center justify-center my-3'>
+            <HiLocationMarker  className='mr-2 text-2xl'/> Lagos Nigeria
             </div>
         </section>   
-        <section className='text-center my-6  bg-red-100 p-6 py-16'>
-            <h1 className='text-6xl mb-2'>Apply &#38;
+        <section className="text-center my-6  p-6 py-16 md:bg-[url('/web3bridge.png')] bg-no-repeat bg-contain bg-right">
+          <div className=''>
+
+       
+            <h1 className='mb-2 text-6xl'>Apply &#38;
              </h1>
-            <h1 className='text-6xl mb-12 text-red-700'>   
+            <h1 className='mb-12 text-6xl text-red-700'>   
             Join the Conversation
              </h1>
-
-
-            <div className="container mx-auto">
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-3 ">
-    <div className="flex justify-center text-2xl brd  items-center">
+            <div className="max-w-xl mx-auto">
+  <div className="grid grid-cols-1 gap-6 mt-3 md:grid-cols-2 lg:grid-cols-2 ">
+    <div className="flex items-center justify-center text-2xl brd">
         <Link href='/apply/speaker'>
 
-    <a className="border-red-300 border:dotted w-full border-2 hover:bg-red-200 hover:opacity-80 p-4 cursor-pointer">
+    <a className="w-full p-4 border-2 border-red-500 cursor-pointer border:dotted hover:bg-red-200 hover:opacity-80">
                 Apply as a Speaker
               </a>
         </Link>
               
       
     </div>
-    <div className="flex justify-center text-2xl brd  items-center">
+    <div className="flex items-center justify-center text-2xl brd">
     <Link href='/apply/sponsor'>
 
-<a className="border-red-300 border:dotted w-full border-2 hover:bg-red-200 hover:opacity-80 p-4 cursor-pointer">
+<a className="w-full p-4 border-2 border-red-500 cursor-pointer border:dotted hover:bg-red-200 hover:opacity-80">
     
         Apply as a Sponsor
           </a>
     </Link>
     
     </div>
-    <div className="flex justify-center text-2xl brd  items-center">
+    {/* <div className="flex items-center justify-center text-2xl brd">
 
     <Link href='/apply/volunteer'>
 
-<a className="border-red-300 border:dotted w-full border-2 hover:bg-red-200 hover:opacity-80 p-4 cursor-pointer">
+<a className="w-full p-4 border-2 border-red-300 cursor-pointer border:dotted hover:bg-red-200 hover:opacity-80">
         Apply as a Volunteer
           </a>
     </Link>
     
     </div>
-    <div className="flex justify-center text-2xl brd  items-center">
+    <div className="flex items-center justify-center text-2xl brd">
     <Link href='/apply/media-partner'>
 
-<a className="border-red-300 border:dotted w-full border-2 hover:bg-red-200 hover:opacity-80 p-4 cursor-pointer">
+<a className="w-full p-4 border-2 border-red-300 cursor-pointer border:dotted hover:bg-red-200 hover:opacity-80">
         Apply as a Media Partner     
           </a>
     </Link>
-    </div>
+    </div> */}
 
   </div>
 </div>
+</div>
+
         </section>
+
+        <section id='more' className='max-w-6xl px-3 mx-auto my-12' >
+  <h2 className='my-1 text-3xl font-semibold leading-10'>Our Goal</h2>
+  <p>To organize one of the Largest Blockchain developers and Ethereum builders conference in the hea of Africa tech.</p>
+</section>
+        <section className='max-w-6xl mx-auto  px-3 my-12 [&>p]:my-3' >
+  <h2 className='my-1 text-3xl font-semibold leading-10'>Our Success Story</h2>
+  <p>We3Bridge mission is to identify Web3 passions, train them in a collaborative and suppoive remote environment and create and African Web3 Community, which over these years we have executed through our learning series called “COHORT” from edition 1 to edition 7 and with more than 2000 trained on Web2-Web3 Blockchain development for free with access to accommodation, feeding and internet access at our learning Facility in Lagos.</p>
+  <p>An initiative that staed as 500 Ethereum Developers which with results has scaled into an organization that has contributed to growth, development of leading Blockchain projects including Hydro and exposing not less than 10,000 Africans to Web3 and its wealth of oppounities through educational and extended learning series</p>
+</section>
 
         <section className='max-w-6xl m-auto my-16 ' >
         <div className="md:grid md:grid-cols-12">
-  <div className="md:col-span-6 col-span-6">
+  <div className="col-span-6 md:col-span-6">
     <Image
     src='/speaker-one.jpg'
  
@@ -136,23 +204,34 @@ const HomeView = ()=>{
       />
   </div>
   <div className="col-span-6 md:pl-20 [&>p]:mb-3 p-3 md:p-0">
-    <h2 className='text-3xl font-semibold leading-10 mb-8'>Lorem ipsum dolor sit amet, consectetur adipisi.</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae maxime reprehenderit nobis, sunt quod voluptatibus odit itaque deserunt autem. Commodi consequuntur perferendis deleniti voluptate molestiae sunt exercitationem aliquid ipsam nisi, necessitatibus, modi excepturi fuga ullam odio aspernatur quisquam eos earum?</p>
+    <h2 className='mb-8 text-3xl font-semibold leading-10'>Event Overview</h2>
+    <p>3 days event kickstaing with a hackathon and several other events including workshop, networking, career fair, panel session, talks e.t.c.and main event. </p>
 
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, earum sapiente, ipsum minus explicabo animi quis laboriosam libero blanditiis vel nobis, labore totam quae ut.</p>
+    <p>With an expected aendance of 5000 paicipants physically and viually. This event is focused on helping developers, Blockchain enthusiasts and enthusiast realize the endless possibilities and oppounities of the Blockchain and Ethereum ecosystem. Beyond celebrating three years of contributions to the Blockchain and Web3 space in Africa and international scenes, one of our core beliefs is that repeated interactions are a great contribution to career growth and poised to create an enabling environment onboarding top-tier projects for representation at the event and onboard best and value driven industry thought leader and value driven speakers</p>
   </div>
 </div>
         </section>
 
         <section className='max-w-6xl m-auto my-16 ' >
-        <div className="md:grid md:grid-cols-12">
+        <div className="flex-row-reverse md:grid md:grid-cols-12">
   <div className="col-span-6 md:pl-20 [&>p]:mb-3 p-3 md:p-0">
-    <h2 className='text-3xl font-semibold leading-10 mb-8'>Lorem ipsum dolor sit amet, consectetur adipisi.</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae maxime reprehenderit nobis, sunt quod voluptatibus odit itaque deserunt autem. Commodi consequuntur perferendis deleniti voluptate molestiae sunt exercitationem aliquid ipsam nisi, necessitatibus, modi excepturi fuga ullam odio aspernatur quisquam eos earum?</p>
+    <h2 className='mb-8 text-3xl font-semibold leading-10'>Outline of Event</h2>
 
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, earum sapiente, ipsum minus explicabo animi quis laboriosam libero blanditiis vel nobis, labore totam quae ut.</p>
+    <ul>
+      <li>
+      Day 1: Hackathons and workshops
+      </li>
+      <li>
+      Day 2: Career fair, networking and pitching.
+      </li>
+      <li>
+      Day 3: Main event and Web3bridge dinner for all
+Web3bridge Alumnus.
+      </li>
+    </ul>
+ 
   </div>
-  <div className="md:col-span-6 col-span-6">
+  <div className="col-span-6 md:col-span-6 grid-row-start:auto">
     <Image
     src='/speaker-two.jpg'
  
@@ -162,36 +241,71 @@ const HomeView = ()=>{
 </div>
         </section>
 
-        <section className='max-w-6xl m-auto my-16'>
+        {/* <section className='max-w-6xl m-auto my-16'>
             <h2 className='text-3xl text-semibold'>Partners</h2>
             <hr  className='my-4'/>
             <div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-3 my-12 ">
-    <div className="flex justify-center  shadow-2xl p-4 cursor-pointer items-center">
+            <div className="grid grid-cols-1 gap-6 my-12 mt-3 md:grid-cols-2 lg:grid-cols-4 ">
+    <div className="flex items-center justify-center p-4 shadow-2xl cursor-pointer">
       <Image src='/eth.png' 
      width='80px' height='80px' style={{border:'1px solid red'}}
        />
     </div>
-    <div className="flex justify-center  shadow-2xl p-4 cursor-pointer items-center">
+    <div className="flex items-center justify-center p-4 shadow-2xl cursor-pointer">
       <Image src='/Epns.png' 
       width='80px' height='80px'
        />
     </div>
-    <div className="flex justify-center  shadow-2xl p-4 cursor-pointer items-center">
+    <div className="flex items-center justify-center p-4 shadow-2xl cursor-pointer">
       <Image src='/hydro.png' 
      width='80px' height='80px'
        />
     </div>
-    <div className="flex justify-center  shadow-2xl p-4 cursor-pointer items-center ">
+    <div className="flex items-center justify-center p-4 shadow-2xl cursor-pointer ">
       <Image src='/kernel.png' 
      width='100%' height='100%'  
        />
     </div>
     </div>
             </div>
-        </section>
+        </section> */}
 
-       
+
+        <section className='max-w-6xl m-auto my-16 text-center [&>div]:my-3'>
+          <h2 className='text-5xl font-bold text-gray-700'> Team 
+          <br />
+          & 
+          <br />
+          Contact Details</h2>
+          <div>Contact:</div>
+          <div className='flex items-center justify-center'>
+            <EmailIcon className='inline-block mr-1 text-xl font-bold' />
+           <a href="mailto:ayodeji@web3bridge.com"  >
+            ayodeji@web3bridge.com        
+           </a>
+            </div>
+          <div className=''>
+            <div className='flex items-center justify-center'>
+              <a target='_blank' href='https://twitter.com/Web3Bridge'>         
+            
+                <TwitterIcon className='inline-block mr-1 text-xl font-bold ' />
+             
+              </a>
+              <a target='_blank' href='https://instagram.com/web3bridge'>         
+             
+                <InstagramIcon className='inline-block mr-3 text-xl font-bold ' />
+              
+              </a>
+               @web3bridge
+               </div>
+            <div>
+            <a target='_blank' href='https://www.web3bridge.com' >
+              
+              https://www.web3bridge.com
+            </a>
+              </div>
+          </div>
+          </section>
     </>)
 }
 

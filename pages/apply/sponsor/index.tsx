@@ -2,7 +2,10 @@ import ApplyAsaSponsor from "@views/apply-sponsor"
 
 
 const Sponsor = ()=>{
-    return (<ApplyAsaSponsor />)
+    return (<>
+    <ApplyAsaSponsor />
+    </>
+    )
 }
 
 export default Sponsor

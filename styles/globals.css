@@ -3,13 +3,26 @@
 @tailwind utilities;
 
 
+body {
+  /* background-color: #E9EFFF; */
+  background: #1c92d2;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #f2fcfe, #1c92d2);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #f2fcfe, #1c92d2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
+}
+
+
+.blue-bg-gradient { 
+  background-color: #F0F4FF;
+}
+
  input[type='radio'] {
     opacity: 0;
   }
 
 
  input[type='radio']:focus + label, input[type='radio']:checked  + label {
-    background-color: #48b971;
+    background-color: #2d3035;
     color: #fff;    
   }
 

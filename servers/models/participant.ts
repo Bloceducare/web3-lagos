@@ -1,5 +1,13 @@
 import mongoose from "mongoose";
-const fs = require('fs')
+
+
+enum IGender {
+male,
+female,
+others
+}
+
+
 
 const Schema = mongoose.Schema;
 const ParticipantSchema = new Schema(
@@ -33,7 +41,8 @@ const ParticipantSchema = new Schema(
    },
    gender:{
     type:String,
-    enum : ['female','male', 'others'],
+    enum : IGender
+    // enum : ['female','male', 'others'],
    },
    Im:{
      type:String
@@ -53,7 +62,7 @@ whyAcceptAsSponsor:{
 }, 
 sponsorAmtRange:{
   type:String,
-  enum:['50k-100k', '100k-300k', '300k-500k', '500k above']
+  enum:['2000-4999', '5000-9999', '10000-above']
 },
 otherWaysOfSponsoring:{
   type:String

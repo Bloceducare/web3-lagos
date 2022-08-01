@@ -82,15 +82,15 @@ const handleSubmit =  (e: React.SyntheticEvent )=>{
     postData(userInputs)    
 }
     
-    return (<div className="mt-12">
+    return (<div className="p-3 mt-12">
    
    <div className="text-center">
-   <h1 className="text-3xl font-semibold text-center text-gray-800">Speakers' Application</h1>
+   <h1 className="my-6 text-3xl font-semibold text-center text-gray-800">Speakers' Application</h1>
  {!!dataStatus.error &&  <span className="text-red-500 ">{dataStatus.error}</span>}
    </div>
 
 
-            <div className="p-10 mx-auto bg-white rounded-lg shadow md:w-3/4 lg:w-1/2">
+            <div className="p-10 mx-auto bg-white rounded-lg shadow md:w-3/4 lg:w-1/2 ">
       {
         !(!!message) && (<>
         
@@ -99,25 +99,25 @@ const handleSubmit =  (e: React.SyntheticEvent )=>{
            <label htmlFor="userName" className="block mb-2 font-bold text-gray-600">Name <span className="text-red-600">* </span></label>
            <input type="text" id="name" name="userName" onChange={handleChange} 
            placeholder="Put in your full name." className="w-full p-3 border border-gray-300 rounded shadow"
-           value={userName} />
+           value={userName} required />
          </div>
 
          <div className="mb-5">
            <label htmlFor="twitter" className="block mb-2 font-bold text-gray-600">Email <span className="text-red-600">*</span>  </label>
-           <input type="email" id="twitter" name="email" onChange={handleChange} placeholder="Put in your name."className="w-full p-3 border rounded shadow"  value={email} />
+           <input type="email" id="twitter" name="email" onChange={handleChange} placeholder="Put in your name."className="w-full p-3 border rounded shadow"  value={email} required />
            {/* border-red-300  */}
            {/* <p className="mt-2 text-sm text-red-400">Email is required</p> */}
          </div>
          <div className="mb-5">
            <label className="block mb-2 font-bold text-gray-600">Presentation Title <span className="text-red-600">*</span>   </label>
-           <input type="text"  name="presentationTitle" placeholder="Put in your presentation title." className="w-full p-3 border rounded shadow" onChange={handleChange} value={presentationTitle}  />
+           <input type="text"  name="presentationTitle" placeholder="Put in your presentation title." className="w-full p-3 border rounded shadow" onChange={handleChange} value={presentationTitle} required />
          
          </div>
 
          <div className="mb-5">
 
          <label className="block mb-2 font-bold text-gray-600">Pitch Us Your Story  <span className="text-red-600">*</span>  </label>
-         <textarea name='pitchStory' value={pitchStory} onChange={handleChange} className="block w-full p-3 mt-1 border rounded shadow form-textarea" rows={3} placeholder="Enter some long form content."></textarea>
+         <textarea name='pitchStory' value={pitchStory} onChange={handleChange} className="block w-full p-3 mt-1 border rounded shadow form-textarea" rows={3} placeholder="Enter some long form content." required></textarea>
 
          </div>
 
@@ -170,6 +170,7 @@ const handleSubmit =  (e: React.SyntheticEvent )=>{
          <div className="mb-5">
            <label  className="block mb-2 font-bold text-gray-600">Gender  </label>
            <select className="block w-full p-3 mt-1 border form-select" name='gender' onChange={handleChange}>
+    <option value='' disabled selected>Pick an Option</option>
     <option value='male'>Male</option>
     <option value='female'>Female</option>
     <option value='others'>Others</option>
