@@ -199,8 +199,12 @@ const HomeView = ()=>{
         <section className='max-w-6xl m-auto my-16 ' >
         <div className="flex-row-reverse md:grid md:grid-cols-12">
   <div className="col-span-6 md:pl-20 [&>p]:mb-3 p-3 md:p-0">
-    <h2 className='mb-8 text-3xl font-semibold leading-10'>Outline of Event</h2>
+    <h2 className='text-3xl font-semibold leading-10'>Outline of Event</h2>
+    <div className='grid place-items-center min-h-full'>
+    <h2 className='text-4xl italic '>Coming Soon!!!</h2>
 
+    </div>
+{/* 
     <ul>
       <li>
       Day 1: Hackathons and workshops
@@ -212,7 +216,7 @@ const HomeView = ()=>{
       Day 3: Main event and Web3bridge dinner for all
 Web3bridge Alumnus.
       </li>
-    </ul>
+    </ul> */}
  
   </div>
   <div className="col-span-6 md:col-span-6 grid-row-start:auto">
