@@ -13,7 +13,7 @@ import EmailIcon from '@components/Icons/EmailIcon';
 
 
 const HomeView = ()=>{
-  const {total, loading} = useTotalParticipants()
+  // const {total, loading} = useTotalParticipants()
   
     return (<>
         <div className= "text-white pt-10 md:h-[calc(100vh_-_5rem)] bg-[url('/blue-bg.png')] bg-no-repeat"  >
@@ -64,9 +64,8 @@ const HomeView = ()=>{
 
 <img src="/flying-bridge.png" width={'100%'}  height='auto' className='inline-block scale-110 md:mt-8' style={{maxWidth:'28rem'}}   />
 
-
-
-    <div className='p-8 text-center order-r  px-8 text-white md:inline-grid place-items-center md:absolute -bottom-16 bg-gradient-to-r from-sky-500 to-indigo-500 md:-ml-24 md:p-4'>
+{/* 
+    <div className='p-8 px-8 text-center text-white order-r md:inline-grid place-items-center md:absolute -bottom-16 bg-gradient-to-r from-sky-500 to-indigo-500 md:-ml-24 md:p-4'>
       <div>
         {
          <div className={`${loading ? '' : 'hidden'} animate-pulse w-10 h-10 bg-gray-700 mx-auto flex justify-center text-center`}> </div> 
@@ -81,7 +80,8 @@ const HomeView = ()=>{
       attendees
       </div>
      
-    </div>
+    </div> */}
+    
             </div>
         </div>
         </div>  
@@ -182,7 +182,7 @@ const HomeView = ()=>{
         <div className="flex-row-reverse md:grid md:grid-cols-12">
   <div className="col-span-6 md:pl-20 [&>p]:mb-3 p-3 md:p-0">
     <h2 className='text-3xl font-semibold leading-10'>Outline of Event</h2>
-    <div className='grid place-items-center min-h-full'>
+    <div className='grid min-h-full place-items-center'>
     <h2 className='text-xl italic '>Coming Soon!!!</h2>
 
     </div>
