@@ -155,7 +155,7 @@ const HomeView = ()=>{
         <section className='max-w-6xl mx-auto  px-3 my-12 [&>p]:my-3' >
   <h2 className='my-1 text-3xl font-semibold leading-10'>Our Success Story</h2>
   <p>We3Bridge mission is to identify Web3 passions, train them in a collaborative and suppoive remote environment and create and African Web3 Community, which over these years we have executed through our learning series called “COHORT” from edition 1 to edition 7 and with more than 2000 trained on Web2-Web3 Blockchain development for free with access to accommodation, feeding and internet access at our learning Facility in Lagos.</p>
-  <p>An initiative that staed as 500 Ethereum Developers which with results has scaled into an organization that has contributed to growth, development of leading Blockchain projects including Hydro and exposing not less than 10,000 Africans to Web3 and its wealth of oppounities through educational and extended learning series</p>
+  <p>An initiative that started as 500 Ethereum Developers which with results has scaled into an organization that has contributed to growth, development of leading Blockchain projects including Hydro and exposing not less than 10,000 Africans to Web3 and its wealth of oppounities through educational and extended learning series</p>
 </section>
 
         <section className='max-w-6xl m-auto my-16 ' >
@@ -171,7 +171,7 @@ const HomeView = ()=>{
     <h2 className='mb-8 text-3xl font-semibold leading-10'>Event Overview</h2>
     <p> 3 days event kickstaing with a hackathon and several other events including workshop, networking, career fair, panel session, talks e.t.c.and main event </p>
 
-    <p>With an expected aendance of 5000 paicipants physically and viually. This event is focused on helping developers, Blockchain enthusiasts and enthusiast realize the endless possibilities and oppounities of the Blockchain and Ethereum ecosystem. </p> 
+    <p>With an expected attendance of 5000 participants physically and virtually. This event is focused on helping developers, Blockchain enthusiasts and enthusiast realize the endless possibilities and oppounities of the Blockchain and Ethereum ecosystem. </p> 
     <p>
      Beyond celebrating three years of contributions to the Blockchain and Web3 space in Africa and international scenes, one of our core beliefs is that repeated interactions are a great contribution to career growth and poised to create an enabling environment onboarding top-tier projects for representation at the event and onboard best and value driven industry thought leader and value driven speakers</p>
   </div>
