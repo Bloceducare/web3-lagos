@@ -13,7 +13,7 @@ import EmailIcon from '@components/Icons/EmailIcon';
 
 
 const HomeView = ()=>{
-  const {total} = useTotalParticipants()
+  const {total, loading} = useTotalParticipants()
   
     return (<>
         <div className= "text-white pt-10 md:h-[calc(100vh_-_5rem)] bg-[url('/blue-bg.png')] bg-no-repeat"  >
@@ -63,30 +63,17 @@ const HomeView = ()=>{
 
 
 <img src="/flying-bridge.png" width={'100%'}  height='auto' className='inline-block scale-110 md:mt-8' style={{maxWidth:'28rem'}}   />
-              
-                
-      {/* <Image
-      src="/Lagos-Stadium.svg"
-      alt="Picture of the author"
-      width={1600}
-      height={700}
-      // layout='responsive'
-      objectFit='contain'
-      className="rounded-sm"
-    /> */}
 
-<CountUp
-    duration={2}
-    start={0}
-    end={5000}
-    // end={total}
-    >
 
-{({ countUpRef }) => (
+
     <div className='p-8 text-center order-r  px-8 text-white md:inline-grid place-items-center md:absolute -bottom-16 bg-gradient-to-r from-sky-500 to-indigo-500 md:-ml-24 md:p-4'>
       <div>
-      <span className='text-4xl' ref={countUpRef} /> 
-      <span className='text-4xl' >
+        {
+         <div className={`${loading ? '' : 'hidden'} animate-pulse w-10 h-10 bg-gray-700 mx-auto flex justify-center text-center`}> </div> 
+        }
+
+      <span className={`${loading ? 'hidden' : ''} text-4xl`}  >
+        {total}
       +
       </span> 
     
@@ -96,10 +83,6 @@ const HomeView = ()=>{
       </div>
      
     </div>
-  )}
-  
-
-    </CountUp>
             </div>
         </div>
         </div>  

@@ -156,8 +156,17 @@ Yes
 
  {
   !!attendingOtherDays  && (<div className="mb-5">
+   
+  <label className="block mb-2 font-bold text-gray-600">Reasons For Attending Day 1 and 2 
 
-  <label className="block mb-2 font-bold text-gray-600">Reasons For Attending Day 2 and 3  <p className=" text-white bg-gray-500 px-2 text-sm rounded-full inline-block font-semibold">please note this is an invite only </p>  </label>
+  <div className=" text-white inline-block rounded-md bg-gray-500 px-3">
+      <p>Day 1 and 2 are technical sessions and workshops</p>
+        <span className="capitalize">
+    please note this is an invite only  
+        </span>
+    </div>
+
+  </label>
   <textarea name='reasonForOtherDays' value={reasonForOtherDays} onChange={handleChange} className="block w-full p-3 mt-1 border rounded shadow form-textarea" rows={3} placeholder="Enter your reason here." required></textarea>
   
   </div>)
