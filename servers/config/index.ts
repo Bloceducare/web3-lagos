@@ -12,8 +12,9 @@ const connectDB = async () => {
 };
 
 export const mailSenderConfig ={
-  from:"eth-lagos@sandbox6c3d0653cf6f40f8bd343b3dab567016.mailgun.org",
-  emailSubject:"Eth Lagos 2022 Application"
+  from:"events@web3bridge.com",
+  emailSubject:"Web3 Lagos Conference 2022",
+  replyTo:"events@web3bridge.com"
 }
 
 export default connectDB;

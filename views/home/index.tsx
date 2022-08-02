@@ -1,43 +1,14 @@
 import Image from 'next/image'
 import Button from '@components/button'
 import DateCountDown from '@components/dateCountDown'
-import { HiLocationMarker, HiCalendar} from "react-icons/hi";
-import { FiTwitter, FiInstagram, FiMail } from "react-icons/fi";
+import { HiLocationMarker} from "react-icons/hi";
 import Link from "next/link";
 import CountUp from 'react-countup';
 import useTotalParticipants from './hooks/useTotalParticipants';
-import { IconWrapper } from '@components/header';
-
-export const AddressIcon = ({className=''})=>{
-  return (<>
-  <IconWrapper className={className}>
-    <HiCalendar />
-  </IconWrapper>
-    </>)
-}
-
-export const TwitterIcon = ({className=''})=>{
-  return (<>
-  <IconWrapper className={className}>
-    <FiTwitter />
-  </IconWrapper>
-    </>)
-}
-export const InstagramIcon = ({className=''})=>{
-  return (<>
-  <IconWrapper className={className}>
-    <FiInstagram />
-  </IconWrapper>
-    </>)
-}
-export const EmailIcon = ({className=''})=>{
-  return (<>
-  <IconWrapper className={className}>
-    <FiMail />
-  </IconWrapper>
-    </>)
-}
-
+import AddressIcon from '@components/Icons/AddressIcon';
+import TwitterIcon from '@components/Icons/TwitterIcon';
+import InstagramIcon from '@components/Icons/InstagramIcon';
+import EmailIcon from '@components/Icons/EmailIcon';
 
 
 
@@ -76,10 +47,15 @@ const HomeView = ()=>{
                 <div className='mt-4 md:mt-0'>
 
             <Button variant='primary' className='px-4'>
-              <a href='#more'>
-              Learn More
-                
-              </a>
+
+            <Link href='/apply/registration'>
+
+<a>
+  
+       Register
+          </a>
+    </Link>
+
               </Button>
                 </div>
             </div>
@@ -205,9 +181,11 @@ const HomeView = ()=>{
   </div>
   <div className="col-span-6 md:pl-20 [&>p]:mb-3 p-3 md:p-0">
     <h2 className='mb-8 text-3xl font-semibold leading-10'>Event Overview</h2>
-    <p>3 days event kickstaing with a hackathon and several other events including workshop, networking, career fair, panel session, talks e.t.c.and main event. </p>
+    <p> 3 days event kickstaing with a hackathon and several other events including workshop, networking, career fair, panel session, talks e.t.c.and main event </p>
 
-    <p>With an expected aendance of 5000 paicipants physically and viually. This event is focused on helping developers, Blockchain enthusiasts and enthusiast realize the endless possibilities and oppounities of the Blockchain and Ethereum ecosystem. Beyond celebrating three years of contributions to the Blockchain and Web3 space in Africa and international scenes, one of our core beliefs is that repeated interactions are a great contribution to career growth and poised to create an enabling environment onboarding top-tier projects for representation at the event and onboard best and value driven industry thought leader and value driven speakers</p>
+    <p>With an expected aendance of 5000 paicipants physically and viually. This event is focused on helping developers, Blockchain enthusiasts and enthusiast realize the endless possibilities and oppounities of the Blockchain and Ethereum ecosystem. </p> 
+    <p>
+     Beyond celebrating three years of contributions to the Blockchain and Web3 space in Africa and international scenes, one of our core beliefs is that repeated interactions are a great contribution to career growth and poised to create an enabling environment onboarding top-tier projects for representation at the event and onboard best and value driven industry thought leader and value driven speakers</p>
   </div>
 </div>
         </section>
@@ -287,12 +265,10 @@ Web3bridge Alumnus.
           <div className=''>
             <div className='flex items-center justify-center'>
               <a target='_blank' href='https://twitter.com/Web3Bridge'>         
-            
                 <TwitterIcon className='inline-block mr-1 text-xl font-bold ' />
              
               </a>
               <a target='_blank' href='https://instagram.com/web3bridge'>         
-             
                 <InstagramIcon className='inline-block mr-3 text-xl font-bold ' />
               
               </a>

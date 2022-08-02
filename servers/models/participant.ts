@@ -52,7 +52,7 @@ const ParticipantSchema = new Schema(
    },
    type:{
     type:String,
-    enum : ['speaker','volunteer', 'media-partner', 'sponsor'],
+    enum : ['speaker','attendant', 'media-partner', 'sponsor'],
    },
   companyLocation:{
   type:String
@@ -60,6 +60,15 @@ const ParticipantSchema = new Schema(
 whyAcceptAsSponsor:{
   type:String
 }, 
+reasonForAttending:{
+  type:String
+},
+attendingOtherDays:{
+  type:Boolean
+},
+reasonForOtherDays:{
+  type:String
+},
 sponsorAmtRange:{
   type:String,
   enum:['2000-4999', '5000-9999', '10000-above']

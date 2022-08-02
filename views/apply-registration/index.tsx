@@ -1,19 +1,19 @@
-import { useState, useRef } from "react"
+import { useState } from "react"
 import axios from 'axios'
 
 
-type Ivolunteer = {
+type IRegister = {
 userName:string,
 email:string,
 telegramID:string,
 twitterHandle:string,
 companyName:string,
-location:string,
-Im:string,
-spokenAtWeb3Before:boolean
 gender:string
-type:string
-
+type:string, 
+location:string,
+reasonForAttending:string,
+attendingOtherDays:boolean,
+reasonForOtherDays:String
 }
 const defaultUserInput = {
 userName:'',
@@ -21,19 +21,19 @@ email:'',
 telegramID:'',
 twitterHandle:'',
 companyName:'',
-location:'',
-Im:"",
-spokenAtWeb3Before:false,
 gender:"",
-type:'volunteer'
+location:"",
+type:'attendant',
+attendingOtherDays:false,
+reasonForOtherDays:'',
+reasonForAttending:''
 }
 type DetailedHTMLProps = /*unresolved*/ any
-const ApplyAsaVolunteer = ()=>{
+const ApplyAsAnAttendant = ()=>{
     const [userInputs, setUserInputs] = useState(defaultUserInput)
     const [dataStatus, setDataStatus] = useState({crud:false, error:''})
     const { crud } = dataStatus
     const [message, setMessage] = useState('')
-    const ImRef = useRef<DetailedHTMLProps>()
     const  { 
     userName,
     email,
@@ -41,20 +41,22 @@ const ApplyAsaVolunteer = ()=>{
     twitterHandle,
     companyName,
     location,
-    Im,
+    reasonForAttending,
+    reasonForOtherDays,
+    attendingOtherDays,
     } = userInputs
     
     const handleChange=(e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLTextAreaElement>)=>{
         const {name, value} = e.target
       setUserInputs((prev)=>({
         ...prev,
-        [name]:value
+        ...(name==='attendingOtherDays' ? {[name]:Boolean(Number(value))} : {[name]:value})
       }))
     }
 
 
-    const postData = async (data:Ivolunteer)=>{
-        const subData = {...data, name:data.userName, spokenAtWeb3Before:!!data.spokenAtWeb3Before, Im:ImRef.current.value}
+    const postData = async (data:IRegister)=>{
+        const subData = {...data, name:data.userName, }
         setDataStatus(()=>({
           error:'',
           crud:true
@@ -87,9 +89,9 @@ const handleSubmit =  (e: React.SyntheticEvent )=>{
     
 }
     
-    return (<div className="mt-12">
+    return (<div className="mt-12 p-3">
    <div className="text-center">
-   <h1 className="text-3xl  font-semibold text-gray-800">Volunteers' Application</h1>
+   <h1 className="text-3xl  font-semibold text-gray-800 mb-2">Web3 Lagos 2022 Registration</h1>
  {!!dataStatus.error &&  <span className="  text-red-500">{dataStatus.error}</span>}
 
    </div>
@@ -102,37 +104,67 @@ const handleSubmit =  (e: React.SyntheticEvent )=>{
            <label htmlFor="userName" className="block mb-2 font-bold text-gray-600">Name <span className="text-red-600">* </span></label>
            <input type="text" id="name" name="userName" onChange={handleChange} 
            placeholder="put in your full name" className="border border-gray-300 shadow p-3 w-full rounded mb-"
-           value={userName} />
+           value={userName} required />
          </div>
 
          <div className="mb-5">
            <label htmlFor="twitter" className="block mb-2 font-bold text-gray-600">Email <span className="text-red-600">*</span>  </label>
-           <input type="email" id="twitter" name="email" onChange={handleChange} placeholder="Put in your name."className="border shadow p-3 w-full rounded"  value={email} />
+           <input type="email" id="twitter" name="email" onChange={handleChange} placeholder="Put in your email."className="border shadow p-3 w-full rounded"  value={email} required />
            {/* border-red-300  */}
            {/* <p className="text-sm text-red-400 mt-2">Email is required</p> */}
          </div>
+
          <div className="mb-5">
            <label className="block mb-2 font-bold text-gray-600">Location <span className="text-red-600">*</span>   </label>
-           <input type="text"  name="location" placeholder="Put in your location." className="border shadow p-3 w-full rounded" onChange={handleChange} value={location}  />
+           <input type="text"  name="location" placeholder="Put in your location." className="border shadow p-3 w-full rounded" onChange={handleChange} value={location} required />
          
          </div>
 
          <div className="mb-5">
 
-         <label className="block mb-2 font-bold text-gray-600">I'm  <span className="text-red-600">*</span>  </label>
-         <input 
-         ref={ImRef}
-         list="Im" name="browser" id="browser" className='border p-3 w-full' placeholder="Type or Select an Option"/>
-    <datalist id="Im">
-    <option value="Studying" /> 
-    <option value="Working" />
-    <option value="looking for something new" />
-    <option value="Retired" />
-    <option value="Researching" />
-  </datalist>
-
+         <label className="block mb-2 font-bold text-gray-600">Why Did you want to attend  <span className="text-red-600">*</span>  </label>
+         <textarea name='reasonForAttending' value={reasonForAttending} onChange={handleChange} className="block w-full p-3 mt-1 border rounded shadow form-textarea" rows={3} placeholder="Enter your reason here." required></textarea>
 
          </div>
+
+
+
+
+         <div className="mb-5 ">
+
+<span  className="block mb-2 font-bold text-gray-600">Are you attending day 2 and 3 ?</span>
+<div className="flex items-center p-3 mt-2" >
+<div className="">
+<input id="attendingOtherDays-yes" type="radio" className="form-radio" name="attendingOtherDays" value={1} onChange={handleChange} />
+<label htmlFor="attendingOtherDays-yes" className="inline-flex items-center">
+<span className="">
+Yes
+</span>
+</label>
+</div>
+
+<div>
+<input id="attendingOtherDays-no" type="radio" className="form-radio" name="attendingOtherDays" value={0} onChange={handleChange} />
+<label htmlFor="attendingOtherDays-no" className="inline-flex items-center ml-6">
+<span className="">No</span>
+</label>
+</div>
+</div>
+
+</div>
+
+
+ {
+  !!attendingOtherDays  && (<div className="mb-5">
+
+  <label className="block mb-2 font-bold text-gray-600">Reasons For Attending Day 2 and 3  <p className=" text-white bg-gray-500 px-2 text-sm rounded-full inline-block font-semibold">please note this is an invite only </p>  </label>
+  <textarea name='reasonForOtherDays' value={reasonForOtherDays} onChange={handleChange} className="block w-full p-3 mt-1 border rounded shadow form-textarea" rows={3} placeholder="Enter your reason here." required></textarea>
+  
+  </div>)
+ }
+
+
+
 
          <div className="mb-5">
            <label className="block mb-2 font-bold text-gray-600">Company Name  </label>
@@ -189,4 +221,4 @@ const handleSubmit =  (e: React.SyntheticEvent )=>{
 
 
 
-export default ApplyAsaVolunteer
+export default ApplyAsAnAttendant
