@@ -74,7 +74,6 @@ const HomeView = ()=>{
 
       <span className={`${loading ? 'hidden' : ''} text-4xl`}  >
         {total}
-      +
       </span> 
     
       </div>
