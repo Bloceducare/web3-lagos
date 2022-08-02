@@ -17,7 +17,7 @@ const HomeView = ()=>{
   
     return (<>
         <div className= "text-white pt-10 md:h-[calc(100vh_-_5rem)] bg-[url('/blue-bg.png')] bg-no-repeat"  >
-        <div className="flex flex-wrap justify-between max-w-6xl mx-auto md:items-start " >
+        <div className="flex flex-wrap justify-center max-w-6xl mx-auto sm:justify-center md:justify-between" >
             <div className='flex flex-col max-w-md text-center md:text-left' >
               <div className='flex items-center mx-auto mt-2 md:ml-0'>
                 <div className='mr-1'>
@@ -60,14 +60,20 @@ const HomeView = ()=>{
                 </div>
             </div>
             <div className='relative block' >
+
+
+<img src="/flying-bridge.png" width={'100%'}  height='auto' className='inline-block scale-110 md:mt-8' style={{maxWidth:'28rem'}}   />
+              
                 
-            <Image
-      src="/flying-bridge.png"
+      {/* <Image
+      src="/Lagos-Stadium.svg"
       alt="Picture of the author"
-      width={400}
-      height={400}
+      width={1600}
+      height={700}
+      // layout='responsive'
+      objectFit='contain'
       className="rounded-sm"
-    />
+    /> */}
 
 <CountUp
     duration={2}
@@ -77,7 +83,7 @@ const HomeView = ()=>{
     >
 
 {({ countUpRef }) => (
-    <div className='hidden p-2 px-8 text-white md:inline-grid place-items-center md:absolute -bottom-8 bg-gradient-to-r from-sky-500 to-indigo-500 md:-ml-24'>
+    <div className='hidden p-2 px-8 text-white md:inline-grid place-items-center md:absolute -bottom-16 bg-gradient-to-r from-sky-500 to-indigo-500 md:-ml-24'>
       <div>
       <span className='text-4xl' ref={countUpRef} /> 
       <span className='text-4xl' >
@@ -174,7 +180,7 @@ const HomeView = ()=>{
         <div className="md:grid md:grid-cols-12">
   <div className="col-span-6 md:col-span-6">
     <Image
-    src='/speaker-one.jpg'
+    src='/event-photo-1.jpg'
  
     width="100%" height="70%" layout="responsive" objectFit="cover"
       />
@@ -210,11 +216,12 @@ Web3bridge Alumnus.
  
   </div>
   <div className="col-span-6 md:col-span-6 grid-row-start:auto">
+    <div>
     <Image
-    src='/speaker-two.jpg'
- 
-    width="100%" height="70%" layout="responsive" objectFit="cover"
+    src='/event-photo-2-ed.png'
+    width="100%" height="70px" layout="responsive" objectFit="cover"
       />
+    </div>
   </div>
 </div>
         </section>

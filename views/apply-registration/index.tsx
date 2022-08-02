@@ -132,7 +132,7 @@ const handleSubmit =  (e: React.SyntheticEvent )=>{
 
          <div className="mb-5 ">
 
-<span  className="block mb-2 font-bold text-gray-600">Are you attending day 2 and 3 ?</span>
+<span  className="block mb-2 font-bold text-gray-600">Are you attending day 1 and 2 ?</span>
 <div className="flex items-center p-3 mt-2" >
 <div className="">
 <input id="attendingOtherDays-yes" type="radio" className="form-radio" name="attendingOtherDays" value={1} onChange={handleChange} />
