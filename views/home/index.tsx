@@ -62,7 +62,12 @@ const HomeView = ()=>{
             <div className='relative block' >
 
 
-<img src="/flying-bridge.png" width={'100%'}  height='auto' className='inline-block scale-110 md:mt-8' style={{maxWidth:'28rem'}}   />
+<img 
+src="/flying-bridge.png" 
+width={'100%'}  
+height='auto' 
+className='inline-block scale-110 md:mt-8 md:max-w-md max-w-xs'
+   />
 
 {/* 
     <div className='p-8 px-8 text-center text-white order-r md:inline-grid place-items-center md:absolute -bottom-16 bg-gradient-to-r from-sky-500 to-indigo-500 md:-ml-24 md:p-4'>
@@ -79,7 +84,6 @@ const HomeView = ()=>{
       <div className='uppercase'>
       attendees
       </div>
-     
     </div> */}
     
             </div>
