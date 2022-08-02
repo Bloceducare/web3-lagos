@@ -37,7 +37,7 @@ const HomeView = ()=>{
               <div className='p-3 md:p-0'>
 
               <p className='my-1 text-left'>
-                Join the largest Web3 conference in Lagos Nigeria, where stakeholders, industry experts, software developers are coming together to netwrok and discuss about the web3 ecosystem.  
+                Join the largest Web3 conference in Lagos Nigeria, where stakeholders, industry experts, software developers are coming together to network and discuss about the web3 ecosystem.  
               </p>
 
               {/* <p className='my-1 text-left'> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus, accusantium minus repellendus aperiam quas saepe officia itaque minima soluta ex.</p> */}
@@ -83,7 +83,7 @@ const HomeView = ()=>{
     >
 
 {({ countUpRef }) => (
-    <div className='hidden p-2 px-8 text-white md:inline-grid place-items-center md:absolute -bottom-16 bg-gradient-to-r from-sky-500 to-indigo-500 md:-ml-24'>
+    <div className='p-8 text-center order-r  px-8 text-white md:inline-grid place-items-center md:absolute -bottom-16 bg-gradient-to-r from-sky-500 to-indigo-500 md:-ml-24 md:p-4'>
       <div>
       <span className='text-4xl' ref={countUpRef} /> 
       <span className='text-4xl' >
@@ -201,7 +201,7 @@ const HomeView = ()=>{
   <div className="col-span-6 md:pl-20 [&>p]:mb-3 p-3 md:p-0">
     <h2 className='text-3xl font-semibold leading-10'>Outline of Event</h2>
     <div className='grid place-items-center min-h-full'>
-    <h2 className='text-4xl italic '>Coming Soon!!!</h2>
+    <h2 className='text-xl italic '>Coming Soon!!!</h2>
 
     </div>
 {/* 
