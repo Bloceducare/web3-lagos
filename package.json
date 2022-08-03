@@ -11,6 +11,8 @@
     "@reduxjs/toolkit": "^1.8.3",
     "@stitches/react": "^1.2.8",
     "@tailwindcss/typography": "^0.5.4",
+    "ag-grid-community": "^28.0.2",
+    "ag-grid-react": "^28.0.0",
     "axios": "^0.27.2",
     "google-map-react": "^2.2.0",
     "handlebars": "^4.7.7",

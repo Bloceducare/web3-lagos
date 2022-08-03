@@ -60,8 +60,6 @@ const HomeView = ()=>{
                 </div>
             </div>
             <div className='relative block' >
-
-
 <img 
 src="/flying-bridge.png" 
 width={'100%'}  

@@ -15,6 +15,7 @@ reasonForAttending:string,
 attendingOtherDays:boolean,
 reasonForOtherDays:String
 }
+
 const defaultUserInput = {
 userName:'',
 email:'',
@@ -89,13 +90,13 @@ const handleSubmit =  (e: React.SyntheticEvent )=>{
     
 }
     
-    return (<div className="mt-12 p-3">
+    return (<div className="p-3 mt-12">
    <div className="text-center">
-   <h1 className="text-3xl  font-semibold text-gray-800 mb-2">Web3 Lagos 2022 Registration</h1>
- {!!dataStatus.error &&  <span className="  text-red-500">{dataStatus.error}</span>}
+   <h1 className="mb-2 text-3xl font-semibold text-gray-800">Web3 Lagos 2022 Registration</h1>
+ {!!dataStatus.error &&  <span className="text-red-500 ">{dataStatus.error}</span>}
 
    </div>
-            <div className="bg-white p-10 rounded-lg shadow md:w-3/4 mx-auto lg:w-1/2">
+            <div className="p-10 mx-auto bg-white rounded-lg shadow md:w-3/4 lg:w-1/2">
       {
         !(!!message) && (<>
         
@@ -103,20 +104,20 @@ const handleSubmit =  (e: React.SyntheticEvent )=>{
          <div className="mb-5">
            <label htmlFor="userName" className="block mb-2 font-bold text-gray-600">Name <span className="text-red-600">* </span></label>
            <input type="text" id="name" name="userName" onChange={handleChange} 
-           placeholder="put in your full name" className="border border-gray-300 shadow p-3 w-full rounded mb-"
+           placeholder="put in your full name" className="w-full p-3 border border-gray-300 rounded shadow mb-"
            value={userName} required />
          </div>
 
          <div className="mb-5">
            <label htmlFor="twitter" className="block mb-2 font-bold text-gray-600">Email <span className="text-red-600">*</span>  </label>
-           <input type="email" id="twitter" name="email" onChange={handleChange} placeholder="Put in your email."className="border shadow p-3 w-full rounded"  value={email} required />
+           <input type="email" id="twitter" name="email" onChange={handleChange} placeholder="Put in your email."className="w-full p-3 border rounded shadow"  value={email} required />
            {/* border-red-300  */}
-           {/* <p className="text-sm text-red-400 mt-2">Email is required</p> */}
+           {/* <p className="mt-2 text-sm text-red-400">Email is required</p> */}
          </div>
 
          <div className="mb-5">
            <label className="block mb-2 font-bold text-gray-600">Location <span className="text-red-600">*</span>   </label>
-           <input type="text"  name="location" placeholder="Put in your location." className="border shadow p-3 w-full rounded" onChange={handleChange} value={location} required />
+           <input type="text"  name="location" placeholder="Put in your location." className="w-full p-3 border rounded shadow" onChange={handleChange} value={location} required />
          
          </div>
 
@@ -159,7 +160,7 @@ Yes
    
   <label className="block mb-2 font-bold text-gray-600">Reasons For Attending Day 1 and 2 
 
-  <div className=" text-white inline-block rounded-md bg-gray-500 px-3">
+  <div className="inline-block px-3 text-white bg-gray-500 rounded-md ">
       <p>Day 1 and 2 are technical sessions and workshops</p>
         <span className="capitalize">
     please note this is an invite only  
@@ -177,13 +178,13 @@ Yes
 
          <div className="mb-5">
            <label className="block mb-2 font-bold text-gray-600">Company Name  </label>
-           <input type="text"  name="companyName" placeholder="Put in your company name." className="border shadow p-3 w-full rounded" onChange={handleChange} value={companyName}  />
+           <input type="text"  name="companyName" placeholder="Put in your company name." className="w-full p-3 border rounded shadow" onChange={handleChange} value={companyName}  />
          
          </div>
 
          <div className="mb-5">
          <label  className="block mb-2 font-bold text-gray-600">Gender  </label>
-           <select className="form-select mt-1 block w-full border p-3" name='gender' onChange={handleChange}>
+           <select className="block w-full p-3 mt-1 border form-select" name='gender' onChange={handleChange}>
     <option selected disabled>Please Select an Option</option>
     <option value='male'>Male</option>
     <option value='female'>Female</option>
@@ -196,19 +197,19 @@ Yes
          <div>
          <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4">
          <div className="mb-5 ">
-           <label  className="block mb-2 font-bold text-gray-600">Telegram ID  </label>
-           <input type="text" name="telegramID" placeholder="Put in your telegram ID" className="border shadow p-3 w-full rounded" onChange={handleChange} value={telegramID} />
+           <label  className="block mb-2 font-bold text-gray-600">Telegram Username  </label>
+           <input type="text" name="telegramID" placeholder="Put in your telegram ID" className="w-full p-3 border rounded shadow" onChange={handleChange} value={telegramID} />
          
          </div>
 
          <div className="mb-5">
            <label  className="block mb-2 font-bold text-gray-600">Twitter Handle  </label>
-           <input type="text" name="twitterHandle" placeholder="Put in your twitter handle" className="border shadow p-3 w-full rounded" onChange={handleChange} value={twitterHandle} />      
+           <input type="text" name="twitterHandle" placeholder="Put in your twitter handle" className="w-full p-3 border rounded shadow" onChange={handleChange} value={twitterHandle} />      
          </div>
       </div>
          </div>
 
-         <button disabled={crud} className="block w-full bg-blue-500 text-white font-bold p-4 rounded-lg">
+         <button disabled={crud} className="block w-full p-4 font-bold text-white bg-blue-500 rounded-lg">
             {crud ? "Sending...": "Submit"}
             </button>
        </form>
