@@ -9,3 +9,4 @@ export const getRecords = async(query:string)=>{
         throw error
     }
 }
+
