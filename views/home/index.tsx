@@ -152,7 +152,7 @@ className='inline-block scale-110 md:mt-8 md:max-w-md max-w-xs'
 
         <section id='more' className='max-w-6xl px-3 mx-auto my-12' >
   <h2 className='my-1 text-3xl font-semibold leading-10'>Our Goal</h2>
-  <p>To organize one of the Largest Blockchain developers and Ethereum builders conference in the hea of Africa tech.</p>
+  <p>To organize one of the Largest Blockchain developers and Ethereum builders conference in the heart of Africa tech.</p>
 </section>
         <section className='max-w-6xl mx-auto  px-3 my-12 [&>p]:my-3' >
   <h2 className='my-1 text-3xl font-semibold leading-10'>Our Success Story</h2>
