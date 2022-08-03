@@ -91,7 +91,7 @@ className='inline-block scale-110 md:mt-8 md:max-w-md max-w-xs'
         <section className='max-w-4xl mx-auto text-center md:text-center'>
             <DateCountDown />
             <div className='flex items-center justify-center my-3'>
-            <HiLocationMarker  className='mr-2 text-2xl'/> Lagos Nigeria
+            <HiLocationMarker  className='mr-2 text-2xl'/>Funplex Resort, Magodo &nbsp; Lagos.
             </div>
         </section>   
         <section className="text-center my-6  p-6 py-16 md:bg-[url('/web3bridge.png')] bg-no-repeat bg-contain bg-right">
