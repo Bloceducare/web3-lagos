@@ -146,7 +146,7 @@ const handleSubmit =  (e: React.SyntheticEvent )=>{
          <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4">
          <div className="mb-5 ">
 
-         <span  className="block mb-2 font-bold text-gray-600">Spoken at a any web3 event before  </span>
+         <span  className="block mb-2 font-bold text-gray-600">Spoken at a web3 event before?  </span>
   <div className="flex items-center p-3 mt-2" >
     <div className="">
       <input id="pokenAtWeb3Before-yes" type="radio" className="form-radio" name="spokenAtWeb3Before" value={1} onChange={handleChange} />
