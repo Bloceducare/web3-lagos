@@ -123,7 +123,7 @@ const handleSubmit =  (e: React.SyntheticEvent )=>{
 
          <div className="mb-5">
 
-         <label className="block mb-2 font-bold text-gray-600">Why Did you want to attend  <span className="text-red-600">*</span>  </label>
+         <label className="block mb-2 font-bold text-gray-600">Why Do you want to attend  <span className="text-red-600">*</span>  </label>
          <textarea name='reasonForAttending' value={reasonForAttending} onChange={handleChange} className="block w-full p-3 mt-1 border rounded shadow form-textarea" rows={3} placeholder="Enter your reason here." required></textarea>
 
          </div>
