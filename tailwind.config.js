@@ -7,7 +7,13 @@ module.exports = {
     "./views/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        gray: {
+          cgray: "#E9EFFF",
+        },
+      },
+    },
   },
   // plugins: [],
   plugins: [require("@tailwindcss/typography")],

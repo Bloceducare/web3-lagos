@@ -90,8 +90,14 @@ className='inline-block scale-110 md:mt-8 md:max-w-md max-w-xs'
 
         <section className='max-w-4xl mx-auto text-center md:text-center'>
             <DateCountDown />
-            <div className='flex items-center justify-center my-3'>
-            <HiLocationMarker  className='mr-2 text-2xl'/>Funplex Resort, Magodo &nbsp; Lagos.
+            <div className='z-20 relative flex items-center justify-center my-4 ' >
+            {/* <HiLocationMarker  className='mr-2 text-2xl'/> */}
+          
+            <h3 className='p-2 pr-3  bg-green-600  bg-gradient-to-r from-gray-cgray to-red-200 md:text-3xl relative flex items-center justify-center my-4 text-xl'>
+            <img src='/map-2.png'  className='mr-2' width='20rem' height='auto' />
+            Funplex Resort, Magodo &nbsp; Lagos.
+            </h3>
+
             </div>
         </section>   
         <section className="text-center my-6  p-6 py-16 md:bg-[url('/web3bridge.png')] bg-no-repeat bg-contain bg-right">
