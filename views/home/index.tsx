@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import Button from '@components/button'
 import DateCountDown from '@components/dateCountDown'
-import { HiLocationMarker} from "react-icons/hi";
 import Link from "next/link";
 import useTotalParticipants from './hooks/useTotalParticipants';
 import AddressIcon from '@components/Icons/AddressIcon';
@@ -77,7 +76,7 @@ className='inline-block scale-110 md:mt-8 md:max-w-md max-w-xs mb-2 md:scale-125
         }
 
       <span className={`${loading ? 'hidden' : ''} text-4xl`}  >
-        {total}+
+        {total}
       </span> 
     
       </div>
