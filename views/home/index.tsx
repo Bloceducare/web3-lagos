@@ -3,7 +3,6 @@ import Button from '@components/button'
 import DateCountDown from '@components/dateCountDown'
 import { HiLocationMarker} from "react-icons/hi";
 import Link from "next/link";
-import CountUp from 'react-countup';
 import useTotalParticipants from './hooks/useTotalParticipants';
 import AddressIcon from '@components/Icons/AddressIcon';
 import TwitterIcon from '@components/Icons/TwitterIcon';
@@ -13,7 +12,7 @@ import EmailIcon from '@components/Icons/EmailIcon';
 
 
 const HomeView = ()=>{
-  // const {total, loading} = useTotalParticipants()
+  const {total, loading} = useTotalParticipants()
   
     return (<>
         <div className= "text-white pt-10 md:h-[calc(100vh_-_5rem)] bg-[url('/blue-bg.png')] bg-no-repeat"  >
@@ -60,29 +59,32 @@ const HomeView = ()=>{
                 </div>
             </div>
             <div className='relative block' >
+          
+
 <img 
 src="/flying-bridge.png" 
 width={'100%'}  
 height='auto' 
-className='inline-block scale-110 md:mt-8 md:max-w-md max-w-xs'
+className='inline-block scale-110 md:mt-8 md:max-w-md max-w-xs mb-2 md:scale-125'
    />
+           
 
-{/* 
-    <div className='p-8 px-8 text-center text-white order-r md:inline-grid place-items-center md:absolute -bottom-16 bg-gradient-to-r from-sky-500 to-indigo-500 md:-ml-24 md:p-4'>
+
+    <div className='p-2 px-8 text-center text-white  md:inline-grid place-items-center md:absolute -bottom-2 bg-gradient-to-r from-sky-500 to-indigo-500 md:-ml-24 md:p-4 md:px-14 md:-right-14'>
       <div>
         {
          <div className={`${loading ? '' : 'hidden'} animate-pulse w-10 h-10 bg-gray-700 mx-auto flex justify-center text-center`}> </div> 
         }
 
       <span className={`${loading ? 'hidden' : ''} text-4xl`}  >
-        {total}
+        {total}+
       </span> 
     
       </div>
-      <div className='uppercase'>
+      <div className='uppercase flex items-center justify-center'>
       attendees
       </div>
-    </div> */}
+    </div>
     
             </div>
         </div>
