@@ -6,7 +6,6 @@ interface Props {
     href:string
 }
 const Link = ({children, href}:Props) =>{
-    console.log(href)
     return (<><NextLink  href={href}>
         <>
          {children}
