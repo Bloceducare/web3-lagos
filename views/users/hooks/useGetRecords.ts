@@ -40,6 +40,7 @@ const useGetRecords = (q:string)=>{
     }
     useEffect(()=>{
         fetchData()
+       
     },[q])
 
     return {

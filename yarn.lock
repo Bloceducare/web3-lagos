@@ -2,6 +2,18 @@
 # yarn lockfile v1
 
 
+"@ag-grid-community/core@^28.1.0", "@ag-grid-community/core@~28.1.0":
+  version "28.1.0"
+  resolved "https://registry.yarnpkg.com/@ag-grid-community/core/-/core-28.1.0.tgz#cb23012e884a28759fe08bda322f34edac14fafe"
+  integrity sha512-PA8t23uV/WWL6/OGm6WiyiIG6qh4JDxGJnII4jBtPeZu9VyyRRMsZBwTxXqyhCeJByp5REbShR8aZMQTBfQdiA==
+
+"@ag-grid-community/csv-export@^28.1.0":
+  version "28.1.0"
+  resolved "https://registry.yarnpkg.com/@ag-grid-community/csv-export/-/csv-export-28.1.0.tgz#ad7708c6f96da6315fd192a7af36576aed82a77d"
+  integrity sha512-eattFRuYRKvOqhionGvQyDtqwLHxovBZ3CueZXJGSRzMrMqYOmoghXgu+j6riHjAEXD9fyn7ElSNRBDRN19hSg==
+  dependencies:
+    "@ag-grid-community/core" "~28.1.0"
+
 "@colors/colors@1.5.0":
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/@colors/colors/-/colors-1.5.0.tgz#bb504579c1cae923e6576a4f5da43d25f97bdbd9"
