@@ -183,7 +183,7 @@ className='inline-block scale-110 md:mt-8 md:max-w-md max-w-xs mb-2 md:scale-125
     <p>With an expected attendance of 5000 participants physically and virtually. This event is focused on helping developers, and blockchain enthusiasts realize the endless possibilities and oppounities of the Blockchain & Ethereum ecosystem. </p> 
     <p>
      Beyond celebrating three years of contributions to the Blockchain and Web3 space in Africa and international scenes, 
-      one of our core beliefs is that repeated interactions are a great contribution to career growth and are poised to create an enabling environment, onboarding top-tier projects for representation at the event. We're bringing together the best, value driven industry thought leaders and speakers.
+      one of our core beliefs is that repeated interactions are a great contribution to career growth and are poised to create an enabling environment, onboarding top-tier projects for representation at the event. We're bringing together the best, value-driven industry thought leaders and speakers.
     </p>
   </div>
 </div>
