@@ -178,11 +178,13 @@ className='inline-block scale-110 md:mt-8 md:max-w-md max-w-xs mb-2 md:scale-125
   </div>
   <div className="col-span-6 md:pl-20 [&>p]:mb-3 p-3 md:p-0">
     <h2 className='mb-8 text-3xl font-semibold leading-10'>Event Overview</h2>
-    <p> 3 days event kickstarting with a hackathon and several other events including workshop, networking, career fair, panel session, talks main event, etc. </p>
+    <p> 3 days event kickstarting with a hackathon and several other events including workshop, networking, career fair, panel session, talks, main event, etc. </p>
 
     <p>With an expected attendance of 5000 participants physically and virtually. This event is focused on helping developers, and blockchain enthusiasts realize the endless possibilities and oppounities of the Blockchain & Ethereum ecosystem. </p> 
     <p>
-     Beyond celebrating three years of contributions to the Blockchain and Web3 space in Africa and international scenes, one of our core beliefs is that repeated interactions are a great contribution to career growth and poised to create an enabling environment onboarding top-tier projects for representation at the event and onboard best and value driven industry thought leader and value driven speakers</p>
+     Beyond celebrating three years of contributions to the Blockchain and Web3 space in Africa and international scenes, 
+      one of our core beliefs is that repeated interactions are a great contribution to career growth and are poised to create an enabling environment, onboarding top-tier projects for representation at the event. We're bringing together the best, value driven industry thought leaders and speakers.
+    </p>
   </div>
 </div>
         </section>
