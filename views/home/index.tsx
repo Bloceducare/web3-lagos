@@ -7,6 +7,7 @@ import AddressIcon from '@components/Icons/AddressIcon';
 import TwitterIcon from '@components/Icons/TwitterIcon';
 import InstagramIcon from '@components/Icons/InstagramIcon';
 import EmailIcon from '@components/Icons/EmailIcon';
+import Sponsors from '@components/Sponsors';
 
 
 
@@ -64,12 +65,12 @@ const HomeView = ()=>{
 src="/flying-bridge.png" 
 width={'100%'}  
 height='auto' 
-className='inline-block scale-110 md:mt-8 md:max-w-md max-w-xs mb-2 md:scale-125'
+className='inline-block max-w-xs mb-2 scale-110 md:mt-8 md:max-w-md md:scale-125'
    />
            
 
 
-    <div className='p-2 px-8 text-center text-white  md:inline-grid place-items-center md:absolute -bottom-2 bg-gradient-to-r from-sky-500 to-indigo-500 md:-ml-24 md:p-4 md:px-14 md:-right-14'>
+    <div className='p-2 px-8 text-center text-white md:inline-grid place-items-center md:absolute -bottom-2 bg-gradient-to-r from-sky-500 to-indigo-500 md:-ml-24 md:p-4 md:px-14 md:-right-14'>
       <div>
         {
          <div className={`${loading ? '' : 'hidden'} animate-pulse w-10 h-10 bg-gray-700 mx-auto flex justify-center text-center`}> </div> 
@@ -80,7 +81,7 @@ className='inline-block scale-110 md:mt-8 md:max-w-md max-w-xs mb-2 md:scale-125
       </span> 
     
       </div>
-      <div className='uppercase flex items-center justify-center'>
+      <div className='flex items-center justify-center uppercase'>
       attendees
       </div>
     </div>
@@ -91,10 +92,9 @@ className='inline-block scale-110 md:mt-8 md:max-w-md max-w-xs mb-2 md:scale-125
 
         <section className='max-w-4xl mx-auto text-center md:text-center'>
             <DateCountDown />
-            <div className='z-20 relative flex items-center justify-center my-4 ' >
-            {/* <HiLocationMarker  className='mr-2 text-2xl'/> */}
-          
-            <h3 className='p-2 pr-3  bg-green-600  bg-gradient-to-r from-gray-cgray to-red-200 md:text-3xl relative flex items-center justify-center my-4 text-xl'>
+            <div className='relative z-20 flex items-center justify-center my-4 ' >
+         
+            <h3 className='relative flex items-center justify-center p-2 pr-3 my-4 text-xl bg-green-600 bg-gradient-to-r from-gray-cgray to-red-200 md:text-3xl'>
             <img src='/map-2.png'  className='mr-2' width='20rem' height='auto' />
             Funplex Resort, Magodo &nbsp; Lagos.
             </h3>
@@ -113,8 +113,11 @@ className='inline-block scale-110 md:mt-8 md:max-w-md max-w-xs mb-2 md:scale-125
             <div className="max-w-xl mx-auto">
   <div className="grid grid-cols-1 gap-6 mt-3 md:grid-cols-2 lg:grid-cols-2 ">
     <div className="flex items-center justify-center text-2xl brd">
-        <Link href='/apply/speaker'>
+        <Link href='/apply/speakers'>
 
+    {/* <a className="w-full p-4 border-2 border-red-500 cursor-pointer border:dotted hover:bg-red-200 hover:opacity-80">
+                Apply as a Volunteer
+              </a> */}
     <a className="w-full p-4 border-2 border-red-500 cursor-pointer border:dotted hover:bg-red-200 hover:opacity-80">
                 Apply as a Speaker
               </a>
@@ -157,13 +160,17 @@ className='inline-block scale-110 md:mt-8 md:max-w-md max-w-xs mb-2 md:scale-125
 
         </section>
 
+        {/* <section>
+          <Sponsors />
+        </section> */}
+
         <section id='more' className='max-w-6xl px-3 mx-auto my-12' >
   <h2 className='my-1 text-3xl font-semibold leading-10'>Our Goal</h2>
   <p>To organize one of the Largest Blockchain developers and Ethereum builders conference in the heart of Africa tech.</p>
 </section>
         <section className='max-w-6xl mx-auto  px-3 my-12 [&>p]:my-3' >
   <h2 className='my-1 text-3xl font-semibold leading-10'>Our Success Story</h2>
-  <p>We3Bridge mission is to identify Web3 passions, train them in a collaborative and suppoive remote environment and create and African Web3 Community, which over these years we have executed through our learning series called “COHORT” from edition 1 to edition 7 and with more than 2000 trained on Web2-Web3 Blockchain development for free with access to accommodation, feeding and internet access at our learning Facility in Lagos.</p>
+  <p>We3Bridge mission is to identify Web3 passions, train them in a collaborative and supportive remote environment and create and African Web3 Community, which over these years we have executed through our learning series called “COHORT” from edition 1 to edition 7 and with more than 2000 trained on Web2-Web3 Blockchain development for free with access to accommodation, feeding and internet access at our learning Facility in Lagos.</p>
   <p>An initiative that started as 500 Ethereum Developers which with results has scaled into an organization that has contributed to growth, development of leading Blockchain projects including Hydro and exposing not less than 10,000 Africans to Web3 and its wealth of oppounities through educational and extended learning series</p>
 </section>
 
@@ -180,7 +187,7 @@ className='inline-block scale-110 md:mt-8 md:max-w-md max-w-xs mb-2 md:scale-125
     <h2 className='mb-8 text-3xl font-semibold leading-10'>Event Overview</h2>
     <p> 3 days event kickstarting with a hackathon and several other events including workshop, networking, career fair, panel session, talks, main event, etc. </p>
 
-    <p>With an expected attendance of 5000 participants physically and virtually. This event is focused on helping developers, and blockchain enthusiasts realize the endless possibilities and oppounities of the Blockchain & Ethereum ecosystem. </p> 
+    <p>With an expected attendance of 5000 participants physically and virtually. This event is focused on helping developers, and blockchain enthusiasts realize the endless possibilities and opportunities of the Blockchain & Ethereum ecosystem. </p> 
     <p>
      Beyond celebrating three years of contributions to the Blockchain and Web3 space in Africa and international scenes, 
       one of our core beliefs is that repeated interactions are a great contribution to career growth and are poised to create an enabling environment, onboarding top-tier projects for representation at the event. We're bringing together the best, value-driven industry thought leaders and speakers.

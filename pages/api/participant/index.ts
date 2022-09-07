@@ -93,12 +93,12 @@ router.post(async (req, res) => {
 
 });
 
-interface Iquery {
+interface IQuery {
   type?:string | string[] | undefined
   page?:number| string
 }
 router.get(async (req, res)=>{
- const {type}:Iquery =  req.query
+ const {type}:IQuery =  req.query
 
   try{
     const users =   await participantsDb.find({

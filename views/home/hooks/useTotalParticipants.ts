@@ -13,8 +13,8 @@ const useTotalParticipants =()=>{
         const data = await getTotalRecords()
             setData((prev)=>({
                 ...prev,
-                loading:false,
-                total:data!.data!.total
+                loading:false, 
+                total:data!.data!.total ?? 0
             }))
         }
          catch(e){

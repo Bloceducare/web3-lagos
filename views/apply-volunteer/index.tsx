@@ -2,7 +2,7 @@ import { useState } from "react"
 import axios from 'axios'
 
 
-type ISponsor = {
+type IVolunteer = {
 userName:string,
 email:string,
 telegramID:string,
@@ -10,12 +10,13 @@ twitterHandle:string,
 companyName:string,
 companyLocation:string,
 type:string
-whyAcceptAsSponsor:string,
-otherWaysOfSponsoring:string,
-sponsorAmtRange:string,
-whatToSponsor:string
+whyAcceptAsVolunteer:string,
+otherWaysOfVolunteering:string,
+VolunteerAmtRange:string,
+whatToVolunteer:string
 
 }
+
 const defaultUserInput = {
 userName:'',
 email:'',
@@ -23,15 +24,15 @@ telegramID:'',
 twitterHandle:'',
 companyName:'',
 companyLocation:'',
-type:'sponsor',
-whyAcceptAsSponsor:"",
-otherWaysOfSponsoring:"",
-sponsorAmtRange:"",
-whatToSponsor:""
+type:'volunteer',
+whyAcceptAsVolunteer:"",
+otherWaysOfVolunteering:"",
+VolunteerAmtRange:"",
+whatToVolunteer:""
 
 }
 
-const ApplyAsaSponsor = ()=>{
+const ApplyAsaVolunteer = ()=>{
     const [userInputs, setUserInputs] = useState(defaultUserInput)
     const [dataStatus, setDataStatus] = useState({crud:false, error:''})
     const { crud } = dataStatus
@@ -44,8 +45,8 @@ const ApplyAsaSponsor = ()=>{
     twitterHandle,
     companyName,
     companyLocation,
-    whyAcceptAsSponsor,
-    otherWaysOfSponsoring
+    whyAcceptAsVolunteer,
+    otherWaysOfVolunteering
     } = userInputs
     
     const handleChange=(e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLTextAreaElement>)=>{
@@ -57,7 +58,7 @@ const ApplyAsaSponsor = ()=>{
     }
 
 
-    const postData = async (data:ISponsor)=>{
+    const postData = async (data:IVolunteer)=>{
         const subData = {...data}
         setDataStatus(()=>({
           error:'',
@@ -93,7 +94,7 @@ const handleSubmit =  (e: React.SyntheticEvent )=>{
     
     return (<div className="p-3 mt-12">
    <div className="text-center">
-   <h1 className="my-6 text-3xl font-semibold text-gray-800">Sponsors' Application</h1>
+   <h1 className="my-6 text-3xl font-semibold text-gray-800">Volunteers' Application</h1>
  {!!dataStatus.error &&  <span className="text-red-500 ">{dataStatus.error}</span>}
 
    </div>
@@ -130,37 +131,37 @@ const handleSubmit =  (e: React.SyntheticEvent )=>{
 
          <div className="mb-5">
 
-<label className="block mb-2 font-bold text-gray-600">Why do you think that we should accept you as a sponsor?  <span className="text-red-600">*</span>  </label>
-<textarea name='whyAcceptAsSponsor' value={whyAcceptAsSponsor} onChange={handleChange} className="block w-full p-3 mt-1 border rounded shadow form-textarea" rows={2} placeholder="Enter some long form content." required></textarea>
+<label className="block mb-2 font-bold text-gray-600">Why do you think that we should accept you as a Volunteer?  <span className="text-red-600">*</span>  </label>
+<textarea name='whyAcceptAsVolunteer' value={whyAcceptAsVolunteer} onChange={handleChange} className="block w-full p-3 mt-1 border rounded shadow form-textarea" rows={2} placeholder="Enter some long form content." required></textarea>
 
 </div>
          <div className="mb-5">
 
-<label className="block mb-2 font-bold text-gray-600">How else do you think that you can help Web3 Conference Lagos apart from sponsoring the main event?  <span className="text-red-600">*</span>  </label>
-<textarea name='otherWaysOfSponsoring' value={otherWaysOfSponsoring} onChange={handleChange} className="block w-full p-3 mt-1 border rounded shadow form-textarea" rows={2} placeholder="Enter some long form content."></textarea>
+<label className="block mb-2 font-bold text-gray-600">How else do you think that you can help Web3 Conference Lagos apart from Volunteering the main event?  <span className="text-red-600">*</span>  </label>
+<textarea name='otherWaysOfVolunteering' value={otherWaysOfVolunteering} onChange={handleChange} className="block w-full p-3 mt-1 border rounded shadow form-textarea" rows={2} placeholder="Enter some long form content."></textarea>
 
 </div>
 
 
 <div className="mb-5 ">
 
-<label  className="block mb-2 font-bold text-gray-600"> What could be the range of your sponsorship? ($)</label>
+<label  className="block mb-2 font-bold text-gray-600"> What could be the range of your Volunteership? ($)</label>
 <div className="flex flex-wrap items-center mt-2 [&>div]:my-2 md:justify-start justify-center" >
 <div className="md:mr-6 md:my-0 ">
-<input id="sponsorAmtRange-50k-100k" type="radio" className="form-radio" name="sponsorAmtRange" value='2000-4999' onChange={handleChange} />
-<label htmlFor="sponsorAmtRange-50k-100k" className="inline-flex items-center">
+<input id="VolunteerAmtRange-50k-100k" type="radio" className="form-radio" name="VolunteerAmtRange" value='2000-4999' onChange={handleChange} />
+<label htmlFor="VolunteerAmtRange-50k-100k" className="inline-flex items-center">
 <span className="">2000 - 4999</span>
 </label>
 </div>
 <div className="md:mr-6 md:my-0">
-<input id="sponsorAmtRange-100k-300k" type="radio" className="form-radio" name="sponsorAmtRange" value='5000-9999' onChange={handleChange} />
-<label htmlFor="sponsorAmtRange-100k-300k" className="inline-flex items-center">
+<input id="VolunteerAmtRange-100k-300k" type="radio" className="form-radio" name="VolunteerAmtRange" value='5000-9999' onChange={handleChange} />
+<label htmlFor="VolunteerAmtRange-100k-300k" className="inline-flex items-center">
 <span className="">5000-9999</span>
 </label>
 </div>
 <div className="md:mr-6 md:my-0">
-<input id="sponsorAmtRange-300k-500k" type="radio" className="form-radio" name="sponsorAmtRange" value='10000-above' onChange={handleChange} />
-<label htmlFor="sponsorAmtRange-300k-500k" className="inline-flex items-center">
+<input id="VolunteerAmtRange-300k-500k" type="radio" className="form-radio" name="VolunteerAmtRange" value='10000-above' onChange={handleChange} />
+<label htmlFor="VolunteerAmtRange-300k-500k" className="inline-flex items-center">
 <span className="">1000 and above</span>
 </label>
 </div>
@@ -169,24 +170,24 @@ const handleSubmit =  (e: React.SyntheticEvent )=>{
 </div>
 <div className="mb-5 ">
 
-<label  className="block mb-2 font-bold text-gray-600"> What would you like to sponsor? </label>
+<label  className="block mb-2 font-bold text-gray-600"> What would you like to Volunteer? </label>
 <div className="flex flex-wrap items-center mt-2 [&>div]:my-2 md:justify-start justify-center" >
 <div className="mr-6">
-<input id="whatToSponsor-main-event" type="radio" className="form-radio" name="whatToSponsor" value='main-event' onChange={handleChange} />
-<label htmlFor="whatToSponsor-main-event" className="inline-flex items-center">
+<input id="whatToVolunteer-main-event" type="radio" className="form-radio" name="whatToVolunteer" value='main-event' onChange={handleChange} />
+<label htmlFor="whatToVolunteer-main-event" className="inline-flex items-center">
 <span className="">Main Event</span>
 </label>
 </div>
 <div className="md:mr-6 md:my-0">
-<input id="whatToSponsor-hackatons" type="radio" className="form-radio" name="whatToSponsor" value='hackatons' onChange={handleChange} />
-<label  htmlFor="whatToSponsor-hackatons" className="inline-flex items-center">
+<input id="whatToVolunteer-hackatons" type="radio" className="form-radio" name="whatToVolunteer" value='hackatons' onChange={handleChange} />
+<label  htmlFor="whatToVolunteer-hackatons" className="inline-flex items-center">
 <span className="">Hackatons</span>
 </label>
 </div>
 
 <div className="md:mr-6 md:my-0">
-<input id="whatToSponsor-others" type="radio" className="form-radio" name="whatToSponsor" value='others' onChange={handleChange} />
-<label htmlFor="whatToSponsor-others" className="inline-flex items-center">
+<input id="whatToVolunteer-others" type="radio" className="form-radio" name="whatToVolunteer" value='others' onChange={handleChange} />
+<label htmlFor="whatToVolunteer-others" className="inline-flex items-center">
 <span className="">Others</span>
 </label>
 </div>
@@ -232,4 +233,4 @@ const handleSubmit =  (e: React.SyntheticEvent )=>{
 
 
 
-export default ApplyAsaSponsor
+export default ApplyAsaVolunteer

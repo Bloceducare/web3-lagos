@@ -104,7 +104,7 @@ const handleSubmit =  (e: React.SyntheticEvent )=>{
 
          <div className="mb-5">
            <label htmlFor="twitter" className="block mb-2 font-bold text-gray-600">Email <span className="text-red-600">*</span>  </label>
-           <input type="email" id="twitter" name="email" onChange={handleChange} placeholder="Put in your name."className="w-full p-3 border rounded shadow"  value={email} required />
+           <input type="email" id="twitter" name="email" onChange={handleChange} placeholder="Put in your email."className="w-full p-3 border rounded shadow"  value={email} required />
            {/* border-red-300  */}
            {/* <p className="mt-2 text-sm text-red-400">Email is required</p> */}
          </div>
