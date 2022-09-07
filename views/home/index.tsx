@@ -113,7 +113,7 @@ className='inline-block max-w-xs mb-2 scale-110 md:mt-8 md:max-w-md md:scale-125
             <div className="max-w-xl mx-auto">
   <div className="grid grid-cols-1 gap-6 mt-3 md:grid-cols-2 lg:grid-cols-2 ">
     <div className="flex items-center justify-center text-2xl brd">
-        <Link href='/apply/speakers'>
+        <Link href='/apply/speaker'>
 
     {/* <a className="w-full p-4 border-2 border-red-500 cursor-pointer border:dotted hover:bg-red-200 hover:opacity-80">
                 Apply as a Volunteer
@@ -170,7 +170,7 @@ className='inline-block max-w-xs mb-2 scale-110 md:mt-8 md:max-w-md md:scale-125
 </section>
         <section className='max-w-6xl mx-auto  px-3 my-12 [&>p]:my-3' >
   <h2 className='my-1 text-3xl font-semibold leading-10'>Our Success Story</h2>
-  <p>We3Bridge mission is to identify Web3 passions, train them in a collaborative and supportive remote environment and create and African Web3 Community, which over these years we have executed through our learning series called “COHORT” from edition 1 to edition 7 and with more than 2000 trained on Web2-Web3 Blockchain development for free with access to accommodation, feeding and internet access at our learning Facility in Lagos.</p>
+  <p>Web3Bridge mission is to identify Web3 passions, train them in a collaborative and suppoive remote environment and create and African Web3 Community, which over these years we have executed through our learning series called “COHORT” from edition 1 to edition 7 and with more than 2000 trained on Web2-Web3 Blockchain development for free with access to accommodation, feeding and internet access at our learning Facility in Lagos.</p>
   <p>An initiative that started as 500 Ethereum Developers which with results has scaled into an organization that has contributed to growth, development of leading Blockchain projects including Hydro and exposing not less than 10,000 Africans to Web3 and its wealth of oppounities through educational and extended learning series</p>
 </section>
 

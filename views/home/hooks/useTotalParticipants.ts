@@ -14,7 +14,7 @@ const useTotalParticipants =()=>{
             setData((prev)=>({
                 ...prev,
                 loading:false, 
-                total:data!.data!.total ?? 0
+                total:data?.data?.total ?? 0
             }))
         }
          catch(e){
