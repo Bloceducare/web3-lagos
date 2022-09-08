@@ -1,17 +1,18 @@
-import { ReactNode } from 'react'
-import NextLink from 'next/link'
+import { ReactNode } from "react";
+import NextLink from "next/link";
 
 interface Props {
-    children:ReactNode
-    href:string
+  children: ReactNode;
+  href: string;
 }
-const Link = ({children, href}:Props) =>{
-    return (<><NextLink  href={href}>
-        <>
-         {children}
-        </>
-         </NextLink></>)
-}
+const Link = ({ children, href }: Props) => {
+  return (
+    <>
+      <NextLink href={href}>
+        <>{children}</>
+      </NextLink>
+    </>
+  );
+};
 
-
-export default Link
+export default Link;

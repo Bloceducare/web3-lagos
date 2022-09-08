@@ -1,14 +1,14 @@
 import { FiTwitter } from "react-icons/fi";
-import { IconWrapper } from ".."
+import { IconWrapper } from "..";
 
+const TwitterIcon = ({ className = "" }) => {
+  return (
+    <>
+      <IconWrapper className={className}>
+        <FiTwitter />
+      </IconWrapper>
+    </>
+  );
+};
 
- const TwitterIcon = ({className=''})=>{
-    return (<>
-    <IconWrapper className={className}>
-      <FiTwitter />
-    </IconWrapper>
-      </>)
-  }
-
-export default TwitterIcon
-
+export default TwitterIcon;

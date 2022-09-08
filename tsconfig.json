@@ -19,8 +19,7 @@
       "@components/*": ["components/*"],
       "@views/*": ["views/*"],
       "@servers/*": ["servers/*"],
-      "@config/*": ["config/*"],
-
+      "@config/*": ["config/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

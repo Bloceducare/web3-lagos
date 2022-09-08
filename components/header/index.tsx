@@ -1,16 +1,17 @@
 import { ReactNode, useState } from "react";
-import { HiSpeakerphone, HiOutlineNewspaper, HiCalendar} from "react-icons/hi";
+import { HiSpeakerphone, HiOutlineNewspaper, HiCalendar } from "react-icons/hi";
 import Link from "next/link";
 
 interface IiconWrapperProps {
-  children:ReactNode
-  className?:string
+  children: ReactNode;
+  className?: string;
 }
-export const  IconWrapper = ({children, className='text-blue-900'}:IiconWrapperProps)=>{
-  return (<span className={`text-3xl  ${className}`}> 
-    {children} 
-    </span>)
-}
+export const IconWrapper = ({
+  children,
+  className = "text-blue-900",
+}: IiconWrapperProps) => {
+  return <span className={`text-3xl  ${className}`}>{children}</span>;
+};
 const NavBar = () => {
   const [open, setOpen] = useState(false);
   return (
@@ -20,20 +21,18 @@ const NavBar = () => {
         <div className="px-4 mx-auto max-w-7xl sm:px-6">
           <div className="flex items-center justify-between py-6 md:justify-start md:space-x-10">
             <div className="flex justify-start lg:w-0 lg:flex-1">
-              <Link href='/'>
-              <a className="flex items-center">
-                <span className="sr-only">Workflow</span>
-                <img
-                  className="w-auto h-8 mr-1 sm:h-10"
-                  src="https://upload.wikimedia.org/wikipedia/commons/0/01/Ethereum_logo_translucent.svg"
-                  alt=""
-                />
-               <span className="font-mono text-xl font-semibold ">
-               Lagos
-               </span>
-              </a>
-
-             
+              <Link href="/">
+                <a className="flex items-center">
+                  <span className="sr-only">Workflow</span>
+                  <img
+                    className="w-auto h-8 mr-1 sm:h-10"
+                    src="https://upload.wikimedia.org/wikipedia/commons/0/01/Ethereum_logo_translucent.svg"
+                    alt=""
+                  />
+                  <span className="font-mono text-xl font-semibold ">
+                    Lagos
+                  </span>
+                </a>
               </Link>
             </div>
             <div className="-my-2 -mr-2 md:hidden">
@@ -62,43 +61,30 @@ const NavBar = () => {
               </button>
             </div>
             <nav className="hidden space-x-10 md:flex">
-            <Link href="/agenda">
-              <a
-              
-                className="text-base font-medium text-gray-500 hover:text-gray-900"
-              >
-               Agenda
-              </a>
+              <Link href="/agenda">
+                <a className="text-base font-medium text-gray-500 hover:text-gray-900">
+                  Agenda
+                </a>
               </Link>
 
               <Link href="/speakers">
-              <a
-                className="text-base font-medium text-gray-500 hover:text-gray-900"
-              >
-              Speakers
-              </a>
-            
+                <a className="text-base font-medium text-gray-500 hover:text-gray-900">
+                  Speakers
+                </a>
               </Link>
               <Link href="/eventbrite">
-              <a
-                className="text-base font-medium text-gray-500 hover:text-gray-900"
-              >
-              Event Brite
-              </a>
-            
+                <a className="text-base font-medium text-gray-500 hover:text-gray-900">
+                  Event Brite
+                </a>
               </Link>
-             
             </nav>
             <div className="items-center justify-end hidden md:flex md:flex-1 lg:w-0">
-            
-            <button 
-            disabled
-            className="inline-flex items-center justify-center px-4 py-2 ml-8 text-base font-medium text-white bg-red-600 border border-transparent rounded-md shadow-sm whitespace-nowrap hover:bg-red-700">
-
+              <button
+                disabled
+                className="inline-flex items-center justify-center px-4 py-2 ml-8 text-base font-medium text-white bg-red-600 border border-transparent rounded-md shadow-sm whitespace-nowrap hover:bg-red-700"
+              >
                 Buy Tickets
-            </button>
-             
-              
+              </button>
             </div>
           </div>
         </div>
@@ -157,64 +143,49 @@ const NavBar = () => {
               </div>
               <div className="mt-6">
                 <nav className="grid gap-y-8">
-                
-                    <IconWrapper>
-                    <Link href='/speakers'>
-<a  className="flex items-center p-3 -m-3 rounded-md hover:bg-gray-50">
-                    <HiSpeakerphone  />  
-                    <span className="ml-3 text-base font-medium text-gray-900">
-                      Speakers
-                    </span>
-         
-          </a>
-    </Link>
-    
-                    </IconWrapper>
-                
+                  <IconWrapper>
+                    <Link href="/speakers">
+                      <a className="flex items-center p-3 -m-3 rounded-md hover:bg-gray-50">
+                        <HiSpeakerphone />
+                        <span className="ml-3 text-base font-medium text-gray-900">
+                          Speakers
+                        </span>
+                      </a>
+                    </Link>
+                  </IconWrapper>
 
+                  <IconWrapper>
+                    <Link href="/agenda">
+                      <a className="flex items-center p-3 -m-3 rounded-md hover:bg-gray-50">
+                        <HiOutlineNewspaper />
+                        <span className="ml-3 text-base font-medium text-gray-900">
+                          Agenda
+                        </span>
+                      </a>
+                    </Link>
+                  </IconWrapper>
 
-
-                    <IconWrapper>
-                    <Link href='/agenda'>
-<a  className="flex items-center p-3 -m-3 rounded-md hover:bg-gray-50">
-<HiOutlineNewspaper />
-                    <span className="ml-3 text-base font-medium text-gray-900">
-                    Agenda
-                    </span>
-         
-          </a>
-    </Link>
-    
-                    </IconWrapper>
-
-
-
-                    <IconWrapper>
-                    <Link href='/eventbrite'>
-<a  className="flex items-center p-3 -m-3 rounded-md hover:bg-gray-50">
-<HiCalendar />
-                    <span className="ml-3 text-base font-medium text-gray-900">
-                   EventBrite
-                    </span>
-         
-          </a>
-    </Link>
-    
-                    </IconWrapper>
-
-               
+                  <IconWrapper>
+                    <Link href="/eventbrite">
+                      <a className="flex items-center p-3 -m-3 rounded-md hover:bg-gray-50">
+                        <HiCalendar />
+                        <span className="ml-3 text-base font-medium text-gray-900">
+                          EventBrite
+                        </span>
+                      </a>
+                    </Link>
+                  </IconWrapper>
                 </nav>
               </div>
             </div>
             <div className="px-5 py-6 space-y-6">
-              
               <div>
                 <button
-                disabled
-                 className="flex items-center justify-center w-full px-4 py-2 text-base font-medium text-white bg-red-600 border border-transparent rounded-md shadow-sm hover:bg-red-700">
-                        Buy Ticket
+                  disabled
+                  className="flex items-center justify-center w-full px-4 py-2 text-base font-medium text-white bg-red-600 border border-transparent rounded-md shadow-sm hover:bg-red-700"
+                >
+                  Buy Ticket
                 </button>
-              
               </div>
             </div>
           </div>
@@ -224,4 +195,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar
+export default NavBar;

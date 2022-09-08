@@ -1,25 +1,33 @@
-import { ReactNode } from "react"
-import classNames from "utils/classNames"
+import { ReactNode } from "react";
+import classNames from "utils/classNames";
 
 interface Props {
-    children:ReactNode,
-    variant?:string
-    className?:string
+  children: ReactNode;
+  variant?: string;
+  className?: string;
 }
 
-const text = ''
-const Button = ({children, variant='default', className}:Props) =>{
-    const varType = (type:string)=>{
-        if(type==='primary') {
-            return 'bg-red-500 text-white'
-        }
-
-        return ''
+const text = "";
+const Button = ({ children, variant = "default", className }: Props) => {
+  const varType = (type: string) => {
+    if (type === "primary") {
+      return "bg-red-500 text-white";
     }
-    return (<><button className={classNames(`${varType(variant)} ${className}`,"border-0 px-2 py-4" )}> 
+
+    return "";
+  };
+  return (
+    <>
+      <button
+        className={classNames(
+          `${varType(variant)} ${className}`,
+          "border-0 px-2 py-4"
+        )}
+      >
         {children}
-        </button></>)
-}
+      </button>
+    </>
+  );
+};
 
-
-export default Button
+export default Button;

@@ -1,11 +1,11 @@
-import ApplyAsaSponsor from "@views/apply-sponsor"
+import ApplyAsaSponsor from "@views/apply-sponsor";
 
-
-const Sponsor = ()=>{
-    return (<>
-    <ApplyAsaSponsor />
+const Sponsor = () => {
+  return (
+    <>
+      <ApplyAsaSponsor />
     </>
-    )
-}
+  );
+};
 
-export default Sponsor
+export default Sponsor;

@@ -1,9 +1,11 @@
-import Records from "@views/users"
+import Records from "@views/users";
 
+const Users = () => {
+  return (
+    <>
+      <Records />
+    </>
+  );
+};
 
-const Users = ()=>{
-    return (<><Records /></>)
-}
-
-
-export default Users
+export default Users;

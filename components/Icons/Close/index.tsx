@@ -1,14 +1,14 @@
-import { AiOutlineClose} from "react-icons/ai";
-import { IconWrapper } from ".."
+import { AiOutlineClose } from "react-icons/ai";
+import { IconWrapper } from "..";
 
+const CLoseIcon = ({ className = "" }) => {
+  return (
+    <>
+      <IconWrapper className={className}>
+        <AiOutlineClose />
+      </IconWrapper>
+    </>
+  );
+};
 
- const CLoseIcon = ({className=''})=>{
-    return (<>
-    <IconWrapper className={className}>
-      <AiOutlineClose />
-    </IconWrapper>
-      </>)
-  }
-
-export default CLoseIcon
-
+export default CLoseIcon;

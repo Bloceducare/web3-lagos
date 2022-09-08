@@ -1,12 +1,13 @@
-import ComingSoon from "@components/coming-soon"
+import ComingSoon from "@components/coming-soon";
 
-
-const EventBrite = ()=>{
-    return (<>
-    <div className ='flex justify-center items-center'>
+const EventBrite = () => {
+  return (
+    <>
+      <div className="flex justify-center items-center">
         <ComingSoon />
-    </div>
-    </>)
-}
+      </div>
+    </>
+  );
+};
 
-export default EventBrite
+export default EventBrite;

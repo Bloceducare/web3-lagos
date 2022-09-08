@@ -1,1 +1,1 @@
-declare module 'react-date-countdown-timer'
+declare module "react-date-countdown-timer";

@@ -2,8 +2,7 @@ import mongoose from "mongoose";
 
 const connectDB = async () => {
   try {
-    const connect = await mongoose.connect(`${process.env.MONGO_URL}`
-    );
+    const connect = await mongoose.connect(`${process.env.MONGO_URL}`);
     // console.log(`Database connected to ${connect.connection.host}`);
     return connect.connection.host;
   } catch (error) {
@@ -11,11 +10,11 @@ const connectDB = async () => {
   }
 };
 
-export const mailSenderConfig ={
-  from:"events@web3bridge.com",
-  emailSubject:"Web3 Lagos Conference 2022",
-  replyTo:"events@web3bridge.com"
-}
+export const mailSenderConfig = {
+  from: "events@web3bridge.com",
+  emailSubject: "Web3 Lagos Conference 2022",
+  replyTo: "events@web3bridge.com",
+};
 
 export const closeDB = async () => {
   try {

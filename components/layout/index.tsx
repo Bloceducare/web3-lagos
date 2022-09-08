@@ -1,15 +1,17 @@
-import { ReactNode } from "react"
+import { ReactNode } from "react";
 // import Header from "../header"
 
 interface Props {
-    children:ReactNode
+  children: ReactNode;
 }
 
-const Layout =({children}:Props)=>{
-    return (<>
-    {/* <Header /> */}
-    {children}
-    </>)
-}
+const Layout = ({ children }: Props) => {
+  return (
+    <>
+      {/* <Header /> */}
+      {children}
+    </>
+  );
+};
 
-export default Layout
+export default Layout;

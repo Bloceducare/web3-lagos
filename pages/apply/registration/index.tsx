@@ -1,8 +1,11 @@
-import Registration from "@views/apply-registration"
+import Registration from "@views/apply-registration";
 
+const Register = () => {
+  return (
+    <>
+      <Registration />
+    </>
+  );
+};
 
-const Register = ()=>{
-    return (<><Registration /></>)
-}
-
-export default Register
+export default Register;

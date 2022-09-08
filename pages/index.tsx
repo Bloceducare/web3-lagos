@@ -1,6 +1,6 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import HomeView from '@views/home'
+import type { NextPage } from "next";
+import Head from "next/head";
+import HomeView from "@views/home";
 
 const Home: NextPage = () => {
   return (
@@ -12,12 +12,10 @@ const Home: NextPage = () => {
 
       <HomeView />
     </div>
-  )
-}
+  );
+};
 
-export default Home
-
-
+export default Home;
 
 // <footer className="flex h-24 w-full items-center justify-center border-t">
 // <a

@@ -1,15 +1,11 @@
-import dynamic from 'next/dynamic'
-import React, {ReactNode} from 'react'
+import dynamic from "next/dynamic";
+import React, { ReactNode } from "react";
 
 interface Props {
-    children:ReactNode
+  children: ReactNode;
 }
-const NonSSRWrapper = ({children}:Props) => ( 
-    <>{children}</> 
-) 
+const NonSSRWrapper = ({ children }: Props) => <>{children}</>;
 
-
-
-export default dynamic(() => Promise.resolve(NonSSRWrapper), { 
-    ssr: false 
-})
+export default dynamic(() => Promise.resolve(NonSSRWrapper), {
+  ssr: false,
+});

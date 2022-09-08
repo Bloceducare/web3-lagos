@@ -1,8 +1,5 @@
+const ComingSoon = () => {
+  return <>Coming Soon, Hold on tight!</>;
+};
 
-
-const ComingSoon = ()=>{
-    return <>Coming Soon, Hold on tight!</>
-}
-
-
-export default ComingSoon
+export default ComingSoon;

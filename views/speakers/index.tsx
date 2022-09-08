@@ -1,8 +1,5 @@
+const Speakers = () => {
+  return <>Speakers</>;
+};
 
- const Speakers = ()=>{
-    return (<>Speakers</>)
-}
-
-
-export default Speakers
-
+export default Speakers;

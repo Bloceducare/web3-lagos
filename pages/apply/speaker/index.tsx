@@ -1,9 +1,11 @@
-import ApplyAsaSpeaker from "@views/apply-speaker"
+import ApplyAsaSpeaker from "@views/apply-speaker";
 
-const Speaker = ()=>{
-    return (<>
-    <ApplyAsaSpeaker />
-    </>)
-}
+const Speaker = () => {
+  return (
+    <>
+      <ApplyAsaSpeaker />
+    </>
+  );
+};
 
-export default Speaker
+export default Speaker;

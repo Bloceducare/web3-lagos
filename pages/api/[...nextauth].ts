@@ -54,30 +54,30 @@ export const authOptions: NextAuthOptions = {
 
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
-      const isAllowedToSignIn = true
-            if (account.provider === "google") {
+      const isAllowedToSignIn = true;
+      if (account.provider === "google") {
         const info = {
-          email:profile.email,
-          isVerified:profile.email_verified  ?? false,
-          userName:profile.name,
-          authWith:'google'
-        }
-       await loginWithProviders(info)
+          email: profile.email,
+          isVerified: profile.email_verified ?? false,
+          userName: profile.name,
+          authWith: "google",
+        };
+        await loginWithProviders(info);
         return true;
       }
       if (isAllowedToSignIn) {
-        return true
+        return true;
       } else {
         // Return false to display a default error message
-        return false
+        return false;
         // Or you can return a URL to redirect to:
         // return '/unauthorized'
       }
     },
-       async redirect({ url, baseUrl }) {
+    async redirect({ url, baseUrl }) {
       return `${baseUrl}/dashboard`;
     },
-  }
+  },
 };
 
 export default NextAuth(authOptions);
