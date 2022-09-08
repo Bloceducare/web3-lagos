@@ -20,7 +20,12 @@ const ParticipantSchema = new Schema(
     type:String,
     required:true
    },
-   
+   password:{
+    type:String
+   },
+   authWith:{
+    type:String
+   },
    telegramID:{
     type:String
    },
@@ -52,7 +57,7 @@ const ParticipantSchema = new Schema(
    },
    type:{
     type:String,
-    enum : ['speaker','attendant', 'media-partner', 'sponsor'],
+    enum : ['speaker','attendant', 'media-partner', 'sponsor','volunteer'],
    },
   companyLocation:{
   type:String
@@ -78,7 +83,7 @@ otherWaysOfSponsoring:{
 },
 whatToSponsor:{
   type:String,
-  enum:['main-event', 'trip', 'hackatons', 'others']
+  enum:['main-event', 'trip', 'hackathons', 'others']
 },
 typeOfMedia:{
   type:String,

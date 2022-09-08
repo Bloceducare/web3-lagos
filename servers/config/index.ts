@@ -17,4 +17,10 @@ export const mailSenderConfig ={
   replyTo:"events@web3bridge.com"
 }
 
+export const closeDB = async () => {
+  try {
+    return await mongoose.connection.close();
+  } catch {}
+};
+
 export default connectDB;
