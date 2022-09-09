@@ -1,29 +1,23 @@
-import { useState,useRef } from "react";
+import { useState } from "react";
 import axios from "axios";
+import {ISkills, AreaOfContribution} from "@models/index"
 
 type IVolunteer = {
   userName: string;
   email: string;
-  telegramID: string;
-  twitterHandle: string;
-  companyName: string;
-  gender: string;
-  type: string;
   location: string;
-  Im:string
+  skills:ISkills;
+  areaOfContribution: AreaOfContribution;
+
 
 };
 
 const defaultUserInput = {
   userName: "",
   email: "",
-  telegramID: "",
-  twitterHandle: "",
-  companyName: "",
-  gender: "",
   location: "",
-  type: "volunteer",
-  Im:""
+  skills:ISkills.none,
+  areaOfContribution: AreaOfContribution.none,
 };
 
 const ApplyAsaVolunteer = () => {
@@ -34,39 +28,33 @@ const ApplyAsaVolunteer = () => {
   const {
     userName,
     email,
-    telegramID,
-    twitterHandle,
-    companyName,
     location,
   } = userInputs;
   
   type DetailedHTMLProps = /*unresolved*/ any
-  const ImRef = useRef<DetailedHTMLProps>()
 
   const handleChange = (
     e:
       | React.ChangeEvent<HTMLInputElement>
       | React.ChangeEvent<HTMLSelectElement>
-      | React.ChangeEvent<HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    setUserInputs((prev) => ({
-      ...prev,
-      ...(name === "attendingOtherDays"
-        ? { [name]: Boolean(Number(value)) }
-        : { [name]: value }),
+    setUserInputs(() => ({
+      ...userInputs,
+      [name]: value,
     }));
   };
 
   const postData = async (data: IVolunteer) => {
-    const subData = { ...data, name: data.userName, Im:ImRef.current.value };
+    const subData = { ...data, name: data.userName, };
     setDataStatus(() => ({
       error: "",
       crud: true,
     }));
 
     try {
-      const result = await axios.post("/api/participant", subData);
+      console.log(subData)
+      const result = await axios.post("/api/volunteer", subData);
       setMessage(result.data.message);
 
       setDataStatus((prev) => ({
@@ -143,26 +131,7 @@ const ApplyAsaVolunteer = () => {
               </div>
 
 
-              <div className="mb-5">
-              <label className="block mb-2 font-bold text-gray-600">
-                I'm <span className="text-red-600">*</span>{" "}
-              </label>
-              <input
-                ref={ImRef}
-                list="Im"
-                name="browser"
-                id="browser"
-                className="border p-3 w-full"
-                placeholder="Type or Select an Option"
-              />
-              <datalist id="Im">
-                <option value="Studying" />
-                <option value="Working" />
-                <option value="looking for something new" />
-                <option value="Retired" />
-                <option value="Researching" />
-              </datalist>
-            </div>
+              
 
               <div className="mb-5">
                 <label className="block mb-2 font-bold text-gray-600">
@@ -179,70 +148,49 @@ const ApplyAsaVolunteer = () => {
                 />
               </div>
 
-              <div className="mb-5">
-                <label className="block mb-2 font-bold text-gray-600">
-                  Company Name{" "}
-                </label>
-                <input
-                  type="text"
-                  name="companyName"
-                  placeholder="Put in your company name."
-                  className="w-full p-3 border rounded shadow"
-                  onChange={handleChange}
-                  value={companyName}
-                />
-              </div>
+           
 
-              <div className="mb-5">
-                <label className="block mb-2 font-bold text-gray-600">
-                  Gender{" "}
-                </label>
-                <select
-                  className="block w-full p-3 mt-1 border form-select"
-                  name="gender"
-                  onChange={handleChange}
-                >
-                  <option selected disabled>
-                    Please Select an Option
-                  </option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="others">Others</option>
-                </select>
-              </div>
 
               <div>
                 <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4">
                   <div className="mb-5 ">
                     <label className="block mb-2 font-bold text-gray-600">
-                      Telegram Username{" "}
+                      Skills{" "}
                     </label>
-                    <input
-                      type="text"
-                      name="telegramID"
-                      placeholder="Put in your telegram ID"
-                      className="w-full p-3 border rounded shadow"
-                      onChange={handleChange}
-                      value={telegramID}
-                    />
+                    <select
+                  className="block w-full p-3 mt-1 border form-select"
+                  name="skills"
+                  onChange={handleChange}
+                >
+                  <option selected disabled>
+                    Please Select an Option
+                  </option>
+                  <option value={ISkills.marketing}>Marketing</option>
+                  <option value={ISkills["content-development"]}>Content Development</option>
+                  <option value={ISkills.design}>Design</option>
+                </select>
                   </div>
 
                   <div className="mb-5">
                     <label className="block mb-2 font-bold text-gray-600">
-                      Twitter Handle{" "}
+                      Area of Contribution{" "}
                     </label>
-                    <input
-                      type="text"
-                      name="twitterHandle"
-                      placeholder="Put in your twitter handle"
-                      className="w-full p-3 border rounded shadow"
-                      onChange={handleChange}
-                      value={twitterHandle}
-                    />
+                    <select
+                  className="block w-full p-3 mt-1 border form-select"
+                  name="areaOfContribution"
+                  onChange={handleChange}
+                >
+                  <option selected disabled>
+                    Please Select an Option
+                  </option>
+                  <option value={AreaOfContribution.moderation}>Moderation</option>
+                  <option value={AreaOfContribution.registration}>Registration</option>
+                  <option value={AreaOfContribution["ushering/protocol"]}>Ushering/Protocol</option>
+                </select>
                   </div>
                 </div>
               </div>
-
+            
               <button
                 disabled={crud}
                 className="block w-full p-4 font-bold text-white bg-blue-500 rounded-lg"

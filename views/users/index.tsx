@@ -3,7 +3,6 @@ import React, {
   useState,
   useRef,
   useCallback,
-  useEffect,
 } from "react";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
@@ -203,9 +202,9 @@ To: "opacity-100"
 From: "opacity-100"
 To: "opacity-0"
   */}
-        <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity " />
-        <div className="fixed z-10 inset-0 overflow-y-auto">
-          <div className="flex items-end sm:items-center justify-center p-4 text-center sm:p-0">
+        <div className="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-75 " />
+        <div className="fixed inset-0 z-10 overflow-y-auto">
+          <div className="flex items-end justify-center p-4 text-center sm:items-center sm:p-0">
             {/*
   Modal panel, show/hide based on modal state.
 
@@ -216,9 +215,9 @@ To: "opacity-0"
     From: "opacity-100 translate-y-0 sm:scale-100"
     To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
 */}
-            <div className=" relative bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-lg sm:w-full">
+            <div className="relative overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl  sm:my-8 sm:max-w-lg sm:w-full">
               <div
-                className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4 overflow-auto "
+                className="px-4 pt-5 pb-4 overflow-auto bg-white sm:p-6 sm:pb-4 "
                 style={{
                   maxHeight: "85vh",
                 }}
@@ -231,9 +230,9 @@ To: "opacity-0"
                 </button>
                 <div className="mt-6">
                   {data.map((i, idx) => (
-                    <div key={idx} className="my-3  sm:mt-0 ">
+                    <div key={idx} className="my-3 sm:mt-0 ">
                       <h3
-                        className="text-md leading-6 font-medium text-gray-900"
+                        className="font-medium leading-6 text-gray-900 text-md"
                         id="modal-title"
                       >
                         {format(i[0])}

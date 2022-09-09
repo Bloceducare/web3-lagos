@@ -11,3 +11,16 @@ export const getRecords = async (query: string) => {
     throw error;
   }
 };
+
+
+
+export const getVolunteers = async () => {
+  try {
+    const result = await axios.get(
+      `/api/volunteer`
+    );
+    return result?.data?.data;
+  } catch (error) {
+    throw error;
+  }
+};
