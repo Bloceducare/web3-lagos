@@ -18,6 +18,7 @@ var options = {
 
 
   const callBackAsync = (...args:any)=>{
+    
     return new Promise((res, rej)=>{
         QRCode.toDataURL(args, (err, url)=>{
             if(err) rej(err)

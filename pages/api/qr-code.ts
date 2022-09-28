@@ -35,8 +35,6 @@ router.get(async (req, res) => {
             user.userName,
             qrCodeUrl
           );
-
-        
           return sendQrcodemail
         })
       );
