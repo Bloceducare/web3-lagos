@@ -19,7 +19,7 @@ router.get(async (req, res) => {
 
     const getWithPromiseAll = async () => {
        await Promise.all(
-        userRegistering.splice(currentIndex, maxToSend).map(async (user) => {
+        userRegistering.map(async (user) => {
           const userType = user?.type ?? "volunteer" as string;
           const QrCodetemplate =`
           Web3Lagos Conference
