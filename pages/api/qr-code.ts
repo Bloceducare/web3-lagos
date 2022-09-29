@@ -15,7 +15,7 @@ router.get(async (req, res) => {
   await  connectDB();
     const userRegistering = await volunteersDb.find();
     const currentIndex = 0;
-    const maxToSend = 1;
+    const maxToSend = 5;
 
     const getWithPromiseAll = async () => {
        await Promise.all(
