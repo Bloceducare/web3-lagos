@@ -1,6 +1,6 @@
 import QRCode from "qrcode";
 
-// event name
+    // event name
 // attendee name
 // role
 // dates to be attended
