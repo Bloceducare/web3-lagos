@@ -3,6 +3,7 @@
 @tailwind utilities;
 @import url(./speakers.css);
 @import url(./schedule.css);
+@import url(./hero.css);
 
 
 
