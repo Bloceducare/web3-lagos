@@ -11,6 +11,8 @@ import Sponsors from "@components/Sponsors";
 import DetailsCard from "@components/DetailsCard";
 import SpeakersCards from "@components/SpeakersCards";
 import Schedule from "@components/Schedule";
+import Team from "@components/Team";
+import AboveFold from "@components/AboveFold";
 
 const HomeView = () => {
   const { total, loading } = useTotalParticipants();
@@ -147,177 +149,13 @@ const HomeView = () => {
         <Sponsors />
       </section>
 
-      <section id="more" className="max-w-6xl px-3 mx-auto my-12">
-        <h2 className="my-1 text-3xl font-semibold leading-10">Our Goal</h2>
-        <p>
-          To organize one of the Largest Blockchain developers and Ethereum
-          builders conference in the heart of Africa tech.
-        </p>
-      </section>
-      <section className="max-w-6xl mx-auto  px-3 my-12 [&>p]:my-3">
-        <h2 className="my-1 text-3xl font-semibold leading-10">
-          Our Success Story
-        </h2>
-        <p>
-          Web3Bridge mission is to identify Web3 passions, train them in a
-          collaborative and suppoive remote environment and create and African
-          Web3 Community, which over these years we have executed through our
-          learning series called “COHORT” from edition 1 to edition 7 and with
-          more than 2000 trained on Web2-Web3 Blockchain development for free
-          with access to accommodation, feeding and internet access at our
-          learning Facility in Lagos.
-        </p>
-        <p>
-          An initiative that started as 500 Ethereum Developers which with
-          results has scaled into an organization that has contributed to
-          growth, development of leading Blockchain projects including Hydro and
-          exposing not less than 10,000 Africans to Web3 and its wealth of
-          oppounities through educational and extended learning series
-        </p>
-      </section>
-
-      <section className="max-w-6xl m-auto my-16 ">
-        <div className="md:grid md:grid-cols-12">
-          <div className="col-span-6 md:col-span-6">
-            <Image
-              src="/event-photo-1.jpg"
-              width="100%"
-              height="70%"
-              layout="responsive"
-              objectFit="cover"
-            />
-          </div>
-          <div className="col-span-6 md:pl-20 [&>p]:mb-3 p-3 md:p-0">
-            <h2 className="mb-8 text-3xl font-semibold leading-10">
-              Event Overview
-            </h2>
-            <p>
-              {" "}
-              3 days event kickstarting with a hackathon and several other
-              events including workshop, networking, career fair, panel session,
-              talks, main event, etc.{" "}
-            </p>
-
-            <p>
-              With an expected attendance of 5000 participants physically and
-              virtually. This event is focused on helping developers, and
-              blockchain enthusiasts realize the endless possibilities and
-              opportunities of the Blockchain & Ethereum ecosystem.{" "}
-            </p>
-            <p>
-              Beyond celebrating three years of contributions to the Blockchain
-              and Web3 space in Africa and international scenes, one of our core
-              beliefs is that repeated interactions are a great contribution to
-              career growth and are poised to create an enabling environment,
-              onboarding top-tier projects for representation at the event.
-              We're bringing together the best, value-driven industry thought
-              leaders and speakers.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="max-w-6xl m-auto my-16 ">
-        <div className="flex-row-reverse md:grid md:grid-cols-12">
-          <div className="col-span-6 md:pl-20 [&>p]:mb-3 p-3 md:p-0">
-            <h2 className="text-3xl font-semibold leading-10">
-              Outline of Event
-            </h2>
-            <div className="grid min-h-full place-items-center">
-              <h2 className="text-xl italic ">Coming Soon!!!</h2>
-            </div>
-            {/* 
-    <ul>
-      <li>
-      Day 1: Hackathons and workshops
-      </li>
-      <li>
-      Day 2: Career fair, networking and pitching.
-      </li>
-      <li>
-      Day 3: Main event and Web3bridge dinner for all
-Web3bridge Alumnus.
-      </li>
-    </ul> */}
-          </div>
-          <div className="col-span-6 md:col-span-6 grid-row-start:auto">
-            <div>
-              <Image
-                src="/event-photo-2-ed.png"
-                width="100%"
-                height="70px"
-                layout="responsive"
-                objectFit="cover"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
+      <AboveFold />
       <DetailsCard />
       <SpeakersCards />
       <Schedule />
+      <Team />
 
-      {/* <section className='max-w-6xl m-auto my-16'>
-            <h2 className='text-3xl text-semibold'>Partners</h2>
-            <hr  className='my-4'/>
-            <div>
-            <div className="grid grid-cols-1 gap-6 my-12 mt-3 md:grid-cols-2 lg:grid-cols-4 ">
-    <div className="flex items-center justify-center p-4 shadow-2xl cursor-pointer">
-      <Image src='/eth.png' 
-     width='80px' height='80px' style={{border:'1px solid red'}}
-       />
-    </div>
-    <div className="flex items-center justify-center p-4 shadow-2xl cursor-pointer">
-      <Image src='/Epns.png' 
-      width='80px' height='80px'
-       />
-    </div>
-    <div className="flex items-center justify-center p-4 shadow-2xl cursor-pointer">
-      <Image src='/hydro.png' 
-     width='80px' height='80px'
-       />
-    </div>
-    <div className="flex items-center justify-center p-4 shadow-2xl cursor-pointer ">
-      <Image src='/kernel.png' 
-     width='100%' height='100%'  
-       />
-    </div>
-    </div>
-            </div>
-        </section> */}
 
-      <section className="max-w-6xl m-auto my-16 text-center [&>div]:my-3">
-        <h2 className="text-5xl font-bold text-gray-700">
-          {" "}
-          Team
-          <br />
-          &
-          <br />
-          Contact Details
-        </h2>
-        <div>Contact:</div>
-        <div className="flex items-center justify-center">
-          <EmailIcon className="inline-block mr-1 text-xl font-bold" />
-          <a href="mailto:ayodeji@web3bridge.com">ayodeji@web3bridge.com</a>
-        </div>
-        <div className="">
-          <div className="flex items-center justify-center">
-            <a target="_blank" href="https://twitter.com/Web3Bridge">
-              <TwitterIcon className="inline-block mr-1 text-xl font-bold " />
-            </a>
-            <a target="_blank" href="https://instagram.com/web3bridge">
-              <InstagramIcon className="inline-block mr-3 text-xl font-bold " />
-            </a>
-            @web3bridge
-          </div>
-          <div>
-            <a target="_blank" href="https://www.web3bridge.com">
-              https://www.web3bridge.com
-            </a>
-          </div>
-        </div>
-      </section>
     </div>
   );
 };

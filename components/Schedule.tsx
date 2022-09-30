@@ -11,7 +11,9 @@ const Schedule = () => {
     return (
         <>
 
-<div className="max-w-6xl mx-auto mt-16">
+<div className="max-w-6xl mx-auto mt-16 ">
+  <div className="mx-4">
+
 <h3 className="text-3xl text-white">Outline of Event</h3>
 <Tabs>
     <TabList>
@@ -536,6 +538,7 @@ const Schedule = () => {
   </div>
     </TabPanel>
   </Tabs>
+  </div>
   </div>
 
 

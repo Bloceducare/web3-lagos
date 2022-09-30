@@ -4,6 +4,8 @@ const DetailsCard = () => {
     return (
         <>
 <div className=" max-w-6xl mx-auto">
+<div className="mx-4">
+ 
   <div className="cards">
     <div className="first-column">
       <div className="top-section">
@@ -91,6 +93,7 @@ const DetailsCard = () => {
         {/* <img src="./images/kobby-mendez-d0oYF8hm4GI-unsplash.jpg" alt="img" /> */}
       </div>
     </div>
+  </div>
   </div>
 </div>
 
