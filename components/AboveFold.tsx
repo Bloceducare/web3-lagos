@@ -43,7 +43,7 @@ const AboveFold = () => {
       </div>
     </div>
 
-    <div className="md:hidden">
+    <div className="md:hidden pt-32">
       <img src="/lagos-stadium-re.svg" alt="img"/>
     </div>
 
