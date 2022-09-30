@@ -23,16 +23,16 @@ const AboveFold = () => {
           coming together to network and discuss about web3 ecosystem</p>
         <div className="flex justify-center mt-6 mb-8 text-xl" >
           <div>
-            <button className="p-2 px-8 mr-1 bg-red-500 rounded-sm">Register</button>
+            <button className="p-2 px-8 bg-red-500 rounded-sm">Register</button>
           </div>
-          <div>
+          {/* <div>
             <button className="p-2 px-8 mr-1 bg-transparent rounded-sm ">
               <a href="#apply-section " className="flex items-center" >
                 Sponsored by
                 <BsArrowDown className="ml-2 text-red-500" />
               </a>
             </button>
-          </div>
+          </div> */}
         </div>
 
         <div className="inline-block">
@@ -80,7 +80,7 @@ const AboveFold = () => {
 
 <div className="p-6 bg-white">
 <div className="max-w-6xl mx-auto">
-    <div className="max-w-md text-5xl text-red-500"  style={{
+    <div className="max-w-md text-5xl text-red-500 text-center md:text-right"  style={{
       lineHeight:"4rem"
     }}>
     <span className="text-blue-c1">
