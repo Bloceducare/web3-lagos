@@ -33,6 +33,7 @@ specifiers:
   react-dom: 18.1.0
   react-hook-form: ^7.34.2
   react-icons: ^4.4.0
+  react-tabs: ^5.1.0
   sharp: ^0.30.7
   tailwindcss: ^3.1.6
   typescript: 4.7.2
@@ -60,6 +61,7 @@ dependencies:
   react-dom: 18.1.0_react@18.1.0
   react-hook-form: 7.36.1_react@18.1.0
   react-icons: 4.4.0_react@18.1.0
+  react-tabs: 5.1.0_react@18.1.0
   sharp: 0.30.7
   yup: 0.32.11
 
@@ -578,6 +580,11 @@ packages:
       proxy-agent: 5.0.0
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /clsx/1.2.1:
+    resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
+    engines: {node: '>=6'}
     dev: false
 
   /color-convert/2.0.1:
@@ -1995,6 +2002,16 @@ packages:
 
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
+    dev: false
+
+  /react-tabs/5.1.0_react@18.1.0:
+    resolution: {integrity: sha512-jsPVEPuhG7JljTo8Q4ujz4UKRpG90nHlDClAdvV5KrLxCHU+MT/kg7dmhq8fDv8+frciDtaYeFFlTVRLm4N5AQ==}
+    peerDependencies:
+      react: ^18.0.0
+    dependencies:
+      clsx: 1.2.1
+      prop-types: 15.8.1
+      react: 18.1.0
     dev: false
 
   /react/16.14.0:

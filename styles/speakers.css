@@ -1,0 +1,147 @@
+.container-speaker {
+    width: 75%;
+    margin: 0 auto;
+}
+
+.cards {
+    display: flex;
+}
+
+.first-column {
+    font-weight: 400;
+    width: 50%;
+    margin-right: 0.5rem;
+}
+
+.top-section {
+    padding: 1.5rem 1rem;
+    margin-bottom: 0.5rem;
+    background-color: #E9EFFF;
+    height: 25%;
+    border-radius: 10px;
+}
+
+.icon {
+    width: 1.5rem;
+}
+
+.icon img {
+    width: 100%;
+}
+
+.bottom-section {
+    padding: 1.5rem 1rem;
+    background-color: #E9EFFF;
+    height: 74%;
+    border-radius: 10px;
+}
+
+.top-section p,
+.bottom-section p,
+.text p {
+    padding: 0.2rem 0;
+}
+
+.second-column {
+    font-weight: 400;
+    width: 50%;
+    height: 100%;
+    background-color: #E9EFFF;
+    padding: 1.5rem 1rem;
+    border-radius: 10px;
+}
+
+h3 {
+    font-weight: 700;
+    padding: 0.5rem 0;
+}
+
+.image {
+    width: 100%;
+    margin-top: 0.75rem;
+}
+
+.image img {
+    width: 100%;
+}
+
+.speakers-section {
+    padding-top: 2.5rem;
+}
+
+.speakers-section h3 {
+    padding: 0 0 0.5rem;
+    color: #FFFFFF;
+}
+
+.speakers {
+    display: flex;
+    flex-direction: column;
+}
+
+.images-speakers {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    width: 100%;
+}
+
+.speaker-image {
+    position: relative;
+    width: 24%;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.speaker-profile {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+}
+
+.speaker-profile p {
+    color: #FFFFFF;
+}
+
+.speaker-profile p:nth-of-type(2) {
+    font-size: 0.75rem;
+}
+
+.speaker-image img {
+    width: 100%;
+}
+
+@media(max-width: 815px) {
+    .container-speaker {
+        width: 100%;
+    }
+
+    .cards {
+        flex-direction: column;
+    }
+
+    .first-column {
+        width: 100%;
+        margin-bottom: 0.65rem;
+    }
+
+    .second-column {
+        width: 100%;
+    }
+
+    .images-speakers {
+        justify-content: flex-start;
+        gap: 0.55rem;
+    }
+    
+    .speaker-image {
+        width: 49%;
+    }
+}
+
+@media(max-width: 460px) {
+    .speaker-image {
+        width: 100%;
+    }
+}

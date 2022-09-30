@@ -8,12 +8,17 @@ import TwitterIcon from "@components/Icons/TwitterIcon";
 import InstagramIcon from "@components/Icons/InstagramIcon";
 import EmailIcon from "@components/Icons/EmailIcon";
 import Sponsors from "@components/Sponsors";
+import DetailsCard from "@components/DetailsCard";
+import SpeakersCards from "@components/SpeakersCards";
+import Schedule from "@components/Schedule";
 
 const HomeView = () => {
   const { total, loading } = useTotalParticipants();
 
   return (
-    <>
+    <div  style={{
+      backgroundColor:"#122B47"
+    }}>
       <div className="text-white pt-10 md:h-[calc(100vh_-_5rem)] bg-[url('/blue-bg.png')] bg-no-repeat">
         <div className="flex flex-wrap justify-center max-w-6xl mx-auto sm:justify-center md:justify-between">
           <div className="flex flex-col max-w-md text-center md:text-left">
@@ -249,6 +254,10 @@ Web3bridge Alumnus.
         </div>
       </section>
 
+      <DetailsCard />
+      <SpeakersCards />
+      <Schedule />
+
       {/* <section className='max-w-6xl m-auto my-16'>
             <h2 className='text-3xl text-semibold'>Partners</h2>
             <hr  className='my-4'/>
@@ -309,7 +318,7 @@ Web3bridge Alumnus.
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 };
 

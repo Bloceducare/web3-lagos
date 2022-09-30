@@ -1,6 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url(./speakers.css);
+@import url(./schedule.css);
+
+
 
 
 /* https://ifonts.xyz/nekst-font.html */
