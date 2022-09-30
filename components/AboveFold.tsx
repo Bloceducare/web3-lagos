@@ -1,102 +1,124 @@
+import useTotalParticipants from "@views/home/hooks/useTotalParticipants";
+
+import { BsArrowDown, BsFillPeopleFill } from "react-icons/bs";
+import { FaPaperPlane } from "react-icons/fa";
+import DateCountDown from "./dateCountDown";
+import Sponsors from "./Sponsors";
 
 
-const AboveFold=()=>{
-    return (<>
+const AboveFold = () => {
+  const { total, loading } = useTotalParticipants();
 
-    <div className="flex items-center justify-center text-center text-white h-[calc(100vh-10rem)]">
-        <div className="max-w-lg mx-auto mt-10">
-          <p className="text-6xl " style={{
-            lineHeight:"4rem"
-          }}> Web3  <span className=" font-bold">Lagos Conference 2022</span></p>
-          <p className="mt-6 text-xl my-16" >Join the largest Web3 conference in Lagos Nigeria, where stake holders, industry
-            experts,
-            software developers
-            are
-            coming together to network and discuss about web3 ecosystem</p>
-        <div className="mt-6 flex justify-center text-xl mb-8" >
+  return (<>
+
+    <div className="flex items-center justify-center text-center text-white h-[calc(100vh-10rem)] bg-[url('../images/main_bg.png')] ">
+      <div className="max-w-lg mx-auto mt-10">
+        <p className="mt-32 text-6xl" style={{
+          lineHeight: "4rem"
+        }}> Web3  <span className="font-bold ">Lagos Conference 2022</span></p>
+        <p className="my-16 mt-6 text-xl" >Join the largest Web3 conference in Lagos Nigeria, where stake holders, industry
+          experts,
+          software developers
+          are
+          coming together to network and discuss about web3 ecosystem</p>
+        <div className="flex justify-center mt-6 mb-8 text-xl" >
           <div>
-          <button className="p-2 bg-red-500 mr-1 px-8 rounded-sm">Register</button>
-            </div>
+            <button className="p-2 px-8 mr-1 bg-red-500 rounded-sm">Register</button>
+          </div>
           <div>
-          <button className="p-2 bg-red-400 ml-1">Register</button>
-            </div>
+            <button className="p-2 px-8 mr-1 bg-transparent rounded-sm ">
+              <a href="#apply-section " className="flex items-center" >
+                Sponsored by
+                <BsArrowDown className="ml-2 text-red-500" />
+              </a>
+            </button>
+          </div>
         </div>
 
-        <div>
-          <p className="text-capitalize  text-2xl">October 6-8 </p>
+        <div className="inline-block">
+          <p className="relative z-50 w-full text-3xl text-capitalize">October 6-8 </p>
+          <div className="z-20 w-full h-3 -mt-4 bg-red-500 opacity-60">
+          </div>
         </div>
-        </div>
-
-
+      </div>
     </div>
-  <div className="header text-white hero">
-          <p className="intro-heading">Web3 <span><b>Lagos Conference 2022</b></span></p>
-          <p className="intro-text">Join the largest Web3 conference in Lagos Nigeria, where stake holders, industry
-            experts,
-            software developers
-            are
-            coming together to network and discuss about web3 ecosystem</p>
-          <div className="call-to-register">
-            <button className="register">Register</button>
-            <a href="#apply-section" className="sponsored-by">Sponsored by <i className="bi bi-arrow-down" style={{color: '#B91C1C'}} /></a>
-          </div>
-          <h3 className="date">OCTOBER 6-8TH</h3>
-          <div id="stadium ">
-            <div className="event-cover">
-              <div id="event">
-                <div className="event">
-                  <p className="event-item">Venue <i className="bi bi-send-fill" /></p>
-                  <h3 className="event-details">Funplex Resort, Magodo, Lagos.</h3>
-                </div>
-                <div className="event">
-                  <p className="event-item">Attendees <i className="bi bi-people-fill" /></p>
-                  <h3 className="event-details">878</h3>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div id="timer">
-          <div className="count-down day">09 days</div>
-          <div className="count-down hours">17 hours</div>
-          <div className="count-down minutes">58 minutes</div>
-          <div className="count-down secconds">60 seconds</div>
-        </div>
-        <div className="section-cover">
-          <div id="apply-section">
-            <div className="apply-section-container">
-              <h1 className="apply-text"><span style={{color: '#122B47'}}>Apply &amp;</span> Join the Conversation</h1>
-              <div className="apply-buttons">
-                <button className="volunteer-button">Apply as a Volunteer</button>
-                <button className="sponsor-button">Apply as a Sponsor</button>
-              </div>
-              <div>
-                <h2 className="sponsor-names">headline Sponsor</h2>
-                <img className="eth" src="images/eth.png" alt="Eth" />
-              </div>
-              <hr />
-              <div>
-                <h3 className="sponsor-names">Silver Sponsor</h3>
-                <img src="images/wknd.png" alt="Wakanda" />
-                <p className="logo-name">Wakanda Inu</p>
-              </div>
-              <hr />
-              <div>
-                <h3 className="partner-names">Media Partners</h3>
-                <img src="images/wknd.png" alt="Wakanda" />
-                <p className="logo-name">Wakanda Inu</p>
-              </div>
-              <hr />
-              <div>
-                <h3 className="partner-names">Community Partners</h3>
-                <img src="./wknd.png" alt="Wakanda" />
-                <p className="logo-name">Wakanda Inu</p>
-              </div>
-            </div>
-          </div>
-        </div>
 
-    </>)
+    <div className="md:hidden">
+      <img src="/lagos-stadium-re.svg" alt="img"/>
+    </div>
+
+    <div className="hidden md:bg-[url('/lagos-stadium-re.svg')] h-80 mt-10 md:grid place-items-center">
+      <div className="flex items-center justify-between w-full max-w-xl p-6 mt-4 bg-white ">
+        <div className="text-2xl font-bold">
+
+          <div className="flex items-center mb-3 mr-3 text-sm text-red-500">
+            Venue
+            <FaPaperPlane className="ml-2 text-2xl" />
+          </div>
+          <div className="text-blue-c1 ">Funplex Resort, Magodo, Lagos.</div>
+        </div>
+        <div className="text-2xl font-bold">
+
+          <div className="flex items-center mb-3 mr-3 text-sm text-red-500">Attendees
+            <BsFillPeopleFill className="ml-2 text-2xl" />
+          </div>
+          <div className="text-center text-blue-c1 ">
+            {
+              loading ? (<div
+                className={`animate-pulse w-10 h-10 bg-gray-700 mx-auto flex justify-center text-center`}
+              >
+                {" "}
+              </div>) :
+                total
+            }
+
+          </div>
+        </div>
+      </div>
+    </div>
+<DateCountDown className="mx-auto text-center"/>
+
+<div className="p-6 bg-white">
+<div className="max-w-6xl mx-auto">
+    <div className="max-w-md text-5xl text-red-500"  style={{
+      lineHeight:"4rem"
+    }}>
+    <span className="text-blue-c1">
+        Apply &amp; {" "}
+      </span>
+      Join the Conversation 
+    </div>
+
+
+
+ <div className="container mx-auto mt-8">
+  <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-2">
+    <div className="flex justify-center px-4">
+    <button className="w-full p-3 text-xl border border-red-500 rounded-md">Apply As a Volunteer </button>
+      </div>
+      
+    <div className="flex justify-center px-4">
+    <button className="w-full p-3 text-xl text-white bg-red-500 rounded-md">Apply As a Volunteer </button>
+      </div>
+   
+  </div>
+</div>
+
+
+
+   
+  
+   
+  </div>
+  </div>
+
+
+  <section>
+    <Sponsors />
+    </section>  
+ 
+
+  </>)
 }
 
 

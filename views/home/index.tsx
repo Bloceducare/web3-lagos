@@ -1,13 +1,3 @@
-import Image from "next/image";
-import Button from "@components/button";
-import DateCountDown from "@components/dateCountDown";
-import Link from "next/link";
-import useTotalParticipants from "./hooks/useTotalParticipants";
-import AddressIcon from "@components/Icons/AddressIcon";
-import TwitterIcon from "@components/Icons/TwitterIcon";
-import InstagramIcon from "@components/Icons/InstagramIcon";
-import EmailIcon from "@components/Icons/EmailIcon";
-import Sponsors from "@components/Sponsors";
 import DetailsCard from "@components/DetailsCard";
 import SpeakersCards from "@components/SpeakersCards";
 import Schedule from "@components/Schedule";
@@ -15,7 +5,6 @@ import Team from "@components/Team";
 import AboveFold from "@components/AboveFold";
 
 const HomeView = () => {
-  const { total, loading } = useTotalParticipants();
 
   return (
     <>
@@ -23,10 +12,6 @@ const HomeView = () => {
       backgroundColor:"#122B47"
     }}>
 
-
-      {/* <section>
-        <Sponsors />
-      </section> */}
 
       <AboveFold />
       <DetailsCard />

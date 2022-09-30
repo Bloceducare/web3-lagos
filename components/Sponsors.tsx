@@ -2,17 +2,18 @@ import Image from "next/image";
 
 const Sponsors = () => {
   return (
-    <div className="max-w-6xl px-3 mx-auto my-16 ">
+    <div className="bg-white">
+    <div className="max-w-6xl px-3 py-16 mx-auto ">
       <div className="mb-8 border-b-2 border-b-gray-300">
         <h2 className="text-2xl font-normal">Headline Sponsors:</h2>
-        <div className="mr-6 my-2">
+        <div className="my-2 mr-6">
           <Image src="/ETH-logo.svg" width={200} height={80} alt="sponsor" />
         </div>
       </div>
-      <div className="mb-8 border-b-2 border-b-gray-300">
+      <div className="mb-8 border-b-2 ">
         <h2 className="text-2xl font-normal">Silver Sponsors:</h2>
         <div className="flex">
-          <div className="mr-6 my-2">
+          <div className="my-2 mr-6">
             <Image
               src="/wakanda-inu.png"
               width={120}
@@ -20,19 +21,19 @@ const Sponsors = () => {
               alt="sponsor"
             />
           </div>
-          <div className="mr-6 my-2 flex items-center">
+          <div className="flex items-center my-2 mr-6">
             <Image src="/web3d.svg" width={120} height={120} alt="sponsor" />
           </div>
         </div>
       </div>
-      <div className="mb-8 border-b-2 border-b-gray-300 pb-4">
+      <div className="pb-4 mb-8 border-b-2 ">
         <h2 className="text-2xl font-normal">Media Partners:</h2>
         <div className="flex">
-          <div className="mr-6 my-2 flex items-center">
+          <div className="flex items-center my-2 mr-6">
             <Image src="/papaya.svg" width={30} height={30} alt="sponsor" />
-            <span className="text-4xl relative ml-2">
+            <span className="relative ml-2 text-4xl">
               Papayas
-              <sub className="absolute text-xs font-semibold text-orange-500 right-0 -bottom-4">
+              <sub className="absolute right-0 text-xs font-semibold text-orange-500 -bottom-4">
                 Studios
               </sub>
             </span>
@@ -42,7 +43,7 @@ const Sponsors = () => {
       <div>
         <h2 className="text-2xl font-normal">Community Partners:</h2>
         <div className="flex flex-wrap">
-          <div className="mr-6 my-2">
+          <div className="my-2 mr-6">
             <Image
               src="/blockchain-kano.png"
               width={120}
@@ -50,7 +51,7 @@ const Sponsors = () => {
               alt="sponsor"
             />
           </div>
-          <div className="mr-6 my-2">
+          <div className="my-2 mr-6">
             <Image
               src="/blockchain-benin.png"
               width={120}
@@ -58,7 +59,7 @@ const Sponsors = () => {
               alt="sponsor"
             />
           </div>
-          <div className="mr-6 my-2 md:w-auto w-1/2 -mt-6 md:mt-auto">
+          <div className="w-1/2 my-2 mr-6 -mt-6 md:w-auto md:mt-auto">
             <div
               style={{ width: "100px", height: "100px", position: "relative" }}
             >
@@ -73,9 +74,9 @@ const Sponsors = () => {
             </div>
           </div>
 
-          <div className="md:block w-full mr-6 my-2 md:w-auto relative  ">
+          <div className="relative w-full my-2 mr-6 md:block md:w-auto ">
             <div
-              className="absolute border mt-12 md:mt-24 md:left-44 left-20"
+              className="absolute mt-12 md:mt-24 md:left-44 left-20"
               style={{ width: "100px", height: "100px" }}
             >
               <img
@@ -93,6 +94,7 @@ const Sponsors = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

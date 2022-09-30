@@ -1,18 +1,21 @@
 import Image from "next/image";
 const Card = ()=>(<>
 
-<div className="rounded-md relative mt-10">
+<div className="relative mt-10 rounded-md ">
     <div className="">
-        <img src='/event-photo-1.jpg' alt="event" className="w-full h-60 border-0 object-cover rounded-md" />
+        <img src='/event-photo-1.jpg' alt="event" className="object-cover w-full border-0 rounded-t-md h-60" />
 
 
     </div>
-        <div className="absolute bg-gradient-to-l from-neutral-400 to-transparent -bottom-8  rounded-b-md w-full pt-2" >
+        <div className= "absolute w-full pt-2 text-white -bottom-8 rounded-b-md" >
             <div className="px-4 mb-">
           <p>Isaac ijuo</p>
           <p className="text-sm">Attorney and Smart Contract Dev</p>
             </div>
-          <div className="w-full bg-black h-8 rounded-b-md"></div>
+          <div className="w-full h-8 bg-black-[#1313136d] img-box-shadow rounded-b-md"
+          style={{
+            backgroundColor:"#131313d3"
+          }}></div>
         </div>
       </div>
 
@@ -25,10 +28,10 @@ const SpeakersCards = () => {
     
     return (
         <>
-<div className="speakers-section max-w-6xl mx-auto">
+<div className="max-w-6xl mx-auto speakers-section">
 <div className="mx-4">
   
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+  <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
   {speakers}
 
 </div>

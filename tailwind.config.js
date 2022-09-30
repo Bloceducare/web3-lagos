@@ -9,6 +9,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        blue: {
+          c1: "#122B47",
+        },
         gray: {
           cgray: "#E9EFFF",
         },
