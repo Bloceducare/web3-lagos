@@ -1,22 +1,15 @@
 import Image from "next/image";
-const Card = ()=>(<>
+
+const imageArr=['/isaac.svg', '/justin.svg', 'tutu.svg', 'lanre.svg']
+const Card = ({src=''})=>(<> 
 
 <div className="relative mt-10 rounded-md ">
     <div className="">
-        <img src='/event-photo-1.jpg' alt="event" className="object-cover w-full border-0 rounded-t-md h-60" />
+        <img src={src} alt="event" className=" w-full border-0 rounded-t-md" />
 
 
     </div>
-        <div className= "absolute w-full pt-2 text-white -bottom-8 rounded-b-md" >
-            <div className="px-4 mb-">
-          <p>Isaac ijuo</p>
-          <p className="text-sm">Attorney and Smart Contract Dev</p>
-            </div>
-          <div className="w-full h-8 bg-black-[#1313136d] img-box-shadow rounded-b-md"
-          style={{
-            backgroundColor:"#131313d3"
-          }}></div>
-        </div>
+       
       </div>
 
 </>)
@@ -24,7 +17,7 @@ const SpeakersCards = () => {
 
     // create new Array
     
-    const speakers = new Array(6).fill(0).map((_, i) => <Card />);
+    const speakers = imageArr.map((speaker, i) => <Card src={speaker} />);
     
     return (
         <>
