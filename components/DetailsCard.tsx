@@ -3,7 +3,7 @@ import Image from "next/image"
 const DetailsCard = () => {
     return (
         <>
-<div className="max-w-6xl py-16 mx-auto ">
+<div className="text-justify max-w-6xl py-16 mx-auto ">
 <div className="mx-4">
  
   <div className="text-justify cards">
