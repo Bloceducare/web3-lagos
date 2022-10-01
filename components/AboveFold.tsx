@@ -1,6 +1,7 @@
+import Link from "next/link"
 import useTotalParticipants from "@views/home/hooks/useTotalParticipants";
 
-import { BsArrowDown, BsFillPeopleFill } from "react-icons/bs";
+import {  BsFillPeopleFill } from "react-icons/bs";
 import { FaPaperPlane } from "react-icons/fa";
 import DateCountDown from "./dateCountDown";
 import Sponsors from "./Sponsors";
@@ -23,16 +24,13 @@ const AboveFold = () => {
           coming together to network and discuss about web3 ecosystem</p>
         <div className="flex justify-center mt-6 mb-8 text-xl" >
           <div>
-            <button className="p-2 px-8 bg-red-500 rounded-sm">Register</button>
+            <button className="p-2 px-8 bg-red-500 rounded-sm">
+              <Link href="/apply/registration">
+              Register
+              </Link>
+              </button>
           </div>
-          {/* <div>
-            <button className="p-2 px-8 mr-1 bg-transparent rounded-sm ">
-              <a href="#apply-section " className="flex items-center" >
-                Sponsored by
-                <BsArrowDown className="ml-2 text-red-500" />
-              </a>
-            </button>
-          </div> */}
+       
         </div>
 
         <div className="inline-block">
