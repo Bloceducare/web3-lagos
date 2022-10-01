@@ -6,7 +6,7 @@ const DetailsCard = () => {
 <div className="max-w-6xl py-16 mx-auto ">
 <div className="mx-4">
  
-  <div className="cards">
+  <div className="text-justify cards">
     <div className="first-column">
       <div className="top-section">
         <div className="icon">

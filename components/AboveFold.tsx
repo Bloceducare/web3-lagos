@@ -47,7 +47,7 @@ const AboveFold = () => {
       <img src="/lagos-stadium-re.svg" alt="img"/>
     </div>
 
-    <div className="hidden md:bg-[url('/lagos-stadium-re.svg')] h-80 mt-10 md:grid place-items-center">
+    <div className="bg-no-repeat hidden md:bg-[url('/lagos-stadium-re.svg')] h-80 mt-10 md:grid place-items-center">
       <div className="flex items-center justify-between w-full max-w-xl p-6 mt-4 bg-white ">
         <div className="text-2xl font-bold">
 
@@ -80,7 +80,7 @@ const AboveFold = () => {
 
 <div className="p-6 bg-white">
 <div className="max-w-6xl mx-auto">
-    <div className="max-w-md text-5xl text-red-500"  style={{
+    <div className="max-w-md text-5xl text-center text-red-500 md:text-left"  style={{
       lineHeight:"4rem"
     }}>
     <span className="text-blue-c1">
@@ -98,7 +98,7 @@ const AboveFold = () => {
       </div>
       
     <div className="flex justify-center px-4">
-    <button className="w-full p-3 text-xl text-white bg-red-500 rounded-md">Apply As a Volunteer </button>
+    <button className="w-full p-3 text-xl text-white bg-red-500 rounded-md">Apply As a Sponsor </button>
       </div>
    
   </div>

@@ -6,13 +6,24 @@ const Sponsors = () => {
     <div className="max-w-6xl px-3 py-16 mx-auto ">
       <div className="mb-8 border-b-2 border-b-gray-300">
         <h2 className="text-2xl font-normal">Headline Sponsors:</h2>
-        <div className="my-2 mr-6">
+        <div className="flex flex-wrap items-center my-2 mr-6">
           <Image src="/ETH-logo.svg" width={200} height={80} alt="sponsor" />
+          <Image src="/polygon-matic.svg" width={200} height={100} alt="sponsor" />
+          <Image src="/pillow.svg" width={200} height={100} alt="sponsor" />
+
+
+          
         </div>
       </div>
       <div className="mb-8 border-b-2 ">
         <h2 className="text-2xl font-normal">Silver Sponsors:</h2>
-        <div className="flex">
+
+        <div className="flex flex-wrap items-center ">
+
+        <div className="my-2 mr-6 ">
+          <img src='/starkware.png' alt="img" />          
+          </div>
+          
           <div className="my-2 mr-6">
             <Image
               src="/wakanda-inu.png"
@@ -20,9 +31,15 @@ const Sponsors = () => {
               height={120}
               alt="sponsor"
             />
+  
           </div>
+         
+          
           <div className="flex items-center my-2 mr-6">
             <Image src="/web3d.svg" width={120} height={120} alt="sponsor" />
+          </div>
+          <div className="my-2 mr-6 ">
+          <img src='/nahmi.png' alt="img" />          
           </div>
         </div>
       </div>
@@ -40,59 +57,41 @@ const Sponsors = () => {
           </div>
         </div>
       </div>
-      <div>
-        <h2 className="text-2xl font-normal">Community Partners:</h2>
-        <div className="flex flex-wrap">
-          <div className="my-2 mr-6">
-            <Image
-              src="/blockchain-kano.png"
-              width={120}
-              height={120}
-              alt="sponsor"
-            />
+    
+
+      <div className="mb-8">
+      <h2 className="text-2xl font-normal">Community Partners:</h2>
+
+      <div className="flex flex-wrap items-center">
+        
+      <div className="mr-6">
+        <img src="/siban-m.png" alt='siban logo' />
+        </div>
+        <div className="mr-6">
+        <img src="/oau-m.png" alt='oau logo' />
           </div>
-          <div className="my-2 mr-6">
-            <Image
-              src="/blockchain-benin.png"
-              width={120}
-              height={120}
-              alt="sponsor"
-            />
+        <div className="mr-6">
+        <img src="/unn-m.png" alt='unn logo' />
           </div>
-          <div className="w-1/2 my-2 mr-6 -mt-6 md:w-auto md:mt-auto">
-            <div
-              style={{ width: "100px", height: "100px", position: "relative" }}
-            >
-              <img
-                src="/blockchain-oau.svg"
-                alt="sponsor"
-                style={{
-                  transform: "scale(3)",
-                  marginLeft: "58px",
-                }}
-              />
-            </div>
+          <div className="mr-6">
+        <img src="/bayero-m.png" alt='bayero logo' />
           </div>
 
-          <div className="relative w-full my-2 mr-6 md:block md:w-auto ">
-            <div
-              className="absolute mt-12 md:mt-24 md:left-44 left-20"
-              style={{ width: "100px", height: "100px" }}
-            >
-              <img
-                src="/siban.svg"
-                alt="sponsor"
-                className="absolute"
-                style={{
-                  transform: "scale(3)",
-                  height: "auto",
-                  maxWidth: "100%",
-                  width: "100%",
-                }}
-              />
-            </div>
+          <div className="mr-6">
+        <img src="/lasu-m.png" alt='lasu logo' />
           </div>
-        </div>
+
+          <div className="mr-6">
+        <img src="/uniben-m.png" alt='uniben logo' />
+          </div>
+          <div className="mr-6">
+        <img src="/imo-m.png" alt='uniben logo' />
+          </div>
+          <div className="mr-6">
+        <img src="/web3ladies-m.png" alt='uniben logo' />
+          </div>
+        
+      </div>
       </div>
     </div>
     </div>
