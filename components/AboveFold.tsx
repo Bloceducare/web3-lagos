@@ -38,7 +38,7 @@ const AboveFold = () => {
           <div className="z-20 w-full h-3 -mt-4 bg-red-500 opacity-60">
           </div>
         </div>
-    <div className="pt-32 md:hidden">
+    <div className="mt-10 md:hidden">
       <img src="/lagos-stadium-re.svg" alt="img"/>
     </div>
 
@@ -73,7 +73,7 @@ const AboveFold = () => {
         </div>
       </div>
     </div>
-<DateCountDown className="mx-auto text-center md:-mt-24"/>
+<DateCountDown className="mx-auto text-center md:-mt-24 mt-10"/>
 
 
 
