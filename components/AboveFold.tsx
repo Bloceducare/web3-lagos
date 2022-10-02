@@ -76,7 +76,7 @@ const AboveFold = () => {
     </div>
 <DateCountDown className="mx-auto text-center"/>
 
-<div className="p-6 bg-white">
+{/* <div className="p-6 bg-white">
 <div className="max-w-6xl mx-auto">
     <div className="max-w-md text-5xl text-center text-red-500 md:text-right"  style={{
       lineHeight:"4rem"
@@ -121,7 +121,7 @@ const AboveFold = () => {
   
    
   </div>
-  </div>
+  </div> */}
 
 
   <section>
