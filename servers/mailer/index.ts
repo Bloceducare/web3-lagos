@@ -9,6 +9,13 @@ const emailTemplateSource = fs.readFileSync(
   "utf8"
 );
 
+const QrEmailTemplateSource = fs.readFileSync(
+  `${process.cwd()}/servers/template/application-qr.hbs`,
+  "utf8"
+);
+
+
+
 interface ImailgunAuth {
   auth: {
     api_key: string | undefined;
@@ -23,6 +30,7 @@ const mailgunAuth = {
 } as ImailgunAuth;
 
 const template = handlebars.compile(emailTemplateSource);
+const qrtemplate = handlebars.compile(QrEmailTemplateSource);
 
 async function wrappedSendMail(options: any) {
   return new Promise((res, rej) => {
@@ -48,6 +56,7 @@ export const registrationEmail = async (
     application: typeOfUser == "speaker" || typeOfUser == "sponsor" || typeOfUser == "volunteer",
     replyTo,
   });
+  
   const regMailOptions = {
     from,
     to,
@@ -64,6 +73,44 @@ export const registrationEmail = async (
       data: response,
     };
   } catch (e) {
+    return {
+      status: false,
+      error: e,
+    };
+  }
+};
+
+export const sendQrcodeEmail = async (
+  to: string,
+  typeOfUser: string,
+  name: string,
+  qrCodeUrl:string
+) => {
+  const { from,  replyTo } = mailSenderConfig;
+  const sendApplicationResp = qrtemplate({
+    type: typeOfUser,
+    qrCodeUrl,
+    name,
+    application: typeOfUser == "speaker" || typeOfUser == "sponsor" || typeOfUser == "volunteer",
+    replyTo,
+  });
+  const regMailOptions = {
+    from,
+    to,
+    subject: 'qrcode',
+    html: sendApplicationResp,
+  };
+  try {
+    const response = await wrappedSendMail(regMailOptions);
+    console.log('server response', response)
+    return {
+      status: true,
+      to,
+      message: "Successfully sent email",
+      data: response,
+    };
+  } catch (e) {
+    console.log('catch error', e)
     return {
       status: false,
       error: e,
