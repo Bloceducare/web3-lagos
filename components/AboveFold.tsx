@@ -45,7 +45,7 @@ const AboveFold = () => {
       </div>
     </div>
     <div className="mt-16 bg-no-repeat hidden md:bg-[url('/lagos-stadium-re.svg')] h-72 md:grid place-items-center">
-      <div className="flex items-center justify-between w-full max-w-xl p-6 mt-4 bg-white ">
+      <div className="flex items-center justify-between w-full max-w-xl p-0 px-2 pt-2 mt-2 bg-white ">
         <div className="text-2xl font-bold">
 
           <div className="flex items-center mb-3 mr-3 text-sm text-red-500">
@@ -73,7 +73,7 @@ const AboveFold = () => {
         </div>
       </div>
     </div>
-<DateCountDown className="mx-auto text-center"/>
+<DateCountDown className="mx-auto text-center md:-mt-24"/>
 
 
 
