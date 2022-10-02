@@ -38,13 +38,13 @@ const AboveFold = () => {
           <div className="z-20 w-full h-3 -mt-4 bg-red-500 opacity-60">
           </div>
         </div>
-    <div className="mt-10 md:hidden">
+    <div className="mt-0 md:hidden">
       <img src="/lagos-stadium-re.svg" alt="img"/>
     </div>
 
       </div>
     </div>
-    <div className="mt-16 bg-no-repeat hidden md:bg-[url('/lagos-stadium-re.svg')] h-72 md:grid place-items-center">
+    <div className="mt-8 bg-no-repeat hidden md:bg-[url('/lagos-stadium-re.svg')] h-72 md:grid place-items-center">
       <div className="flex items-center justify-between w-full max-w-xl p-0 px-2 pt-2 mt-2 bg-white ">
         <div className="text-2xl font-bold">
 
@@ -73,7 +73,7 @@ const AboveFold = () => {
         </div>
       </div>
     </div>
-<DateCountDown className="mx-auto text-center md:-mt-24"/>
+<DateCountDown className="mx-auto text-center md:-mt-24 mt-10"/>
 
 
 
