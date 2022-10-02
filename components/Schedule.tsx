@@ -203,7 +203,7 @@ const Schedule = () => {
     </div>
     <div className="individualEvent">
       <div className="time">
-        <p>11:05 - 11:30AM
+        <p>11:00 - 11:30AM
         </p>
       </div>
       <div className="title">
@@ -225,7 +225,7 @@ const Schedule = () => {
           </p>
         </div>
         <div className="title">
-          <p>Understanding Crypto trading and making profit</p>
+          <p>Pragmatic approach to profitable Crypto trading</p>
         </div>
       </div>
       <div className="presenter">
@@ -260,9 +260,23 @@ const Schedule = () => {
         <p className="nameTitle">by: <span className="name">Michael Jerry</span></p>
       </div>
     </div>
+    <div className="content">
+      <div className="individualEvent1">
+        <div className="time">
+          <p>2:00 - 2:15PM
+          </p>
+        </div>
+        <div className="title">
+          <p>Blockchain Research Paper</p>
+        </div>
+      </div>
+      <div className="presenter">
+        <p className="nameTitle">by: <span className="name">Shlok Dubey</span></p>
+      </div>
+    </div>
     <div className="individualEvent">
       <div className="time">
-        <p>2:00 - 3:00PM
+        <p>2:15 - 3:00PM
         </p>
       </div>
       <div className="title">
@@ -508,7 +522,7 @@ const Schedule = () => {
     <div className="content">
       <div className="individualEvent1">
         <div className="time">
-          <p>2:15 - 3:00PM
+          <p>2:15 - 2:45PM
           </p>
         </div>
         <div className="title">
@@ -519,6 +533,22 @@ const Schedule = () => {
         <p className="nameTitle">by: <span className="name">Olumide Aderinwale</span></p>
       </div>
     </div>
+
+    <div className="content">
+      <div className="individualEvent1">
+        <div className="time">
+          <p>2:45 - 2:55PM
+          </p>
+        </div>
+        <div className="title">
+          <p>Introducing IEEE </p>
+        </div>
+      </div>
+      <div className="presenter">
+        {/* <p className="nameTitle">by: <span className="name">Olumide Aderinwale</span></p> */}
+      </div>
+    </div>
+
     <div className="individualEvent">
       <div className="time">
         <p>3:00 - 3:30PM</p>
@@ -529,7 +559,7 @@ const Schedule = () => {
     </div>
     <div className="individualEvent">
       <div className="time">
-        <p>3:00 - 3:30PM</p>
+        <p>3:30 - 4:00PM</p>
       </div>
       <div className="title">
         <p>Web3bridge AMA &amp; Closing </p>
