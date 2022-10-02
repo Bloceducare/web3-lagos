@@ -44,7 +44,7 @@ const AboveFold = () => {
 
       </div>
     </div>
-    <div className="mt-24 bg-no-repeat hidden md:bg-[url('/lagos-stadium-re.svg')] h-72 md:grid place-items-center">
+    <div className="mt-8 bg-no-repeat hidden md:bg-[url('/lagos-stadium-re.svg')] h-72 md:grid place-items-center">
       <div className="flex items-center justify-between w-full max-w-xl p-0 px-2 pt-2 mt-2 bg-white ">
         <div className="text-2xl font-bold">
 
