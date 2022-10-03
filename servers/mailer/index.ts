@@ -73,9 +73,9 @@ export const registrationEmail = async (
  
 
   try {
-    const response = await wrappedSendMail(regMailOptions);
-    // const response =   await sendGridMail.send(regMailOptions)
-    
+    // const response = await wrappedSendMail(regMailOptions);
+    const response =   await sendGridMail.send(regMailOptions)
+      console.log('regitration successful', response)
     return {
       status: true,
       to,
@@ -85,6 +85,7 @@ export const registrationEmail = async (
 
 
   } catch (e) {
+    console.log(e, 'error mailing')
     return {
       status: false,
       error: e,
@@ -113,8 +114,10 @@ export const sendQrcodeEmail = async (
     html: sendApplicationResp,
   };
   try {
-    const response = await wrappedSendMail(regMailOptions);
-    console.log('server response', response)
+    // const response = await wrappedSendMail(regMailOptions);
+    const response =   await sendGridMail.send(regMailOptions)
+
+    // console.log('server response', response)
     return {
       status: true,
       to,
