@@ -3,6 +3,9 @@ import mg from "nodemailer-mailgun-transport";
 import handlebars from "handlebars";
 import fs from "fs";
 import { mailSenderConfig } from "@servers/config";
+import sendGridMail  from '@sendgrid/mail'
+
+sendGridMail.setApiKey(process.env.SENDGRID_API_KEY as string)
 
 const emailTemplateSource = fs.readFileSync(
   `${process.cwd()}/servers/template/application-resp.hbs`,
@@ -50,6 +53,8 @@ export const registrationEmail = async (
   name: string
 ) => {
   const { from, emailSubject, replyTo } = mailSenderConfig;
+
+
   const sendApplicationResp = template({
     type: typeOfUser,
     name,
@@ -64,14 +69,21 @@ export const registrationEmail = async (
     html: sendApplicationResp,
   };
 
+
+ 
+
   try {
     const response = await wrappedSendMail(regMailOptions);
+    // const response =   await sendGridMail.send(regMailOptions)
+    
     return {
       status: true,
       to,
       message: "Successfully sent email",
       data: response,
     };
+
+
   } catch (e) {
     return {
       status: false,
