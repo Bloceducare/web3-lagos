@@ -2,7 +2,9 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { createRouter } from "next-connect";
 import connectDB from "@servers/config/index";
 import participantsDb from "@servers/models/participant";
-import { registrationEmail } from "@servers/mailer";
+import { registrationEmail, sendHackatonEmail, sendQrcodeEmail } from "@servers/mailer";
+import cloudinary from "@servers/cloudinary";
+import QRcode from "@servers/qr-code";
 
 connectDB();
 
@@ -85,16 +87,33 @@ router.post(async (req, res) => {
       ...userInfo,
       userName: userName.toLowerCase(),
       email: email.toLowerCase(),
+      qrCode:true,
+      hackingEmail:true
     };
 
-    const userData: any = new participantsDb(data);
-    const regSpeaker = await userData.save();
-    await registrationEmail(email, type, userName);
+    const QrCodetemplate =`
+    Web3Lagos Conference 2022
+    ${userName}
+    ${type}`;
 
+   
+    
+    const qrcode = (await QRcode(QrCodetemplate)) as string;
+    const {secure_url:qrCodeUrl} = await cloudinary.uploader.upload(qrcode)
+ 
+
+    const userData: any = new participantsDb(data);
+      Promise.all(
+        [await userData.save(),
+          await registrationEmail(email, type, userName),
+          await sendHackatonEmail(email), 
+          await sendQrcodeEmail(email,type, userName,qrCodeUrl)
+        ])
+ 
     return res.status(200).json({
       status: true,
-      data: regSpeaker,
-      message: `Welldone, ${userName}, Your registration was successful. We've sent you a confirmation, if you can't find it, please check your spam folder`,
+      data ,
+      message: `Welldone, ${userName}, Your registration was successful. We've sent you a confirmation and other information, if you can't find it, please check your spam folder`,
     });
   } catch (e) {
     res.status(423).json({
