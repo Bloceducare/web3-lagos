@@ -91,6 +91,9 @@ const ParticipantSchema = new Schema(
     },
     qrCode:{
       type:Boolean
+    },
+    hackingEmail:{
+      type:Boolean
     }
   },
 

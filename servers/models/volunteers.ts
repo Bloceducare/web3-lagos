@@ -32,6 +32,9 @@ const VolunteerSchema = new Schema(
     qrCode:{
       type:Boolean
     },
+    sentGrpLink:{
+      type:Boolean
+    }
   },
 
   { timestamps: true }

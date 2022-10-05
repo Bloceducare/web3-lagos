@@ -1,11 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { createRouter } from "next-connect";
 import connectDB, { closeDB } from "@servers/config/index";
-import volunteersDb from "@servers/models/volunteers";
 import usersDb from  "@servers/models/participant"
-import { sendQrcodeEmail } from "@servers/mailer";
-import QRcode from "@servers/qr-code";
-import cloudinary from "@servers/cloudinary";
+import {  sendHackatonEmail } from "@servers/mailer";
 
 
 const router = createRouter<NextApiRequest, NextApiResponse>();
@@ -16,8 +13,7 @@ router.get(async (req, res) => {
   
   try {
     await  connectDB();
-    // const userRegistering = await volunteersDb.find();
-    const userRegistering = await usersDb.find();
+   const userRegistering = await usersDb.find();
 
     const newArr = userRegistering.slice(Number(start), Number(max))
 
@@ -25,30 +21,21 @@ router.get(async (req, res) => {
     const getWithPromiseAll = async () => {
        await Promise.all(
         newArr.map(async (user) => {
-          const userType = user?.type ?? "Attendant" as string;
-          // const userType =  user?.areaOfContribution ?? "Volunteer" ;
+         
 
-    
-         await  usersDb.updateOne({email:user.email}, {
-            $set: {qrCode: true}
+           
+         if(!user.hackingEmail)
+         {
+          const sendEmail = await  sendHackatonEmail(
+            user.email,
+           
+         
+          );
+          await  usersDb.updateOne({email:user.email}, {
+            $set: {hackingEmail: true}
         })
 
-          const QrCodetemplate =`
-          Web3Lagos Conference 2022
-          ${user.userName}
-          ${userType}`;
-
-          const qrcode = (await QRcode(QrCodetemplate)) as string;
-          const {secure_url:qrCodeUrl} = await cloudinary.uploader.upload(qrcode)
-       
-         if(!user.qrCode){
-          const sendQrcodemail = await sendQrcodeEmail(
-            user.email,
-            userType,
-            user.userName,
-            qrCodeUrl
-          );
-          return sendQrcodemail
+          return sendEmail
          }
         })
       );
@@ -56,6 +43,7 @@ router.get(async (req, res) => {
     await getWithPromiseAll();
     await  closeDB()
     res.status(200).json({
+      num:newArr.length,
       data:newArr
     })
     // return res.status(200).json({ status: 200, data: userRegistering });

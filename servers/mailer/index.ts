@@ -17,6 +17,12 @@ const QrEmailTemplateSource = fs.readFileSync(
   "utf8"
 );
 
+const hackatonTemplateSource = fs.readFileSync( `${process.cwd()}/servers/template/hackaton-email.hbs`,
+"utf8")
+
+const volunteerTemplateSource=fs.readFileSync( `${process.cwd()}/servers/template/volunteer-email.hbs`,
+"utf8")
+
 
 
 interface ImailgunAuth {
@@ -34,6 +40,10 @@ const mailgunAuth = {
 
 const template = handlebars.compile(emailTemplateSource);
 const qrtemplate = handlebars.compile(QrEmailTemplateSource);
+const hackatonTemplate =handlebars.compile(hackatonTemplateSource)
+const volunteerTemplate =handlebars.compile(volunteerTemplateSource)
+
+
 
 async function wrappedSendMail(options: any) {
   return new Promise((res, rej) => {
@@ -46,6 +56,7 @@ async function wrappedSendMail(options: any) {
     });
   });
 }
+
 
 export const registrationEmail = async (
   to: string,
@@ -132,3 +143,67 @@ export const sendQrcodeEmail = async (
     };
   }
 };
+
+export const sendHackatonEmail = async(email='',)=>{
+
+  const { from,  replyTo } = mailSenderConfig;
+  const regMailOptions = {
+    from,
+    to:email,
+    subject: 'Web3Lagos Hackathon ',
+    html:hackatonTemplate({}),
+  };
+  try {
+
+    const response =   await sendGridMail.send(regMailOptions)
+
+
+    return {
+      status: true,
+      to:email,
+      message: "Successfully sent email",
+      data: response,
+    };
+  } catch (e) {
+    console.log('catch error', e)
+    return {
+      status: false,
+      error: e,
+    };
+  }
+
+}
+
+
+export const sendVolunteerEmail = async(email='',)=>{
+
+  const { from,  replyTo } = mailSenderConfig;
+  const regMailOptions = {
+    from,
+    to:email,
+    subject: 'Web3Lagos Volunteer WhatsApp Group ',
+    html:volunteerTemplate({}),
+  };
+  try {
+
+    const response =   await sendGridMail.send(regMailOptions)
+
+
+    return {
+      status: true,
+      to:email,
+      message: "Successfully sent email",
+      data: response,
+    };
+  } catch (e) {
+    console.log('catch error', e)
+    return {
+      status: false,
+      error: e,
+    };
+  }
+
+}
+
+
+
