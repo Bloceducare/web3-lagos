@@ -73,7 +73,7 @@ const AboveFold = () => {
         </div>
       </div>
     </div>
-<DateCountDown className="mx-auto mt-10 text-center md:-mt-24"/>
+{/* <DateCountDown className="mx-auto mt-10 text-center md:-mt-24"/> */}
 
 
 
