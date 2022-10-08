@@ -23,29 +23,33 @@ const AboveFold = () => {
           are
           coming together to network and discuss about web3 ecosystem</p>
         <div className="flex justify-center text-xl" >
-          <div>
+          {/* <div>
             <button className="p-2 px-8 bg-red-500 rounded-sm">
-              <Link href="/apply/registration">
-              Register
-              </Link>
-              </button>
-          </div>
+            <Link href="/apply/registration">
+            Register
+            </Link>
+            </button>
+          </div> */}
        
         </div>
 
-        <div className="inline-block mt-4">
+          
+        {/* <div className="inline-block mt-4">
           <p className="relative z-50 w-full text-3xl text-capitalize">October 6-8 </p>
           <div className="z-20 w-full h-3 -mt-4 bg-red-500 opacity-60">
           </div>
-        </div>
+        </div> */}
     <div className="mt-0 md:hidden">
       <img src="/lagos-stadium-re.svg" alt="img"/>
     </div>
 
       </div>
     </div>
+
+   
+
     <div className="mt-20 bg-no-repeat hidden md:bg-[url('/lagos-stadium-re.svg')] h-72 md:grid place-items-center">
-      <div className="flex items-center justify-between w-full max-w-xl p-0 px-2 pt-2 mt-2 bg-white ">
+      {/* <div className="flex items-center justify-between w-full max-w-xl p-0 px-2 pt-2 mt-2 bg-white ">
         <div className="text-2xl font-bold">
 
           <div className="flex items-center mb-3 mr-3 text-sm text-red-500">
@@ -71,9 +75,16 @@ const AboveFold = () => {
 
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
-{/* <DateCountDown className="mx-auto mt-10 text-center md:-mt-24"/> */}
+
+
+    <div className="text-center">
+<h1 className="text-white text-2xl md:mt-0  mt-24 md:pt-4">
+ Next Date To Be In Announced In
+</h1>
+<DateCountDown className="mx-auto mt-10 text-center md:-mt-24"/>
+    </div>
 
 
 

@@ -11,14 +11,15 @@ interface Props {
 const DateCountDown = ({ className = "" }: Props) => {
   return (
     <>
+ 
       <div
         className={classNames(
           className,
-          "pt-6 md:p-3 md:mt-0 mt-32 text-white bg-blue-c1"
+          "-mt-1 md:p-3 md:mt-0 text-white bg-blue-c1"
         )}
       >
         {/* @ts-ignore */}
-        <DynamicComponent dateTo="October 06, 2022 10:00:00 GMT+01:00" />
+        <DynamicComponent dateTo="December 06, 2022 10:00:00 GMT+01:00" />
       </div>
     </>
   );
