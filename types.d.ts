@@ -34,5 +34,11 @@ export interface IResetPassword {
   userId: string;
 }
 
+export interface IScheduleItem {
+  topic:string
+  speaker:string
+  time:string
+}
+
 
 

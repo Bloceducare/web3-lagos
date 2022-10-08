@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { createRouter } from "next-connect";
 import connectDB, { closeDB } from "@servers/config/index";
 import volunteersDb from "@servers/models/volunteers";
+import usersDb from  "@servers/models/participant"
 import { sendQrcodeEmail } from "@servers/mailer";
 import QRcode from "@servers/qr-code";
 import cloudinary from "@servers/cloudinary";
@@ -9,26 +10,38 @@ import cloudinary from "@servers/cloudinary";
 
 const router = createRouter<NextApiRequest, NextApiResponse>();
 
+
 router.get(async (req, res) => {
+  const {start, max} = req.query
   
   try {
-  await  connectDB();
-    const userRegistering = await volunteersDb.find();
-    const currentIndex = 0;
-    const maxToSend = 1;
+    await  connectDB();
+    // const userRegistering = await volunteersDb.find();
+    const userRegistering = await usersDb.find();
 
+    const newArr = userRegistering.slice(Number(start), Number(max))
+
+   
     const getWithPromiseAll = async () => {
        await Promise.all(
-        userRegistering.splice(currentIndex, maxToSend).map(async (user) => {
-          const userType = user?.type ?? "volunteer" as string;
+        newArr.map(async (user) => {
+          const userType = user?.type ?? "Attendant" as string;
+          // const userType =  user?.areaOfContribution ?? "Volunteer" ;
+
+    
+         await  usersDb.updateOne({email:user.email}, {
+            $set: {qrCode: true}
+        })
+
           const QrCodetemplate =`
-          Web3Lagos Conference
+          Web3Lagos Conference 2022
           ${user.userName}
           ${userType}`;
 
           const qrcode = (await QRcode(QrCodetemplate)) as string;
           const {secure_url:qrCodeUrl} = await cloudinary.uploader.upload(qrcode)
        
+         if(!user.qrCode){
           const sendQrcodemail = await sendQrcodeEmail(
             user.email,
             userType,
@@ -36,12 +49,16 @@ router.get(async (req, res) => {
             qrCodeUrl
           );
           return sendQrcodemail
+         }
         })
       );
     };
     await getWithPromiseAll();
     await  closeDB()
-    return res.status(200).json({ status: 200, data: userRegistering });
+    res.status(200).json({
+      data:newArr
+    })
+    // return res.status(200).json({ status: 200, data: userRegistering });
   } catch (e) {
     console.log("error", e);
     res.status(423).json({

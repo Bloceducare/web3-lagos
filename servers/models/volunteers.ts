@@ -28,6 +28,12 @@ const VolunteerSchema = new Schema(
         type: String,
         enum: AreaOfContribution,
         default: AreaOfContribution.none
+    },
+    qrCode:{
+      type:Boolean
+    },
+    sentGrpLink:{
+      type:Boolean
     }
   },
 

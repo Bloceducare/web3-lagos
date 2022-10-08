@@ -23,6 +23,6 @@
       "@models/*": ["models/*"],
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "sendhackingEmail.ts"],
   "exclude": ["node_modules"]
 }

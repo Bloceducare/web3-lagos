@@ -89,6 +89,12 @@ const ParticipantSchema = new Schema(
     mediaHowToContribute: {
       type: String,
     },
+    qrCode:{
+      type:Boolean
+    },
+    hackingEmail:{
+      type:Boolean
+    }
   },
 
   { timestamps: true }

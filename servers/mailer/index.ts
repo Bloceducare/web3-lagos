@@ -3,6 +3,9 @@ import mg from "nodemailer-mailgun-transport";
 import handlebars from "handlebars";
 import fs from "fs";
 import { mailSenderConfig } from "@servers/config";
+import sendGridMail  from '@sendgrid/mail'
+
+sendGridMail.setApiKey(process.env.SENDGRID_API_KEY as string)
 
 const emailTemplateSource = fs.readFileSync(
   `${process.cwd()}/servers/template/application-resp.hbs`,
@@ -13,6 +16,12 @@ const QrEmailTemplateSource = fs.readFileSync(
   `${process.cwd()}/servers/template/application-qr.hbs`,
   "utf8"
 );
+
+const hackatonTemplateSource = fs.readFileSync( `${process.cwd()}/servers/template/hackaton-email.hbs`,
+"utf8")
+
+const volunteerTemplateSource=fs.readFileSync( `${process.cwd()}/servers/template/volunteer-email.hbs`,
+"utf8")
 
 
 
@@ -31,6 +40,10 @@ const mailgunAuth = {
 
 const template = handlebars.compile(emailTemplateSource);
 const qrtemplate = handlebars.compile(QrEmailTemplateSource);
+const hackatonTemplate =handlebars.compile(hackatonTemplateSource)
+const volunteerTemplate =handlebars.compile(volunteerTemplateSource)
+
+
 
 async function wrappedSendMail(options: any) {
   return new Promise((res, rej) => {
@@ -44,12 +57,15 @@ async function wrappedSendMail(options: any) {
   });
 }
 
+
 export const registrationEmail = async (
   to: string,
   typeOfUser: string,
   name: string
 ) => {
   const { from, emailSubject, replyTo } = mailSenderConfig;
+
+
   const sendApplicationResp = template({
     type: typeOfUser,
     name,
@@ -64,15 +80,23 @@ export const registrationEmail = async (
     html: sendApplicationResp,
   };
 
+
+ 
+
   try {
-    const response = await wrappedSendMail(regMailOptions);
+    // const response = await wrappedSendMail(regMailOptions);
+    const response =   await sendGridMail.send(regMailOptions)
+      console.log('regitration successful', response)
     return {
       status: true,
       to,
       message: "Successfully sent email",
       data: response,
     };
+
+
   } catch (e) {
+    console.log(e, 'error mailing')
     return {
       status: false,
       error: e,
@@ -101,8 +125,10 @@ export const sendQrcodeEmail = async (
     html: sendApplicationResp,
   };
   try {
-    const response = await wrappedSendMail(regMailOptions);
-    console.log('server response', response)
+    // const response = await wrappedSendMail(regMailOptions);
+    const response =   await sendGridMail.send(regMailOptions)
+
+    // console.log('server response', response)
     return {
       status: true,
       to,
@@ -117,3 +143,67 @@ export const sendQrcodeEmail = async (
     };
   }
 };
+
+export const sendHackatonEmail = async(email='',)=>{
+
+  const { from,  replyTo } = mailSenderConfig;
+  const regMailOptions = {
+    from,
+    to:email,
+    subject: 'Web3Lagos Hackathon ',
+    html:hackatonTemplate({}),
+  };
+  try {
+
+    const response =   await sendGridMail.send(regMailOptions)
+
+
+    return {
+      status: true,
+      to:email,
+      message: "Successfully sent email",
+      data: response,
+    };
+  } catch (e) {
+    console.log('catch error', e)
+    return {
+      status: false,
+      error: e,
+    };
+  }
+
+}
+
+
+export const sendVolunteerEmail = async(email='',)=>{
+
+  const { from,  replyTo } = mailSenderConfig;
+  const regMailOptions = {
+    from,
+    to:email,
+    subject: 'Web3Lagos Volunteer WhatsApp Group ',
+    html:volunteerTemplate({}),
+  };
+  try {
+
+    const response =   await sendGridMail.send(regMailOptions)
+
+
+    return {
+      status: true,
+      to:email,
+      message: "Successfully sent email",
+      data: response,
+    };
+  } catch (e) {
+    console.log('catch error', e)
+    return {
+      status: false,
+      error: e,
+    };
+  }
+
+}
+
+
+
