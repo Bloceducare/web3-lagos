@@ -83,7 +83,7 @@ const AboveFold = () => {
 <h1 className="text-white text-2xl md:mt-0  mt-24 md:pt-4">
  Next Date To Be In Announced In
 </h1>
-<DateCountDown className="mx-auto mt-10 text-center md:-mt-24"/>
+<DateCountDown className="mx-auto mt-10 text-center "/>
     </div>
 
 
