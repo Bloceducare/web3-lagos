@@ -6,8 +6,8 @@ const Home: NextPage = () => {
   return (
     <div className="">
       <Head>
-        <title>Home</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Web3Lagos</title>
+      
       </Head>
 
       <HomeView />
