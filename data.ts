@@ -231,7 +231,7 @@ export const schedule = {
              },
              {
                 time:"2:15 - 2:45 PM",
-                topic:"Power, Law, Careers",
+                topic:"Power Law Careers",
                 speaker:"Olumide Aderinwale"
              },
              {
