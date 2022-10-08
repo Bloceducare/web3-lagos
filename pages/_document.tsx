@@ -22,9 +22,7 @@ export default function Document() {
         <meta property="og:image" content="" />
 
         <link rel="shortcut icon" href="favicon.png" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-     
+   
         <link
           rel="apple-touch-icon"
           sizes="180x180"
