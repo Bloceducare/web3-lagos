@@ -22,4 +22,7 @@ export const closeDB = async () => {
   } catch {}
 };
 
+
+export const conferenceStatus = true
+
 export default connectDB;

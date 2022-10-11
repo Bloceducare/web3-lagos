@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { createRouter } from "next-connect";
-import connectDB from "@servers/config/index";
+import connectDB, { conferenceStatus } from "@servers/config/index";
 import participantsDb from "@servers/models/participant";
 import { registrationEmail, sendHackatonEmail, sendQrcodeEmail } from "@servers/mailer";
 import cloudinary from "@servers/cloudinary";
@@ -12,6 +12,13 @@ const router = createRouter<NextApiRequest, NextApiResponse>();
 
 // create a participant
 router.post(async (req, res) => {
+
+  if(conferenceStatus){
+    return res.status(423).json({
+      status: false,
+      message: "Conference registration is currently closed",
+    });
+  }
   const {
     email,
     userName,

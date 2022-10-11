@@ -9,8 +9,9 @@ const Card = ({src=''})=>(<>
     <Image src={src}
      placeholder="blur"
     blurDataURL={blurUrl}
+    alt="sponsor" 
      width={300} height={300}
-      alt="sponsor" />
+      />
        
       </div>
 
