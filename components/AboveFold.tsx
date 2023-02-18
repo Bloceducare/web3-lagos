@@ -8,21 +8,40 @@ import Sponsors from "./Sponsors";
 
 
 const AboveFold = () => {
-  const { total, loading } = useTotalParticipants();
+  // const { total, loading } = useTotalParticipants();
 
   return (<>
 
-    <div className="flex items-center justify-center text-center text-white h-[calc(100vh-20rem)] bg-[url('../images/main_bg.png')] ">
-      <div className="max-w-lg mx-auto mt-10">
-        <p className="text-6xl mt-36" style={{
-          lineHeight: "4rem"
-        }}> Web3  <span className="font-bold ">Lagos Conference 2022</span></p>
-        <p className="my-2 mt-6 text-xl" >Join the largest Web3 conference in Lagos Nigeria, where stake holders, industry
-          experts,
-          software developers
-          are
-          coming together to network and discuss about web3 ecosystem</p>
-        <div className="flex justify-center text-xl" >
+    <div className=" flex items-center justify-center text-center gap-12 p-4 bg-slate-50 text2*1 bg-#E5EODB shadow-lg shadow-blue-500/50">
+      <button className="pb-1 text-lg  hover:border-b-2 border-red-800  ">
+        <a href="#" className="text-black">Home</a>
+      </button>
+      <button className="pb-1 text-lg  hover:border-b-2 border-red-800">
+      <a href="#" className="text-black  pb-2">Register</a>
+      </button>
+      <button className="pb-1 text-lg  hover:border-b-2 border-red-800">
+      <a href="#" className="text-black  pb-2">Sponsor</a>
+      </button>
+      </div>
+      <div className="flex items-center justify-center text-center bg-white text-#454545 ">
+       <div className="w-50 text-4xl mt-20 font-thin">
+        <b className="bg-black text-white">web3</b> Lagos
+        <p>conference 2</p>
+        <p className="text-base w-80">Web3 lagos conference is the largest Web3 Event in lagos Nigeria where community and technology
+          meets for a three day intensive conference learning and networking
+        </p>
+        </div>
+      </div>
+      {/* <div className="max-w-lg mx-auto mt-10">z */}
+        {/* <p className="text-6xl mt-36" style={{ */}
+          {/* lineHeight: "4rem" */}
+        {/* }}> Web3  <span className="font-bold ">Lagos Conference 2022</span></p> */}
+        {/* <p className="my-2 mt-6 text-xl" >Join the largest Web3 conference in Lagos Nigeria, where stake holders, industry */}
+          {/* experts, */}
+          {/* software developers */}
+          {/* are */}
+          {/* coming together to network and discuss about web3 ecosystem</p> */}
+        {/* <div className="flex justify-center text-xl" > */}
           {/* <div>
             <button className="p-2 px-8 bg-red-500 rounded-sm">
             <Link href="/apply/registration">
@@ -31,7 +50,7 @@ const AboveFold = () => {
             </button>
           </div> */}
        
-        </div>
+     
 
           
         {/* <div className="inline-block mt-4">
@@ -39,16 +58,16 @@ const AboveFold = () => {
           <div className="z-20 w-full h-3 -mt-4 bg-red-500 opacity-60">
           </div>
         </div> */}
-    <div className="mt-0 md:hidden">
-      <img src="/lagos-stadium-re.svg" alt="img"/>
-    </div>
+    {/* <div className="mt-0 md:hidden"> */}
+      {/* <img src="/lagos-stadium-re.svg" alt="img"/> */}
+    {/* </div> */}
 
-      </div>
-    </div>
+      {/* </div> */}
+    {/* </div> */}
 
    
 
-    <div className="mt-20 bg-no-repeat hidden md:bg-[url('/lagos-stadium-re.svg')] h-72 md:grid place-items-center">
+    {/* <div className="mt-20 bg-no-repeat hidden md:bg-[url('/lagos-stadium-re.svg')] h-72 md:grid place-items-center"> */}
       {/* <div className="flex items-center justify-between w-full max-w-xl p-0 px-2 pt-2 mt-2 bg-white ">
         <div className="text-2xl font-bold">
 
@@ -76,15 +95,16 @@ const AboveFold = () => {
           </div>
         </div>
       </div> */}
+    {/* </div> */}
+    <div className="bg-contain bg-no-repeat bg-center  h-[calc(120vh-15rem)] bg-[url('../images/main.png')]">
+    <div >
+     <div className="bg-contain flex tems-center justify-center text-center py-6">
+<DateCountDown className="bg-contain mx-contain  text-center "/>
+   </div>
+   </div>
     </div>
 
 
-    <div className="text-center">
-<h1 className="text-white text-2xl md:mt-0  mt-24 md:pt-4">
- Next Date To Be In Announced In
-</h1>
-<DateCountDown className="mx-auto mt-10 text-center "/>
-    </div>
 
 
 
@@ -137,11 +157,11 @@ const AboveFold = () => {
 
 
   <section>
-    <Sponsors />
+    {/* <Sponsors /> */}
     </section>  
  
 
-  </>)
+  // </>)
 }
 
 

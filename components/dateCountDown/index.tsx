@@ -15,7 +15,7 @@ const DateCountDown = ({ className = "" }: Props) => {
       <div
         className={classNames(
           className,
-          "-mt-1 md:p-3 md:mt-0 text-white bg-blue-c1"
+          " md:p-3 md:mt-0 text-sm"
         )}
       >
         {/* @ts-ignore */}

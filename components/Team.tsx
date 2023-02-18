@@ -5,7 +5,22 @@ import TwitterIcon from "./Icons/TwitterIcon"
 const Team =()=>{
     return (
         <>
-         <section className="max-w-6xl m-auto py-16 text-center [&>div]:my-3 text-white">
+        <footer className="flex items-center justify-center text-center bg-contain bg-black text-white">
+          <div className="mt-10 mb-10">
+          <div>
+            <p className="text-3xl">Powered by Web3Bridge</p>
+          </div>
+          <div className="mt-5 text-2xl">
+            <a href="">Event@web3bridge.com</a>
+          </div>
+          </div>
+         
+        </footer>
+
+
+
+
+         {/* <section className="max-w-6xl m-auto py-16 text-center [&>div]:my-3 text-white">
         <h2 className="text-5xl font-bold text-gray-300">
           {" "}
           Team
@@ -38,7 +53,7 @@ const Team =()=>{
             </a>
           </div>
         </div>
-      </section>
+      </section> */}
         </>
 
     )
