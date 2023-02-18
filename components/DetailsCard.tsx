@@ -2,8 +2,32 @@ import Image from "next/image"
 
 const DetailsCard = () => {
     return (
+      
         <>
-<div className="text-justify max-w-6xl py-16 mx-auto ">
+
+<div className=" mx-auto  bg-cover md:bg-contain bg-no-repeat bg-center  h-[calc(130vh-15rem)] bg-[url('../images/detailed.png')]">
+  <div className="-mt-20 ml-5 md:flex items-center justify-center text-center gap-52 mt-10 bg-contain">
+  <p className="w-[450px]   border  md:w-80 px-9 py-10 bg-white rounded-3xl md:mt-40">
+    <p className="">
+    <h1 className="text-2xl">Our Goal</h1>
+    <p  className="text-sm mt-5">At Web3bridge , We believe education is critical in the drive for adaptation of blockchain technology</p>
+    <p  className="text-sm mt-2">And we have set up Web3 Lagos Conference to bring education across varying topics/subjects and comprehension of blockchain technology</p>
+    </p>
+  </p>
+  <p className="w-[450px] mt-4 md:mt-40 border md:width-[800px] pr-8 py-6 bg-white rounded-3xl ">
+  <p className="">
+  <h1 className="text-2xl">Our Goal</h1>
+  <p className="text-sm mt-5 md: px-4">Web3 Lagos Conference is a 3-day physical and virtual event comprising of hackathon, workshops, networking, career fair, panel session, talks, etc</p>
+  <p className="text-sm mt-2 md: px-4">With over 1200+ attendance, 26 speakers and 7 sponsors in the maiden event, the  event focuses on onboarding and supporting the growth of individual new to the concept of blockchain and decentralisation, helping
+    technical and non-technical blockchain . Blockchain native person realise the endless posibilities and opportunities of the Blockchain & Ethereum ecosystem.</p>
+</p>
+</p>
+</div>
+</div>
+
+
+
+{/* <div className="text-justify max-w-6xl py-16 mx-auto ">
 <div className="mx-4">
  
   <div className="text-justify cards">
@@ -66,9 +90,9 @@ const DetailsCard = () => {
 
         </div>
         <h3>Event Overview</h3>
-        <p>
-          Web3 Lagos Conference is a 3-day event kickstarting with a hackathon and several other events including; 
-          workshop, networking, career fair, panel session, talks, main event, etc.
+        <p> */}
+          {/* Web3 Lagos Conference is a 3-day event kickstarting with a hackathon and several other events including; 
+          workshop, networking, career fair, panel session, talks, mainly event, exteracyutvac.
         </p>
         <p>
           With an expected attendance of 5000 participants physically and virtually, 
@@ -79,8 +103,8 @@ const DetailsCard = () => {
           Beyond celebrating three years of contributions to the Blockchain and Web3 space in Africa and 
           international scenes, one of our core beliefs is that repeated interactions will contribute resourcefully 
           to career growth. We are bringing together the best, value-driven industry thought leaders and speakers.
-        </p>
-      </div>
+        </p> */}
+      {/* </div>
       <div className="image">
       <Image
               src="/event-photo-1.jpg"
@@ -90,12 +114,12 @@ const DetailsCard = () => {
               objectFit="cover"
             />
             
-        {/* <img src="./images/kobby-mendez-d0oYF8hm4GI-unsplash.jpg" alt="img" /> */}
-      </div>
-    </div>
-  </div>
-  </div>
-</div>
+//         {/* <img src="./images/kobby-mendez-d0oYF8hm4GI-unsplash.jpg" alt="img" /> */}
+{/* //       </div> */}
+{/* //     </div> */}
+{/* //   </div> */}
+{/* //   </div> */}
+{/* // </div> */}
 
         </>
     )

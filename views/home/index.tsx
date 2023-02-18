@@ -3,21 +3,23 @@ import SpeakersCards from "@components/SpeakersCards";
 import Schedule from "@components/Schedule";
 import Team from "@components/Team";
 import AboveFold from "@components/AboveFold";
+import Sponsors from "@components/Sponsors"
 
 const HomeView = () => {
 
   return (
     <>
     <div  style={{
-      backgroundColor:"#122B47"
+      backgroundColor:"#17a2b8"
     }}>
 
 
-      <AboveFold />
-      <DetailsCard />
-      <SpeakersCards />
-      <Schedule />
-      <Team />
+      {/* <AboveFold /> */}
+      {/* <DetailsCard /> */}
+      {/* <Sponsors/> */}
+      {/* <SpeakersCards /> */}
+      <Schedule /> 
+       <Team /> 
 
 
     </div>
