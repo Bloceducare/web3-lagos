@@ -1,52 +1,75 @@
 import Image from "next/image";
-import vectorPic from "../images/vector.svg";
+import Sponsors from "./Sponsors";
+// import vectorPic from "../images/vector.svg";
 
 // bg-cover bg-[url('../images/main_bg.png')] h-[calc(110vh-20rem)] w-[1440px]
 const DetailsCard = () => {
   return (
     <>
-      <div className="text-justify py-16 mx-auto bg-[url('../images/bridge.svg')] w-[1440px] h-[779px]">
-        <div>
-          <div className="text-center cards mx-4">
-            <div className="first-column">
-              <div>
-                <img src={vectorPic.src} width="82" height="82" />
-              </div>
-              <h3>Our Goal</h3>
-              <p>
-                At Web3bridge, we believe education is critical in the drive for
-                adoption of blockchain technology.
-              </p>
-              <p>
-                And we have set up Web3 Lagos conference to bring education
-                across varying topics/subjects and comprehension of blockchain
-                technology
-              </p>
+      <div className="text-justify py-3 mx-auto bg-[url('../images/bridge.svg')] w-[1440px] h-[calc(130vh-13rem)] bg-top bg-no-repeat pt-9 ">
+        <div className="flex justify-between mt-[110px] ">
+          <div className="bg-white shadow-xl w-[601px] h-[477px] ml-16 flex flex-col items-center text-center rounded-3xl">
+            <div className="-mt-6">
+              <Image
+                src="/vector.svg"
+                width="50"
+                height="50"
+                layout="fixed"
+                objectFit="cover"
+              />
             </div>
-            <div className="second-column">
-              <div className="text">
-                <div>
-                  <img src={vectorPic.src} width="82" height="82" />
-                </div>
-                <h3>Event Overview</h3>
-                <p>
-                  Web3 Lagos Conference is a 3-day physical and virtual event
-                  comprising of hackathon, workshops, networking, career fair,
-                  panel session, talks, etc
-                </p>
-                <p>
-                  With over 1200+ attendance, 26 speakers and 7 sponsors in the
-                  maiden event, the event focuses on onboarding and supporting
-                  the growth of individual new to the concept of blockchain and
-                  decentralisation,helping technical andnon-technical blockchain
-                  blockchain native persons realise the endless possibilities
-                  and opportunities of the Blockchain & Ethereum ecosystem.
-                </p>
-              </div>
+            <h3 className="mb-10 mt-4 text-[#122C47] text-2xl font-semibold ">
+              Our Goal
+            </h3>
+            <div className="text-slate-600">
+              <p className="">
+                At Web3bridge, we believe education is critical in the
+              </p>
+              <p>drive for adoption of blockchain technology.</p>
+              <p className="mt-10">
+                And we have set up Web3 Lagos conference to bring
+              </p>
+              <p>education across varying topics/subjects and</p>
+              <p> comprehension of blockchain technology</p>
+            </div>
+          </div>
+
+          <div className="bg-white shadow-xl w-[601px] mr-16 flex flex-col items-center text-center rounded-3xl">
+            <div className="-mt-6">
+              <Image
+                src="/vector.svg"
+                width="50"
+                height="50"
+                layout="fixed"
+                objectFit="cover"
+              />
+            </div>
+            <h3 className="mb-10 mt-4 text-[#122C47] text-2xl font-semibold">
+              Event Overview
+            </h3>
+            <div className="text-slate-600">
+              <p>Web3 Lagos Conference is a 3-day physical and virtual</p>
+              <p>event comprising of hackathon, workshops, networking,</p>
+              <p>career fair, panel session, talks, etc</p>
+
+              <p className="mt-10">
+                With over 1200+ attendance, 26 speakers and
+              </p>
+              <p>7 sponsors in the maiden event, the event focuses</p>
+              <p>on onboarding and supporting the growth of individual</p>
+              <p>new to the concept of blockchain and decentralisation,</p>
+              <p>helping technical andnon-technical blockchain</p>
+              <p>blockchain native persons realise the endless</p>
+              <p>possibilities and opportunities of the Blockchain &</p>
+              <p>Ethereum ecosystem.</p>
             </div>
           </div>
         </div>
       </div>
+
+      <section className="">
+        <Sponsors />
+      </section>
     </>
   );
 };

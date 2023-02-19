@@ -1,7 +1,8 @@
 import AboveFold from "@components/AboveFold";
 import DetailsCard from "@components/DetailsCard";
 import SpeakersCards from "@components/SpeakersCards";
-import Sponsors from "@components/Sponsors";
+import Schedule from "@components/Schedule";
+import Team from "@components/Team";
 
 const HomeView = () => {
   return (
@@ -14,6 +15,9 @@ const HomeView = () => {
     >
       <AboveFold />
       <DetailsCard />
+      <SpeakersCards />
+      <Schedule />
+      <Team />
     </div>
   );
 };

@@ -10,10 +10,10 @@ const AboveFold = () => {
   return (
     <>
       <nav
-        className="flex items-center justify-center gap-20 p-4 bg-[#FFFFFF] text-lg text-[#122C47] font-sans font-normal w-[1440px] shadow-lg h-17.7
+        className="flex items-center justify-center gap-20 p-4 bg-[#FFFFFF] text-lg  text-[#122C47] font-sans font-normal max-w-[1440px] shadow-lg h-17.7
       "
       >
-        <button className=" border-b-4 border-slate-500">
+        <button className=" border-b-4 border-[#122C47]">
           <Link href="#"> Home </Link>
         </button>
         <button className=" ">
@@ -38,7 +38,7 @@ const AboveFold = () => {
           <p>Where community and technology meets for a three day intensive</p>
           <p>conference, learning and networking</p>
         </div>
-        <div className="relative bg-cover bg-[url('../images/main_bg.png')] h-[calc(110vh-20rem)] w-[1440px] mb-[23px]">
+        <div className="relative bg-top bg-no-repeat bg-[url('../images/main_bg.png')] h-[calc(110vh-20rem)] w-[1440px] mb-[23px]">
           <div className=" absolute top-[400px] left-[50%] translate-x-[-50%] w-[1060px]">
             <DateCountDown className="mx-auto mt-10 text-center " />
           </div>
