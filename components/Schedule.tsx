@@ -39,8 +39,8 @@ const Schedule = () => {
               <h2>Success Story;</h2>
             </div>
             <div className="flex gap-4 mt-7 items-center">
-              <div className="bg-white rounded-full text-black flex items-center justify-center w-16 h-16">
-                icon
+              <div className="bg-white rounded-full flex items-center justify-center w-16 h-16">
+                <img src="/right-arrow.png" alt="right arrow" width="30px" />
               </div>
               <div className="text-3xl ">
                 <p>Check gallery</p>
