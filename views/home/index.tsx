@@ -1,36 +1,54 @@
+import AboveFold from "@components/AboveFold";
 import DetailsCard from "@components/DetailsCard";
 import SpeakersCards from "@components/SpeakersCards";
 import Schedule from "@components/Schedule";
 import Team from "@components/Team";
-import AboveFold from "@components/AboveFold";
-import Sponsors from "@components/Sponsors"
 
 const HomeView = () => {
-
   return (
-    <>
-    <div  style={{
-      backgroundColor:"#17a2b8"
-    }}>
-
-
-      {/* <AboveFold /> */}
-      {/* <DetailsCard /> */}
-      {/* <Sponsors/> */}
-      {/* <SpeakersCards /> */}
-      <Schedule /> 
-       <Team /> 
-
-
+    <div
+      style={{
+        backgroundColor: "#FFFFFF",
+        width: "1441px",
+        margin: "0 auto",
+      }}
+    >
+      <AboveFold />
+      <DetailsCard />
+      <SpeakersCards />
+      <Schedule />
+      <Team />
     </div>
-    </>
   );
 };
 
 export default HomeView;
 
+// import DetailsCard from "@components/DetailsCard";
+// import SpeakersCards from "@components/SpeakersCards";
+// import Schedule from "@components/Schedule";
+// import Team from "@components/Team";
+// import AboveFold from "@components/AboveFold";
 
+// const HomeView = () => {
+//   return (
+//     <>
+//       <div
+//         style={{
+//           backgroundColor: "#122B47",
+//         }}
+//       >
+//         <AboveFold />
+//         <DetailsCard />
+//         <SpeakersCards />
+//         <Schedule />
+//         <Team />
+//       </div>
+//     </>
+//   );
+// };
 
+// export default HomeView;
 
 // <div className="text-white pt-10 md:h-[calc(100vh_-_5rem)] bg-[url('/blue-bg.png')] bg-no-repeat">
 // <div className="flex flex-wrap justify-center max-w-6xl mx-auto sm:justify-center md:justify-between">
