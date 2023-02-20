@@ -17,7 +17,8 @@ const AboveFold = () => {
           <Link href="#"> Home </Link>
         </button>
         <button className=" ">
-          <Link href="/apply/registration"> Register </Link>
+          {/* <Link href="/apply/registration"> Register </Link> */}
+          <Link href="#"> Register </Link>
         </button>
         <button className=" ">
           <Link href="#"> Sponsor </Link>
