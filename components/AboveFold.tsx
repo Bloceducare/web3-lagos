@@ -10,7 +10,7 @@ const AboveFold = () => {
   return (
     <>
       <nav
-        className="flex items-center justify-center gap-20 p-4 bg-[#FFFFFF] text-lg  text-[#122C47] font-sans font-normal max-w-[1440px] shadow-lg h-17.7
+        className="flex items-center justify-center gap-20 p-4 bg-[#FFFFFF] text-lg  text-[#122C47] font-sans font-normal max-w-[1440px] shadow-lg 
       "
       >
         <button className=" border-b-4 border-[#122C47]">

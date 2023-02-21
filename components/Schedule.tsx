@@ -33,8 +33,9 @@ const Schedule = () => {
   return (
     <>
       <div className="bg-[#122C47] ">
-        <div className="relative bg-top bg-no-repeat bg-[url('../images/web3lagos.JPG')] h-[calc(100vh-4rem)] bg-cover ">
-          <div className="bg-transparent absolute top-[240px] ml-16 text-white w-[450px]">
+        <div className="relative bg-top bg-no-repeat bg-[url('../images/web3lagos.jpg')] h-[calc(100vh-4rem)] bg-cover ">
+          <div className="absolute top-[5rem] md:top-[14rem] lg:top-[18rem]">
+          <div className="bg-transparent  ml-16 text-gray-200 w-[450px]">
             <div className="text-6xl font-bold leading-[90px]">
               <h2>Our</h2>
               <h2>Success Story;</h2>
@@ -110,6 +111,8 @@ const Schedule = () => {
               </div>
             </div>
           </div>
+          </div>
+
         </div>
         {/* <div className="mx-auto w-[1340px]">
           <div className="mx-4">

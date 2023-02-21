@@ -67,9 +67,9 @@ const DetailsCard = () => {
         </div>
       </div>
 
-      <section className="">
+      {/* <section className="">
         <Sponsors />
-      </section>
+      </section> */}
     </>
   );
 };
