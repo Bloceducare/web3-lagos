@@ -1,11 +1,14 @@
-import Link from "next/link";
 const Team = () => {
   return (
     <>
-      <footer className="text-3xl text-center w-[1440px] h-[310px] text-white bg-[#0D2033]">
-        <div className="pt-[92px] pb-[34px]">
-          <h3 className="mb-[49px]">Powered by web3Bridge</h3>
-          <Link href="#">Event@web3bridge.com</Link>
+      <footer className="text-3xl text-center p-12 text-white bg-[#0D2033]">
+        <div className=" mt-12">
+          <h3>
+            Powered by web3Bridge{" "}
+            <span>
+              <a href="mailto:ayodeji@web3bridge.com">Ayodeji@web3bridge.com</a>
+            </span>
+          </h3>
         </div>
       </footer>
     </>
