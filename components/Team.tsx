@@ -3,12 +3,12 @@ const Team = () => {
     <>
       <footer className="text-3xl text-center p-12 text-white bg-[#0D2033]">
         <div className=" mt-12">
-          <h3>
-            Powered by web3Bridge{" "}
+          <h3>Powered by Web3bridge </h3>
+          <p className="text-xs md:text-base lg:text-lg">
             <span>
-              <a href="mailto:ayodeji@web3bridge.com">Ayodeji@web3bridge.com</a>
+              <a href="mailto:ayodeji@web3bridge.com">ayodeji@web3bridge.com</a>
             </span>
-          </h3>
+          </p>
         </div>
       </footer>
     </>
