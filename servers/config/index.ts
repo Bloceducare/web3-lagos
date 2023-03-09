@@ -12,7 +12,7 @@ const connectDB = async () => {
 
 export const mailSenderConfig = {
   from: "events@web3bridge.com",
-  emailSubject: "Web3 Lagos Conference 2022",
+  emailSubject: "Web3 Lagos Conference 2023",
   replyTo: "events@web3bridge.com",
 };
 
@@ -23,6 +23,6 @@ export const closeDB = async () => {
 };
 
 
-export const conferenceStatus = true
+export const conferenceStatus = false;
 
 export default connectDB;

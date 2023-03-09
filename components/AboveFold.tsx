@@ -13,16 +13,19 @@ const AboveFold = () => {
         className="flex items-center justify-center gap-20 p-4 bg-[#FFFFFF] text-lg  text-[#122C47] font-sans font-normal max-w-[1440px] shadow-lg 
       "
       >
-        <button className=" border-b-4 border-[#122C47]">
+        <button className="border-b-4 border-[#122C47]">
           <Link href="#"> Home </Link>
         </button>
-        <button className=" ">
+        {/* <button className=" "> */}
           {/* <Link href="/apply/registration"> Register </Link> */}
-          <Link href="#"> Register </Link>
-        </button>
-        <button className=" ">
-          <Link href="#"> Sponsor </Link>
-        </button>
+          {/* <Link href="#"> Register </Link> */}
+        {/* </button> */}
+        {/* <button className=" "> */}
+          {/* <Link href="#"> Sponsor </Link> */}
+        {/* </button> */}
+        {/* <button className=" "> */}
+          <Link href="/apply/speaker">Speaker </Link>
+        {/* </button> */}
       </nav>
 
       <section className="w-250 h-255">
