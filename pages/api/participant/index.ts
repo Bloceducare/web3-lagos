@@ -99,7 +99,7 @@ router.post(async (req, res) => {
     };
 
     const QrCodetemplate =`
-    Web3Lagos Conference 2022
+    Web3Lagos Conference 2023
     ${userName}
     ${type}`;
 
@@ -113,8 +113,8 @@ router.post(async (req, res) => {
       Promise.all(
         [await userData.save(),
           await registrationEmail(email, type, userName),
-          await sendHackatonEmail(email), 
-          await sendQrcodeEmail(email,type, userName,qrCodeUrl)
+          // await sendHackatonEmail(email), 
+          // await sendQrcodeEmail(email,type, userName,qrCodeUrl)
         ])
  
     return res.status(200).json({
