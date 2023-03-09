@@ -6,7 +6,7 @@ const Team = () => {
           <h3>Powered by Web3bridge </h3>
           <p className="text-xs md:text-base lg:text-lg">
             <span>
-              <a href="mailto:ayodeji@web3bridge.com">ayodeji@web3bridge.com</a>
+              <a href="mailto:event@web3bridge.com">event@web3bridge.com</a>
             </span>
           </p>
         </div>
