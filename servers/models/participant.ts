@@ -102,5 +102,5 @@ const ParticipantSchema = new Schema(
 
 const users =
   mongoose.models.Participant ||
-  mongoose.model("Participant", ParticipantSchema, "Participant");
+  mongoose.model("eventParticipants", ParticipantSchema, "eventParticipants");
 export default users;
