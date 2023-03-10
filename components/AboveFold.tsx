@@ -21,7 +21,7 @@ const AboveFold = () => {
           {/* <Link href="#"> Register </Link> */}
         {/* </button> */}
         {/* <button className=" "> */}
-          {/* <Link href="#"> Sponsor </Link> */}
+          <a href="https://drive.google.com/file/d/1qxJ13xeQUZ5GSsmHoQfq2S1vuh1-6mfb/view" target="_blank"> Sponsor </a>
         {/* </button> */}
         {/* <button className=" "> */}
           <Link href="/apply/speaker">Speaker </Link>
