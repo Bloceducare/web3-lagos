@@ -35,12 +35,12 @@ const AboveFold = () => {
             <span className="block mt-4">Conference 2</span>
           </h1>
         </div>
-        <div className="w-2/5 mx-auto text-center mt-2 mb-9">
+        <div className="w-2/4 mx-auto text-center mt-2 mb-9">
           <p>
-            Web3 Lagos Conference is the largest Web3 Event in Lagos Nigeria
+           The Web3 Lagos Conference is the largest Web3 Event in Lagos, Nigeria.
           </p>
-          <p>Where community and technology meets for a three day intensive</p>
-          <p>conference, learning and networking</p>
+          <p>This conference will bring together Web3 enthusiasts from all over Nigeria and beyond.</p>
+          <p>Here, community meets technology for three days of intensive Networking and Learning experiences.</p>
         </div>
         <div className="relative bg-top bg-no-repeat bg-[url('../images/main_bg.png')] h-[calc(110vh-20rem)] w-[1440px] mb-[23px]">
           <div className=" absolute top-[400px] left-[50%] translate-x-[-50%] w-[1060px]">
