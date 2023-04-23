@@ -19,7 +19,7 @@ const DateCountDown = ({ className = "" }: Props) => {
         )}
       >
         {/* @ts-ignore */}
-        <DynamicComponent dateTo="August 17, 2023 10:00:00 GMT+01:00" />
+        <DynamicComponent dateTo="August 31, 2023 10:00:00 GMT+01:00" />
       </div>
     </>
   );
