@@ -2,7 +2,8 @@ const Team = () => {
   return (
     <>
       <footer className="text-3xl text-center p-12 text-white bg-[#0D2033]">
-        <div className=" mt-12">
+          <h2 className="text-xs md:text-base text-lg">Venue: <p className="mx-2">The Zone, <span className=""> Gbagada, Lagos State.</span></p></h2>
+        <div className=" mt-2">
           <h3>Powered by Web3bridge </h3>
           <p className="text-xs md:text-base lg:text-lg">
             <span>
