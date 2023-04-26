@@ -6,6 +6,8 @@ import { FaPaperPlane } from "react-icons/fa";
 import DateCountDown from "./dateCountDown";
 import Sponsors from "./Sponsors";
 import Image from "next/image";
+import Location from "../images/location.svg";
+import Date from "../images/date-icon.svg";
 
 const AboveFold = () => {
   return (
@@ -56,7 +58,7 @@ const AboveFold = () => {
               <div className="flex">
                 <div>
                   <Image
-                    src={"/location.svg"}
+                    src={Location}
                     alt={"location"}
                     width={20}
                     height={10}
@@ -67,7 +69,7 @@ const AboveFold = () => {
               <div className="flex">
                 <div>
                   <Image
-                    src={"/date-icon.svg"}
+                    src={Date}
                     alt={"date"}
                     width={20}
                     height={10}
