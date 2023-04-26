@@ -6,7 +6,7 @@ const Home: NextPage = () => {
   return (
     <div className="">
       <Head>
-        <title>Web3Lagos</title>
+        <title>Web3Lagos Aug 31 - Sep 2, 2023</title>
       
       </Head>
 
