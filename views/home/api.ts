@@ -6,6 +6,6 @@ export const getTotalRecords = async () => {
 
     return result;
   } catch (e) {
-    console.log(e, " error ocuurred");
+    console.log(e," error ocuurred on server");
   }
 };
