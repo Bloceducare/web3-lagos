@@ -5,6 +5,7 @@ import { BsFillPeopleFill } from "react-icons/bs";
 import { FaPaperPlane } from "react-icons/fa";
 import DateCountDown from "./dateCountDown";
 import Sponsors from "./Sponsors";
+import Image from "next/image";
 
 const AboveFold = () => {
   return (
@@ -16,16 +17,14 @@ const AboveFold = () => {
         <button className="border-b-4 border-[#122C47]">
           <Link href="#"> Home </Link>
         </button>
-        {/* <button className=" "> */}
-          {/* <Link href="/apply/registration"> Register </Link> */}
-          {/* <Link href="#"> Register </Link> */}
-        {/* </button> */}
-        {/* <button className=" "> */}
-          <a href="https://drive.google.com/file/d/1qxJ13xeQUZ5GSsmHoQfq2S1vuh1-6mfb/view" target="_blank"> Sponsor </a>
-        {/* </button> */}
-        {/* <button className=" "> */}
-          <Link href="/apply/speaker">Speaker </Link>
-        {/* </button> */}
+        <a
+          href="https://drive.google.com/file/d/1qxJ13xeQUZ5GSsmHoQfq2S1vuh1-6mfb/view"
+          target="_blank"
+        >
+          {" "}
+          Sponsor{" "}
+        </a>
+        <Link href="/apply/speaker">Speaker </Link>
       </nav>
 
       <section className="w-250 h-255">
@@ -37,14 +36,54 @@ const AboveFold = () => {
         </div>
         <div className="w-2/4 mx-auto text-center mt-2 mb-9">
           <p>
-           The Web3 Lagos Conference is the largest Web3 Event in Lagos, Nigeria.
+            The Web3 Lagos Conference is the largest Web3 Event in Lagos,
+            Nigeria.
           </p>
-          <p>This conference will bring together Web3 enthusiasts from all over Nigeria and beyond.</p>
-          <p>Here, community meets technology for three days of intensive Networking and Learning experiences.</p>
+          <p>
+            This conference will bring together Web3 enthusiasts from all over
+            Nigeria and beyond.
+          </p>
+          <p>
+            Here, community meets technology for three days of intensive
+            Networking and Learning experiences.
+          </p>
         </div>
         <div className="relative bg-top bg-no-repeat bg-[url('../images/main_bg.png')] h-[calc(110vh-20rem)] w-[1440px] mb-[23px]">
           <div className=" absolute top-[400px] left-[50%] translate-x-[-50%] w-[1060px]">
             <DateCountDown className="mx-auto mt-10 text-center " />
+
+            <div className="grid justify-center">
+              <div className="flex">
+                <div>
+                  <Image
+                    src={"/location.svg"}
+                    alt={"location"}
+                    width={20}
+                    height={10}
+                  />
+                </div>
+                <div>The Zone, Gbagada, Lagos State.</div>
+              </div>
+              <div className="flex">
+                <div>
+                  <Image
+                    src={"/date-icon.svg"}
+                    alt={"date"}
+                    width={20}
+                    height={10}
+                  />
+                </div>
+                <div>August 31 - September 2, 2023</div>
+              </div>
+            </div>
+            {/* <div className="flex items-center justify-center">
+              <div>
+                <Image src={"/date-icon.svg"} alt={"date"} width={20} height={10}/>
+              </div>
+              <div>
+                Aug 31 - Sep 2, 2023
+              </div>
+            </div> */}
           </div>
           <div className="bg-[#122C47] absolute top-[500px] w-[1441px] h-[32px]"></div>
         </div>
