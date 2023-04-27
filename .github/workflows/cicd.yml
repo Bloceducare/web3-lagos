@@ -26,8 +26,6 @@ jobs:
     
    # Restart job
   restart:
-    environment:
-      name: Restart Server
     runs-on: self-hosted
     strategy:
       matrix:
