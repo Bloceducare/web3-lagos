@@ -24,7 +24,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: |
-        git pull origin main
         npm i
         npm run build
     - run: pm2 restart web3-lag 
