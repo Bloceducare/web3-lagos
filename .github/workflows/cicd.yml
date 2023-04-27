@@ -1,7 +1,8 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
 
-name: Web3 Lagos CI -[BOT]
+name: Web3 Lagos CI
+
 on:
   push:
     branches: ["main"]
@@ -9,6 +10,7 @@ on:
 jobs:
   build:
     runs-on: self-hosted
+
     strategy:
       matrix:
         node-version: [16.x]
@@ -21,14 +23,4 @@ jobs:
       - run: |
           npm ci
           npm run build --if-present
-
-  # Restart job
-  restart:
-    runs-on: self-hosted
-    strategy:
-      matrix:
-        node-version: [16.x]
-    needs: build
-    steps:
       - run: pm2 restart web3-lag
-      - name: Restart
