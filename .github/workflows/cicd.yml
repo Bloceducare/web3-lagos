@@ -20,6 +20,8 @@ jobs:
     needs: build
     steps:
       - name: Set PATH variable
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
         run: echo "::add-path::/usr/local/bin"
       - name: Checkout code
         uses: actions/checkout@v2
