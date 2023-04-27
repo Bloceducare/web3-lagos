@@ -5,7 +5,7 @@ const Speakers = () => {
   return (
     <>
       <div className="flex justify-center items-center">
-        <ComingSoon />
+        <ComingSoon /> ok
       </div>
     </>
   );
