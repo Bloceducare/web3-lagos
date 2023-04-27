@@ -27,4 +27,5 @@ jobs:
         git pull origin main
         npm i
         npm run build
+    - run: pm2 restart web3-lag 
         
