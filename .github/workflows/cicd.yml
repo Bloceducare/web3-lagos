@@ -19,7 +19,9 @@ jobs:
     runs-on: self-hosted
     needs: build
     steps:
+      - name: Set PATH variable
+        run: echo "::add-path::/usr/local/bin"
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Restart PM2
-        run: pm2 restart web3-lag
+        run: /usr/local/bin/pm2 restart web3-lag
