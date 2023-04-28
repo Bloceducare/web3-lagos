@@ -38,6 +38,7 @@ const DetailsCard = () => {
           <div className="bg-white shadow-xl w-[601px] mr-16 flex flex-col items-center text-center rounded-3xl">
             <div className="-mt-6">
               <Image
+                alt="vector"
                 src="/vector.svg"
                 width="50"
                 height="50"
