@@ -14,17 +14,12 @@ jobs:
         run: npm install
       - name: Build project
         run: npm run build
-  restart-pm2:
-    name: Restart PM2
-    runs-on: self-hosted
-    needs: build
-    steps:
-      # - name: Set PATH variable
-      # env:
-      # ACTIONS_ALLOW_UNSECURE_COMMANDS: true
-      # run: echo "::add-path::/root/.nvm/versions/node/v16.20.0/bin"
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Restart PM2
-        run: pm2 restart web3-lag
-        # run: /root/.nvm/versions/node/v16.20.0/bin/pm2 restart web3-lag
+  # restart-pm2:
+  #   name: Restart PM2
+  #   runs-on: self-hosted
+  #   needs: build
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
+  #     - name: Restart PM2
+  #       run: pm2 restart web3-lag
