@@ -4,7 +4,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start -p 3004",
-    "pretty": "prettier --write \"./**/*.{js,jsx,json,ts,tsx}\""
+    "pretty": "prettier --write \"./**/*.{js,jsx,json,ts,tsx}\"",
+    "pm2": "pm2 start pm2.json -p 3004"
   },
   "dependencies": {
     "@ag-grid-community/core": "^28.1.0",
