@@ -1,4 +1,4 @@
-name: Next.js Build and Deploy
+name: CI/CD Workflow
 
 on:
   push:
@@ -8,27 +8,35 @@ on:
 jobs:
   build:
     runs-on: self-hosted
+
     steps:
-      - uses: actions/checkout@v2
-      - name: Install Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: "16.x"
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: Install dependencies
         run: npm install
-      - name: Build
+
+      - name: Build app
         run: npm run build
 
   deploy:
+    needs: build
     runs-on: self-hosted
-    needs: [build]
+
     env:
       NODE_ENV: production
-      PM2_APP_NAME: "web3-lagos"
+      PORT: 3004
+      MONGODB_URI: ${{ secrets.MONGODB_URI }}
+
     steps:
-      - name: Start PM2
-        run: pm2 start npm --name "web3-lagos" -- start
-      - name: Save PM2 Process ID
-        run: echo ${{ steps.start-pm2.outputs.PM2_PROCESS_ID }} > .pm2-pid
-      - name: Save PM2 Log file path
-        run: echo ${{ steps.start-pm2.outputs.PM2_LOG_FILE }} > .pm2-log
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Start app
+        run: pm2 start --name web3-lagos npm -- start
+
+      - name: Restart app if already running
+        run: pm2 restart web3-lagos || pm2 start --name web3-lagos npm -- start
