@@ -32,11 +32,5 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Start app
-        run: pm2 start --name web3-lagos npm -- start
-
       - name: Restart app if already running
         run: pm2 restart web3-lagos || pm2 start --name web3-lagos npm -- start
