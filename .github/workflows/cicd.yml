@@ -21,8 +21,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build app
-        run: npm run build
       - name: Write env file
         run: |
           echo "MONGO_URL=${MONGO_URL}" >> .env
@@ -33,6 +31,8 @@ jobs:
         run: pm2 restart web3-lagos || pm2 start --name web3-lagos npm -- start
       - name: Copy Server File
         run: cp -r .next /var/www/web3-lagos
+      - name: Build app
+        run: npm run build
 
   # deploy:
   #   needs: build
