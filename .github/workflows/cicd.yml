@@ -35,7 +35,7 @@ jobs:
 
       - name: Create env file
         run: |
-          echo "${{ fromJson(run: echo ${{ steps.secrets.outputs.secrets }} | base64 -d) }}" > .tenv2
+          echo "${{ fromJson(run('echo ${{ steps.secrets.outputs.secrets }}') }}" > .tenv2
 
       - name: Restart Server
         run: pm2 restart web3-lagos || pm2 start --name web3-lagos npm -- start
