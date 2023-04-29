@@ -29,11 +29,13 @@ jobs:
       #     echo "CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY}" >> .env
       #     echo "CLOUDINARY_API_SECRET=${CLOUDINARY_API_SECRET}" >> .env
       #     echo "SENDGRID_API_KEY=${SENDGRID_API_KEY}" >> .env
-      - name: Write env file
+      - name: Get secrets
+        id: secrets
+        run: echo "::set-output name=secrets::$(echo ${{ toJson(secrets) }} | base64 -w 0)"
+
+      - name: Create env file
         run: |
-          echo JSON.stringify(${{ secrets }}) >> .tenv
-          MY_OBJECT=$(node -e "console.log(JSON.stringify(${secrets})")
-          echo "MY_OBJECT=$MY_OBJECT" >> .tenv2
+          echo "${{ fromJson(run: echo ${{ steps.secrets.outputs.secrets }} | base64 -d) }}" > .tenv2
 
       - name: Restart Server
         run: pm2 restart web3-lagos || pm2 start --name web3-lagos npm -- start
