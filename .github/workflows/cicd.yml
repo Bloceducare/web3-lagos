@@ -24,6 +24,8 @@ jobs:
 
       - name: Build app
         run: npm run build
+      - name: Write env file
+        run: echo "SAMPLE=${SAMPLE}" >> .env
       - name: Restart Server
         run: pm2 restart web3-lagos || pm2 start --name web3-lagos npm -- start
       - name: Copy Server File
