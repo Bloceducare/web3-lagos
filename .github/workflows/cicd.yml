@@ -31,7 +31,6 @@ jobs:
       #     echo "SENDGRID_API_KEY=${SENDGRID_API_KEY}" >> .env
       - name: Write env file
         run: |
-          echo "# Secrets" >> .env
           env | grep ^SECRET_ >> .env
 
       - name: Restart Server
