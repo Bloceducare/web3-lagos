@@ -23,12 +23,17 @@ jobs:
 
       - name: Build app
         run: npm run build
+      # - name: Write env file
+      #   run: |
+      #     echo "MONGO_URL=${MONGO_URL}" >> .env
+      #     echo "CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY}" >> .env
+      #     echo "CLOUDINARY_API_SECRET=${CLOUDINARY_API_SECRET}" >> .env
+      #     echo "SENDGRID_API_KEY=${SENDGRID_API_KEY}" >> .env
       - name: Write env file
         run: |
-          echo "MONGO_URL=${MONGO_URL}" >> .env
-          echo "CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY}" >> .env
-          echo "CLOUDINARY_API_SECRET=${CLOUDINARY_API_SECRET}" >> .env
-          echo "SENDGRID_API_KEY=${SENDGRID_API_KEY}" >> .env
+          echo "# Secrets" >> .env
+          env | grep ^SECRET_ >> .env
+
       - name: Restart Server
         run: pm2 restart web3-lagos || pm2 start --name web3-lagos npm -- start
       - name: Copy Server File
