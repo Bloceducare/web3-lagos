@@ -9,7 +9,10 @@ jobs:
   build:
     runs-on: self-hosted
     env:
-      MONGODB_URI: ${{ secrets.MONGODB_URI }}
+      MONGO_URL: ${{ secrets.MONGO_URL }}
+      CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
+      CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
+      SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
 
     steps:
       - name: Checkout code
