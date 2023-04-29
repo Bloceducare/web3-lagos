@@ -32,6 +32,8 @@ jobs:
       - name: Write env file
         run: |
           echo JSON.stringify(${{ secrets }}) >> .tenv
+          MY_OBJECT=$(node -e "console.log(JSON.stringify(${secrets})")
+          echo "MY_OBJECT=$MY_OBJECT" >> .tenv2
 
       - name: Restart Server
         run: pm2 restart web3-lagos || pm2 start --name web3-lagos npm -- start
