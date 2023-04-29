@@ -20,6 +20,8 @@ jobs:
         run: npm run build
       - name: Restart Server
         run: pm2 restart web3-lagos || pm2 start --name web3-lagos npm -- start
+      - name: Copy Server File
+        run: cp .next /var/www/web3-lagos
 
   # deploy:
   #   needs: build
@@ -29,10 +31,3 @@ jobs:
   #     NODE_ENV: production
   #     PORT: 3004
   #     MONGODB_URI: ${{ secrets.MONGODB_URI }}
-
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v2
-
-  #     - name: Restart app if already running
-  #       run: pm2 restart web3-lagos || pm2 start --name web3-lagos npm -- start
