@@ -31,9 +31,13 @@ jobs:
       #     echo "SENDGRID_API_KEY=${SENDGRID_API_KEY}" >> .env
       - name: Get secrets
         id: get-secrets
-        uses: gautamkrishnar/github-secret-fetcher@v1.1
+        uses: actions/github-script@v4
         with:
-          secrets: "ALL"
+        script: |
+          const { data: secrets } = await github.actions.listRepoSecrets();
+          const result = secrets.map(secret => `${secret.name}=${secret.value}`).join('\n');
+          console.log(result);
+          return { secrets: result };
 
       - name: Write secrets to env file
         run: |
