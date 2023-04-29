@@ -14,6 +14,7 @@ jobs:
       CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
       SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
       SAMPLE: "SAMPLE"
+      SAMPLE2: ${{ secrets.SAMPLE2 }}
 
     steps:
       - name: Checkout code
@@ -25,7 +26,9 @@ jobs:
       - name: Build app
         run: npm run build
       - name: Write env file
-        run: echo "SAMPLE=${SAMPLE}" >> .env
+        run: |
+          echo "SAMPLE=${SAMPLE}" >> .env
+          echo "SAMPLE2=${SAMPLE2}" >> .env
       - name: Restart Server
         run: pm2 restart web3-lagos || pm2 start --name web3-lagos npm -- start
       - name: Copy Server File
