@@ -29,10 +29,10 @@ jobs:
           echo "CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY}" >> .env
       - name: Restart Server
         run: pm2 restart web3-lagos || pm2 start --name web3-lagos npm -- start
-      - name: Copy Server File
-        run: cp -r .next /var/www/web3-lagos
       - name: Build app
         run: npm run build
+      - name: Copy Server File
+        run: cp -r .next /var/www/web3-lagos
 
   # deploy:
   #   needs: build
