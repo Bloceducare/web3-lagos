@@ -8,11 +8,11 @@ on:
 jobs:
   build:
     runs-on: self-hosted
-    # env:
-    #   MONGO_URL: ${{ secrets.MONGO_URL }}
-    #   CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
-    #   CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
-    #   SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+    env:
+      MONGO_URL: ${{ secrets.MONGO_URL }}
+      CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
+      CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
+      SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
 
     steps:
       - name: Checkout code
@@ -23,30 +23,7 @@ jobs:
 
       - name: Build app
         run: npm run build
-      - name: Archive Build Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: build-artifact
-          path: .next
-
-      # - name: Restart Server
-      #   run: pm2 restart web3-lagos || pm2 start --name web3-lagos npm -- start
-      # - name: Copy Server File
-      #   run: cp -r .next /var/www/web3-lagos
-  deploy:
-    runs-on: self-hosted
-    needs: build
-    environment: production
-    steps:
-      - name: Download Build Artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: build-artifact
-        # - name: Start App with PM2
-        # env:
-        #   NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
-
-      - name: Start/Restart Server
+      - name: Restart Server
         run: pm2 restart web3-lagos || pm2 start --name web3-lagos npm -- start
       - name: Copy Server File
         run: cp -r .next /var/www/web3-lagos
