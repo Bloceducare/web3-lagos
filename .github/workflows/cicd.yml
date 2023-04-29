@@ -15,10 +15,6 @@ jobs:
       SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
 
     steps:
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: "16.x"
       - name: Checkout code
         uses: actions/checkout@v2
 
@@ -33,19 +29,23 @@ jobs:
       #     echo "CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY}" >> .env
       #     echo "CLOUDINARY_API_SECRET=${CLOUDINARY_API_SECRET}" >> .env
       #     echo "SENDGRID_API_KEY=${SENDGRID_API_KEY}" >> .env
-      - name: Get secrets
-        id: get-secrets
-        uses: actions/github-script@v4
-        with:
-          script: |
-            const { data: secrets } = await github.actions.listRepoSecrets();
-            const result = secrets.map(secret => `${secret.name}=${secret.value}`).join('\n');
-            console.log(result);
-            return { secrets: result };
 
-      - name: Write secrets to env file
+      - name: Fetch secrets
+        id: secrets
+        uses: gautamkrishnar/github-secret-fetcher@v2
+        with:
+          secrets: all
+
+      - name: Write to env file
         run: |
-          echo "${{ steps.get-secrets.outputs.secrets }}" > .env
+          # Create an empty .env file
+          > .env
+
+          # Loop through all secrets and write to the .env file
+          for secret in $(echo "${{ steps.secrets.outputs.all_secrets }}" | jq -r '. | keys | .[]'); do
+            value=$(echo "${{ steps.secrets.outputs.all_secrets }}" | jq -r ".[\"${secret}\"]")
+            echo "${secret}=${value}" >> .env
+          done
 
       - name: Restart Server
         run: pm2 restart web3-lagos || pm2 start --name web3-lagos npm -- start
