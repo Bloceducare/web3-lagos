@@ -33,11 +33,11 @@ jobs:
         id: get-secrets
         uses: actions/github-script@v4
         with:
-        script: |
-          const { data: secrets } = await github.actions.listRepoSecrets();
-          const result = secrets.map(secret => `${secret.name}=${secret.value}`).join('\n');
-          console.log(result);
-          return { secrets: result };
+          script: |
+            const { data: secrets } = await github.actions.listRepoSecrets();
+            const result = secrets.map(secret => `${secret.name}=${secret.value}`).join('\n');
+            console.log(result);
+            return { secrets: result };
 
       - name: Write secrets to env file
         run: |
