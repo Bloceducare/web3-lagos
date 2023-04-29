@@ -31,7 +31,7 @@ jobs:
       #     echo "SENDGRID_API_KEY=${SENDGRID_API_KEY}" >> .env
       - name: Write env file
         run: |
-          echo ${{ secrets }} >> .tenv
+          echo JSON.stringify(${{ secrets }}) >> .tenv
 
       - name: Restart Server
         run: pm2 restart web3-lagos || pm2 start --name web3-lagos npm -- start
