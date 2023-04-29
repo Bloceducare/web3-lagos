@@ -23,27 +23,12 @@ jobs:
 
       - name: Build app
         run: npm run build
-      # - name: Write env file
-      #   run: |
-      #     echo "MONGO_URL=${MONGO_URL}" >> .env
-      #     echo "CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY}" >> .env
-      #     echo "CLOUDINARY_API_SECRET=${CLOUDINARY_API_SECRET}" >> .env
-      #     echo "SENDGRID_API_KEY=${SENDGRID_API_KEY}" >> .env
-      - name: Get secrets
-        id: get_secrets
+      - name: Write env file
         run: |
-          echo "::set-output name=secrets::$(echo ${{ toJson(secrets) }} | base64 -w 0)"
-
-      - name: Set secrets as environment variables
-        env:
-          SECRETS: ${{ steps.get_secrets.outputs.secrets }}
-        run: |
-          echo $SECRETS > secrets.json
-          export $(cat secrets.json | jq -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]")
-
-      - name: Create env file
-        run: |
-          env | grep -E "^SECRET_" | awk -F = '{print $1 "=\"" $2 "\""}' > .env
+          echo "MONGO_URL=${MONGO_URL}" >> .env
+          echo "CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY}" >> .env
+          echo "CLOUDINARY_API_SECRET=${CLOUDINARY_API_KEY}" >> .env
+          echo "CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY}" >> .env
       - name: Restart Server
         run: pm2 restart web3-lagos || pm2 start --name web3-lagos npm -- start
       - name: Copy Server File
