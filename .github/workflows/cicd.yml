@@ -29,9 +29,15 @@ jobs:
       #     echo "CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY}" >> .env
       #     echo "CLOUDINARY_API_SECRET=${CLOUDINARY_API_SECRET}" >> .env
       #     echo "SENDGRID_API_KEY=${SENDGRID_API_KEY}" >> .env
-      - name: Write env file
+      - name: Get secrets
+        id: get-secrets
+        uses: gautamkrishnar/github-secret-fetcher@v1.1
+        with:
+          secrets: "ALL"
+
+      - name: Write secrets to env file
         run: |
-          env | grep ^SECRET_ >> .env
+          echo "${{ steps.get-secrets.outputs.secrets }}" > .env
 
       - name: Restart Server
         run: pm2 restart web3-lagos || pm2 start --name web3-lagos npm -- start
