@@ -21,7 +21,7 @@ jobs:
       - name: Restart Server
         run: pm2 restart web3-lagos || pm2 start --name web3-lagos npm -- start
       - name: Copy Server File
-        run: cp .next /var/www/web3-lagos
+        run: cp -r .next /var/www/web3-lagos
 
   # deploy:
   #   needs: build
