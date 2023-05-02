@@ -20,7 +20,7 @@ const AboveFold = () => {
           <Link href="#"> Home </Link>
         </button>
         <a
-          href="https://drive.google.com/file/d/1qxJ13xeQUZ5GSsmHoQfq2S1vuh1-6mfb/view"
+          href="https://drive.google.com/file/d/1klY_-Rgec-hwlsb91ED9zzeA2jMOmZvK/view"
           target="_blank"
         >
           {" "}
@@ -68,12 +68,7 @@ const AboveFold = () => {
               </div>
               <div className="flex">
                 <div>
-                  <Image
-                    src={Date}
-                    alt={"date"}
-                    width={20}
-                    height={10}
-                  />
+                  <Image src={Date} alt={"date"} width={20} height={10} />
                 </div>
                 <div>August 31 - September 2, 2023</div>
               </div>
