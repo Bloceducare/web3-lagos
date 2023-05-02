@@ -37,8 +37,8 @@ jobs:
         run: cp -r .next /var/www/web3-lagos
       - name: Restart Server
         run: pm2 restart web3-lagos || pm2 start --name web3-lagos npm -- start
-      - name: Clean up Installations
-        run: rm -vrf node_modules
+      # - name: Clean up Installations
+      #   run: rm -vrf node_modules
 
   # deploy:
   #   needs: build
