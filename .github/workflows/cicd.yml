@@ -17,6 +17,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16.x"
 
       - name: Install dependencies
         run: npm install
@@ -26,7 +30,7 @@ jobs:
           echo "MONGO_URL=${MONGO_URL}" >> .env
           echo "CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY}" >> .env
           echo "CLOUDINARY_API_SECRET=${CLOUDINARY_API_KEY}" >> .env
-          echo "CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY}" >> .env
+          echo "SENDGRID_API_KEY=${SENDGRID_API_KEY}" >> .env
       - name: Restart Server
         run: pm2 restart web3-lagos || pm2 start --name web3-lagos npm -- start
       - name: Build app
