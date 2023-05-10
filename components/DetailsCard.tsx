@@ -6,7 +6,7 @@ import Sponsors from "./Sponsors";
 const DetailsCard = () => {
   return (
     <>
-      <div className="text-justify py-3 mx-auto bg-[url('../images/bridge.svg')] w-[1440px] h-[calc(130vh-13rem)] bg-top bg-no-repeat pt-9 ">
+      <div className="text-justify py-3 tr mx-auto bg-[url('../images/bridge.svg')] w-[1440px] h-[calc(130vh-13rem)] bg-top bg-no-repeat pt-9 ">
         <div className="flex justify-between mt-[110px] ">
           <div className="bg-white shadow-xl w-[601px] h-[477px] ml-16 flex flex-col items-center text-center rounded-3xl">
             <div className="-mt-6">
