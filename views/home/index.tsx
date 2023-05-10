@@ -3,6 +3,7 @@ import DetailsCard from "@components/DetailsCard";
 import SpeakersCards from "@components/SpeakersCards";
 import Schedule from "@components/Schedule";
 import Team from "@components/Team";
+import Image from "next/image";
 
 const HomeView = () => {
   return (

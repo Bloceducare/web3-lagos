@@ -3,7 +3,7 @@ const Team = () => {
     <>
       <footer className="text-3xl text-center p-12 text-white bg-[#0D2033]">
         <div className=" mt-2">
-          <h3>Powered by Web3bridge </h3>
+          <h3>Enquiries/Details </h3>
           <p className="text-xs md:text-base lg:text-lg">
             <span>
               <a href="mailto:event@web3bridge.com">event@web3bridge.com</a>

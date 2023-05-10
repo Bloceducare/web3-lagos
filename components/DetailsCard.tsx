@@ -69,6 +69,35 @@ const DetailsCard = () => {
         </div>
       </div>
 
+      <div>
+        <div className="flex justify-center py-4">
+          <div>
+            <div className="flex ">
+              <h3 className="text-3xl">
+                Powered by
+                <h3 className="text-xs">In conjuction with </h3>
+                <Image
+                  width={150}
+                  height={50}
+                  src="/ayagigs-logo.png"
+                  alt="aya"
+                  className="scale-[0.7] block border"
+                />
+              </h3>
+              <div>
+                <Image
+                  width={150}
+                  height={50}
+                  src="/web3bridge-logo.png"
+                  alt="web3bridge-logo"
+                  className="block"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* <section className="">
         <Sponsors />
       </section> */}
