@@ -68,7 +68,16 @@ const DetailsCard = () => {
           </div>
         </div>
       </div>
-
+      <div className="flex justify-center my-6">
+        <button className="text-white outline outline-offset-2 outline-[#122C47] font-bold bg-red-500 p-4 rounded-lg">
+          <a
+            href=" https://event-web3lagos2022.web3bridge.com/"
+            target="_blank"
+          >
+            Web3Lagos Conference 2022
+          </a>
+        </button>
+      </div>
       <div>
         <div className="flex justify-center py-4">
           <div>
