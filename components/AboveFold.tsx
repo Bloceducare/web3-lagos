@@ -30,10 +30,10 @@ const AboveFold = () => {
       </nav>
 
       <section className="w-250 h-255">
-        <div className="w-80 h-37 text-5xl mx-auto mt-28 text-center">
+        <div className="w-80 h-37 text-4xl mx-auto mt-28 text-center">
           <h1>
             <span className="bg-[#122C47] text-[#FFFFFF]">Web3</span> Lagos
-            <span className="block mt-4">Conference 2</span>
+            <span className="block mt-4">Conference 2023</span>
           </h1>
         </div>
         <div className="w-2/4 mx-auto text-center mt-2 mb-9">
