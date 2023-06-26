@@ -40,51 +40,51 @@ const ApplyAsaSpeaker = () => {
     pitchStory,
   } = userInputs;
 
-  const handleChange = (
-    e:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLSelectElement>
-      | React.ChangeEvent<HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setUserInputs((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+  // const handleChange = (
+  //   e:
+  //     | React.ChangeEvent<HTMLInputElement>
+  //     | React.ChangeEvent<HTMLSelectElement>
+  //     | React.ChangeEvent<HTMLTextAreaElement>
+  // ) => {
+  //   const { name, value } = e.target;
+  //   setUserInputs((prev) => ({
+  //     ...prev,
+  //     [name]: value,
+  //   }));
+  // };
 
-  const postData = async (data: Ispeaker) => {
-    const subData = {
-      ...data,
-      name: data.userName,
-      spokenAtWeb3Before: !!data.spokenAtWeb3Before,
-    };
-    setDataStatus(() => ({
-      error: "",
-      crud: true,
-    }));
+  // const postData = async (data: Ispeaker) => {
+  //   const subData = {
+  //     ...data,
+  //     name: data.userName,
+  //     spokenAtWeb3Before: !!data.spokenAtWeb3Before,
+  //   };
+  //   setDataStatus(() => ({
+  //     error: "",
+  //     crud: true,
+  //   }));
 
-    try {
-      const result = await axios.post("/api/participant", subData);
-      setMessage(result.data.message);
-      setDataStatus(() => ({
-        error: "",
-        crud: false,
-      }));
-    } catch (e: any) {
-      setDataStatus(() => ({
-        error: e?.response?.data?.message,
-        crud: false,
-      }));
+  //   try {
+  //     const result = await axios.post("/api/participant", subData);
+  //     setMessage(result.data.message);
+  //     setDataStatus(() => ({
+  //       error: "",
+  //       crud: false,
+  //     }));
+  //   } catch (e: any) {
+  //     setDataStatus(() => ({
+  //       error: e?.response?.data?.message,
+  //       crud: false,
+  //     }));
 
-      window.scroll({ top: 0, left: 0 });
-    }
-  };
+  //     window.scroll({ top: 0, left: 0 });
+  //   }
+  // };
 
-  const handleSubmit = (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    postData(userInputs);
-  };
+  // const handleSubmit = (e: React.SyntheticEvent) => {
+  //   e.preventDefault();
+  //   postData(userInputs);
+  // };
 
   return (
     <div className="p-3 mt-12">
@@ -92,12 +92,15 @@ const ApplyAsaSpeaker = () => {
         <h1 className="my-6 text-3xl font-semibold text-center text-gray-800">
           Speakers' Application
         </h1>
-        {!!dataStatus.error && (
+        {/* {!!dataStatus.error && (
           <span className="text-red-500 ">{dataStatus.error}</span>
-        )}
+        )} */}
       </div>
 
       <div className="p-10 mx-auto bg-white rounded-lg shadow md:w-3/4 lg:w-1/2 ">
+        <h3 className="text-center">Speakers Application is closed!! See you at the event 😊</h3>
+      </div>
+      {/* <div className="p-10 mx-auto bg-white rounded-lg shadow md:w-3/4 lg:w-1/2 ">
         {!!!message && (
           <>
             <form onSubmit={handleSubmit}>
@@ -139,7 +142,7 @@ const ApplyAsaSpeaker = () => {
                 />
                 {/* border-red-300  */}
                 {/* <p className="mt-2 text-sm text-red-400">Email is required</p> */}
-              </div>
+              {/* </div>
               <div className="mb-5">
                 <label className="block mb-2 font-bold text-gray-600">
                   Presentation Title <span className="text-red-600">*</span>{" "}
@@ -285,10 +288,10 @@ const ApplyAsaSpeaker = () => {
               </button>
             </form>
           </>
-        )}
+        )} */}
 
-        {!!message && message}
-      </div>
+        {/* // {!!message && message} */}
+      {/* // </div> */} 
     </div>
   );
 };
