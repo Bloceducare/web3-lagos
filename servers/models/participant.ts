@@ -1,9 +1,18 @@
 import mongoose from "mongoose";
 
-enum IGender {
-  male,
-  female,
-  others,
+// enum IGender {
+//   male,
+//   female,
+//   others,
+// }
+
+enum Irole{
+beginner,
+developer,
+designer,
+content,
+community,
+others
 }
 
 const Schema = mongoose.Schema;
@@ -16,6 +25,10 @@ const ParticipantSchema = new Schema(
     email: {
       type: String,
       required: true,
+    },
+    phone:{
+      type:String,
+      required:true
     },
     password: {
       type: String,
@@ -41,10 +54,14 @@ const ParticipantSchema = new Schema(
     spokenAtWeb3Before: {
       type: Boolean,
     },
-    gender: {
-      type: String,
-      enum: IGender,
-      // enum : ['female','male', 'others'],
+    // gender: {
+    //   type: String,
+    //   enum: IGender,
+    //   // enum : ['female','male', 'others'],
+    // },
+    role:{
+      type:String,
+      enum:Irole
     },
     Im: {
       type: String,
@@ -62,15 +79,15 @@ const ParticipantSchema = new Schema(
     whyAcceptAsSponsor: {
       type: String,
     },
-    reasonForAttending: {
-      type: String,
-    },
+    // reasonForAttending: {
+    //   type: String,
+    // },
     attendingOtherDays: {
       type: Boolean,
     },
-    reasonForOtherDays: {
-      type: String,
-    },
+    // reasonForOtherDays: {
+    //   type: String,
+    // },
     sponsorAmtRange: {
       type: String,
       enum: ["2000-4999", "5000-9999", "10000-above"],
@@ -104,3 +121,5 @@ const users =
   mongoose.models.Participant ||
   mongoose.model("eventParticipants", ParticipantSchema, "eventParticipants");
 export default users;
+// qrJaqFY4ojlYpMBp
+// AD4npgLxEA1zBhY8
