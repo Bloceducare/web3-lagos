@@ -1,18 +1,19 @@
 import { useState } from "react";
 import axios from "axios";
-
+import { TwitterShareButton, TwitterIcon } from "react-share";
 type IRegister = {
   userName: string;
   email: string;
   telegramID: string;
   twitterHandle: string;
   companyName: string;
-  gender: string;
+  role: string;
+  phone: string;
   type: string;
   location: string;
-  reasonForAttending: string;
+  // reasonForAttending: string;
   attendingOtherDays: boolean;
-  reasonForOtherDays: String;
+  // reasonForOtherDays: String;
 };
 
 const defaultUserInput = {
@@ -21,12 +22,13 @@ const defaultUserInput = {
   telegramID: "",
   twitterHandle: "",
   companyName: "",
-  gender: "",
-  location: "",
+  role: "", // out
+  phone: "",
   type: "attendant",
+  location: "", //out
   attendingOtherDays: false,
-  reasonForOtherDays: "",
-  reasonForAttending: "",
+  // reasonForOtherDays: "", //out
+  // reasonForAttending: "", //out
 };
 type DetailedHTMLProps = /*unresolved*/ any;
 const ApplyAsAnAttendant = () => {
@@ -41,9 +43,10 @@ const ApplyAsAnAttendant = () => {
     twitterHandle,
     companyName,
     location,
-    reasonForAttending,
-    reasonForOtherDays,
-    attendingOtherDays,
+    // reasonForAttending,
+    // reasonForOtherDays,
+    // attendingOtherDays,
+    phone,
   } = userInputs;
 
   const handleChange = (
@@ -95,7 +98,7 @@ const ApplyAsAnAttendant = () => {
     <div className="p-3 mt-12">
       <div className="text-center">
         <h1 className="mb-2 text-3xl font-semibold text-gray-800">
-          Web3 Lagos 2022 Registration
+          Web3 Lagos 2023 Registration
         </h1>
         {!!dataStatus.error && (
           <span className="text-red-500 ">{dataStatus.error}</span>
@@ -144,6 +147,26 @@ const ApplyAsAnAttendant = () => {
                 {/* border-red-300  */}
                 {/* <p className="mt-2 text-sm text-red-400">Email is required</p> */}
               </div>
+              <div className="mb-5">
+                <label
+                  htmlFor="twitter"
+                  className="block mb-2 font-bold text-gray-600"
+                >
+                  Phone number <span className="text-red-600">*</span>{" "}
+                </label>
+                <input
+                  type="text"
+                  id="phone"
+                  name="phone"
+                  onChange={handleChange}
+                  placeholder="Put in your phone number."
+                  className="w-full p-3 border rounded shadow"
+                  value={phone}
+                  required
+                />
+                {/* border-red-300  */}
+                {/* <p className="mt-2 text-sm text-red-400">Email is required</p> */}
+              </div>
 
               <div className="mb-5">
                 <label className="block mb-2 font-bold text-gray-600">
@@ -152,7 +175,7 @@ const ApplyAsAnAttendant = () => {
                 <input
                   type="text"
                   name="location"
-                  placeholder="Put in your location."
+                  placeholder="Lagos,Nigeria"
                   className="w-full p-3 border rounded shadow"
                   onChange={handleChange}
                   value={location}
@@ -160,7 +183,7 @@ const ApplyAsAnAttendant = () => {
                 />
               </div>
 
-              <div className="mb-5">
+              {/* <div className="mb-5">
                 <label className="block mb-2 font-bold text-gray-600">
                   Why Do you want to attend{" "}
                   <span className="text-red-600">*</span>{" "}
@@ -174,11 +197,11 @@ const ApplyAsAnAttendant = () => {
                   placeholder="Enter your reason here."
                   required
                 ></textarea>
-              </div>
+              </div> */}
 
               <div className="mb-5 ">
                 <span className="block mb-2 font-bold text-gray-600">
-                  Are you attending day 1 and 2 ?
+                  Are you attending workshop days (Thursday and Friday)?
                 </span>
                 <div className="flex items-center p-3 mt-2">
                   <div className="">
@@ -217,7 +240,7 @@ const ApplyAsAnAttendant = () => {
                 </div>
               </div>
 
-              {!!attendingOtherDays && (
+              {/* {!!attendingOtherDays && (
                 <div className="mb-5">
                   <label className="block mb-2 font-bold text-gray-600">
                     Reasons For Attending Day 1 and 2
@@ -238,7 +261,7 @@ const ApplyAsAnAttendant = () => {
                     required
                   ></textarea>
                 </div>
-              )}
+              )} */}
 
               <div className="mb-5">
                 <label className="block mb-2 font-bold text-gray-600">
@@ -256,18 +279,21 @@ const ApplyAsAnAttendant = () => {
 
               <div className="mb-5">
                 <label className="block mb-2 font-bold text-gray-600">
-                  Gender{" "}
+                  What best describes your role in web3{" "}
                 </label>
                 <select
                   className="block w-full p-3 mt-1 border form-select"
-                  name="gender"
+                  name="role"
                   onChange={handleChange}
                 >
                   <option selected disabled>
                     Please Select an Option
                   </option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
+                  <option value="beginner">I am new to Blockchain/Web3</option>
+                  <option value="developer">Developer</option>
+                  <option value="designer">Designer</option>
+                  <option value="content">Content Creator</option>
+                  <option value="community">Community Manager</option>
                   <option value="others">Others</option>
                 </select>
               </div>
@@ -276,7 +302,13 @@ const ApplyAsAnAttendant = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4">
                   <div className="mb-5 ">
                     <label className="block mb-2 font-bold text-gray-600">
-                      Telegram Username{" "}
+                      <span> Telegram Username </span>
+                      <br />
+                      <span className="text-xs hover:text-sky-500">
+                        <a href="https://t.me/Web3bridge" target="_blank">
+                          Do join our telegram channel
+                        </a>
+                      </span>
                     </label>
                     <input
                       type="text"
@@ -290,7 +322,16 @@ const ApplyAsAnAttendant = () => {
 
                   <div className="mb-5">
                     <label className="block mb-2 font-bold text-gray-600">
-                      Twitter Handle{" "}
+                      <span> Twitter Handle </span>
+                      <br />
+                      <span className="text-xs hover:text-sky-500">
+                        <a
+                          href="https://twitter.com/Web3Bridge"
+                          target="_blank"
+                        >
+                          Follow us on twitter
+                        </a>
+                      </span>
                     </label>
                     <input
                       type="text"
@@ -315,6 +356,25 @@ const ApplyAsAnAttendant = () => {
         )}
 
         {!!message && message}
+        {!!message && (
+          <div>
+        <h4 className="mt-2">Make a tweet</h4>
+        <TwitterShareButton
+        className="items-center"
+          url="https://event.web3bridge.com/"
+          title="I just registered for web3Lagos Conference 2023 !!"
+          hashtags={[
+            "Web3",
+            "Blockchain",
+            "Web3Bridge",
+            "Web3LagosConference",
+          ]}
+          related={["@Web3Bridge"]}
+        >
+          <TwitterIcon size={32} round />
+        </TwitterShareButton>
+      </div>
+        )}
       </div>
     </div>
   );

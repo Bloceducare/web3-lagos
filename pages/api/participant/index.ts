@@ -94,19 +94,19 @@ router.post(async (req, res) => {
       ...userInfo,
       userName: userName.toLowerCase(),
       email: email.toLowerCase(),
-      qrCode:true,
-      hackingEmail:true
+      // qrCode:true,
+      // hackingEmail:true
     };
 
-    const QrCodetemplate =`
-    Web3Lagos Conference 2023
-    ${userName}
-    ${type}`;
+    // const QrCodetemplate =`
+    // Web3Lagos Conference 2023
+    // ${userName}
+    // ${type}`;
 
    
     
-    const qrcode = (await QRcode(QrCodetemplate)) as string;
-    const {secure_url:qrCodeUrl} = await cloudinary.uploader.upload(qrcode)
+    // const qrcode = (await QRcode(QrCodetemplate)) as string;
+    // const {secure_url:qrCodeUrl} = await cloudinary.uploader.upload(qrcode)
  
 
     const userData: any = new participantsDb(data);

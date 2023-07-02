@@ -26,7 +26,7 @@ const AboveFold = () => {
           {" "}
           Sponsor{" "}
         </a>
-        <Link href="/apply/speaker">Speaker </Link>
+        <Link href="/apply/registration">Register </Link>
       </nav>
 
       <section className="w-250 h-255">
