@@ -84,7 +84,7 @@ router.post(async (req, res) => {
 
   try {
     const emailToLowerCase = email.toLowerCase()
-    const userRegistering = await participantsDb.findOne({ emailToLowerCase });
+    const userRegistering = await participantsDb.findOne({email: emailToLowerCase });
     if (userRegistering) {
       return res
         .status(423)
