@@ -11,7 +11,7 @@ const connectDB = async () => {
 };
 
 export const mailSenderConfig = {
-  from: "events@web3bridge.com",
+  from: { email: "event@web3bridge.com", name: "Web3bridge" },
   emailSubject: "Web3 Lagos Conference 2023",
   replyTo: "events@web3bridge.com",
 };
