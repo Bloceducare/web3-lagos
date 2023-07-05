@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Sponsors from "./Sponsors";
+import Link from "next/link";
 // import vectorPic from "../images/vector.svg";
 
 // bg-cover bg-[url('../images/main_bg.png')] h-[calc(110vh-20rem)] w-[1440px]
@@ -69,31 +70,26 @@ const DetailsCard = () => {
         </div>
       </div>
       <div className="flex justify-center my-6">
-        <button className="text-white outline outline-offset-2 outline-[#122C47] font-bold bg-red-500 p-4 rounded-lg">
-          <a
-            href=" https://event-web3lagos2022.web3bridge.com/"
-            target="_blank"
-          >
-            Web3Lagos Conference 2022
-          </a>
-        </button>
+        <Link href="/apply/registration">
+          <button className="text-white outline outline-offset-2 outline-[#122C47] font-bold bg-red-500 w-[20%] p-4 rounded-lg">
+            Register
+          </button>
+        </Link>
       </div>
+
+      <p className="text-red-400 font-semibold text-center">
+        <a href=" https://event-web3lagos2022.web3bridge.com/" target="_blank">
+          Web3Lagos Conference 2022
+        </a>
+      </p>
       <div>
         <div className="flex justify-center py-4">
           <div>
-            <div className="flex ">
+            <div className="flex space-x-2">
               <h3 className="text-3xl">
                 Powered by
-                <h3 className="text-xs">In conjuction with </h3>
-                <Image
-                  width={150}
-                  height={50}
-                  src="/ayagigs-logo.png"
-                  alt="aya"
-                  className="scale-[0.7] block border"
-                />
-              </h3>
-              <div>
+                </h3>
+                  <div>
                 <Image
                   width={150}
                   height={50}
@@ -102,6 +98,18 @@ const DetailsCard = () => {
                   className="block"
                 />
               </div>
+            </div>
+            <div>
+            <h3 className="text-xs text-center">In conjuction with </h3>
+            <div className="flex justify-center">
+                <Image
+                  width={150}
+                  height={50}
+                  src="/ayagigs-logo.png"
+                  alt="aya"
+                  className="scale-[0.7] block border"
+                />
+                </div>
             </div>
           </div>
         </div>
