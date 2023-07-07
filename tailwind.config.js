@@ -16,6 +16,9 @@ module.exports = {
           cgray: "#E9EFFF",
         },
       },
+      width:{
+        'big' :"1441px"
+      }
     },
   },
   plugins: [],

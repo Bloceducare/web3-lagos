@@ -34,9 +34,9 @@ const Schedule = () => {
     <>
       {/* <div className="bg-[#122C47] "> */}
       <div className="h-screen flex items-center bg-top bg-no-repeat bg-[url('../images/web3lagos.jpg')] h-[calc(100vh-4rem)] bg-cover ">
-        <div className="p-12">
+        <div className="p-4 md:p-12 lg:p-12">
           <div className="bg-transparent  text-gray-200">
-            <div className="text-6xl font-bold leading-[90px]">
+            <div className="text-3xl md:text-6xl lg:text-6xl font-bold leading-[50px] md:leading-[90px] lg:leading-[90px]">
               <h2>Our</h2>
               <h2>Success Story;</h2>
             </div>
@@ -45,10 +45,10 @@ const Schedule = () => {
                 <p>Check gallery from the previous event</p>
               </div>
               <div className="flex gap-4 mt-7 items-center">
-                <div className="bg-white rounded-full flex items-center justify-center w-16 h-16">
+                <div className="bg-white rounded-full flex items-center justify-center w-8 h-8 md:w-16 md:h-16 lg:w-16 lg:h-16">
                   <img src="/right-arrow.png" alt="right arrow" width="30px" />
                 </div>
-                <div className="text-3xl ">
+                <div className="text-2xl md:text-3xl lg:text-3xl ">
                   <p>
                     Day 1:{" "}
                     <a
@@ -62,10 +62,10 @@ const Schedule = () => {
                 </div>
               </div>
               <div className="flex gap-4 mt-7 items-center">
-                <div className="bg-white rounded-full flex items-center justify-center w-16 h-16">
+                <div className="bg-white rounded-full flex items-center justify-center w-8 h-8 md:w-16 md:h-16 lg:w-16 lg:h-16">
                   <img src="/right-arrow.png" alt="right arrow" width="30px" />
                 </div>
-                <div className="text-3xl ">
+                <div className="text-2xl md:text-3xl lg:text-3xl">
                   <p>
                     Day 2:{" "}
                     <a
@@ -80,10 +80,10 @@ const Schedule = () => {
               </div>
 
               <div className="flex gap-4 mt-7 items-center">
-                <div className="bg-white rounded-full flex items-center justify-center w-16 h-16">
+                <div className="bg-white rounded-full flex items-center justify-center w-8 h-8 md:w-16 md:h-16 lg:w-16 lg:h-16">
                   <img src="/right-arrow.png" alt="right arrow" width="30px" />
                 </div>
-                <div className="text-3xl ">
+                <div className="text-2xl md:text-3xl lg:text-3xl">
                   <p>
                     Day 3:{" "}
                     <a

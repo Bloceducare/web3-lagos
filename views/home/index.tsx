@@ -8,11 +8,12 @@ import Image from "next/image";
 const HomeView = () => {
   return (
     <div
-      style={{
-        backgroundColor: "#FFFFFF",
-        width: "1441px",
-        margin: "0 auto",
-      }}
+    className="bg-white w-none md:w-[1441px] lg:w-[1441px] mx-auto"
+      // style={{
+      //   backgroundColor: "#FFFFFF",
+      //   width: "1441px",
+      //   margin: "0 auto",
+      // }}
     >
       <AboveFold />
       <DetailsCard />
