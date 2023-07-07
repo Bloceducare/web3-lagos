@@ -7,7 +7,7 @@ import Link from "next/link";
 const DetailsCard = () => {
   return (
     <>
-      <div className="text-justify py-3 tr mx-auto bg-[url('../images/bridge.svg')] w-[1440px] h-[calc(130vh-13rem)] bg-top bg-no-repeat pt-9 ">
+      <div className="hidden md:block lg:block text-justify py-3 tr mx-auto bg-[url('../images/bridge.svg')] w-[1440px] h-[calc(130vh-13rem)] bg-top bg-no-repeat pt-9 ">
         <div className="flex justify-between mt-[110px] ">
           <div className="bg-white shadow-xl w-[601px] h-[477px] ml-16 flex flex-col items-center text-center rounded-3xl">
             <div className="-mt-6">
@@ -69,47 +69,112 @@ const DetailsCard = () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-center my-6">
-        <Link href="/apply/registration">
-          <button className="text-white outline outline-offset-2 outline-[#122C47] font-bold bg-red-500 w-[20%] p-4 rounded-lg">
-            Register
-          </button>
-        </Link>
-      </div>
+      {/* mobile */}
+      <div className="grid gap-32 block md:hidden lg:hidden my-24 p-4">
+        <div className=" shadow-xl items-center text-center rounded-3xl">
+          <div className="-translate-y-4">
+            <Image
+              alt="vector"
+              src="/vector.svg"
+              width="50"
+              height="50"
+              layout="fixed"
+              objectFit="cover"
+            />
+          </div>
+          <h3 className=" text-[#122C47] text-2xl font-semibold ">Our Goal</h3>
+          <div className="text-slate-600 p-2">
+            <p className="">
+              At Web3bridge, we believe education is critical in the drive for
+              adoption of blockchain technology.
+            </p>
+            <p className="">
+              And we have set up Web3 Lagos conference to bring education across
+              varying topics/subjects and
+            </p>
+            <p> comprehension of blockchain technology</p>
+          </div>
+        </div>
 
-      <p className="text-red-400 font-semibold text-center">
-        <a href=" https://event-web3lagos2022.web3bridge.com/" target="_blank">
-          Web3Lagos Conference 2022
-        </a>
-      </p>
+        <div className=" shadow-xl  items-center text-center rounded-3xl">
+          <div className="-translate-y-4">
+            <Image
+              alt="vector"
+              src="/vector.svg"
+              width="50"
+              height="50"
+              layout="fixed"
+              objectFit="cover"
+            />
+          </div>
+          <h3 className="text-[#122C47] text-2xl font-semibold">
+            Event Overview
+          </h3>
+          <div className="text-slate-600 p-4">
+            <p>
+              Web3 Lagos Conference is a 3-day physical and virtual event
+              comprising of hackathon, workshops, networking,career fair, panel
+              session, talks, etc
+            </p>
+
+            <p className="mt-5">
+              With over 1200+ attendance, 26 speakers and 7 sponsors in the
+              maiden event, the event focuses on onboarding and supporting the
+              growth of individual new to the concept of blockchain and
+              decentralisation, helping technical andnon-technical blockchain
+              blockchain native persons realise the endless possibilities and
+              opportunities of the Blockchain & Ethereum ecosystem.
+            </p>
+          </div>
+        </div>
+      </div>
+      {/* register component */}
       <div>
-        <div className="flex justify-center py-4">
-          <div>
-            <div className="flex space-x-2">
-              <h3 className="text-3xl">
-                Powered by
-                </h3>
-                  <div>
-                <Image
-                  width={150}
-                  height={50}
-                  src="/web3bridge-logo.png"
-                  alt="web3bridge-logo"
-                  className="block"
-                />
-              </div>
-            </div>
+        <div className="hidden md:block lg:block">
+        <div className="flex justify-center my-6">
+          <Link href="/apply/registration">
+            <button className="text-white outline outline-offset-2 outline-[#122C47] font-bold bg-red-500 w-[90%] md:w-[20%] lg:w-[20%] p-4 rounded-lg">
+              Register
+            </button>
+          </Link>
+        </div>
+        </div>
+
+        <p className="text-red-400 font-semibold text-center">
+          <a
+            href=" https://event-web3lagos2022.web3bridge.com/"
+            target="_blank"
+          >
+            Web3Lagos Conference 2022
+          </a>
+        </p>
+        <div>
+          <div className="flex justify-center py-4">
             <div>
-            <h3 className="text-xs text-center">In conjuction with </h3>
-            <div className="flex justify-center">
-                <Image
-                  width={150}
-                  height={50}
-                  src="/ayagigs-logo.png"
-                  alt="aya"
-                  className="scale-[0.7] block border"
-                />
+              <div className="flex space-x-2">
+                <h3 className="text-3xl">Powered by</h3>
+                <div>
+                  <Image
+                    width={150}
+                    height={50}
+                    src="/web3bridge-logo.png"
+                    alt="web3bridge-logo"
+                    className="block"
+                  />
                 </div>
+              </div>
+              <div>
+                <h3 className="text-xs text-center">In conjuction with </h3>
+                <div className="flex justify-center">
+                  <Image
+                    width={150}
+                    height={50}
+                    src="/ayagigs-logo.png"
+                    alt="aya"
+                    className="scale-[0.7] block border"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
