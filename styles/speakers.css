@@ -150,3 +150,11 @@ h3 {
         width: 100%;
     }
 }
+ 
+
+.speaker_wrapper{
+    background: url("../public/speakerbg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}

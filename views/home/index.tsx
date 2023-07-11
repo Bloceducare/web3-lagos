@@ -17,7 +17,7 @@ const HomeView = () => {
     >
       <AboveFold />
       <DetailsCard />
-      {/* <SpeakersCards /> */}
+      <SpeakersCards />
       <Schedule />
       <Team />
     </div>
