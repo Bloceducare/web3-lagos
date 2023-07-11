@@ -31,6 +31,7 @@ const SpeakersCards = () => {
               <span className="font-bold">Speakers</span>
             </h3>
             <div>
+              
               {/* <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4 justify-center"> */}
               <div>
                 <Image src={speaker} width={"1140"} height={"814"} alt="speakers" />
