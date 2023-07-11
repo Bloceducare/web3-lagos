@@ -1,5 +1,7 @@
 import { blurUrl, speakersImg } from "data";
 import Image from "next/image";
+import speaker from "../public/speaker.png"
+import speaker2 from "../public/speakers2.png"
 
 const Card = ({ src = "" }) => (
   <>
@@ -21,17 +23,22 @@ const SpeakersCards = () => {
   return (
     <>
       <div
-        style={{
-          background: "linear-gradient(180deg, #122C47, #08131E 100%)",
-        }}
+        className="speaker_wrapper"
       >
         <div className="max-w-6xl mx-auto speakers-section ">
-          <div className="mx-4 mt-20">
-            <h3 className="text-4xl tracking-wide text-white text-center mb-24">
-              Our <span className="font-bold">Speakers</span>
+          <div className="mx-4  p-4">
+            <h3 className="text-6xl tracking-wide !text-[#437394] text-center">
+              <span className="font-bold">Speakers</span>
             </h3>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4 justify-center">
-              {speakers}
+            <div>
+              
+              {/* <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4 justify-center"> */}
+              <div>
+                <Image src={speaker} width={"1140"} height={"814"} alt="speakers" />
+              </div>
+              <div>
+                <Image src={speaker2} width={"1140"} height={"814"} alt="speakers" />
+              </div>
             </div>
           </div>
         </div>
@@ -39,5 +46,6 @@ const SpeakersCards = () => {
     </>
   );
 };
+
 
 export default SpeakersCards;
