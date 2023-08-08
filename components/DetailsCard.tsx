@@ -167,9 +167,9 @@ const DetailsCard = () => {
                 <h3 className="text-xs text-center">In conjuction with </h3>
                 <div className="flex justify-center">
                   <Image
-                    width={150}
+                    width={200}
                     height={50}
-                    src="/ayagigs-logo.png"
+                    src="/aya.png"
                     alt="aya"
                     className="scale-[0.7] block border"
                   />
