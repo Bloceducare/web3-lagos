@@ -2,6 +2,8 @@ import { blurUrl, speakersImg } from "data";
 import Image from "next/image";
 import speaker from "../public/speaker.png"
 import speaker2 from "../public/speakers2.png"
+import speaker3 from "../public/speaker3.png";
+import speaker4 from "../public/speaker4.png";
 
 const Card = ({ src = "" }) => (
   <>
@@ -34,10 +36,17 @@ const SpeakersCards = () => {
 
               {/* <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4 justify-center"> */}
               <div>
+                <Image src={speaker3} width={1140} height={422} alt="speakers" />
+              </div>
+              <div>
                 <Image src={speaker} width={"1140"} height={"814"} alt="speakers" />
               </div>
-              <div className="mb-12">
+              <div className="mb-6">
                 <Image src={speaker2} width={"1140"} height={"814"} alt="speakers" />
+              </div>
+
+              <div className="mb-12">
+                <Image src={speaker4} width={"1140"} height={749} alt="speakers" />
               </div>
             </div>
           </div>

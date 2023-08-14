@@ -4,6 +4,7 @@ import SpeakersCards from "@components/SpeakersCards";
 import Schedule from "@components/Schedule";
 import Team from "@components/Team";
 import Image from "next/image";
+import Sponsors from "@components/Sponsors";
 
 const HomeView = () => {
   return (
@@ -17,6 +18,7 @@ const HomeView = () => {
     >
       <AboveFold />
       <DetailsCard />
+      <Sponsors/>
       <SpeakersCards />
       <Schedule />
       <Team />

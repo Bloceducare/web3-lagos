@@ -2,26 +2,142 @@ import Image from "next/image";
 
 const Sponsors = () => {
   return (
-    <div className="w-[1300px] px-3 py-16 mx-10 mt-4">
+    <div className="p-4 mt-12 md:px-3 md:py-16 md:mx-10 md:mt-4 lg:px-3 lg:py-16 lg:mx-10 lg:mt-4">
       <h1 className="text-4xl flex justify-center mb-20 tracking-wide">
         Our <span className="ml-2 font-bold">Sponsors</span>
       </h1>
       <div>
-        <h2 className="text-3xl mb-5">
-          <span className="mr-1 font-bold">Headline</span>Sponsor
-        </h2>
-        <div className="flex flex-wrap items-center justify-between mb-14">
-          <Image src="/ETH-logo.svg" width={200} height={80} alt="sponsor" />
+        {/* <h2 className="text-3xl mb-5">
+          <span className="mr-1 font-bold">Lead</span>Sponsors
+        </h2> */}
+        <div className="hidden md:flex md:flex-wrap md:justify-between lg:flex lg:flex-wrap items-center lg:justify-between mb-14">
+          <div>
+            <Image
+              src="/EF-ESP-logo.svg"
+              width={200}
+              height={50}
+              alt="sponsor"
+            />
+          </div>
+          <div>
+            <Image src="/ETHOS.png" width={200} height={50} alt="sponsor" />
+          </div>
+          <div>
+            <Image
+              src="/Vert_T_Blk.png"
+              width={200}
+              height={50}
+              alt="sponsor"
+            />
+          </div>
+          <div>
+            <Image
+              src="/full-base-logo.svg"
+              width={200}
+              height={50}
+              alt="sponsor"
+            />
+          </div>
+        </div>
+        {/*mobile  */}
+        <div className=" flex items-center space-x-12 md:hidden lg:hidden">
+          <div>
+            <Image
+              src="/EF-ESP-logo.svg"
+              width={250}
+              height={50}
+              alt="sponsor"
+            />
+          </div>
+          <div>
+            <Image src="/ETHOS.png" width={250} height={50} alt="sponsor" />
+          </div>
+        </div>
+
+        <div className="flex my-12 items-center md:hidden lg:hidden space-x-12">
+          <div>
+            <Image
+              src="/Vert_T_Blk.png"
+              width={250}
+              height={50}
+              alt="sponsor"
+            />
+          </div>
+          <div>
+            <Image
+              src="/full-base-logo.svg"
+              width={250}
+              height={50}
+              alt="sponsor"
+            />
+          </div>
+        </div>
+        {/*  */}
+
+        <div className="hidden md:flex md:flex-wrap md:justify-between lg:flex lg:flex-wrap items-center lg:justify-between mb-14">
+          <div>
+            <Image
+              src="/polytope_logo.png"
+              width={200}
+              height={50}
+              alt="sponsor"
+            />
+          </div>
+          <div>
+            <Image
+              src="/starkware.png"
+              width={300}
+              height={50}
+              alt="sponsor"
+            />
+          </div>
+          <div>
+            <Image src="/onboard.png" width={200} height={100} alt="sponsor" />
+          </div>
+          <div>
+            <Image src="/blockops.png" width={200} height={100} alt="sponsor" />
+          </div>
+        </div>
+        {/* mobile */}
+        <div className="flex items-center  space-x-12 md:hidden lg:hidden">
+          <div>
+            <Image
+              src="/polytope_logo.png"
+              width={250}
+              height={50}
+              alt="sponsor"
+            />
+          </div>
+          <div>
+            <Image
+              src="/starkware.png"
+              width={250}
+              height={50}
+              alt="sponsor"
+            />
+          </div>
+        </div>
+
+        <div className="flex items-center space-12 md:hidden lg:hidden ">
+        <div>
+            <Image src="/onboard.png" width={200} height={100} alt="sponsor" />
+          </div>
+          <div>
+            <Image src="/blockops.png" width={200} height={100} alt="sponsor" />
+          </div>
+        </div>
+
+        <div className="grid justify-center md:flex md:flex-wrap md:items-center md:justify-between lg:flex lg:flex-wrap lg:items-center lg:justify-between mb-14">
           <Image
-            src="/polygon-matic.svg"
+            src="/logoiqwhite.svg"
             width={200}
             height={100}
             alt="sponsor"
           />
-          <Image src="/pillow.svg" width={200} height={100} alt="sponsor" />
         </div>
       </div>
-      <div>
+
+      {/* <div>
         <h2 className="text-3xl mb-5">
           <span className="mr-1 font-bold">Silver</span>Sponsor
         </h2>
@@ -38,22 +154,26 @@ const Sponsors = () => {
         <div className="flex flex-wrap items-center mb-14">
           <Image src="/nahmi.png" width={150} height={120} alt="sponsor" />
         </div>
-      </div>
+      </div> */}
       <div>
         <h2 className="text-3xl mb-5">
           <span className="mr-1 font-bold">Media</span>Partners
         </h2>
-        <div className="flex flex-wrap items-center mb-14">
-          <Image src="/papaya.svg" width={100} height={100} alt="sponsor" />
-          <span className="relative ml-2 text-4xl">
-            Papayas
-            <sub className="absolute right-0 text-xs font-semibold text-orange-500 -bottom-4">
-              Studios
-            </sub>
-          </span>
+        <div className="flex space-x-6 items-center mb-14">
+          <div>
+            <Image
+              src="/EnteringTech.svg"
+              width={200}
+              height={100}
+              alt="sponsor"
+            />
+          </div>
+          <div>
+            <Image src="/streamEth.png" width={200} height={50} alt="sponsor" />
+          </div>
         </div>
       </div>
-      <div>
+      {/* <div>
         <h2 className="text-3xl mb-5">
           <span className="mr-1 font-bold">Community</span>Partners
         </h2>
@@ -89,7 +209,7 @@ const Sponsors = () => {
             <img src="/web3ladies-m.png" alt="uniben logo" width="120px" />
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
