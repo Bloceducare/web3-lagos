@@ -10,23 +10,24 @@ const Sponsors = () => {
         {/* <h2 className="text-3xl mb-5">
           <span className="mr-1 font-bold">Lead</span>Sponsors
         </h2> */}
+        
         <div className="hidden md:flex md:flex-wrap md:justify-between lg:flex lg:flex-wrap items-center lg:justify-between mb-14">
           <div>
             <Image
               src="/EF-ESP-logo.svg"
               width={200}
-              height={50}
+              height={100}
               alt="sponsor"
             />
           </div>
           <div>
-            <Image src="/ETHOS.png" width={200} height={50} alt="sponsor" />
+            <Image src="/ETHOS.png" width={200} height={100} alt="sponsor" />
           </div>
           <div>
             <Image
               src="/Vert_T_Blk.png"
               width={200}
-              height={50}
+              height={100}
               alt="sponsor"
             />
           </div>
@@ -34,7 +35,7 @@ const Sponsors = () => {
             <Image
               src="/full-base-logo.svg"
               width={200}
-              height={50}
+              height={100}
               alt="sponsor"
             />
           </div>
@@ -45,21 +46,21 @@ const Sponsors = () => {
             <Image
               src="/EF-ESP-logo.svg"
               width={250}
-              height={50}
+              height={100}
               alt="sponsor"
             />
           </div>
           <div>
-            <Image src="/ETHOS.png" width={250} height={50} alt="sponsor" />
+            <Image src="/ETHOS.png" width={250} height={100} alt="sponsor" />
           </div>
         </div>
-
+        
         <div className="flex my-12 items-center md:hidden lg:hidden space-x-12">
           <div>
             <Image
               src="/Vert_T_Blk.png"
               width={250}
-              height={50}
+              height={100}
               alt="sponsor"
             />
           </div>
@@ -67,7 +68,7 @@ const Sponsors = () => {
             <Image
               src="/full-base-logo.svg"
               width={250}
-              height={50}
+              height={100}
               alt="sponsor"
             />
           </div>
@@ -92,7 +93,7 @@ const Sponsors = () => {
             />
           </div>
           <div>
-            <Image src="/onboard.png" width={200} height={100} alt="sponsor" />
+            <Image src="/onboard.png" width={200} height={150} alt="sponsor" />
           </div>
           <div>
             <Image src="/blockops.png" width={200} height={100} alt="sponsor" />
@@ -120,7 +121,7 @@ const Sponsors = () => {
 
         <div className="flex items-center space-12 md:hidden lg:hidden ">
         <div>
-            <Image src="/onboard.png" width={200} height={100} alt="sponsor" />
+            <Image src="/onboard.png" width={200} height={150} alt="sponsor" />
           </div>
           <div>
             <Image src="/blockops.png" width={200} height={100} alt="sponsor" />
