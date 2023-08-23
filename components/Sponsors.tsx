@@ -10,7 +10,7 @@ const Sponsors = () => {
         {/* <h2 className="text-3xl mb-5">
           <span className="mr-1 font-bold">Lead</span>Sponsors
         </h2> */}
-        
+
         <div className="hidden md:flex md:flex-wrap md:justify-between lg:flex lg:flex-wrap items-center lg:justify-between mb-14">
           <div>
             <Image
@@ -54,7 +54,7 @@ const Sponsors = () => {
             <Image src="/ETHOS.png" width={250} height={100} alt="sponsor" />
           </div>
         </div>
-        
+
         <div className="flex my-12 items-center md:hidden lg:hidden space-x-12">
           <div>
             <Image
@@ -85,12 +85,7 @@ const Sponsors = () => {
             />
           </div>
           <div>
-            <Image
-              src="/starkware.png"
-              width={300}
-              height={50}
-              alt="sponsor"
-            />
+            <Image src="/starkware.png" width={300} height={50} alt="sponsor" />
           </div>
           <div>
             <Image src="/onboard.png" width={200} height={150} alt="sponsor" />
@@ -110,17 +105,12 @@ const Sponsors = () => {
             />
           </div>
           <div>
-            <Image
-              src="/starkware.png"
-              width={250}
-              height={50}
-              alt="sponsor"
-            />
+            <Image src="/starkware.png" width={250} height={50} alt="sponsor" />
           </div>
         </div>
 
-        <div className="flex items-center space-12 md:hidden lg:hidden ">
-        <div>
+        <div className="flex items-center space-x-12 md:hidden lg:hidden ">
+          <div>
             <Image src="/onboard.png" width={200} height={150} alt="sponsor" />
           </div>
           <div>
@@ -128,35 +118,74 @@ const Sponsors = () => {
           </div>
         </div>
 
-        <div className="grid justify-center md:flex md:flex-wrap md:items-center md:justify-between lg:flex lg:flex-wrap lg:items-center lg:justify-between mb-14">
-          <Image
-            src="/logoiqwhite.svg"
-            width={200}
-            height={100}
-            alt="sponsor"
-          />
+        {/* last frame desktop */}
+        <div className="hidden md:flex md:flex-wrap md:justify-between lg:flex lg:flex-wrap items-center lg:justify-between">
+          <div className="flex self-end">
+            <Image
+              src="/logoiqwhite.svg"
+              width={200}
+              height={100}
+              alt="sponsor"
+            />
+          </div>
+          <div className="flex self-end">
+            <Image
+              src="/cxlogo.png"
+              width={250}
+              height={100}
+              alt="sponsor"
+              className="border-2 border-blue-500 p-2 bg-gray-200 shadow-md rounded-lg"
+            />
+          </div>
+          <div className="flex self-end">
+            <Image src="/intmax.png" width={200} height={150} alt="sponsor" />
+          </div>
+          <div className="flex self-end">
+            <Image
+              src="/quillaudit.png"
+              width={200}
+              height={150}
+              alt="sponsor"
+            />
+          </div>
+        </div>
+
+        <div className="flex items-center space-x-12 md:hidden lg:hidden ">
+          <div className="flex self-end">
+            <Image
+              src="/logoiqwhite.svg"
+              width={200}
+              height={150}
+              alt="sponsor"
+            />
+          </div>
+          <div className="flex center">
+            <Image
+              src="/cxlogo.png"
+              width={100}
+              height={50}
+              alt="sponsor"
+              className="border-2 border-blue-500 p-2 bg-gray-200 shadow-md rounded-lg"
+            />
+          </div>
+        </div>
+
+        <div className="flex items-center space-x-12 my-8 md:hidden lg:hidden ">
+          <div className="flex self-end">
+            <Image src="/intmax.png" width={200} height={150} alt="sponsor" />
+          </div>
+          <div className="flex self-end">
+            <Image
+              src="/quillaudit.png"
+              width={200}
+              height={150}
+              alt="sponsor"
+            />
+          </div>
         </div>
       </div>
 
-      {/* <div>
-        <h2 className="text-3xl mb-5">
-          <span className="mr-1 font-bold">Silver</span>Sponsor
-        </h2>
-        <div className="flex flex-wrap items-center justify-between ">
-          <Image src="/starkware.png" width={170} height={120} alt="sponsor" />
-          <Image
-            src="/wakanda-inu.png"
-            width={170}
-            height={120}
-            alt="sponsor"
-          />
-          <Image src="/web3d.svg" width={170} height={120} alt="sponsor" />
-        </div>
-        <div className="flex flex-wrap items-center mb-14">
-          <Image src="/nahmi.png" width={150} height={120} alt="sponsor" />
-        </div>
-      </div> */}
-      <div>
+      <div className="mt-32">
         <h2 className="text-3xl mb-5">
           <span className="mr-1 font-bold">Media</span>Partners
         </h2>

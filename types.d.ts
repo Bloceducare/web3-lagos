@@ -36,7 +36,7 @@ export interface IResetPassword {
 
 export interface IScheduleItem {
   topic:string
-  speaker:string
+  speaker?:string
   time:string
 }
 

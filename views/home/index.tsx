@@ -5,11 +5,12 @@ import Schedule from "@components/Schedule";
 import Team from "@components/Team";
 import Image from "next/image";
 import Sponsors from "@components/Sponsors";
+import Gallery from "@components/Gallery";
 
 const HomeView = () => {
   return (
     <div
-    className="bg-white w-none md:w-[1441px] lg:w-[1441px] mx-auto"
+      className="bg-white w-none md:w-[1441px] lg:w-[1441px] mx-auto"
       // style={{
       //   backgroundColor: "#FFFFFF",
       //   width: "1441px",
@@ -18,8 +19,9 @@ const HomeView = () => {
     >
       <AboveFold />
       <DetailsCard />
-      <Sponsors/>
+      <Sponsors />
       <SpeakersCards />
+      <Gallery />
       <Schedule />
       <Team />
     </div>
