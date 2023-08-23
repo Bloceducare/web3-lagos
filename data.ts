@@ -3,257 +3,610 @@ export const speakersImg=['/isaac.png', '/justin.png', '/tutu.png', '/lanre.png'
 
 export const blurUrl = "data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRm knyJckliyjqTzSlT54b6bk+h0R//2Q=="
 
-const startingItems = [
-    {
-        time:"9:00 - 10:00 AM",
-        topic:"Arrival & Registration",
-        speaker:""
-        },
-        {
-          time:"10 - 10:15 AM",
-          topic:"Welcome Address",
-          speaker:""
-        },
-        {
-          time:"10:15 - 10:30 AM",
-          topic:"Introductions",
-          speaker:""
-        },
-]
+
+
 export const schedule = {
-    thur:{
-        title:"Thursday",
-        item:[
+  thur: {
+    title: "Thursday",
+    hall1: {
+      title: "Hall 1",
+      item: [
+        {
+          time: "9:30 - 10:00 AM",
+          topic: "Arrival & Registration",
+        },
+        {
+          time: "10:00 - 10:30 AM",
+          topic: "Introduction",
+        },
+        {
+          time: "10:30 - 11:15 AM",
+          topic: "Understanding Blockchain for Beginners",
+          speaker: "Hezekiah Suleman - Hall 1",
+        },
+        {
+          time: "11:15 - 12:00 PM",
+          topic: "Growing a career in Blockchain",
+          speaker: "Michael Jerry - Hall 1",
+        },
+        {
+          time: "12:00 - 12:20 PM",
+          topic: "Web3: Community and Protocol",
+          speaker: "Ayodele Aransiola - Hall 1",
+        },
+        {
+          time: "12:20 - 12:45 PM",
+          topic: "Understanding & contributing to DAO",
+          speaker: "Odebunmi Fiyinfoluwa - Hall 1",
+        },
+        {
+          time: "12:45 - 1:15 PM",
+          topic: "Decentralized Disruption: How Web3 is Revolutionizing Marketing",
+          speaker: "Adeola Adesina - Hall 1",
+        },
+        {
+          time: "1:15 - 1:30 PM",
+          topic: "Break",
+        },
+        {
+          time: "1:30 - 2:00 PM",
+          topic: "Technical Content Creation: The Key To Popular Participation in Web3",
+          speaker: "John Olamide - Hall 1",
+        },
+        {
+          time: "2:00 - 2:30 PM",
+          topic: "Web3 Marketing & growth hacking",
+          speaker: "Olatinwo Barakat Anuoluwapo - Hall 1",
+        },
+        {
+          time: "2:30 - 2:55 PM",
+          topic: "Hall 1 Q & A",
+        },
+        {
+          time: "3:05 - 3:45 PM",
+          topic: "Understanding the Public and Doing it",
+          speaker: "Kevin Owocki - Hall 1",
+        },
+        {
+          time: "3:45 - 4:00 PM",
+          topic: "The Future of Web3 Hacking",
+          speaker: "Ogunsakin Emmanuel - Hall 1",
+        },
+        {
+          time: "4:00 - 4:30 PM",
+          topic: "Understanding Base ecosystem",
+          speaker: "Jesse Pollak - Hall 1",
+        },
+       
+      ],
+    },
+    hall2: {
+      title: "Hall 2",
+      item: [
+        {
+          time: "12:00 - 12:45 PM",
+          topic: "Introduction to formal Verification and symbolic execution for smart contract",
+          speaker: "Temitayo Daniel - Hall 2",
+        },
+        {
+          time: "12:45 - 1:15 PM",
+          topic: "Smart contract Audit",
+          speaker: "David Uzochukwu - Hall 2",
+        },
+        {
+          time: "1:15 - 1:40 PM",
+          topic: "Secret Network",
+          speaker: "Pope Black - Hall 2",
+        },
+        {
+          time: "1:40 - 1:50 PM",
+          topic: "Leg Stretch",
+        },
+        {
+          time: "1:50 - 2:15 PM",
+          topic: "Invariant testing",
+          speaker: "Adebayo Abimbola - Hall 2",
+        },
+        {
+          time: "2:15 - 3:00 PM",
+          topic: "Understanding Account Abstraction",
+          speaker: "Nonse Odion - Hall 2",
+        },
+
+      ],
+    },
+  },
+  fri: {
+    title: "Friday",
+    hall1: {
+      title: "Hall 1",
+      item: [
+        {
+          time: "9:00 - 10:00 AM",
+          topic: "Arrival & Registration",
+        },
+        {
+          time: "10:00 - 10:15 AM",
+          topic: "Welcome address",
+        },
+        {
+          time: "10:15 - 10:35 AM",
+          topic: "Why Web 3.0 matters - Demystifying D'web",
+          speaker:"Chales Freeborn - Hall 1"
+        },
+        {
+          time: "10:35 - 11:05 AM",
+          topic: "Embracing the bears",
+          speaker:"Chidubem Emelumadu - Hall 1"
+        },
+        {
+          time: "11:05 - 12:00 PM",
+          topic: "Unlocking prosperity in AFrica;Business model considerations for building innovative web3 solutions",
+          speaker:"Toyin Bamidele - Hall 1"
+        },
+        {
+          time: "12:00 - 12:45 PM",
+          topic: "-",
+        },
+        {
+          time: "12:45 - 1:00 PM",
+          topic: "Understanding the value of Governance Contracts",
+          speaker:"Kenechukwu eze - Hall 1"
+        },
+        {
+          time: "1:00 - 1:20 PM",
+          topic: "Break",
+        },
+        {
+          time: "1:20 - 1:50 PM",
+          topic: "Practical marketing and community management: Getting your first job in Web3",
+          speaker:"Rasheed Ahmed Ademuyiwa - Hall 1"
+        },
+        {
+          time: "1:50 - 2:10 PM",
+          topic: "Marketing Web3 in Africa / Web3 and its economic effects on Africa ",
+          speaker:"Babatunde Ayomide Ifedapo - Hall 1"
+        },
+        {
+          time: "2:10 - 2:30 PM",
+          topic: "My Web3bridge story",
+        },
+        {
+          time: "2:30 - 3:30 PM",
+          topic: "Q & A / Network session",
+        },
+      ],
+    },
+    hall2: {
+      title: "Hall 2",
+      item: [
+        {
+          time: "12:00 - 12:20 PM",
+          topic: "Nethermind session",
+          speaker: "Jelilat Anofiu - Hall 2",
+        },
+        {
+          time: "12:20 - 12:40 PM",
+          topic: "From Lag to Lightning: Harnessing the Power of Redux-Multicall for Real-Time DAPPs",
+          speaker: "Adekunle Michael - Hall 2",
+        },
+        {
+          time: "12:40 - 1:00 PM",
+          topic: "Building fullstack interchain dApp",
+          speaker: "Idris Olubi - Hall 2",
+        },
+        {
+          time: "1:00 - 1:15 PM",
+          topic: "Hands-on pratice with the new Cairo syntax",
+          speaker: "Ademola Kelvin - Hall 2",
+        },
+        {
+          time: "1:15 - 1:45 PM",
+          topic: "Blockops Workshop",
+        },
+        {
+          time: "1:45 - 2:05 PM",
+          topic: "Understanding Web3 Frontend",
+          speaker:"Blessing Samuel"
+        },
+        {
+          time: "2:05 - 2:25 PM",
+          topic: "Starknet under the hood",
+          speaker:"Godspower Eze"
+        },
+        {
+          time: "2:25 - 2:50 PM",
+          topic: "Remix for Hackathons workshop",
+          speaker:"David Disu"
+        },
+        {
+          time: "3:00 - 3:30 PM",
+          topic: "Building on Filecoin",
+        },
+        {
+          time: "3:30 - 5:00 PM",
+          topic: "CTF & Design Hackathon",
+        },
+      ],
+    },
+  },
+  sat: {
+    title: "Saturday",
+    item: [
+      {
+        time: "9:00 - 9:30 AM",
+        topic: "Arrival & Registration",
+      },
+      {
+        time: "9:30 - 9:45 AM",
+        topic: "Welcome address",
+      },
+      {
+        time: "9:45 - 10:00 AM",
+        topic: "A placeholder: Why African young minds must shape the future of the next billion people to abundance",
+        speaker:"Eric Anaan"
+      },
+      {
+        time: "10:00 - 10:50 AM",
+        topic: "Q & A with Vitalik BUterin",
+      },
+      {
+        time: "10:50 - 11:05 AM",
+        topic: "Implications of the National Policy of Blockchain in Nigeria on the growth of the Web3 ecosystem",
+        speaker:"Senator Ihenyen"
+      },
+      {
+        time: "11:05 - 11:20 AM",
+        topic: "Co-creating a prosperous Africa powered by web3 innovation",
+        speaker:"Toyin Bamidele"
+      },
+      {
+        time: "11:20 - 11:40 AM",
+        topic: "Web3 Africa: State of affairs and the way forward",
+        speaker:"Panel 1"
+      },
+      {
+        time: "11:40 - 11:50 AM",
+        topic: "web3 adoption in Africa (The next 1billion users)",
+        speaker:"Amarachi Amaechi"
+      },
+      {
+        time: "11:50 - 12:00 PM",
+        topic: "Beyond Hype and Hacks: Building impactful and Disrupting Products with Blockchain Technology",
+        speaker:"Isaac Ijuo"
+      },
+      {
+        time: "12:00 - 12:15 PM",
+        topic: "Building the social infrastructure for web3 & beyond - The tales of Zuzalu",
+        speaker:"Marine Andraud"
+      },
+      {
+        time: "12:15 - 12:30 PM",
+        topic: "Breaking into protocol development",
+        speaker:"David Salami"
+      },
+      {
+        time: "12:30 - 12:40 PM",
+        topic: "Project Zero: Starting from the scratch to becoming IDAN in tech. '\n If you no make am, no evidence say you try.\n' ",
+        speaker:"Jolade Okunlade"
+      },
+      {
+        time: "12:40 - 12:55 PM",
+        topic: "Biometric no-seedphrase wallet and Stateless zkrollup",
+        speaker:"Njoku Emmanuel & Leona Hioki"
+      },
+      {
+        time: "12:55 - 1:15 PM",
+        topic: "Onboard discussion",
+        speaker:"Nestcoin"
+      },
+      {
+        time: "1:15 - 1:30 PM",
+        topic: "Alphaday",
+      },
+      {
+        time: "1:30 - 1:50 PM",
+        topic: "Panel Session: Role of blockchain campus clubs in increasing community onboarding",
+        speaker:"Campus club representative"
+      },
+      {
+        time: "1:50 - 2:05 PM",
+        topic: "Scaling Ethereum with Starknet",
+        speaker:"Paul Emmanuel"
+      },
+      {
+        time: "2:05 - 2:30 PM",
+        topic: "Understanding Ethereum Foundation Next Billion Agenda",
+        speaker:"Panel session"
+      },
+      {
+        time: "2:30 - 2:45 PM",
+        topic: "Blockops",
+      },
+      {
+        time: "2:45 - 2:55 PM",
+        topic: "Navigating the Web3 Job Market",
+        speaker:"Olumide Aderinwale"
+      },
+      {
+        time: "2:55 - 3:10 PM",
+        topic: "Importance of Web3 Security and the role of QuillAudits",
+        speaker:"QuillAudits"
+      },
+      {
+        time: "3:10 - 3:20 PM",
+        topic: "Pushing the boundaries of Web3 UX",
+        speaker:"Richa Joshi"
+      },
+      {
+        time: "3:20 - 3:30 PM",
+        topic: "Breaking into Devrel",
+        speaker:"Idris Olubi"
+      },
+      {
+        time: "3:30 - 3:40 PM",
+        topic: "Understanding IQ WIKi",
+        speaker:"Bakare Damilare"
+      },
+      {
+        time: "3:30 - 3:45 PM",
+        topic: "-",
+      },
+    ],
+  },
+};
+
+// const startingItems = [
+//     {
+//         time:"9:00 - 10:00 AM",
+//         topic:"Arrival & Registration",
+//         speaker:""
+//         },
+//         {
+//           time:"10 - 10:15 AM",
+//           topic:"Welcome Address",
+//           speaker:""
+//         },
+//         {
+//           time:"10:15 - 10:30 AM",
+//           topic:"Introductions",
+//           speaker:""
+//         },
+// ]
+// export const schedule = {
+//     thur:{
+//         title:"Thursday",
+//         item:[
           
-         ...startingItems,
+//          ...startingItems,
 
-            {
-              time:"10:30 - 11:00 AM",
-              topic:"Workshop 1: Web3 is Web2: Understanding the architecture of web3 apps",
-              speaker:"Trust Onyekwere"
-            },
-            {
-              time:"11:05 - 11:30 AM",
-              topic:"DAOs: Possibilities and Opportunities",
-              speaker:"Israel Rex"
-            },
-            {
-              time:"11:30 - 12:00 PM",
-              topic:"Building customized token on Binance Smart chain",
-              speaker:"Adesanya Joshua Ayodeji"
-            },
-            {
-              time:"12:00 - 12:45 PM",
-              topic:"Understanding the Starknet Ecosystem",
-              speaker:"N. Darlington"
-            },
-            {
-              time:"12:45 - 1:30 PM",
-              topic:"Building Polylithic and Upgradable contract with the diamond standard",
-              speaker:"Temitayo Daniel"
-            },
-            {
-              time:"1:30 - 2:00 PM",
-              topic:"Ethereum Merge: What it is, what went into it! ",
-              speaker:"Tim Beiko"
-            },
-            {
-              time:"2:00 - 2:30 PM",
-              topic:"Pillow Fund workshop",
-              speaker:""
-            },
-            {
-              time:"2:30 - 3:15 PM",
-              topic:"AMA for speakers",
-              speaker:""
-            },
-            {
-              time:"3:15 - 3:30 PM",
-              topic:"Closing",
-              speaker:""
-            },
-          ]
-    },
-    fri:{
-        title:"Friday",
-        item:[ 
-          ...startingItems,
-          {
-            time:"10:30 - 11:00 AM",
-            topic:"The Web3 Stack",
-            speaker:"Idris Olubisi"
-          },
-          {
-            time:"11:00 - 11:30 AM",
-            topic:"The Polygon Workshop",
-            speaker:""
-          },
-          {
-            time:"11:30 - 12:15 PM",
-            topic:"Developing your Career Practical in Web3",
-            speaker:""
-          },
-          {
-            time:"12:15 - 1:00 PM",
-            topic:"Pragmatic Approach to Profitable Crypto Trading",
-            speaker:"Tunmise Olaoluwa"
-          },
-          {
-            time:"1:00 - 1:20 PM",
-            topic:"Lending and Borrowing",
-            speaker:"Raymond Abiola"
-          },
-          {
-            time:"1:20 - 2:00 PM",
-            topic:"Starting, Building and Growing a community",
-            speaker:"Michael Jerry"
-          },
-          {
-            time:"2:00 - 2:15 PM",
-            topic:"Blockchain Research Paper",
-            speaker:"Shlok Dubey"
-          },
-          {
-            time:"2:15 - 2:45 PM",
-            topic:"Namhii Workshop",
-            speaker:""
-          },
-          {
-            time:"2:45 - 3:45 PM",
-            topic:"Break out sessions",
-            speaker:""
-          },
-          {
-            time:"3:45 - 4:00 PM",
-            topic:"Closing",
-            speaker:""
-          },
+//             {
+//               time:"10:30 - 11:00 AM",
+//               topic:"Workshop 1: Web3 is Web2: Understanding the architecture of web3 apps",
+//               speaker:"Trust Onyekwere"
+//             },
+//             {
+//               time:"11:05 - 11:30 AM",
+//               topic:"DAOs: Possibilities and Opportunities",
+//               speaker:"Israel Rex"
+//             },
+//             {
+//               time:"11:30 - 12:00 PM",
+//               topic:"Building customized token on Binance Smart chain",
+//               speaker:"Adesanya Joshua Ayodeji"
+//             },
+//             {
+//               time:"12:00 - 12:45 PM",
+//               topic:"Understanding the Starknet Ecosystem",
+//               speaker:"N. Darlington"
+//             },
+//             {
+//               time:"12:45 - 1:30 PM",
+//               topic:"Building Polylithic and Upgradable contract with the diamond standard",
+//               speaker:"Temitayo Daniel"
+//             },
+//             {
+//               time:"1:30 - 2:00 PM",
+//               topic:"Ethereum Merge: What it is, what went into it! ",
+//               speaker:"Tim Beiko"
+//             },
+//             {
+//               time:"2:00 - 2:30 PM",
+//               topic:"Pillow Fund workshop",
+//               speaker:""
+//             },
+//             {
+//               time:"2:30 - 3:15 PM",
+//               topic:"AMA for speakers",
+//               speaker:""
+//             },
+//             {
+//               time:"3:15 - 3:30 PM",
+//               topic:"Closing",
+//               speaker:""
+//             },
+//           ]
+//     },
+//     fri:{
+//         title:"Friday",
+//         item:[ 
+//           ...startingItems,
+//           {
+//             time:"10:30 - 11:00 AM",
+//             topic:"The Web3 Stack",
+//             speaker:"Idris Olubisi"
+//           },
+//           {
+//             time:"11:00 - 11:30 AM",
+//             topic:"The Polygon Workshop",
+//             speaker:""
+//           },
+//           {
+//             time:"11:30 - 12:15 PM",
+//             topic:"Developing your Career Practical in Web3",
+//             speaker:""
+//           },
+//           {
+//             time:"12:15 - 1:00 PM",
+//             topic:"Pragmatic Approach to Profitable Crypto Trading",
+//             speaker:"Tunmise Olaoluwa"
+//           },
+//           {
+//             time:"1:00 - 1:20 PM",
+//             topic:"Lending and Borrowing",
+//             speaker:"Raymond Abiola"
+//           },
+//           {
+//             time:"1:20 - 2:00 PM",
+//             topic:"Starting, Building and Growing a community",
+//             speaker:"Michael Jerry"
+//           },
+//           {
+//             time:"2:00 - 2:15 PM",
+//             topic:"Blockchain Research Paper",
+//             speaker:"Shlok Dubey"
+//           },
+//           {
+//             time:"2:15 - 2:45 PM",
+//             topic:"Namhii Workshop",
+//             speaker:""
+//           },
+//           {
+//             time:"2:45 - 3:45 PM",
+//             topic:"Break out sessions",
+//             speaker:""
+//           },
+//           {
+//             time:"3:45 - 4:00 PM",
+//             topic:"Closing",
+//             speaker:""
+//           },
 
-        ]
-    },
-    sat:{
-        title:"Saturday",
-        item:[
-            {
-                time:"9:00 - 9:30 AM",
-                topic:"Arrival & Registration",
-                speaker:""
-             },
-             {
-                time:"9:30 - 9:45 AM",
-                topic:"Welcome address",
-                speaker:""
-             },
-             {
-                time:"9:45 - 9:50 AM",
-                topic:"Promise of Web3",
-                speaker:"Adamu Bello"
-             },
-             {
-                time:"9:50 - 10:10 AM",
-                topic:"New Digital Order: Legal Frameworks, Risks and Pitfalls",
-                speaker:"Isaac Ijuo"
-             },
-             {
-                time:"10:10 - 10:20 AM",
-                topic:"-",
-                speaker:"Adedeji Owonibi"
-             },
-             {
-                time:"10:20 - 10:35 AM",
-                topic:"Opportunities for Africans in the Web3 Marketing space",
-                speaker:"Tutu Adetunmbi"
-             },
-             {
-                time:"10:35 - 10:45 AM",
-                topic:"Nahmii Protocol",
-                speaker:""
-             },
-             {
-                time:"10:45 - 10:55 AM",
-                topic:"Polygon Keynote",
-                speaker:"Ayomide Shodipo"
-             },
-             {
-                time:"10:55 - 11:00 AM",
-                topic:"",
-                speaker:""
-             },
-             {
-                time:"11:05 - 11:35 AM",
-                topic:"Ethereum Merge: Keynote",
-                speaker:"Justin Drake"
-             },
-             {
-                time:"11:35 - 11:40 AM",
-                topic:"Beauty of Blockchain",
-                speaker:"Pius Paul"
-             },
-             {
-                time:"11:40 - 11:50 AM",
-                topic:"Pillow fund",
-                speaker:""
-             },
-             {
-                time:"11:50 - 12:30 PM",
-                topic:"Panel Session: Panel: Role of blockchain campus clubs in increasing community onboarding",
-                speaker:"Campus reps from seven (7) universities"
-             },
-             {
-                time:"12:30 - 12:50 PM",
-                topic:"Panel Session: Cryptocurrency regulation in Nigeria",
-                speaker:"Senator Ihenyen"
-             },
-             {
-                time:"12:50 - 1:30 PM",
-                topic:"Panel Session: Panel: Through the Lens, the present and prospects of Nigeria's developers ecosystem",
-                speaker:"Mayowa, Jude & Lucky"
-             },
-             {
-                time:"1:30 - 1:40 PM",
-                topic:"Insight into Web3 Ladies",
-                speaker:"Oluchi Enebeli"
-             },
-             {
-                time:"1:40 - 1:50 PM",
-                topic:"Understanding the Starknet Ecosystem",
-                speaker:"Starknet Representative"
-             },
-             {
-                time:"1:50 - 2:00 PM",
-                topic:"The Consensus Mechanism",
-                speaker:"Claire Charles"
-             },
-             {
-                time:"2:00 - 2:15 PM",
-                topic:"Break",
-                speaker:""
-             },
-             {
-                time:"2:15 - 2:45 PM",
-                topic:"Power Law Careers",
-                speaker:"Olumide Aderinwale"
-             },
-             {
-                time:"2:45 - 2:55 PM",
-                topic:"Introducing IEEE",
-                speaker:""
-             },
-             {
-                time:"3:00 - 3:30 PM",
-                topic:"Web3bridge anniversary Documentary",
-                speaker:""
-             },
-             {
-                time:"3:30 - 4:00 PM",
-                topic:"Web3bridge AMA & Closing",
-                speaker:""
-             },
+//         ]
+//     },
+//     sat:{
+//         title:"Saturday",
+//         item:[
+//             {
+//                 time:"9:00 - 9:30 AM",
+//                 topic:"Arrival & Registration",
+//                 speaker:""
+//              },
+//              {
+//                 time:"9:30 - 9:45 AM",
+//                 topic:"Welcome address",
+//                 speaker:""
+//              },
+//              {
+//                 time:"9:45 - 9:50 AM",
+//                 topic:"Promise of Web3",
+//                 speaker:"Adamu Bello"
+//              },
+//              {
+//                 time:"9:50 - 10:10 AM",
+//                 topic:"New Digital Order: Legal Frameworks, Risks and Pitfalls",
+//                 speaker:"Isaac Ijuo"
+//              },
+//              {
+//                 time:"10:10 - 10:20 AM",
+//                 topic:"-",
+//                 speaker:"Adedeji Owonibi"
+//              },
+//              {
+//                 time:"10:20 - 10:35 AM",
+//                 topic:"Opportunities for Africans in the Web3 Marketing space",
+//                 speaker:"Tutu Adetunmbi"
+//              },
+//              {
+//                 time:"10:35 - 10:45 AM",
+//                 topic:"Nahmii Protocol",
+//                 speaker:""
+//              },
+//              {
+//                 time:"10:45 - 10:55 AM",
+//                 topic:"Polygon Keynote",
+//                 speaker:"Ayomide Shodipo"
+//              },
+//              {
+//                 time:"10:55 - 11:00 AM",
+//                 topic:"",
+//                 speaker:""
+//              },
+//              {
+//                 time:"11:05 - 11:35 AM",
+//                 topic:"Ethereum Merge: Keynote",
+//                 speaker:"Justin Drake"
+//              },
+//              {
+//                 time:"11:35 - 11:40 AM",
+//                 topic:"Beauty of Blockchain",
+//                 speaker:"Pius Paul"
+//              },
+//              {
+//                 time:"11:40 - 11:50 AM",
+//                 topic:"Pillow fund",
+//                 speaker:""
+//              },
+//              {
+//                 time:"11:50 - 12:30 PM",
+//                 topic:"Panel Session: Panel: Role of blockchain campus clubs in increasing community onboarding",
+//                 speaker:"Campus reps from seven (7) universities"
+//              },
+//              {
+//                 time:"12:30 - 12:50 PM",
+//                 topic:"Panel Session: Cryptocurrency regulation in Nigeria",
+//                 speaker:"Senator Ihenyen"
+//              },
+//              {
+//                 time:"12:50 - 1:30 PM",
+//                 topic:"Panel Session: Panel: Through the Lens, the present and prospects of Nigeria's developers ecosystem",
+//                 speaker:"Mayowa, Jude & Lucky"
+//              },
+//              {
+//                 time:"1:30 - 1:40 PM",
+//                 topic:"Insight into Web3 Ladies",
+//                 speaker:"Oluchi Enebeli"
+//              },
+//              {
+//                 time:"1:40 - 1:50 PM",
+//                 topic:"Understanding the Starknet Ecosystem",
+//                 speaker:"Starknet Representative"
+//              },
+//              {
+//                 time:"1:50 - 2:00 PM",
+//                 topic:"The Consensus Mechanism",
+//                 speaker:"Claire Charles"
+//              },
+//              {
+//                 time:"2:00 - 2:15 PM",
+//                 topic:"Break",
+//                 speaker:""
+//              },
+//              {
+//                 time:"2:15 - 2:45 PM",
+//                 topic:"Power Law Careers",
+//                 speaker:"Olumide Aderinwale"
+//              },
+//              {
+//                 time:"2:45 - 2:55 PM",
+//                 topic:"Introducing IEEE",
+//                 speaker:""
+//              },
+//              {
+//                 time:"3:00 - 3:30 PM",
+//                 topic:"Web3bridge anniversary Documentary",
+//                 speaker:""
+//              },
+//              {
+//                 time:"3:30 - 4:00 PM",
+//                 topic:"Web3bridge AMA & Closing",
+//                 speaker:""
+//              },
 
 
 
-        ]
+//         ]
         
-    }
+//     }
   
-  }
+//   }

@@ -19,13 +19,13 @@ const AboveFold = () => {
         <button className="border-b-4 border-[#122C47]">
           <Link href="#"> Home </Link>
         </button>
-        <a
+        {/* <a
           href="https://drive.google.com/file/d/1klY_-Rgec-hwlsb91ED9zzeA2jMOmZvK/view"
           target="_blank"
         >
           {" "}
           Sponsor{" "}
-        </a>
+        </a> */}
         <Link href="/apply/registration">Register </Link>
       </nav>
 
