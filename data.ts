@@ -12,11 +12,15 @@ export const schedule = {
       title: "Hall 1",
       item: [
         {
-          time: "9:30 - 10:00 AM",
+          time: "9:00 - 10:00 AM",
           topic: "Arrival & Registration",
         },
         {
-          time: "10:00 - 10:30 AM",
+          time: "10:00 - 10:15 AM",
+          topic: "Welcome address",
+        },
+        {
+          time: "10:15 - 10:30 AM",
           topic: "Introduction",
         },
         {
@@ -84,28 +88,38 @@ export const schedule = {
       title: "Hall 2",
       item: [
         {
-          time: "12:00 - 12:45 PM",
+          time: "12:00 - 12:20 PM",
           topic: "Introduction to formal Verification and symbolic execution for smart contract",
           speaker: "Temitayo Daniel - Hall 2",
         },
         {
-          time: "12:45 - 1:15 PM",
+          time: "12:20 - 12:35 PM",
+          topic: "Understanding Web3 Frontend",
+          speaker: "Blessing Samuel - Hall 2",
+        },
+        {
+          time: "12:35 - 12:55 PM",
+          topic: "Starknet under the hood",
+          speaker: "Godspower Eze - Hall 2",
+        },
+        {
+          time: "12:55 - 1:15 PM",
           topic: "Smart contract Audit",
           speaker: "David Uzochukwu - Hall 2",
         },
         {
-          time: "1:15 - 1:40 PM",
+          time: "1:15 - 1:30 PM",
           topic: "Secret Network",
-          speaker: "Pope Black - Hall 2",
+          speaker: "Pope Black  - Hall 2",
         },
         {
-          time: "1:40 - 1:50 PM",
-          topic: "Leg Stretch",
+          time: "1:30 - 1:50 PM",
+          topic: "Filecoin",
         },
         {
           time: "1:50 - 2:15 PM",
           topic: "Invariant testing",
-          speaker: "Adebayo Abimbola - Hall 2",
+          speaker: "Abimbola Adebayo - Hall 2",
         },
         {
           time: "2:15 - 3:00 PM",
@@ -132,7 +146,7 @@ export const schedule = {
         {
           time: "10:15 - 10:35 AM",
           topic: "Why Web 3.0 matters - Demystifying D'web",
-          speaker:"Chales Freeborn - Hall 1"
+          speaker:"Charles Freeborn - Hall 1"
         },
         {
           time: "10:35 - 11:05 AM",
@@ -181,51 +195,38 @@ export const schedule = {
       title: "Hall 2",
       item: [
         {
-          time: "12:00 - 12:20 PM",
+          time: "10:30 - 1:40 PM",
+          topic: "Catch the Flag - CTF",
+          // speaker: "David Uzochukwu - Hall 2",
+        },
+        {
+          time: "1:40 - 2:00 PM",
           topic: "Nethermind session",
           speaker: "Jelilat Anofiu - Hall 2",
         },
         {
-          time: "12:20 - 12:40 PM",
+          time: "2:00 - 2:20 PM",
           topic: "From Lag to Lightning: Harnessing the Power of Redux-Multicall for Real-Time DAPPs",
           speaker: "Adekunle Michael - Hall 2",
         },
         {
-          time: "12:40 - 1:00 PM",
+          time: "2:20 - 2:40 PM",
           topic: "Building fullstack interchain dApp",
           speaker: "Idris Olubi - Hall 2",
         },
         {
-          time: "1:00 - 1:15 PM",
+          time: "2:40 - 3:00 PM",
+          topic: "Blockops Workshop",
+        },
+        {
+          time: "3:00 - 3:20 PM",
           topic: "Hands-on pratice with the new Cairo syntax",
           speaker: "Ademola Kelvin - Hall 2",
         },
         {
-          time: "1:15 - 1:45 PM",
-          topic: "Blockops Workshop",
-        },
-        {
-          time: "1:45 - 2:05 PM",
-          topic: "Understanding Web3 Frontend",
-          speaker:"Blessing Samuel"
-        },
-        {
-          time: "2:05 - 2:25 PM",
-          topic: "Starknet under the hood",
-          speaker:"Godspower Eze"
-        },
-        {
-          time: "2:25 - 2:50 PM",
+          time: "3:20 - 3:40 PM",
           topic: "Remix for Hackathons workshop",
           speaker:"David Disu"
-        },
-        {
-          time: "3:00 - 3:30 PM",
-          topic: "Building on Filecoin",
-        },
-        {
-          time: "3:30 - 5:00 PM",
-          topic: "CTF & Design Hackathon",
         },
       ],
     },
@@ -248,7 +249,7 @@ export const schedule = {
       },
       {
         time: "10:00 - 10:50 AM",
-        topic: "Q & A with Vitalik BUterin",
+        topic: "Q & A with Vitalik Buterin",
       },
       {
         time: "10:50 - 11:05 AM",
@@ -321,7 +322,8 @@ export const schedule = {
       },
       {
         time: "2:30 - 2:45 PM",
-        topic: "Blockops",
+        topic: "Building in Web3: The Good, The Bad, The Ugly",
+        speaker:"Franklin Okpako"
       },
       {
         time: "2:45 - 2:55 PM",
@@ -331,7 +333,7 @@ export const schedule = {
       {
         time: "2:55 - 3:10 PM",
         topic: "Importance of Web3 Security and the role of QuillAudits",
-        speaker:"QuillAudits"
+        speaker:"Jesulayomi Adetola"
       },
       {
         time: "3:10 - 3:20 PM",
@@ -350,7 +352,16 @@ export const schedule = {
       },
       {
         time: "3:30 - 3:45 PM",
-        topic: "-",
+        topic: "Cloudp2p",
+      },
+      {
+        time: "3:45 - 4:00 PM",
+        topic: "Demystifying the Arweave Protocol",
+        speaker:"Abasi-ibiangake Udoka"
+      },
+      {
+        time: "4:00 PM",
+        topic: "Closing Remarks",
       },
     ],
   },
