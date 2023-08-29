@@ -23,6 +23,8 @@ const hackatonTemplateSource = fs.readFileSync( `${process.cwd()}/servers/templa
 const volunteerTemplateSource=fs.readFileSync( `${process.cwd()}/servers/template/volunteer-email.hbs`,
 "utf8")
 
+const ticketTemplateSource=fs.readFileSync( `${process.cwd()}/servers/template/ticket-email.hbs`,
+"utf8")
 
 
 interface ImailgunAuth {
@@ -42,6 +44,7 @@ const template = handlebars.compile(emailTemplateSource);
 const qrtemplate = handlebars.compile(QrEmailTemplateSource);
 const hackatonTemplate =handlebars.compile(hackatonTemplateSource)
 const volunteerTemplate =handlebars.compile(volunteerTemplateSource)
+const ticketTemplate =handlebars.compile(ticketTemplateSource)
 
 
 
@@ -143,6 +146,53 @@ export const sendQrcodeEmail = async (
     };
   }
 };
+
+export const sendTicketEmail = async (
+  to: string,
+  typeOfUser: string,
+  name: string
+) => {
+  const { from, emailSubject, replyTo } = mailSenderConfig;
+
+
+  const sendApplicationResp = ticketTemplate({
+    type: typeOfUser,
+    name,
+    application: typeOfUser == "speaker" || typeOfUser == "sponsor" || typeOfUser == "volunteer",
+    replyTo,
+  });
+  
+  const ticketMailOptions = {
+    from,
+    to,
+    subject: emailSubject,
+    html: sendApplicationResp,
+  };
+
+
+ 
+
+  try {
+    // const response = await wrappedSendMail(regMailOptions);
+    const response =   await sendGridMail.send(ticketMailOptions)
+      console.log('ticket sent successful', response)
+    return {
+      status: true,
+      to,
+      message: "Successfully sent email",
+      data: response,
+    };
+
+
+  } catch (e) {
+    console.log(e, 'error mailing')
+    return {
+      status: false,
+      error: e,
+    };
+  }
+};
+
 
 export const sendHackatonEmail = async(email='',)=>{
 
