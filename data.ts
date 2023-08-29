@@ -212,7 +212,7 @@ export const schedule = {
         {
           time: "2:20 - 2:40 PM",
           topic: "Building fullstack interchain dApp",
-          speaker: "Idris Olubi - Hall 2",
+          speaker: "Idris Olubisi - Hall 2",
         },
         {
           time: "2:40 - 3:00 PM",
@@ -343,7 +343,7 @@ export const schedule = {
       {
         time: "3:20 - 3:30 PM",
         topic: "Breaking into Devrel",
-        speaker:"Idris Olubi"
+        speaker:"Idris Olubisi"
       },
       {
         time: "3:30 - 3:40 PM",
