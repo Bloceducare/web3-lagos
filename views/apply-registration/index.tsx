@@ -96,7 +96,13 @@ const ApplyAsAnAttendant = () => {
 
   return (
     <div className="p-3 mt-12">
-      <div className="text-center">
+        <h1 className="my-6 text-3xl font-semibold text-center text-gray-800">
+          Registration Application
+        </h1>
+      <div className="p-10 mx-auto bg-white rounded-lg shadow md:w-3/4 lg:w-1/2 ">
+        <h3 className="text-center">Registration has closed!! See you at the event 😊</h3>
+      </div>
+      {/* <div className="text-center">
         <h1 className="mb-2 text-3xl font-semibold text-gray-800">
           Web3 Lagos 2023 Registration
         </h1>
@@ -144,8 +150,6 @@ const ApplyAsAnAttendant = () => {
                   value={email}
                   required
                 />
-                {/* border-red-300  */}
-                {/* <p className="mt-2 text-sm text-red-400">Email is required</p> */}
               </div>
               <div className="mb-5">
                 <label
@@ -164,8 +168,6 @@ const ApplyAsAnAttendant = () => {
                   value={phone}
                   required
                 />
-                {/* border-red-300  */}
-                {/* <p className="mt-2 text-sm text-red-400">Email is required</p> */}
               </div>
 
               <div className="mb-5">
@@ -182,22 +184,6 @@ const ApplyAsAnAttendant = () => {
                   required
                 />
               </div>
-
-              {/* <div className="mb-5">
-                <label className="block mb-2 font-bold text-gray-600">
-                  Why Do you want to attend{" "}
-                  <span className="text-red-600">*</span>{" "}
-                </label>
-                <textarea
-                  name="reasonForAttending"
-                  value={reasonForAttending}
-                  onChange={handleChange}
-                  className="block w-full p-3 mt-1 border rounded shadow form-textarea"
-                  rows={3}
-                  placeholder="Enter your reason here."
-                  required
-                ></textarea>
-              </div> */}
 
               <div className="mb-5 ">
                 <span className="block mb-2 font-bold text-gray-600">
@@ -239,29 +225,6 @@ const ApplyAsAnAttendant = () => {
                   </div>
                 </div>
               </div>
-
-              {/* {!!attendingOtherDays && (
-                <div className="mb-5">
-                  <label className="block mb-2 font-bold text-gray-600">
-                    Reasons For Attending Day 1 and 2
-                    <div className="inline-block px-3 text-white bg-gray-500 rounded-md ">
-                      <p>Day 1 and 2 are technical sessions and workshops</p>
-                      <span className="capitalize">
-                        please note this is an invite only
-                      </span>
-                    </div>
-                  </label>
-                  <textarea
-                    name="reasonForOtherDays"
-                    value={reasonForOtherDays}
-                    onChange={handleChange}
-                    className="block w-full p-3 mt-1 border rounded shadow form-textarea"
-                    rows={3}
-                    placeholder="Enter your reason here."
-                    required
-                  ></textarea>
-                </div>
-              )} */}
 
               <div className="mb-5">
                 <label className="block mb-2 font-bold text-gray-600">
@@ -358,24 +321,24 @@ const ApplyAsAnAttendant = () => {
         {!!message && message}
         {!!message && (
           <div>
-        <h4 className="mt-2">Make a tweet</h4>
-        <TwitterShareButton
-        className="items-center"
-          url="https://event.web3bridge.com/"
-          title="I just registered for web3Lagos Conference 2023 !!"
-          hashtags={[
-            "Web3",
-            "Blockchain",
-            "Web3Bridge",
-            "Web3LagosConference",
-          ]}
-          related={["@Web3Bridge"]}
-        >
-          <TwitterIcon size={32} round />
-        </TwitterShareButton>
-      </div>
+            <h4 className="mt-2">Make a tweet</h4>
+            <TwitterShareButton
+              className="items-center"
+              url="https://event.web3bridge.com/"
+              title="I just registered for web3Lagos Conference 2023 !!"
+              hashtags={[
+                "Web3",
+                "Blockchain",
+                "Web3Bridge",
+                "Web3LagosConference",
+              ]}
+              related={["@Web3Bridge"]}
+            >
+              <TwitterIcon size={32} round />
+            </TwitterShareButton>
+          </div>
         )}
-      </div>
+      </div> */}
     </div>
   );
 };
