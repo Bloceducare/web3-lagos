@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { createRouter } from "next-connect";
 import connectDB, { conferenceStatus } from "@servers/config/index";
 import participantsDb from "@servers/models/participant";
-import { registrationEmail, sendHackatonEmail, sendQrcodeEmail } from "@servers/mailer";
+import { registrationEmail, sendHackatonEmail, sendQrcodeEmail, sendTicketEmail } from "@servers/mailer";
 import cloudinary from "@servers/cloudinary";
 import QRcode from "@servers/qr-code";
 
@@ -113,7 +113,8 @@ router.post(async (req, res) => {
     const userData: any = new participantsDb(data);
       Promise.all(
         [await userData.save(),
-          await registrationEmail(email, type, userName),
+          await sendTicketEmail(email,type,userName)
+          // await registrationEmail(email, type, userName),
           // await sendHackatonEmail(email), 
           // await sendQrcodeEmail(email,type, userName,qrCodeUrl)
         ])

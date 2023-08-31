@@ -264,7 +264,7 @@ export const schedule = {
       {
         time: "11:20 - 11:40 AM",
         topic: "Web3 Africa: State of affairs and the way forward",
-        speaker:"Panel 1"
+        speaker:"Panel 1:  Lucky Henry,\n Eric Anaan,\n Harri Obi,\n Pishiken Tukura,\n Yvonne kagondu"
       },
       {
         time: "11:40 - 11:50 AM",
