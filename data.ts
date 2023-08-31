@@ -283,7 +283,7 @@ export const schedule = {
       },
       {
         time: "12:15 - 12:30 PM",
-        topic: "Breaking into protocol development",
+        topic: "Blockchain Interoperability",
         speaker:"David Salami"
       },
       {
