@@ -96,13 +96,10 @@ const ApplyAsAnAttendant = () => {
 
   return (
     <div className="p-3 mt-12">
-        <h1 className="my-6 text-3xl font-semibold text-center text-gray-800">
-          Registration Application
-        </h1>
-      <div className="p-10 mx-auto bg-white rounded-lg shadow md:w-3/4 lg:w-1/2 ">
+      {/* <div className="p-10 mx-auto bg-white rounded-lg shadow md:w-3/4 lg:w-1/2 ">
         <h3 className="text-center">Registration has closed!! See you at the event 😊</h3>
-      </div>
-      {/* <div className="text-center">
+      </div> */}
+       <div className="text-center">
         <h1 className="mb-2 text-3xl font-semibold text-gray-800">
           Web3 Lagos 2023 Registration
         </h1>
@@ -338,7 +335,7 @@ const ApplyAsAnAttendant = () => {
             </TwitterShareButton>
           </div>
         )}
-      </div> */}
+      </div> 
     </div>
   );
 };

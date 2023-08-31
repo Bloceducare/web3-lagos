@@ -118,7 +118,7 @@ const Sponsors = () => {
           </div>
         </div>
 
-        {/* last frame desktop */}
+        {/*  frame desktop */}
         <div className="hidden md:flex md:flex-wrap md:justify-between lg:flex lg:flex-wrap items-center lg:justify-between">
           <div className="flex self-end">
             <Image
@@ -147,6 +147,15 @@ const Sponsors = () => {
               height={150}
               alt="sponsor"
             />
+          </div>
+        </div>
+        {/* last frame */}
+        <div className="hidden md:flex space-x-24 md:flex-wrap mt-2 lg:flex lg:flex-wrap items-center">
+          <div>
+            <Image src="/Arweave.png" width={250} height={150} alt="sponsor" />
+          </div>
+          <div>
+            <Image src="/cloudp2p.png" width={250} height={50} alt="sponsor" />
           </div>
         </div>
 
@@ -181,6 +190,15 @@ const Sponsors = () => {
               height={150}
               alt="sponsor"
             />
+          </div>
+        </div>
+
+        <div className="flex items-center space-x-12 mt-8 md:hidden lg:hidden ">
+          <div>
+            <Image src="/Arweave.png" width={350} height={150} alt="sponsor" />
+          </div>
+          <div>
+            <Image src="/cloudp2p.png" width={250} height={50} alt="sponsor" />
           </div>
         </div>
       </div>
