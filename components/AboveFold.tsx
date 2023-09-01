@@ -26,7 +26,7 @@ const AboveFold = () => {
           {" "}
           Sponsor{" "}
         </a> */}
-        <Link href="/apply/registration">Register </Link>
+        {/* <Link href="/apply/registration">Register </Link> */}
       </nav>
 
       <section>
@@ -84,12 +84,12 @@ const AboveFold = () => {
           </div>
           <div className="bg-[#122C47] absolute top-[500px] w-[1441px] h-[32px]"></div>
         </div>
-        <div className="block md:hidden lg:hidden">
+        {/* <div className="block md:hidden lg:hidden">
           {" "}
           <DateCountDown className="mx-auto mt-10 text-center my-4 " />
           
-        </div>
-        <div className=" my-6 block md:hidden lg:hidden my-8">
+        </div> */}
+        {/* <div className=" my-6 block md:hidden lg:hidden my-8">
             <div className="flex justify-center">
               <Link href="/apply/registration">
                 <button className="text-white outline outline-offset-2 outline-[#122C47] font-bold bg-red-500 w-[90%] md:w-[20%] lg:w-[20%] p-4 rounded-lg">
@@ -97,7 +97,7 @@ const AboveFold = () => {
                 </button>
               </Link>
             </div>
-          </div>
+          </div> */}
 
           <div className="block md:hidden lg:hidden grid justify-center mb-24">
             <div className="flex">
