@@ -76,11 +76,11 @@ export const schedule = {
           topic: "The Future of Web3 Hacking",
           speaker: "Ogunsakin Emmanuel - Hall 1",
         },
-        {
-          time: "4:00 - 4:30 PM",
-          topic: "Understanding Base ecosystem",
-          speaker: "Jesse Pollak - Hall 1",
-        },
+        // {
+        //   time: "4:00 - 4:30 PM",
+        //   topic: "Understanding Base ecosystem",
+        //   speaker: "Jesse Pollak - Hall 1",
+        // },
        
       ],
     },
@@ -195,38 +195,57 @@ export const schedule = {
       title: "Hall 2",
       item: [
         {
-          time: "10:30 - 1:40 PM",
-          topic: "Catch the Flag - CTF",
-          // speaker: "David Uzochukwu - Hall 2",
+          time: "10:30 - 10:50 PM",
+          topic: "Invariant Testing",
+          speaker: "Adebayo Abimbola - Hall 2",
         },
         {
-          time: "1:40 - 2:00 PM",
-          topic: "Nethermind session",
-          speaker: "Jelilat Anofiu - Hall 2",
+          time: "10:50 - 11:30 PM",
+          topic: "Introduction to Foundry",
+          speaker: "Timidan - Hall 2",
         },
         {
-          time: "2:00 - 2:20 PM",
+          time: "11:30 - 12:00 PM",
+          topic: "Understanding Ethereum node",
+          speaker: "Griffin - Hall 2",
+        },
+        {
+          time: "12:00 - 12:20 PM",
           topic: "From Lag to Lightning: Harnessing the Power of Redux-Multicall for Real-Time DAPPs",
           speaker: "Adekunle Michael - Hall 2",
         },
         {
-          time: "2:20 - 2:40 PM",
+          time: "12:20 - 12:40 PM",
+          topic: "Nethermind session",
+          speaker: "Jelilat Anofiu - Hall 2",
+        },
+        {
+          time: "12:40 - 1:00 PM",
           topic: "Building fullstack interchain dApp",
           speaker: "Idris Olubisi - Hall 2",
         },
         {
-          time: "2:40 - 3:00 PM",
+          time: "1:00 - 1:20 PM",
           topic: "Blockops Workshop",
         },
         {
-          time: "3:00 - 3:20 PM",
+          time: "1:20 - 1:40 PM",
           topic: "Hands-on pratice with the new Cairo syntax",
           speaker: "Ademola Kelvin - Hall 2",
         },
         {
-          time: "3:20 - 3:40 PM",
+          time: "1:40 - 2:00 PM",
           topic: "Remix for Hackathons workshop",
           speaker:"David Disu"
+        },
+        {
+          time: "2:00 - 5:00 PM",
+          topic: "Catch the flag - CTF",
+        },
+        {
+          time: "5:00 - 5:50 PM",
+          topic: "Understanding the base ecosystem",
+          speaker:"Jesse Pollak"
         },
       ],
     },
