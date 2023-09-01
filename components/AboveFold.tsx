@@ -52,7 +52,7 @@ const AboveFold = () => {
         </div>
         <div className="relative bg-top bg-no-repeat bg-[url('../images/main_bg.png')] h-[calc(110vh-20rem)] w-[1440px] mb-[23px] hidden md:blocl lg:block">
           <div className=" absolute top-[400px] left-[50%] translate-x-[-50%] w-[1060px]">
-            <DateCountDown className="mx-auto mt-10 text-center " />
+            {/* <DateCountDown className="mx-auto mt-10 text-center " /> */}
 
             <div className="grid justify-center">
               <div className="flex">
