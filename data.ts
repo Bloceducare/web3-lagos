@@ -155,7 +155,7 @@ export const schedule = {
         },
         {
           time: "11:05 - 12:00 PM",
-          topic: "Unlocking prosperity in AFrica;Business model considerations for building innovative web3 solutions",
+          topic: "Unlocking prosperity in AFrica; Business model considerations for building innovative web3 solutions",
           speaker:"Toyin Bamidele - Hall 1"
         },
         {
@@ -287,7 +287,7 @@ export const schedule = {
       },
       {
         time: "11:40 - 11:50 AM",
-        topic: "web3 adoption in Africa (The next 1billion users)",
+        topic: "Blockchain for Africans: Why should we care?",
         speaker:"Amarachi Amaechi"
       },
       {
