@@ -13,10 +13,14 @@ const useGetRecords = (q: string) => {
     setData((prev) => ({ ...prev, data: [], loading: true, error: false }));
     try {
       const data = await getRecords(q);
-      const mapped = data.map((items: any, index: number) => ({
-        ...items,
-        SN: index + 1,
-      }));
+      const mapped = data.map((items: any, index: number) => {
+      
+        return {
+          ...items,
+          SN: index + 1,
+          role: !items?.role ? "others" : items.role
+        }
+      });
       setData((prev) => ({
         ...prev,
         loading: false,

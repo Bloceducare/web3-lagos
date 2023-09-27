@@ -23,6 +23,7 @@ const styles = { height: 400, width: 800 };
 const defaultFields = [
   { field: "SN", filter: false, sortable: false },
   { field: "userName" },
+  { field: "role" },
   { field: "email" },
   { field: "type" },
   { field: "companyName" },
@@ -52,6 +53,7 @@ const speakersField = [
 const attendantsFields = [
   { field: "SN", filter: false, sortable: false },
   { field: "userName" },
+  { field: "role" },
   { field: "email" },
   { field: "companyName" },
   { field: "location" },
