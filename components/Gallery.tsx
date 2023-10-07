@@ -25,7 +25,7 @@ const Gallery = () => {
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
-                      href="#"
+                      href="https://docs.google.com/document/d/11RWT18bAajPigJg_o39Kg2XM8BWaaw3D22KdJ9OTooA/edit?usp=sharing"
                     >
                       Link Here
                     </a>
@@ -42,7 +42,7 @@ const Gallery = () => {
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
-                      href="#"
+                      href="https://docs.google.com/document/d/1JdcvII6U_3O6FQngIkaEVIDiOMMmaiMGotslBygbL-0/edit?usp=sharing"
                     >
                       Link Here
                     </a>
