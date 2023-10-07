@@ -4,9 +4,7 @@
 @import url(./speakers.css);
 @import url(./schedule.css);
 @import url(./hero.css);
-
-
-
+@import url(./stats.css);
 
 /* https://ifonts.xyz/nekst-font.html */
 @font-face {
@@ -16,15 +14,19 @@
   font-style: normal;
   }
 
+  @font-face {
+    font-family: 'AcidGrotesk';
+    src:url('../assets/fonts/Acid-Grotesk/acid_medium.otf');
+    font-weight: 400;
+    font-style: normal;
+    }
+
 html,
 body {
-  font-family: ProductSans, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  font-family: AcidGrotesk, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-body {
-  background-color: #E9EFFF;
-}
 
 .bg-gradient {
   background: #1c92d2;  
