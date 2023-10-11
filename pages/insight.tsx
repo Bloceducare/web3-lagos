@@ -94,7 +94,7 @@ function Insight() {
                 </div>
               </div>
             </div>
-            <div className="">
+            <div className="my-4">
               <ul className="text-[#23242A] text-[32px] leading-[35px]">
                 <li>
                   Non Technical Speaker: <br /> <span>17</span>
@@ -113,7 +113,7 @@ function Insight() {
                 </div>
                 <div>
                   <p className=" text-[20px] md:text-[48px] font-[500]  leading-[24.5px] md:leading-[52.8px] lg:text-[48px] text-white lg:leading-[52.8px]">
-                    Total Registration
+                    Total Streams
                   </p>
                   <p className="text-[46px] md:text-[48px] font-[500]  leading-[59.5px] md:leading-[52.8px] lg:text-[64px] text-white lg:leading-[70.4px] font-[700]">
                     3,161
