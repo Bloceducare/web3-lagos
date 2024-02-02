@@ -13,39 +13,39 @@ import YoutubeIframe from "@components/Iframe";
 
 const HomeView = () => {
   return (
-    <div>
-      <Hero />
-      <About />
-      {/* <Slider /> */}
+    // <div>
+    //   <Hero />
+    //   <About />
+    //   {/* <Slider /> */}
 
-      <YoutubeIframe>
-        The 2023 edition had over 1500 enthusiasts and players in the ecosystem
-        in attendance.
-        <br />
-        With over 50 speakers in attendance and featured breakout sessions.
-        Ayodeji Awosika, Chief Mechanic at Web3Bridge delivered the keynote
-        address.
-      </YoutubeIframe>
-      <Sponsors/>
-      <SpeakersCards/>
-      <Gallery/>
-    </div>
-    // <div
-    //   className="bg-white w-none md:w-[1441px] lg:w-[1441px] mx-auto"
-    //   // style={{
-    //   //   backgroundColor: "#FFFFFF",
-    //   //   width: "1441px",
-    //   //   margin: "0 auto",
-    //   // }}
-    // >
-    //   <AboveFold />
-    //   <DetailsCard />
-    //   <Sponsors />
-    //   <SpeakersCards />
-    //   <Gallery />
-    //   <Schedule />
-    //   <Team />
+    //   <YoutubeIframe>
+    //     The 2023 edition had over 1500 enthusiasts and players in the ecosystem
+    //     in attendance.
+    //     <br />
+    //     With over 50 speakers in attendance and featured breakout sessions.
+    //     Ayodeji Awosika, Chief Mechanic at Web3Bridge delivered the keynote
+    //     address.
+    //   </YoutubeIframe>
+    //   <Sponsors/>
+    //   <SpeakersCards/>
+    //   <Gallery/>
     // </div>
+    <div
+      className="bg-white w-none md:w-[1441px] lg:w-[1441px] mx-auto"
+      style={{
+        backgroundColor: "#FFFFFF",
+        width: "1441px",
+        margin: "0 auto",
+      }}
+    >
+      <AboveFold />
+      <DetailsCard />
+      <Sponsors />
+      <SpeakersCards />
+      <Gallery />
+      <Schedule />
+      <Team />
+    </div>
   );
 };
 
