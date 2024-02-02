@@ -70,7 +70,7 @@ const AboveFold = () => {
                 <div>
                   <Image src={Date} alt={"date"} width={20} height={10} />
                 </div>
-                <div>September 05 - September 09, 2024</div>
+                <div>September 05 - September 07, 2024</div>
               </div>
             </div>
             {/* <div className="flex items-center justify-center">
@@ -109,7 +109,7 @@ const AboveFold = () => {
             <div>
               <Image src={Date} alt={"date"} width={20} height={10} />
             </div>
-            <div>September 05 - September 09, 2024</div>
+            <div>September 05 - September 07, 2024</div>
           </div>
         </div>
       </section>
