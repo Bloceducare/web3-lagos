@@ -11,32 +11,19 @@ import Date from "../images/date-icon.svg";
 
 const AboveFold = () => {
   return (
-    <>
-      <nav
-        className="flex items-center justify-center gap-20 p-4 bg-[#FFFFFF] text-lg  text-[#122C47] font-sans font-normal max-w-[1440px] shadow-lg 
-      "
-      >
-        <button className="border-b-4 border-[#122C47]">
-          <Link href="#"> Home </Link>
-        </button>
-        {/* <a
-          href="https://drive.google.com/file/d/1klY_-Rgec-hwlsb91ED9zzeA2jMOmZvK/view"
-          target="_blank"
-        >
-          {" "}
-          Sponsor{" "}
-        </a> */}
-        {/* <Link href="/apply/registration">Register </Link> */}
-      </nav>
+    <div className="w-full p-4 bg-hero">
+      <section className=" w-full  ">
+        <div className="w-fit flex text-white m-auto justify-between">
+<div className="flex flex-col w-full sm:w-1/2" >
 
-      <section>
-        <div className="w-80 h-37 text-4xl mx-auto mt-28 text-center">
-          <h1>
-            <span className="bg-[#122C47] text-[#FFFFFF]">Web3</span> Lagos
-            <span className="block mt-4">Conference 2024</span>
+        <div className="text-4xl ">
+          <h1 className=" flex flex-col font-bold gap-2">
+            <span className="font-bold ">Web3 Lagos</span> 
+            <span className="">Conference 2024</span>
           </h1>
+        
         </div>
-        <div className="w-[90%] md:w-2/4 lg:w-2/4 mx-auto text-center mt-2 mb-9 p-2 md:p-0 lg:p-0">
+        <div className="w-fit text-[1.3em] mt-2 leading-10">
           <p>
             The Web3 Lagos Conference is the largest Web3 Event in Lagos,
             Nigeria.
@@ -50,12 +37,11 @@ const AboveFold = () => {
             Networking and Learning experiences.
           </p>
         </div>
-        <div className="relative bg-top bg-no-repeat bg-[url('../images/main_bg.png')] h-[calc(110vh-20rem)] w-[1440px] mb-[23px] hidden md:blocl lg:block">
-          <div className=" absolute top-[400px] left-[50%] translate-x-[-50%] w-[1060px]">
+        <div className=" w-fit mt-16 flex flex-col gap-4">
             <DateCountDown />
 
-            <div className="grid justify-center">
-              <div className="flex">
+            <div className="flex flex-col items-center w-fit m-auto justify-center gap-3">
+              <div className="flex justify-between w-fit  items-center text-[1.2em] font-bold">
                 <div>
                   <Image
                     src={Location}
@@ -66,39 +52,22 @@ const AboveFold = () => {
                 </div>
                 <div>The Zone, Gbagada, Lagos State.</div>
               </div>
-              <div className="flex">
+              <div className="flex justify-between">
                 <div>
                   <Image src={Date} alt={"date"} width={20} height={10} />
                 </div>
                 <div>September 05 - September 07, 2024</div>
               </div>
             </div>
-            {/* <div className="flex items-center justify-center">
-              <div>
-                <Image src={"/date-icon.svg"} alt={"date"} width={20} height={10}/>
-              </div>
-              <div>
-                Aug 31 - Sep 2, 2023
-              </div>
-            </div> */}
+           
           </div>
-          <div className="bg-[#122C47] absolute top-[500px] w-[1441px] h-[32px]"></div>
+</div>
+        <Image src='/bgimage.webp' width={300} height={300} alt='bgimg' />
         </div>
-        <div className="block md:hidden lg:hidden">
-          {" "}
-          <DateCountDown />
-        </div>
-        {/* <div className=" my-6 block md:hidden lg:hidden my-8">
-            <div className="flex justify-center">
-              <Link href="/apply/registration">
-                <button className="text-white outline outline-offset-2 outline-[#122C47] font-bold bg-red-500 w-[90%] md:w-[20%] lg:w-[20%] p-4 rounded-lg">
-                  Register
-                </button>
-              </Link>
-            </div>
-          </div> */}
 
-        <div className="block md:hidden lg:hidden grid justify-center mb-24">
+        
+     {/* // looks wierd on mobile please fix  */}
+        {/* <div className="md:hidden lg:hidden grid justify-center mb-24">
           <div className="flex">
             <div>
               <Image src={Location} alt={"location"} width={20} height={10} />
@@ -111,9 +80,9 @@ const AboveFold = () => {
             </div>
             <div>September 05 - September 07, 2024</div>
           </div>
-        </div>
+        </div> */}
       </section>
-    </>
+    </div>
   );
 };
 

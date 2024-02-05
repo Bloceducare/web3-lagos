@@ -95,7 +95,7 @@ function Header() {
   };
 
   return (
-    <header className="header_padding fixed top-0 left-0 right-0 bg-header shadow-md z-10">
+    <header className="header_padding h-fit p-4 fixed top-0 left-0 right-0 bg-header shadow-md z-10">
       <nav className="flex items-center justify-between">
         <Link href="#">
           <Button className="cta_header py-2 px-6 text-[20px] leading-[24px] rounded-lg">

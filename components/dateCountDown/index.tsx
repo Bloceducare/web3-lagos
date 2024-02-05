@@ -76,7 +76,7 @@ const Countdown: React.FC<CountdownProps> = ({ endDate }) => {
 
   return (
     <div>
-      <p className=" text-xl font-medium tracking-wide">
+      <p className=" text-[2em] font-bold tracking-wide">
         {countdown.days} days, {countdown.hours} hours, {countdown.minutes}{" "}
         minutes, {countdown.seconds} seconds
       </p>
@@ -92,9 +92,9 @@ const DateCountDown: React.FC = () => {
     <div className="flex items-center justify-center">
       <div>
         <div className=" flex items-center justify-center">
-          <h1 className=" font-bold text-2xl -mt-4 tracking-wide">
+          {/* <h1 className=" font-bold text-2xl -mt-4 tracking-wide">
             Countdown Timer
-          </h1>
+          </h1> */}
         </div>
 
         <Countdown endDate={endDate} />

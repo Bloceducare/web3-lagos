@@ -31,13 +31,7 @@ const HomeView = () => {
     //   <Gallery/>
     // </div>
     <div
-      className="bg-white w-none md:w-[1441px] lg:w-[1441px] mx-auto"
-      style={{
-        backgroundColor: "#FFFFFF",
-        width: "1441px",
-        margin: "0 auto",
-      }}
-    >
+      className="bg-white w-full overflow-clip mx-auto" >
       <AboveFold />
       <DetailsCard />
       <Sponsors />
