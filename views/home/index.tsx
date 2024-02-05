@@ -18,22 +18,22 @@ const HomeView = () => {
     //   <About />
     //   {/* <Slider /> */}
 
-    //   <YoutubeIframe>
-    //     The 2023 edition had over 1500 enthusiasts and players in the ecosystem
-    //     in attendance.
-    //     <br />
-    //     With over 50 speakers in attendance and featured breakout sessions.
-    //     Ayodeji Awosika, Chief Mechanic at Web3Bridge delivered the keynote
-    //     address.
-    //   </YoutubeIframe>
     //   <Sponsors/>
     //   <SpeakersCards/>
     //   <Gallery/>
     // </div>
     <div
-      className="bg-white w-full overflow-clip mx-auto" >
+    className="bg-white w-full overflow-clip mx-auto" >
       <AboveFold />
       <DetailsCard />
+          <YoutubeIframe>
+          The 2023 edition had over 1500 enthusiasts and players in the ecosystem
+          in attendance.
+          <br />
+          With over 50 speakers in attendance and featured breakout sessions.
+          Ayodeji Awosika, Chief Mechanic at Web3Bridge delivered the keynote
+          address.
+        </YoutubeIframe>
       <Sponsors />
       <SpeakersCards />
       <Gallery />

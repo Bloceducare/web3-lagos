@@ -7,17 +7,15 @@ import Link from "next/link";
 const DetailsCard = () => {
   return (
     <>
-      <div className="hidden md:block lg:block text-justify py-3 tr mx-auto bg-[url('../images/bridge.svg')] w-[1440px] h-[calc(130vh-13rem)] bg-top bg-no-repeat pt-9 ">
-        <div className="flex justify-between mt-[110px] ">
-          <div className="bg-white shadow-xl w-[601px] h-[477px] ml-16 flex flex-col items-center text-center rounded-3xl">
-            <div className="-mt-6">
+      <div className="hidden md:block lg:block text-justify p-3 tr mx-auto bg-[url('../images/bridge.svg')] w-full h-[calc(130vh-13rem)] bg-top bg-no-repeat ">
+        <div className="flex justify-between mt-8 gap-4 h-fit w-full items-center">
+          <div className="bg-white shadow-xl w-full m-auto border border-[#807f7f] h-[70vh] flex flex-col items-center text-center rounded-3xl">
+            <div className="">
               <Image
                 alt="vector"
                 src="/vector.svg"
                 width="50"
                 height="50"
-                layout="fixed"
-                objectFit="cover"
               />
             </div>
             <h3 className="mb-10 mt-4 text-[#122C47] text-2xl font-semibold ">
@@ -36,18 +34,16 @@ const DetailsCard = () => {
             </div>
           </div>
 
-          <div className="bg-white shadow-xl w-[601px] mr-16 flex flex-col items-center text-center rounded-3xl">
-            <div className="-mt-6">
+          <div className="bg-white shadow-xl m-auto w-full border border-[#807f7f] flex flex-col items-center text-center rounded-3xl">
+            <div className="">
               <Image
                 alt="vector"
                 src="/vector.svg"
                 width="50"
                 height="50"
-                layout="fixed"
-                objectFit="cover"
               />
             </div>
-            <h3 className="mb-10 mt-4 text-[#122C47] text-2xl font-semibold">
+            <h3 className="mb-10 mt-4 text-2xl font-semibold">
               Event Overview
             </h3>
             <div className="text-slate-600">
@@ -70,8 +66,8 @@ const DetailsCard = () => {
         </div>
       </div>
       {/* mobile */}
-      <div className="grid gap-32 block md:hidden lg:hidden my-24 p-4">
-        <div className=" shadow-xl items-center text-center rounded-3xl">
+      <div className="gap-32 block md:hidden lg:hidden my-24 p-4">
+        <div className=" shadow-xl border border-[#444444] items-center text-center rounded-3xl">
           <div className="-translate-y-4">
             <Image
               alt="vector"
@@ -129,7 +125,7 @@ const DetailsCard = () => {
         </div>
       </div>
       {/* register component */}
-      <div>
+      {/* <div>
         <div className="hidden md:block lg:block">
         <div className="flex justify-center my-6">
           <Link href="/apply/registration">
@@ -178,7 +174,7 @@ const DetailsCard = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* <section className="">
         <Sponsors />
