@@ -62,7 +62,7 @@ const AboveFold = () => {
            
           </div>
 
-          <div className="flex items-center space-x-4 my-2">
+          <div className="flex items-center space-x-4 mt-16">
             <div className="flex items-center space-x-2">
               <div>
                 <img alt="stats-icon" width="49" height="49" decoding="async" data-nimg="1" src="/attendees.svg" /></div>
@@ -82,7 +82,7 @@ const AboveFold = () => {
                 </div>
                 </div>
 
-
+<a href="https://drive.google.com/file/d/12NdPRIdl13EW6X8sX7Hrzr-M4WfAkW06/view" target="_blank" className="cta_header w-fit p-2 rounded-xl text-xl mt-4">Sponsor&apos;s Deck</a>
 
 </div>
         <Image src='/bgimage.webp' width={300} height={300} alt='bgimg' />
