@@ -33,7 +33,7 @@ const AboveFold = () => {
         <div className="w-80 h-37 text-4xl mx-auto mt-28 text-center">
           <h1>
             <span className="bg-[#122C47] text-[#FFFFFF]">Web3</span> Lagos
-            <span className="block mt-4">Conference 2023</span>
+            <span className="block mt-4">Conference 2024</span>
           </h1>
         </div>
         <div className="w-[90%] md:w-2/4 lg:w-2/4 mx-auto text-center mt-2 mb-9 p-2 md:p-0 lg:p-0">
@@ -52,7 +52,7 @@ const AboveFold = () => {
         </div>
         <div className="relative bg-top bg-no-repeat bg-[url('../images/main_bg.png')] h-[calc(110vh-20rem)] w-[1440px] mb-[23px] hidden md:blocl lg:block">
           <div className=" absolute top-[400px] left-[50%] translate-x-[-50%] w-[1060px]">
-            {/* <DateCountDown className="mx-auto mt-10 text-center " /> */}
+            <DateCountDown />
 
             <div className="grid justify-center">
               <div className="flex">
@@ -70,7 +70,7 @@ const AboveFold = () => {
                 <div>
                   <Image src={Date} alt={"date"} width={20} height={10} />
                 </div>
-                <div>August 31 - September 2, 2023</div>
+                <div>September 05 - September 07, 2024</div>
               </div>
             </div>
             {/* <div className="flex items-center justify-center">
@@ -84,11 +84,10 @@ const AboveFold = () => {
           </div>
           <div className="bg-[#122C47] absolute top-[500px] w-[1441px] h-[32px]"></div>
         </div>
-        {/* <div className="block md:hidden lg:hidden">
+        <div className="block md:hidden lg:hidden">
           {" "}
-          <DateCountDown className="mx-auto mt-10 text-center my-4 " />
-          
-        </div> */}
+          <DateCountDown />
+        </div>
         {/* <div className=" my-6 block md:hidden lg:hidden my-8">
             <div className="flex justify-center">
               <Link href="/apply/registration">
@@ -99,20 +98,20 @@ const AboveFold = () => {
             </div>
           </div> */}
 
-          <div className="block md:hidden lg:hidden grid justify-center mb-24">
-            <div className="flex">
-              <div>
-                <Image src={Location} alt={"location"} width={20} height={10} />
-              </div>
-              <div>The Zone, Gbagada, Lagos State.</div>
+        <div className="block md:hidden lg:hidden grid justify-center mb-24">
+          <div className="flex">
+            <div>
+              <Image src={Location} alt={"location"} width={20} height={10} />
             </div>
-            <div className="flex">
-              <div>
-                <Image src={Date} alt={"date"} width={20} height={10} />
-              </div>
-              <div>August 31 - September 2, 2023</div>
+            <div>The Zone, Gbagada, Lagos State.</div>
+          </div>
+          <div className="flex">
+            <div>
+              <Image src={Date} alt={"date"} width={20} height={10} />
             </div>
-            </div>
+            <div>September 05 - September 07, 2024</div>
+          </div>
+        </div>
       </section>
     </>
   );
