@@ -65,12 +65,25 @@ const AboveFold = () => {
           <div className="flex items-center space-x-4 my-2">
             <div className="flex items-center space-x-2">
               <div>
-                <img alt="stats-icon" fetchpriority="high" width="49" height="49" decoding="async" data-nimg="1" style="color:transparent" src="/.svg"></div>
-                <div><span className="block text-[#F0EFDA] text-2xl md:text-3xl leading-tight font-semibold">1.5k+</span><span className="font-normal text-sm md:text-base leading-tight text-[#F0EFDA]">Attendees</span></div></div><div className="flex items-center space-x-2"><div><img alt="stats-icon" fetchpriority="high" width="45" height="45" decoding="async" data-nimg="1" style="color:transparent" src="/_next/static/media/speakers.97a5a79a.svg"></div><div><span className="block text-[#F0EFDA] text-2xl md:text-3xl leading-tight font-semibold">50+</span><span className="font-normal text-sm md:text-base leading-tight text-[#F0EFDA]">Speakers</span></div></div><div className="flex items-center space-x-2"><div><img alt="stats-icon" fetchpriority="high" width="45" height="45" decoding="async" data-nimg="1" style="color:transparent" src="/_next/static/media/sponsor.d4156c98.svg"></div>
+                <img alt="stats-icon" width="49" height="49" decoding="async" data-nimg="1" src="/attendees.svg" /></div>
+                <div><span className="block text-[#F0EFDA] text-2xl md:text-3xl leading-tight font-semibold">1.5k+</span>
+                <span className="font-normal text-sm md:text-base leading-tight text-[#F0EFDA]">Attendees</span>
+                </div></div><div className="flex items-center space-x-2">
+                  <div><img alt="stats-icon"  width="45" height="45" decoding="async" data-nimg="1" src="/speakers.svg"/>
+                  </div><div><span className="block text-[#F0EFDA] text-2xl md:text-3xl leading-tight font-semibold">50+</span>
+                  <span className="font-normal text-sm md:text-base leading-tight text-[#F0EFDA]">Speakers</span>
+                  </div></div><div className="flex items-center space-x-2">
+                    <div>
+                      <img alt="stats-icon" width="45" height="45" decoding="async" data-nimg="1" src="/sponsor.svg" /></div>
                 <div>
                   <span className="block text-[#F0EFDA] text-2xl md:text-3xl leading-tight font-semibold">15+</span>
                 <span className="font-normal text-sm md:text-base leading-tight text-[#F0EFDA]">Sponsors</span>
-                </div></div></div>
+                </div>
+                </div>
+                </div>
+
+
+
 </div>
         <Image src='/bgimage.webp' width={300} height={300} alt='bgimg' />
         </div>
