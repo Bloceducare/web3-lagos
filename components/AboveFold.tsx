@@ -37,7 +37,7 @@ const AboveFold = () => {
             Networking and Learning experiences.
           </p>
         </div>
-        <div className=" w-fit mt-16 flex flex-col gap-4">
+        <div className=" w-fit mt-16 flex flex-col gap-4 text-[#fae586]">
             <DateCountDown />
 
             <div className="flex flex-col items-center w-fit m-auto justify-center gap-3">
