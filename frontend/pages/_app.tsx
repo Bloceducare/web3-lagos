@@ -1,7 +1,7 @@
 import "../styles/globals.css";
 import 'react-tabs/style/react-tabs.css';
 import type { AppProps } from "next/app";
-import Layout from "../components/layout";
+import Layout from "../frontend/components/layoutts/layout";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

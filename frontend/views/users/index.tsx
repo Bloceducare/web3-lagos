@@ -11,7 +11,7 @@ import "ag-grid-community/styles/ag-theme-alpine.css";
 import useGetRecords from "./hooks/useGetRecords";
 import { CsvExportModule } from "@ag-grid-community/csv-export";
 import clean, { format } from "utils/cleanObject";
-import CloseIcon from "@components/Icons/Close";
+import CloseIcon from "frontend/components/Icons/Close";
 
 // Register the required feature modules with the Grid
 ModuleRegistry.registerModules([CsvExportModule]);

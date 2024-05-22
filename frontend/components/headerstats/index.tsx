@@ -84,7 +84,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { FaBars, FaTimes } from "react-icons/fa"; // Hamburger and close icons from react-icons
 import { headerLink } from "data";
-import Button from "@components/button";
+import Button from "frontend/components/button";
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);

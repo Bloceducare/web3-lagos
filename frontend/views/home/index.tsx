@@ -1,15 +1,15 @@
-import AboveFold from "@components/AboveFold";
-import DetailsCard from "@components/DetailsCard";
-import SpeakersCards from "@components/SpeakersCards";
-import Schedule from "@components/Schedule";
-import Team from "@components/Team";
+import AboveFold from "frontend/components/AboveFold";
+import DetailsCard from "frontend/components/DetailsCard";
+import SpeakersCards from "frontend/components/SpeakersCards";
+import Schedule from "frontend/components/Schedule";
+import Team from "frontend/components/Team";
 import Image from "next/image";
-import Sponsors from "@components/Sponsors";
-import Gallery from "@components/Gallery";
-import Hero from "@components/Hero";
-import About from "@components/About";
-import Slider from "@components/Carousel";
-import YoutubeIframe from "@components/Iframe";
+import Sponsors from "frontend/components/Sponsors";
+import Gallery from "frontend/components/Gallery";
+import Hero from "frontend/components/Hero";
+import About from "frontend/components/About";
+import Slider from "frontend/components/Carousel";
+import YoutubeIframe from "frontend/components/Iframe";
 
 const HomeView = () => {
   return (

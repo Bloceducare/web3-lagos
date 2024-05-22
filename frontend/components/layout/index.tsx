@@ -1,4 +1,4 @@
-import Header from "@components/headerstats/index";
+import Header from "frontend/components/headerstats/index";
 import { ReactNode } from "react";
 
 

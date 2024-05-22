@@ -6,8 +6,8 @@ import speech from "public/speech.svg";
 import play from "public/play.svg";
 import barchat from "public/bar.svg";
 import barchatStat from "public/barchart.png";
-import YoutubeIframe from "@components/Iframe";
-import Contact from "@components/Contact";
+import YoutubeIframe from "frontend/components/Iframe";
+import Contact from "frontend/components/Contact";
 function Insight() {
   return (
     <div>

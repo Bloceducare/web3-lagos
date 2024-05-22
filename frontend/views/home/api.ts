@@ -1,3 +1,7 @@
+
+
+
+
 import axios from "axios";
 
 export const getTotalRecords = async () => {
@@ -9,3 +13,5 @@ export const getTotalRecords = async () => {
     console.log(e," error ocuurred on server");
   }
 };
+
+

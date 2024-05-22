@@ -16,7 +16,7 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@components/*": ["components/*"],
+      "@components/*": ["frontend/components/*"],
       "@views/*": ["views/*"],
       "@servers/*": ["servers/*"],
       "@config/*": ["config/*"],
