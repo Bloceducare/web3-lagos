@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
+ENVIROMENT= config('ENVIROMENT')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'registration',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -77,6 +82,24 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    },
+    'production': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT', default='5432'),
+    }
+}
+
+if ENVIROMENT == 'production':
+    DATABASES['default'] = DATABASES['production']
+
+
+SWAGGER_SETTINGS = {
+    "SECURITY_DEFINITIONS": {
+        "Bearer": {"type": "apiKey", "name": "Authorization", "in": "header"}
     }
 }
 
