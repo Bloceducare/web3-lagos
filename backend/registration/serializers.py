@@ -1,10 +1,17 @@
 from rest_framework import serializers
 
-from .models import Attendance, SpeakerRegistration, GeneralRegistration, HackathonRegistration, RoadToWeb3LagosRegistration
+from .models import Attendance, Team, SpeakerRegistration, GeneralRegistration, HackathonRegistration, RoadToWeb3LagosRegistration
 
 class GeneralRegistrationSerializer(serializers.ModelSerializer):
     class Meta:
         model = GeneralRegistration
+        fields = '__all__'
+
+class TeamSerializer(serializers.ModelSerializer):
+    members = serializers.PrimaryKeyRelatedField(many=True, queryset=GeneralRegistration.objects.all())
+
+    class Meta:
+        model = Team
         fields = '__all__'
 
 class AttendanceSerializer(serializers.ModelSerializer):

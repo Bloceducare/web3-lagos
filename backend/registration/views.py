@@ -1,10 +1,10 @@
 from rest_framework.response import Response
 from backend.permissions import IsAuthenticatedByAuthServer
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets, permissions, status
 from rest_framework.decorators import action
 from .serializers import GeneralRegistrationSerializer, AttendanceSerializer
-from.models import SpeakerRegistration, GeneralRegistration, Attendance, HackathonRegistration, RoadToWeb3LagosRegistration
-from.serializers import (SpeakerRegistrationSerializer, GeneralRegistrationSerializer, HackathonRegistrationSerializer, RoadToWeb3LagosRegistrationSerializer)
+from.models import SpeakerRegistration, Team, GeneralRegistration, Attendance, HackathonRegistration, RoadToWeb3LagosRegistration
+from.serializers import (SpeakerRegistrationSerializer, GeneralRegistrationSerializer, TeamSerializer, HackathonRegistrationSerializer, RoadToWeb3LagosRegistrationSerializer)
 
 
 
@@ -55,6 +55,29 @@ class GeneralRegistrationViewSet(viewsets.ModelViewSet):
 
 
 
+class TeamViewSet(viewsets.ModelViewSet):
+    queryset = Team.objects.all()
+    serializer_class = TeamSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        # Get the creator ID from request data
+        creator_id = serializer.validated_data.get('creator_id')
+
+        # Check if the creator ID is valid
+        try:
+            creator = GeneralRegistration.objects.get(id=creator_id)
+        except GeneralRegistration.DoesNotExist:
+            return Response({"error": "Invalid creator ID"}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Create the team with the specified creator
+        team = serializer.save(creator=creator)
+
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 class AttendanceViewSet(viewsets.ModelViewSet):
     queryset = Attendance.objects.all()
     serializer_class = AttendanceSerializer
