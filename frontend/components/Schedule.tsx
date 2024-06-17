@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { schedule } from "data";
+import { schedule } from "@/data";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import { IScheduleItem } from "types";
+import { IScheduleItem } from "@/types";
 
 const SheduleItem = ({ time, speaker, topic }: IScheduleItem) => {
   return (

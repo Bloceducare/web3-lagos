@@ -1,9 +1,9 @@
-import Registration from "@views/apply-registration";
+import { ApplyAsAnAttendant } from "../../../views";
 
 const Register = () => {
   return (
     <>
-      <Registration />
+      <ApplyAsAnAttendant />
     </>
   );
 };

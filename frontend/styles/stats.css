@@ -23,13 +23,14 @@ color: rgba(5, 55, 88, 1);
 
 
 .content-container {
-    padding-top: 120px; /* Adjust the value to match your header height */
-  }
+  padding-top: 120px; /* Adjust the value to match your header height */
+  /* width: 1200px; */
+}
 
-  .linear{
-    border: 2px medium;
-background: linear-gradient(180deg, rgba(5, 55, 88, 0.65) 0%, rgba(5, 55, 88, 0) 100%);
-  }
+.linear{
+  border: 2px medium;
+  background: linear-gradient(180deg, rgba(5, 55, 88, 0.65) 0%, rgba(5, 55, 88, 0) 100%);
+}
 
 .bx{
   background-image: url('../public/knot.svg');

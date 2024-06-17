@@ -1,15 +1,5 @@
-import AboveFold from "frontend/components/AboveFold";
-import DetailsCard from "frontend/components/DetailsCard";
-import SpeakersCards from "frontend/components/SpeakersCards";
-import Schedule from "frontend/components/Schedule";
-import Team from "frontend/components/Team";
+import { AboveFold, DetailsCard, SpeakersCards, Schedule, Team, Sponsors, Gallery, Hero, About, Slider, YoutubeIframe } from "@/components";
 import Image from "next/image";
-import Sponsors from "frontend/components/Sponsors";
-import Gallery from "frontend/components/Gallery";
-import Hero from "frontend/components/Hero";
-import About from "frontend/components/About";
-import Slider from "frontend/components/Carousel";
-import YoutubeIframe from "frontend/components/Iframe";
 
 const HomeView = () => {
   return (

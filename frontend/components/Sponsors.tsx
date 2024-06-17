@@ -1,6 +1,6 @@
 import Image from "next/image";
-import sponsor from "public/Sponsors.png";
-import Partners from "public/Partners.png";
+import sponsor from "../public/Sponsors.png";
+import Partners from "../public/Partners.png";
 
 const Sponsors = () => {
   return (

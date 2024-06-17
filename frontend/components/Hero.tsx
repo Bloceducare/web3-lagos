@@ -1,11 +1,11 @@
 import React from "react";
 
-import dot from "public/dot.svg";
+import dot from "../public/dot.svg";
 import Image from "next/image";
-import attendess from "public/attendees.svg";
-import speakers from "public/speakers.svg";
-import sponsors from "public/sponsor.svg";
-import banner from "public/banner.png";
+import attendess from "../public/attendees.svg";
+import speakers from "../public/speakers.svg";
+import sponsors from "../public/sponsor.svg";
+import banner from "../public/banner.png";
 import Button from "./button";
 import Link from "next/link";
 
@@ -36,7 +36,7 @@ const Stats = ({ icon, statsnum, desc }: Stats) => {
 function Hero() {
   return (
     <section className="bg-hero">
-      <div className="container mx-auto px-12 pt-12">
+      <div className="container mx-auto px-12 pt-12 w-{3/5}">
         <div className="grid md:grid-cols-2 lg:grid-cols-2">
           <div>
             <h1 className="text-[#F0EFDA] my-4 text-2xl md:text-4xl font-[700] lg:leading-[76px] lg:text-[64px]">
@@ -62,7 +62,7 @@ function Hero() {
               </div>
               <div className="my-2">
                 {/* <p className="text-[#F0EFDA]  lg:text-[33.13px] lg:leading-[39.76px] font-[500]"> */}
-                <p className="lg:text-[33.13px] text-[#F0EFDA] lg:leading-[39.76px] text-xl lg:text-lg lg:leading-[1.25]">
+                <p className="lg:text-[33.13px] text-[#F0EFDA] lg:leading-[39.76px] text-xl lg:text-lg lg: leading-[1.25]">
 
                   The Zone, Gbagada, Lagos.
                 </p>

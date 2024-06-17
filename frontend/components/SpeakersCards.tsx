@@ -1,4 +1,4 @@
-import { blurUrl, speakersImg } from "data";
+import { blurUrl, speakersImg } from "@/data";
 import Image from "next/image";
 import speaker from "../public/speaker.png";
 import speaker2 from "../public/speakers2.png";

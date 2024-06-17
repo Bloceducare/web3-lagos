@@ -1,0 +1,1 @@
+export { default as ApplyAsAnAttendant } from "./apply-registration"
