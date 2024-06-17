@@ -36,7 +36,7 @@ const Stats = ({ icon, statsnum, desc }: Stats) => {
 function Hero() {
   return (
     <section className="bg-hero">
-      <div className="container mx-auto px-12 pt-12">
+      <div className="container mx-auto px-12 pt-12 w-{3/5}">
         <div className="grid md:grid-cols-2 lg:grid-cols-2">
           <div>
             <h1 className="text-[#F0EFDA] my-4 text-2xl md:text-4xl font-[700] lg:leading-[76px] lg:text-[64px]">
