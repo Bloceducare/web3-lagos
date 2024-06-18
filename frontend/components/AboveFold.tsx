@@ -34,8 +34,8 @@ const Progress: React.FC<ProgressProps> = ({ Title, number, imageSrc}) => {
 const AboveFold = () => {
   return (
   <div className="w-full bg-hero  ">
-    <section className=" flex justify-center items-center h-[53rem]">
-      <div className="w-[85vw] flex text-white m-auto justify-between">
+    <section className=" flex justify-center items-center lg:h-[50rem]">
+      <div className="2xl:w-[60vw] lg:w-[85vw]  flex text-white m-auto justify-between">
       <div className="flex flex-col justify-center w-full sm:w-1/2" >
 
         <div className="text-[3.5rem] ">
@@ -101,8 +101,8 @@ const AboveFold = () => {
           </div>
 
         </div>
-      <div className="h-[100vh] w-[100vw]">
-        <Image src='/bgimage.webp'  width={400} height={400} alt='bgimg' className="absolute right-5 top-[12.5rem]" />
+      <div className="w-full h-full relative">
+        <Image src='/bgimage.webp'  width={370} height={350} alt='bgimg' className="absolute top-10 right-0" />
         </div>
         </div>
       </section>

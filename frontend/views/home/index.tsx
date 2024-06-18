@@ -12,10 +12,10 @@ const HomeView = () => {
     //   <SpeakersCards/>
     //   <Gallery/>
     // </div>
-    <div className="w-full overflow-clip mx-auto" >
+    <div className="w-full overflow-clip" >
       <AboveFold />
       <EventDetails />
-          <YoutubeIframe>
+        <YoutubeIframe>
           The 2023 edition had over 1500 enthusiasts and players in the ecosystem
           in attendance.
           <br />
