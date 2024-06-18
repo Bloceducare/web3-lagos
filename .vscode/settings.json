@@ -2,5 +2,6 @@
     "terminal.integrated.sendKeybindingsToShell": true,
     "terminal.integrated.commandsToSkipShell": [
         "https://registry.npmjs"
-    ]
+    ],
+    "CodeGPT.apiKey": "CodeGPT Plus Beta"
 }

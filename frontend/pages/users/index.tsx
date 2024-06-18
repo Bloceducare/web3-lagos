@@ -1,4 +1,4 @@
-import Records from "@views/users";
+import Records from "../../views/users";
 
 const Users = () => {
   return (

@@ -1,4 +1,4 @@
-import ApplyAsaSponsor from "@views/apply-sponsor";
+import ApplyAsaSponsor from "../../../views/apply-sponsor";
 
 const Sponsor = () => {
   return (
