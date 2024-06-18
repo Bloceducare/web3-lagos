@@ -1,4 +1,4 @@
-import arrow from "public/arrows.png";
+import arrow from "../public/arrows.png";
 import Image from "next/image";
 const Gallery = () => {
   return (

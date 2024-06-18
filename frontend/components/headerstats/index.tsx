@@ -83,7 +83,7 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import Link from "next/link";
 import { FaBars, FaTimes } from "react-icons/fa"; // Hamburger and close icons from react-icons
-import { headerLink } from "data";
+import { headerLink } from "@/data";
 import Button from "../button";
 
 function Header() {
@@ -99,7 +99,7 @@ function Header() {
       <nav className="flex items-center justify-between">
         <Link href="#">
           <Button className="cta_header py-2 px-6 text-[20px] leading-[24px] rounded-lg">
-            Register
+            Register Here
           </Button>
         </Link>
 
@@ -116,7 +116,7 @@ function Header() {
         <ul
           className={`${
             menuOpen ? "flex flex-col" : "hidden"
-          } lg:flex lg:flex-row space-y-4 lg:space-y-0 lg:space-x-24 items-center`}
+          } lg:flex lg:flex-row space-y-10 lg:space-y-0 lg:space-x-24 items-center`}
         >
           {headerLink.map((item) => (
             <Link href={item.route} key={item.name}>

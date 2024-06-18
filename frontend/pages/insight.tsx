@@ -1,13 +1,12 @@
 import React from "react";
-import notes from "public/notes.svg";
+import notes from "../public/notes.svg";
 import Image from "next/image";
-import group from "public/group.svg";
-import speech from "public/speech.svg";
-import play from "public/play.svg";
-import barchat from "public/bar.svg";
-import barchatStat from "public/barchart.png";
-import YoutubeIframe from "frontend/components/Iframe";
-import Contact from "frontend/components/Contact";
+import group from "../public/group.svg";
+import speech from "../public/speech.svg";
+import play from "../public/play.svg";
+import barchat from "../public/bar.svg";
+import barchatStat from "../public/barchart.png";
+import { YoutubeIframe, Contact } from "@/components";
 function Insight() {
   return (
     <div>
@@ -23,7 +22,7 @@ function Insight() {
                   <p className="text-[20px] md:text-[48px] font-[500] lg:text-[48px] leading-[24.5px] md:leading-[52.8px] lg:leading-[52.8px]">
                     Total Registration
                   </p>
-                  <p className="text-[20px] md:text-[48px] font-[500] lg:text-[48px] leading-[24.5px] md:leading-[52.8px] font-[700] lg:leading-[52.8px]">
+                  <p className="text-[20px] md:text-[48px] font-[500], lg:text-[48px] leading-[24.5px] md:leading-[52.8px] font-[700] lg:leading-[52.8px]">
                     2332
                   </p>
                 </div>
@@ -49,10 +48,10 @@ function Insight() {
                   <Image src={group} alt="stats" />
                 </div>
                 <div>
-                  <p className="text-[20px] md:text-[48px] font-[500] lg:text-[48px] leading-[24.5px] md:leading-[52.8px] font-[500] lg:leading-[52.8px]">
+                  <p className="text-[20px] md:text-[48px] font-[500], lg:text-[48px] leading-[24.5px] md:leading-[52.8px] font-[500] lg:leading-[52.8px]">
                     Total Attendance
                   </p>
-                  <p className="text-[20px] md:text-[48px] font-[500] lg:text-[48px] leading-[24.5px] md:leading-[52.8px] font-[700] lg:leading-[52.8px]">
+                  <p className="text-[20px] md:text-[48px] font-[500], lg:text-[48px] leading-[24.5px] md:leading-[52.8px] font-[700] lg:leading-[52.8px]">
                     2447
                   </p>
                 </div>
@@ -88,7 +87,7 @@ function Insight() {
                   <p className=" text-[20px] md:text-[48px] font-[500]  leading-[24.5px] md:leading-[52.8px] lg:text-[48px] text-white lg:leading-[52.8px]">
                     Speakers:
                   </p>
-                  <p className="text-[46px] md:text-[48px] font-[500]  leading-[59.5px] md:leading-[52.8px] lg:text-[64px] text-white lg:leading-[70.4px] font-[700]">
+                  <p className="text-[46px] md:text-[48px] font-[500],  leading-[59.5px] md:leading-[52.8px] lg:text-[64px] text-white lg:leading-[70.4px] font-[700]">
                     50
                   </p>
                 </div>
@@ -115,7 +114,7 @@ function Insight() {
                   <p className=" text-[20px] md:text-[48px] font-[500]  leading-[24.5px] md:leading-[52.8px] lg:text-[48px] text-white lg:leading-[52.8px]">
                     Total Streams
                   </p>
-                  <p className="text-[46px] md:text-[48px] font-[500]  leading-[59.5px] md:leading-[52.8px] lg:text-[64px] text-white lg:leading-[70.4px] font-[700]">
+                  <p className="text-[46px] md:text-[48px] font-[500],  leading-[59.5px] md:leading-[52.8px] lg:text-[64px] text-white lg:leading-[70.4px] font-[700]">
                     3,161
                   </p>
                 </div>

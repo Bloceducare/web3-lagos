@@ -1,0 +1,12 @@
+export { default as AboveFold } from "./AboveFold";
+export { default as DetailsCard } from "./DetailsCard";
+export { default as SpeakersCards } from "./SpeakersCards";
+export { default as Schedule } from "./Schedule";
+export { default as Team } from "./Team";
+export { default as Sponsors } from "./Sponsors";
+export { default as Gallery } from "./Gallery";
+export { default as Hero } from "./Hero";
+export { default as About } from "./About";
+export { default as Contact } from "./Contact";
+export { default as Slider } from "./Carousel";
+export { default as YoutubeIframe } from "./Iframe";
