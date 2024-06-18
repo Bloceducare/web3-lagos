@@ -1,5 +1,6 @@
 import React from "react";
 
+import DateCountDown from "./dateCountDown";
 import dot from "../public/dot.svg";
 import Image from "next/image";
 import attendess from "../public/attendees.svg";
@@ -66,6 +67,7 @@ function Hero() {
 
                   The Zone, Gbagada, Lagos.
                 </p>
+                <DateCountDown />
               </div>
             </div>
             <div className="flex items-center space-x-4 my-2">

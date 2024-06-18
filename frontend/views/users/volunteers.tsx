@@ -10,8 +10,8 @@ import React, {
   import "ag-grid-community/styles/ag-theme-alpine.css";
   import useVolunteers from "./hooks/useGetVolunteers";
   import { CsvExportModule } from "@ag-grid-community/csv-export";
-  import clean, { format } from "utils/cleanObject";
-  import CloseIcon from "frontend/components/Icons/Close";
+  import clean, { format } from "@/utils/cleanObject";
+  import CloseIcon from "@/components/Icons/Close";
   
   // Register the required feature modules with the Grid
   ModuleRegistry.registerModules([CsvExportModule]);
@@ -107,7 +107,7 @@ import React, {
   
           {!!!error && (
             <AgGridReact
-              //   @ts-ignore
+                // @ts-ignore
               ref={gridRef}
               rowData={data}
               columnDefs={columnDefs}

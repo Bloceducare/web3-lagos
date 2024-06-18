@@ -1,4 +1,4 @@
-import { ApplyAsAnAttendant } from "../../../views";
+import { ApplyAsAnAttendant } from "@/views";
 
 const Register = () => {
   return (

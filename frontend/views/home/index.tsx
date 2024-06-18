@@ -1,4 +1,4 @@
-import { AboveFold, DetailsCard, SpeakersCards, Schedule, Team, Sponsors, Gallery, Hero, About, Slider, YoutubeIframe } from "@/components";
+import { AboveFold, EventDetails, SpeakersCards, Schedule, Team, Sponsors, Gallery, Hero, About, Slider, YoutubeIframe } from "@/components";
 import Image from "next/image";
 
 const HomeView = () => {
@@ -12,10 +12,9 @@ const HomeView = () => {
     //   <SpeakersCards/>
     //   <Gallery/>
     // </div>
-    <div
-    className="bg-white w-full overflow-clip mx-auto" >
+    <div className="w-full overflow-clip mx-auto" >
       <AboveFold />
-      <DetailsCard />
+      <EventDetails />
           <YoutubeIframe>
           The 2023 edition had over 1500 enthusiasts and players in the ecosystem
           in attendance.
