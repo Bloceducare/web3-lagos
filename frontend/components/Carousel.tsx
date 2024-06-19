@@ -4,7 +4,7 @@ import oluchi1 from '../public/oluchi.png';
 import oluchi2 from '../public/oluchi.png';
 import oluchi3 from '../public/oluchi.png';
 
-const images = [oluchi1, oluchi2, oluchi3];  // Update with your image imports
+const images = [oluchi1, oluchi2, oluchi3];
 
 const Carousel = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -20,18 +20,21 @@ const Carousel = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
-    }, 3000);  // Change the interval duration as needed (in milliseconds)
+    }, 3000);
 
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      <div className="relative w-1130 h-595 overflow-hidden">
-        <div className="flex transition-transform duration-500 ease-in-out transform translate-x-[calc(-100% * var(--index))]">
+    <div className="flex items-center justify-center w-full h-[80vh] pb-[5rem]">
+      <div className="relative w-[85vw] h-[450px] overflow-hidden rounded-[20px]">
+        <div
+          className="flex transition-transform duration-500 ease-in-out"
+          style={{ transform: `translateX(-${currentImageIndex * 100}%)` }}
+        >
           {images.map((image, index) => (
-            <div key={index} className="w-full overflow-hidden">
-              <Image src={image} alt={`Slide ${index}`} width={1130} height={595} />
+            <div key={index} className="w-full flex-shrink-0">
+              <Image src={image} alt={`Slide ${index}`} layout="responsive" width={530} height={595} />
             </div>
           ))}
         </div>
@@ -47,7 +50,7 @@ const Carousel = () => {
           {images.map((_, index) => (
             <div
               key={index}
-              className={`h-3 w-3 rounded-full bg-gray-400 ${currentImageIndex === index ? 'bg-gray-700' : ''}`}
+              className={`h-2 w-2 rounded-full bg-gray-400 ${currentImageIndex === index ? 'bg-gray-700' : ''}`}
               onClick={() => setCurrentImageIndex(index)}
             />
           ))}
