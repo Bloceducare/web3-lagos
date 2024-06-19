@@ -1,4 +1,4 @@
-import ComingSoon from "frontend/components/coming-soon";
+import ComingSoon from "../../components/coming-soon";
 
 const Agenda = () => {
   return (

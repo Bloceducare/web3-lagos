@@ -9,10 +9,25 @@
     "lint": "next lint"
   },
   "dependencies": {
+<<<<<<< HEAD
     "ag-grid-react": "^31.3.2",
     "autoprefixer": "^10.4.19",
+=======
+    "@sendgrid/mail": "^8.1.3",
+    "@types/qrcode": "^1.5.5",
+    "ag-grid-community": "^31.3.2",
+    "ag-grid-react": "^31.3.2",
+>>>>>>> 1c42301b584bb25ec390d5246d5c4477f5f6ea86
     "axios": "^1.7.2",
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^2.2.0",
+    "handlebars": "^4.7.8",
+    "mongoose": "^8.4.3",
     "next": "14.2.3",
+    "next-connect": "^1.0.0",
+    "nodemailer": "^6.9.13",
+    "nodemailer-mailgun-transport": "^2.1.5",
+    "qrcode": "^1.5.3",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.2.1",
@@ -21,9 +36,13 @@
     "react-youtube": "^10.1.0"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",
+    "@types/nodemailer": "^6.4.15",
+    "@types/nodemailer-mailgun-transport": "^1.4.6",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "autoprefixer": "^10.4.19",
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
     "postcss": "^8",

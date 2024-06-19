@@ -28,19 +28,19 @@ const SheduleItem = ({ time, speaker, topic }: IScheduleItem) => {
 const Schedule = () => {
   const [hallIndex, setHallIndex] = useState(0); // 0 for Hall1, 1 for Hall2
 
-  const thurHall1 = schedule.thur.hall1.item.map((item) => (
-    <SheduleItem {...item} />
+  const thurHall1 = schedule.thur.hall1.item.map((item, i) => (
+    <SheduleItem key={i} {...item} />
   ));
-  const thurHall2 = schedule.thur.hall2.item.map((item) => (
-    <SheduleItem {...item} />
+  const thurHall2 = schedule.thur.hall2.item.map((item, i) => (
+    <SheduleItem key={i} {...item} />
   ));
-  const friHall1 = schedule.fri.hall1.item.map((item) => (
-    <SheduleItem {...item} />
+  const friHall1 = schedule.fri.hall1.item.map((item, i) => (
+    <SheduleItem key={i} {...item} />
   ));
-  const friHall2 = schedule.fri.hall2.item.map((item) => (
-    <SheduleItem {...item} />
+  const friHall2 = schedule.fri.hall2.item.map((item, i) => (
+    <SheduleItem key={i} {...item} />
   ));
-  const sat = schedule.sat.item.map((item) => <SheduleItem {...item} />);
+  const sat = schedule.sat.item.map((item, i) => <SheduleItem key={i} {...item} />);
 
   return (
     <>

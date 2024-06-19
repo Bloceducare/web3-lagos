@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { createRouter } from "next-connect";
-import connectDB from "@servers/config/index";
-import participantsDb from "@servers/models/participant";
+import connectDB from "../../../servers/config/index";
+import participantsDb from "../../../servers/models/participant";
 
 connectDB();
 

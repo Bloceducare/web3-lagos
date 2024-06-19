@@ -1,7 +1,8 @@
-import connectDB, { closeDB } from "@servers/config";
-import userDb from "@servers/models/participant";
+import connectDB, { closeDB } from "../config";
+import userDb from "../models/participant";
 import crypto from "crypto";
 import { hash } from "bcryptjs";
+
 
 const loginWithProviders = async (data: any) => {
   let firstTimeConnection = false;

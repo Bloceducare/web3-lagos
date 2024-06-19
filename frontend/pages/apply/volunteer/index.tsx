@@ -1,4 +1,4 @@
-import ApplyAsaVolunteer from "@views/apply-volunteer";
+import ApplyAsaVolunteer from "../../../views/apply-volunteer";
 
 const ApplyVolunteer = () => {
   return <ApplyAsaVolunteer />;

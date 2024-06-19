@@ -1,8 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { createRouter } from "next-connect";
-import connectDB, {conferenceStatus} from "@servers/config/index";
-import volunteersDb from "@servers/models/volunteers";
-import { registrationEmail } from "@servers/mailer";
+import connectDB, {conferenceStatus} from "../../../servers/config/index";
+import volunteersDb from "../../../servers/models/volunteers";
+import { registrationEmail } from "../../../servers/mailer";
 
 connectDB();
 

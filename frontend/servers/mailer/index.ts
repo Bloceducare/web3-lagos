@@ -2,7 +2,7 @@ import nodemailer from "nodemailer";
 import mg from "nodemailer-mailgun-transport";
 import handlebars from "handlebars";
 import fs from "fs";
-import { mailSenderConfig } from "@servers/config";
+import { mailSenderConfig } from "../config";
 import sendGridMail  from '@sendgrid/mail'
 
 sendGridMail.setApiKey(process.env.SENDGRID_API_KEY as string)

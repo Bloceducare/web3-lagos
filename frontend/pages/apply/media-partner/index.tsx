@@ -1,4 +1,4 @@
-import ApplyAsaMediaPartner from "@views/apply-media-partner";
+import ApplyAsaMediaPartner from "../../../views/apply-media-partner";
 
 const MediaPartnerPage = () => {
   return (

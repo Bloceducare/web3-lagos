@@ -1,4 +1,4 @@
-import ApplyAsaSpeaker from "@views/apply-speaker";
+import ApplyAsaSpeaker from "../../../views/apply-speaker";
 
 const Speaker = () => {
   return (
