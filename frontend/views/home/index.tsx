@@ -1,20 +1,11 @@
 import { AboveFold, EventDetails, SpeakersCards, Schedule, Team, Sponsors, Gallery, Hero, About, Slider, YoutubeIframe } from "@/components";
-import Image from "next/image";
 
 const HomeView = () => {
   return (
-    // <div>
-    //   <Hero />
-    //   <About />
-    //   {/* <Slider /> */}
 
-    //   <Sponsors/>
-    //   <SpeakersCards/>
-    //   <Gallery/>
-    // </div>
-    <div className="w-full overflow-clip" >
+    <div className="w-full flex flex-col " >
       <AboveFold />
-      <EventDetails />
+      {/* <EventDetails /> */}
       <Slider />
         <YoutubeIframe>
           The 2023 edition had over 1500 enthusiasts and players in the ecosystem
@@ -24,7 +15,7 @@ const HomeView = () => {
           Ayodeji Awosika, Chief Mechanic at Web3Bridge delivered the keynote
           address.
         </YoutubeIframe>
-      <Sponsors />
+      {/* <Sponsors /> */}
       <SpeakersCards />
       <Gallery />
       <Schedule />

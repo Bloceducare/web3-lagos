@@ -14,8 +14,8 @@ function Header() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 bg-header shadow-md z-10 p-4">
-      <nav className="flex items-center lg:justify-start md:justify-between sm:justify-between w-full max-w-screen-xl mx-auto">
+    <header className="fixed top-0 left-0 right-0 bg-header shadow-md z-10 p-2">
+      <nav className="flex items-center justify-between w-full max-w-screen-xl mx-auto">
         <Link href="#">
           <Button className="cta_header py-2 px-6 text-[20px] leading-[24px] rounded-lg">
             Register Here
@@ -23,7 +23,7 @@ function Header() {
         </Link>
 
         {/* Hamburger icon for mobile */}
-        <div className="lg:hidden">
+        <div className="lg:hidden z-[100]" >
           {menuOpen ? (
             <FaTimes onClick={toggleMenu} size={24} color="black" />
           ) : (
@@ -34,8 +34,8 @@ function Header() {
         {/* Navigation links */}
         <ul
           className={`${
-            menuOpen ? "flex" : "hidden"
-          } lg:flex flex-col lg:flex-row lg:space-x-10 space-y-5 lg:space-y-0 items-center lg:items-center w-full lg:w-auto`}
+            menuOpen ? "flex flex-col space-y-10 justify-between leading-3 absolute right-1 px-3 bg-[#fff] py-3 top-2 " : "sm:flex sm:justify-between sm:space-x-5 hidden"
+          } `}
         >
           {headerLink.map((item) => (
             <Link href={item.route} key={item.name}>

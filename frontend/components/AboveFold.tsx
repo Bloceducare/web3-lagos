@@ -1,14 +1,15 @@
+/* eslint-disable react/no-unescaped-entities */
 import Link from "next/link";
 import useTotalParticipants from "@/views/home/hooks/useTotalParticipants";
 
 import Button from "./button";
 import { BsFillPeopleFill } from "react-icons/bs";
 import { FaPaperPlane } from "react-icons/fa";
+import { FaMapMarkerAlt } from "react-icons/fa";
+import { FaRegCalendarAlt } from "react-icons/fa";
 import DateCountDown from "./dateCountDown";
 import Sponsors from "./Sponsors";
 import Image from "next/image";
-import Location from "../images/location.svg";
-import Date from "../images/date-icon.svg";
 import React from "react";
 
 type ProgressProps = {
@@ -17,7 +18,7 @@ type ProgressProps = {
   imageSrc: string;
 }
 
-const Progress: React.FC<ProgressProps> = ({ Title, number, imageSrc}) => {
+const Progress: React.FC<ProgressProps> = ({ Title, number, imageSrc }) => {
   return (
     <div className="flex items-center space-x-2">
       <div>
@@ -33,17 +34,17 @@ const Progress: React.FC<ProgressProps> = ({ Title, number, imageSrc}) => {
 
 const AboveFold = () => {
   return (
-  <div className="w-full bg-hero  ">
-    <section className=" flex justify-center items-center lg:h-[50rem]">
-      <div className="2xl:w-[60vw] lg:w-[85vw]  flex text-white m-auto justify-between">
-      <div className="flex flex-col justify-center w-full sm:w-1/2" >
+    <div className="w-full flex bg-hero justify-center px-4 sm:px-0">
+    <section className="flex justify-center items-center">
+      <div className="w-full flex text-white m-auto justify-between">
+        <div className="flex flex-col justify-center w-full">
 
         <div className="text-[3.5rem] ">
-          <div className=" flex flex-col justify-center w-[26rem] font-bold">
+          <div className=" flex flex-col justify-center w-fit font-bold">
             <h1 className="leading-[4rem]">Web3 Lagos Conference 
               <span className="text-[4rem] md:text-3xl lg:text-4xl font-normal">
                   {" "}
-                  2.0
+                  3.0
                 </span>
             </h1> 
           </div>
@@ -64,49 +65,45 @@ const AboveFold = () => {
         <div className=" w-fit mt-4 flex flex-col gap-4 text-[#fae586]">
           <DateCountDown />
 
-            <div className="flex flex-col items-center w-fit justify-center gap-3">
-              <div className="flex justify-between w-fit  items-center text-[1.2em] font-bold">
-                <div>
-                  <Image className="text-white" src={Location} alt={"location"} width={20} height={10} />
-                </div>
-                <div>The Zone, Gbagada, Lagos State.</div>
-              </div>
-              <div className="flex justify-between">
-                <div>
-                  <Image src={Date} alt={"date"} width={20} height={10} />
-                </div>
-                <div>September 05 - September 07, 2024</div>
-              </div>
+          <div className="flex flex-col items-center w-fit justify-center gap-3">
+            <div className="flex items-center text-[1.4em] font-bold">
+              <FaMapMarkerAlt className="text-[#fae586] mr-2" />
+              <div>The Zone, Gbagada, Lagos State.</div>
+            </div>
+            <div className="flex items-center text-[1.2em] font-bold">
+              <FaRegCalendarAlt className="text-[#fae586] mr-2" />
+              <div>September 05 - September 07, 2024</div>
             </div>
           </div>
+        </div>
 
-          <div className="flex items-center space-x-4 my-8 justify-between w-[28rem]">
-            <Progress Title="Attendee" number="1.5k+" imageSrc="/attendees.svg" />
-            <Progress Title="Speakers" number="50+" imageSrc="/speakers.svg" />
-            <Progress Title="Sponsors" number="15+" imageSrc="/sponsor.svg" />
-          </div>
+        <div className="flex items-center space-x-4 my-8 justify-between w-fit">
+          <Progress Title="Attendee" number="1.5k+" imageSrc="/attendees.svg" />
+          <Progress Title="Speakers" number="50+" imageSrc="/speakers.svg" />
+          <Progress Title="Sponsors" number="15+" imageSrc="/sponsor.svg" />
+        </div>
 
-          <div className="w-[28rem] flex justify-between">
+        <div className="w-full space-x-1.5 flex justify-between">
           <Link href="#">
-                <Button className="cta_header py-5 px-6 text-[20px] leading-[24px] rounded-lg">
-                  Register Here
-                </Button>
-              </Link>
+            <Button className="cta_header py-5 px-6 text-[20px] rounded-lg">
+              Register Here
+            </Button>
+          </Link>
 
-            <Link href="#">
-                <button className="border-[3px] py-4 px-[30px] border-dashed border-gray-400 text-[#F0EFDA] text-[20px] leading-[24px] rounded-lg">
-                  Sponsor next Event
-                </button>
-              </Link>
+          <Link href="https://drive.google.com/file/d/12NdPRIdl13EW6X8sX7Hrzr-M4WfAkW06/view" target="_blank">
+            <button className="border-[3px] py-4 px-[30px] border-dashed border-gray-400 text-[#F0EFDA] text-[20px] rounded-lg">
+              Sponsor's Deck
+            </button>
+          </Link>
+        </div>
+
+      </div>
+      <div className="w-fit justify-end h-full relative ">
+            <Image src='/bgimage.webp' width={370} height={350} alt='bgimg' className=" right-0" />
           </div>
-
-        </div>
-      <div className="w-full h-full relative">
-        <Image src='/bgimage.webp'  width={370} height={350} alt='bgimg' className="absolute top-10 right-0" />
-        </div>
-        </div>
-      </section>
-    </div>
+      </div>
+    </section>
+  </div>
   );
 };
 

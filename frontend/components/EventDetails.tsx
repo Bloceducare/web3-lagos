@@ -30,7 +30,7 @@ const DetailsCard: React.FC<DetailsCardProps> = ({cardHeading, cardContent, card
 const EventDetails = () => {
   return (
     <>
-      <div className="flex justify-center items-center mx-auto 2xl:w-[60vw] lg:w-[85vw] lg:h-[100vh] md:h-[60vh] ">
+      <div className="flex justify-center items-center mx-auto w-full">
         <div className="flex gap-4 h-full w-full justify-between items-center m-auto lg:flex-nowrap md:flex-wrap">
          <DetailsCard 
             cardHeading="Our Goal" 
@@ -41,61 +41,6 @@ const EventDetails = () => {
          <DetailsCard cardHeading="Event Overview " cardContent="Web3 Lagos Conference is a 3-day physical and virtual event comprising of hackathon, workshops, networking, career fair, panel session, talks, etc. The event focuses on onboarding and supporting the growth of individual new to the concept of blockchain and decentralisation, helping technical and non-technical blockchain native persons realise the endless possibilities and opportunities of the Blockchain & Ethereum ecosystem." cardLink="#" linkName="Visit X(Twitter) to Learn More" />
         </div>
       </div>
-      {/* register component */}
-      {/* <div>
-        <div className="hidden md:block lg:block">
-        <div className="flex justify-center my-6">
-          <Link href="/apply/registration">
-            <button className="text-white outline outline-offset-2 outline-[#122C47] font-bold bg-red-500 w-[90%] md:w-[20%] lg:w-[20%] p-4 rounded-lg">
-              Register
-            </button>
-          </Link>
-        </div>
-        </div>
-
-        <p className="text-red-400 font-semibold text-center">
-          <a
-            href=" https://event-web3lagos2022.web3bridge.com/"
-            target="_blank"
-          >
-            Web3Lagos Conference 2022
-          </a>
-        </p>
-        <div>
-          <div className="flex justify-center py-4">
-            <div>
-              <div className="flex space-x-2">
-                <h3 className="text-3xl">Powered by</h3>
-                <div>
-                  <Image
-                    width={150}
-                    height={50}
-                    src="/web3bridge-logo.png"
-                    alt="web3bridge-logo"
-                    className="block"
-                  />
-                </div>
-              </div>
-              <div>
-                <h3 className="text-xs text-center">In conjuction with </h3>
-                <div className="flex justify-center">
-                  <Image
-                    width={300}
-                    height={50}
-                    src="/aya.png"
-                    alt="aya"
-                    className="scale-[0.7] block border"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
-
-      {/* <section className="">
-        <Sponsors />
-      </section> */}
     </>
   );
 };
