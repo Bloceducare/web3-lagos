@@ -1,3 +1,34 @@
+<<<<<<< HEAD
+import React, {
+    useMemo,
+    useState,
+    useRef,
+    useCallback,
+  } from "react";
+  import { AgGridReact } from "ag-grid-react";
+  import "ag-grid-community/styles/ag-grid.css";
+  import { ModuleRegistry } from "@ag-grid-community/core";
+  import "ag-grid-community/styles/ag-theme-alpine.css";
+  import useVolunteers from "./hooks/useGetVolunteers";
+  import { CsvExportModule } from "@ag-grid-community/csv-export";
+  import clean, { format } from "@/utils/cleanObject";
+  import CloseIcon from "@/components/Icons/Close";
+  
+  // Register the required feature modules with the Grid
+  ModuleRegistry.registerModules([CsvExportModule]);
+  
+  const styles = { height: 400, width: 800 };
+  
+  const defaultFields = [
+    { field: "SN", filter: false, sortable: false },
+    { field: "userName" },
+    { field: "email" },
+    { field: "skills" },
+    { field: "areaOfContribution" },
+    { field: "location" },
+  ];
+  
+=======
 import React, { useMemo, useState, useRef, useCallback } from "react";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
@@ -5,9 +36,100 @@ import "ag-grid-community/styles/ag-theme-alpine.css";
 import useVolunteers from "./hooks/useGetVolunteers";
 import clean, { format } from "../../utils/cleanObject";
 import CloseIcon from "../../components/Icons/Close";
+>>>>>>> 1c42301b584bb25ec390d5246d5c4477f5f6ea86
 
 const styles = { height: 400, width: 800 };
 
+<<<<<<< HEAD
+  
+    const handleModal = (info: any) => {
+      setModalStatus({
+        status: true,
+        obj: info.data,
+      });
+    };
+  
+    const close = () => {
+      setModalStatus({
+        status: false,
+        obj: {},
+      });
+    };
+  
+    const defaultColDef = useMemo(() => {
+      return {
+        flex: 1,
+        minWidth: 100,
+        sortable: true,
+        resizable: true,
+        filter: true,
+      };
+    }, []);
+  
+    const onBtExport = useCallback(() => {
+      const file = `${selectedRef.current.value}-${new Date().toLocaleDateString(
+        "en-UK"
+      )}`;
+      //   @ts-ignore
+      gridRef!.current!.api.exportDataAsCsv({ fileName: file });
+    }, []);
+    const { data, loading, error } = apiData;
+    return (
+      <div className="grid p-3 m-6 mt-12 place-content-center">
+      
+  
+        {!!error && (
+          <div className="p-1 mx-auto">
+            Error Fetch Data
+            <button
+              onClick={fetchData}
+              className="px-3 py-2 mx-1 my-2 text-white bg-blue-800 rounded-md"
+            >
+              try again
+            </button>
+          </div>
+        )}
+  
+        <div className="relative ag-theme-alpine" style={styles}>
+          <div
+            className={`${
+              loading ? "" : "hidden"
+            } absolute top-0 left-0 z-10 grid text-white border  place-items-center`}
+            style={styles}
+          >
+            <button className="p-3 px-10 bg-blue-800 rounded-sm">Loading</button>
+          </div>
+  
+          {!!!error && (
+            <button
+              onClick={onBtExport}
+              className="px-3 py-2 mx-1 my-2 font-bold text-white bg-blue-800 rounded-md"
+            >
+              Export to Excel
+            </button>
+          )}
+  
+          {!!!error && (
+            <AgGridReact
+                // @ts-ignore
+              ref={gridRef}
+              rowData={data}
+              columnDefs={columnDefs}
+              animateRows
+              defaultColDef={defaultColDef}
+              onCellClicked={handleModal}
+            />
+          )}
+        </div>
+  
+        <UserModal
+          status={modalStatus.status}
+          obj={modalStatus.obj}
+          handleClose={close}
+        />
+      </div>
+    );
+=======
 const defaultFields = [
   { field: "SN", filter: false, sortable: false },
   { field: "userName", filter: true, sortable: true },
@@ -30,6 +152,7 @@ const VolunteersView = () => {
       status: true,
       obj: info.data,
     });
+>>>>>>> 1c42301b584bb25ec390d5246d5c4477f5f6ea86
   };
 
   const close = () => {

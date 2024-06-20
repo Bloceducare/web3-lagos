@@ -3,9 +3,15 @@ import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 import useGetRecords from "./hooks/useGetRecords";
+<<<<<<< HEAD
+import { CsvExportModule } from "@ag-grid-community/csv-export";
+import clean, { format } from "@/utils/cleanObject";
+import CloseIcon from "@/components/Icons/Close";
+=======
 import clean, { format } from "../../utils/cleanObject";
 import CloseIcon from "../../components/Icons/Close";
 import { ColDef } from "ag-grid-community";
+>>>>>>> 1c42301b584bb25ec390d5246d5c4477f5f6ea86
 
 // Define the columns for different views
 const AttendingOtherDays = ({ data }: any) => {

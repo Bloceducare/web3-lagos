@@ -4,124 +4,41 @@ import Link from "next/link";
 // import vectorPic from "../images/vector.svg";
 
 // bg-cover bg-[url('../images/main_bg.png')] h-[calc(110vh-20rem)] w-[1440px]
-const DetailsCard = () => {
+type DetailsCardProps = {
+  cardHeading: string;
+  cardContent: string;
+  cardLink: string
+  linkName: string
+}
+
+const DetailsCard: React.FC<DetailsCardProps> = ({cardHeading, cardContent, cardLink, linkName }) => {
+  return (
+    <div className="bg-white shadow-xl w-full flex flex-col items-center rounded-2xl xl:h-[420px] lg:h-[420px] md:h-fit sm:h-fit sm:w-full justify-between">
+      <div className="p-[50px] sm:p-[30px]">
+        <h3 className="mb-6 text-[#122C47] text-2xl font-semibold "> {cardHeading} </h3>
+        <p className="text-slate-600">
+          {cardContent}
+        </p>
+      </div>
+      <div className="border-t-[1px] w-full relative py-[20px] px-[50px] ">
+        <a className="text-left underline" href={cardLink}>{linkName}</a>
+      </div>
+  </div>
+  )
+}
+
+const EventDetails = () => {
   return (
     <>
-      <div className="hidden md:block lg:block text-justify p-3 tr mx-auto bg-[url('../images/bridge.svg')] w-full h-[calc(130vh-13rem)] bg-top bg-no-repeat ">
-        <div className="flex justify-between mt-8 gap-4 h-fit w-full items-center">
-          <div className="bg-white shadow-xl w-full m-auto border border-[#807f7f] h-[70vh] flex flex-col items-center text-center rounded-3xl">
-            <div className="">
-              <Image
-                alt="vector"
-                src="/vector.svg"
-                width="50"
-                height="50"
-              />
-            </div>
-            <h3 className="mb-10 mt-4 text-[#122C47] text-2xl font-semibold ">
-              Our Goal
-            </h3>
-            <div className="text-slate-600">
-              <p className="">
-                At Web3bridge, we believe education is critical in the
-              </p>
-              <p>drive for adoption of blockchain technology.</p>
-              <p className="mt-10">
-                And we have set up Web3 Lagos conference to bring
-              </p>
-              <p>education across varying topics/subjects and</p>
-              <p> comprehension of blockchain technology</p>
-            </div>
-          </div>
-
-          <div className="bg-white shadow-xl m-auto w-full border border-[#807f7f] flex flex-col items-center text-center rounded-3xl">
-            <div className="">
-              <Image
-                alt="vector"
-                src="/vector.svg"
-                width="50"
-                height="50"
-              />
-            </div>
-            <h3 className="mb-10 mt-4 text-2xl font-semibold">
-              Event Overview
-            </h3>
-            <div className="text-slate-600">
-              <p>Web3 Lagos Conference is a 3-day physical and virtual</p>
-              <p>event comprising of hackathon, workshops, networking,</p>
-              <p>career fair, panel session, talks, etc</p>
-
-              <p className="mt-10">
-                With over 1200+ attendance, 26 speakers and
-              </p>
-              <p>7 sponsors in the maiden event, the event focuses</p>
-              <p>on onboarding and supporting the growth of individual</p>
-              <p>new to the concept of blockchain and decentralisation,</p>
-              <p>helping technical andnon-technical blockchain</p>
-              <p>blockchain native persons realise the endless</p>
-              <p>possibilities and opportunities of the Blockchain &</p>
-              <p>Ethereum ecosystem.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* mobile */}
-      <div className="gap-32 block md:hidden lg:hidden my-24 p-4">
-        <div className=" shadow-xl border border-[#444444] items-center text-center rounded-3xl">
-          <div className="-translate-y-4">
-            <Image
-              alt="vector"
-              src="/vector.svg"
-              width="50"
-              height="50"
-              layout="fixed"
-              objectFit="cover"
-            />
-          </div>
-          <h3 className=" text-[#122C47] text-2xl font-semibold ">Our Goal</h3>
-          <div className="text-slate-600 p-2">
-            <p className="">
-              At Web3bridge, we believe education is critical in the drive for
-              adoption of blockchain technology.
-            </p>
-            <p className="">
-              And we have set up Web3 Lagos conference to bring education across
-              varying topics/subjects and
-            </p>
-            <p> comprehension of blockchain technology</p>
-          </div>
-        </div>
-
-        <div className=" shadow-xl  items-center text-center rounded-3xl">
-          <div className="-translate-y-4">
-            <Image
-              alt="vector"
-              src="/vector.svg"
-              width="50"
-              height="50"
-              layout="fixed"
-              objectFit="cover"
-            />
-          </div>
-          <h3 className="text-[#122C47] text-2xl font-semibold">
-            Event Overview
-          </h3>
-          <div className="text-slate-600 p-4">
-            <p>
-              Web3 Lagos Conference is a 3-day physical and virtual event
-              comprising of hackathon, workshops, networking,career fair, panel
-              session, talks, etc
-            </p>
-
-            <p className="mt-5">
-              With over 1200+ attendance, 26 speakers and 7 sponsors in the
-              maiden event, the event focuses on onboarding and supporting the
-              growth of individual new to the concept of blockchain and
-              decentralisation, helping technical andnon-technical blockchain
-              blockchain native persons realise the endless possibilities and
-              opportunities of the Blockchain & Ethereum ecosystem.
-            </p>
-          </div>
+      <div className="flex justify-center items-center mx-auto 2xl:w-[60vw] lg:w-[85vw] lg:h-[100vh] md:h-[60vh] ">
+        <div className="flex gap-4 h-full w-full justify-between items-center m-auto lg:flex-nowrap md:flex-wrap">
+         <DetailsCard 
+            cardHeading="Our Goal" 
+            cardContent="At Web3bridge, we believe education is critical in the drive for adoption of blockchain technology. And we have set up Web3 Lagos conference to bring education across varying topics/subjects and comprehension of blockchain technology." 
+            cardLink="#" 
+            linkName="Learn More" />
+         
+         <DetailsCard cardHeading="Event Overview " cardContent="Web3 Lagos Conference is a 3-day physical and virtual event comprising of hackathon, workshops, networking, career fair, panel session, talks, etc. The event focuses on onboarding and supporting the growth of individual new to the concept of blockchain and decentralisation, helping technical and non-technical blockchain native persons realise the endless possibilities and opportunities of the Blockchain & Ethereum ecosystem." cardLink="#" linkName="Visit X(Twitter) to Learn More" />
         </div>
       </div>
       {/* register component */}
@@ -182,7 +99,7 @@ const DetailsCard = () => {
     </>
   );
 };
-export default DetailsCard;
+export default EventDetails;
 
 // export default DetailsCard;
 

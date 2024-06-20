@@ -19,9 +19,9 @@ const YoutubeIframe: React.FC<YoutubeIframeProps> = ({ children }) => {
   };
 
   return (
-    <section className="bg-hero mt-28 h-[650px]">
+    <section className="bg-hero h-[650px]">
       <div className="flex justify-center p-4">
-        <div className="mt-12 w-full max-w-4xl">
+        <div className="mt-12 2xl:w-[60vw] lg:w-[85vw] ">
           <h3 className="text-center font-bold my-4 text-white text-3xl lg:text-4xl leading-10 lg:leading-12">
             Highlights from W3LC 2023
           </h3>
@@ -35,7 +35,7 @@ const YoutubeIframe: React.FC<YoutubeIframeProps> = ({ children }) => {
         </div>
       </div>
       {children && (
-        <p className="text-center my-6 text-lg  lg:leading-[33px] lg:text-[24px] px-4 lg:px-0 text-white">
+        <p className="text-center my-6 2xl:w-[60vw] lg:w-[85vw] m-auto text-lg  lg:leading-[33px] lg:text-[24px] px-4 lg:px-0 text-white">
           {children}
         </p>
       )}

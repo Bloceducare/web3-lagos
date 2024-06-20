@@ -1,34 +1,24 @@
-// import dynamic from "next/dynamic";
-// import classNames from "utils/classNames";
-
-// const DynamicComponent = dynamic(() => import("react-date-countdown-timer"), {
-//   ssr: false,
-// });
-
-// interface Props {
-//   className?: string;
-// }
-// const DateCountDown = ({ className = "" }: Props) => {
-//   return (
-//     <>
-
-//       <div
-//         className={classNames(
-//           className,
-//           " md:p-3 md:mt-0 text-sm"
-//         )}
-//       >
-//         {/* @ts-ignore */}
-//         <DynamicComponent dateTo="August 31, 2023 10:00:00 GMT+01:00" />
-//       </div>
-//     </>
-//   );
-// };
-
-// export default DateCountDown;
-
 import React, { useEffect, useState } from "react";
 
+// Define the type for the props
+type DateBlockProps = {
+  timeStamp: number;
+  text: string;
+};
+
+// Define the DateBlock component
+const DateBlock: React.FC<DateBlockProps> = ({ timeStamp, text }) => {
+
+  const formattedTime = String(timeStamp).padStart(2, '0');
+  return (
+    <div className="p-4 text-black w-[100px] h-[130px] mx-[5px]">
+      <h1 className="text-[44px]">{formattedTime}</h1>
+      <p className="text-[20px]">{text}</p>
+    </div>
+  );
+};
+
+// Countdown component
 interface CountdownProps {
   endDate: Date;
 }
@@ -46,7 +36,6 @@ const Countdown: React.FC<CountdownProps> = ({ endDate }) => {
     seconds: 0,
   });
 
-  // Function to calculate the time remaining until a specific date
   const getTimeRemaining = (
     endDate: Date
   ): { days: number; hours: number; minutes: number; seconds: number } => {
@@ -59,7 +48,6 @@ const Countdown: React.FC<CountdownProps> = ({ endDate }) => {
     return { days, hours, minutes, seconds };
   };
 
-  // Function to update the countdown display
   const updateCountdown = (endDate: Date): void => {
     const remainingTime = getTimeRemaining(endDate);
     setCountdown(remainingTime);
@@ -75,28 +63,24 @@ const Countdown: React.FC<CountdownProps> = ({ endDate }) => {
   }, [endDate]);
 
   return (
-    <div>
-      <p className=" text-[2em] font-bold tracking-wide">
-        {countdown.days} days, {countdown.hours} hours, {countdown.minutes}{" "}
-        minutes, {countdown.seconds} seconds
-      </p>
+    <div className="bg-header rounded-[10px] text-black text-[30px] font-bold tracking-wide flex items-center text-center">
+      <DateBlock timeStamp={countdown.days} text="Days" />: <DateBlock timeStamp={countdown.hours} text="Hours" />:<DateBlock timeStamp={countdown.minutes} text="Mins" />: <DateBlock timeStamp={countdown.seconds} text="Secs" />
     </div>
   );
 };
 
-// Example usage:
+// Example usage
 const endDate = new Date("2024-09-05T00:00:00");
 
 const DateCountDown: React.FC = () => {
   return (
     <div className="flex items-center justify-center">
       <div>
-        <div className=" flex items-center justify-center">
-          {/* <h1 className=" font-bold text-2xl -mt-4 tracking-wide">
+        <div className="flex items-center justify-center">
+          {/* <h1 className="font-bold text-2xl -mt-4 tracking-wide">
             Countdown Timer
           </h1> */}
         </div>
-
         <Countdown endDate={endDate} />
       </div>
     </div>

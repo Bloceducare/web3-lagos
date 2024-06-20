@@ -1,7 +1,11 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useState } from "react";
 import axios from "axios";
+<<<<<<< HEAD
+import {ISkills, AreaOfContribution} from "@/models/index"
+=======
 import {ISkills, AreaOfContribution} from "../../models/index"
+>>>>>>> 1c42301b584bb25ec390d5246d5c4477f5f6ea86
 
 type IVolunteer = {
   userName: string;
