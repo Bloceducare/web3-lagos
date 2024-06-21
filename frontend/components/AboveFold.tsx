@@ -34,7 +34,7 @@ const Progress: React.FC<ProgressProps> = ({ Title, number, imageSrc }) => {
 
 const AboveFold = () => {
   return (
-    <div className="w-full flex bg-hero justify-center px-4 sm:px-0">
+    <div className="w-full flex bg-hero justify-center px-4 sm:px-3">
     <section className="flex justify-center items-center">
       <div className="w-full flex text-white m-auto justify-between">
         <div className="flex flex-col justify-center w-full">

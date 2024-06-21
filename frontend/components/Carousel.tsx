@@ -26,7 +26,7 @@ const Carousel = () => {
   }, []);
 
   return (
-    <div className="flex items-center justify-center w-full h-[80vh] pb-[5rem]">
+    <div className="flex items-center justify-center w-full pb-[5rem]">
       <div className="relative w-[85vw] h-[450px] overflow-hidden rounded-[20px]">
         <div
           className="flex transition-transform duration-500 ease-in-out"
@@ -46,7 +46,7 @@ const Carousel = () => {
             Next
           </button>
         </div>
-        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+        <div className="bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
           {images.map((_, index) => (
             <div
               key={index}

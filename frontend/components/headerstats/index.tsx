@@ -17,12 +17,12 @@ function Header() {
     <header className="fixed top-0 left-0 right-0 bg-header shadow-md z-10 p-2">
       <nav className="flex items-center justify-between w-full max-w-screen-xl mx-auto">
         <Link href="#">
-          <Button className="cta_header py-2 px-6 text-[20px] leading-[24px] rounded-lg">
+          <Button className="cta_header rounded-lg">
             Register Here
           </Button>
         </Link>
         <Link href="/apply/speaker">
-          <Button className="cta_header py-2 px-6 text-[20px] leading-[24px] rounded-lg">
+          <Button className="border-[0.8px] border-dashed border-yellow-600 rounded-lg">
             Register as a Speaker
           </Button>
         </Link>

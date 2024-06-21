@@ -3,10 +3,10 @@ import { AboveFold, EventDetails, SpeakersCards, Schedule, Team, Sponsors, Galle
 const HomeView = () => {
   return (
 
-    <div className="w-full flex flex-col " >
+    <div className="w-full flex flex-col px-4 overflow-clip space-y-3" >
       <AboveFold />
-      {/* <EventDetails /> */}
-      <Slider />
+      <EventDetails />
+      {/* <Slider /> */}
         <YoutubeIframe>
           The 2023 edition had over 1500 enthusiasts and players in the ecosystem
           in attendance.
