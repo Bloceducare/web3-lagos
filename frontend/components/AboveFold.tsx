@@ -10,7 +10,7 @@ import { FaRegCalendarAlt } from "react-icons/fa";
 import DateCountDown from "./dateCountDown";
 import Sponsors from "./Sponsors";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 type ProgressProps = {
   Title: string;
@@ -33,6 +33,40 @@ const Progress: React.FC<ProgressProps> = ({ Title, number, imageSrc }) => {
 }
 
 const AboveFold = () => {
+  const [registrations, setRegistrations] = useState([]);
+  const [speakers, setSpeakers] = useState([]);
+
+  useEffect(() => {
+    async function fetchRegistrations() {
+      try {
+        const generalRegistrations = await fetch('https://web3lagosbackend.onrender.com/api/general-registrations/', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+          },
+        });
+
+        const speakerRegistrations = await fetch('https://web3lagosbackend.onrender.com/api/speaker-registrations/', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+          },
+        });
+
+        const generalData = await generalRegistrations.json();
+        const speakerData = await speakerRegistrations.json();
+        
+        setRegistrations(generalData.totalRegistrations);  
+        setSpeakers(speakerData.totalRegistrations);  
+      } catch (error) {
+        console.error('Error fetching registration data:', error);
+      }
+    }
+
+    fetchRegistrations();
+  }, []);
   return (
     <div className="w-full flex bg-hero justify-center px-4 sm:px-3">
     <section className="flex justify-center items-center">
@@ -78,8 +112,8 @@ const AboveFold = () => {
         </div>
 
         <div className="flex items-center space-x-4 my-8 justify-between w-fit">
-          <Progress Title="Attendee" number="1.5k+" imageSrc="/attendees.svg" />
-          <Progress Title="Speakers" number="50+" imageSrc="/speakers.svg" />
+          <Progress Title="Attendee" number={registrations ? `${registrations.length}`: '--'} imageSrc="/attendees.svg" />
+          <Progress Title="Speakers" number={speakers ? `${speakers.length}`: '--'} imageSrc="/speakers.svg" />
           <Progress Title="Sponsors" number="15+" imageSrc="/sponsor.svg" />
         </div>
 
