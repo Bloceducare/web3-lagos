@@ -60,8 +60,8 @@ const AboveFold = () => {
         const generalData = await generalRegistrations.json();
         const speakerData = await speakerRegistrations.json();
         
-        setRegistrations(generalData.totalRegistrations);  
-        setSpeakers(speakerData.totalRegistrations);  
+        setRegistrations(generalData);  
+        setSpeakers(speakerData);  
       } catch (error) {
         console.error('Error fetching registration data:', error);
       }
