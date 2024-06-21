@@ -14,15 +14,9 @@ function Header() {
   };
 
   return (
-<<<<<<< HEAD
-    <header className=" h-fit p-4 fixed top-0 left-0 right-0 bg-header shadow-md z-10">
-      <nav className="flex items-center justify-between">
-        <Link href="/apply/registration">
-=======
     <header className="fixed top-0 left-0 right-0 bg-header shadow-md z-10 p-2">
       <nav className="flex items-center justify-between w-full max-w-screen-xl mx-auto">
         <Link href="#">
->>>>>>> ee153a26b62f66c228f1180b394d3af839f63919
           <Button className="cta_header py-2 px-6 text-[20px] leading-[24px] rounded-lg">
             Register Here
           </Button>
