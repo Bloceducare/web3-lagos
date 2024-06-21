@@ -1,347 +1,206 @@
-import { useState } from "react";
-import axios from "axios";
-import { TwitterShareButton, TwitterIcon } from "react-share";
-type IRegister = {
-  userName: string;
+import { useState } from 'react';
+import Link from "next/link";
+import Button from '@/components/button';
+
+type FormData = {
+  name: string;
   email: string;
-  telegramID: string;
-  twitterHandle: string;
-  companyName: string;
-  role: string;
   phone: string;
-  type: string;
   location: string;
-  // reasonForAttending: string;
-  attendingOtherDays: boolean;
-  // reasonForOtherDays: String;
+  telegramUsername: string;
+  xHandle: string;
+  role: string;
 };
 
-const defaultUserInput = {
-  userName: "",
-  email: "",
-  telegramID: "",
-  twitterHandle: "",
-  companyName: "",
-  role: "", // out
-  phone: "",
-  type: "attendant",
-  location: "", //out
-  attendingOtherDays: false,
-  // reasonForOtherDays: "", //out
-  // reasonForAttending: "", //out
+const initialFormState: FormData = {
+  name: '',
+  email: '',
+  phone: '',
+  location: '',
+  telegramUsername: '',
+  xHandle: '',
+  role: '',
 };
-type DetailedHTMLProps = /*unresolved*/ any;
-const ApplyAsAnAttendant = () => {
-  const [userInputs, setUserInputs] = useState(defaultUserInput);
-  const [dataStatus, setDataStatus] = useState({ crud: false, error: "" });
-  const { crud } = dataStatus;
-  const [message, setMessage] = useState("");
-  const {
-    userName,
-    email,
-    telegramID,
-    twitterHandle,
-    companyName,
-    location,
-    // reasonForAttending,
-    // reasonForOtherDays,
-    // attendingOtherDays,
-    phone,
-  } = userInputs;
 
-  const handleChange = (
-    e:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLSelectElement>
-      | React.ChangeEvent<HTMLTextAreaElement>
-  ) => {
+const roles = [
+  'Developer',
+  'Investor',
+  'Community Manager',
+  'Trader',
+  'Researcher',
+  'Other',
+];
+
+export default function personalDetailForm() {
+  const [formData, setFormData] = useState<FormData>(initialFormState);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setUserInputs((prev) => ({
-      ...prev,
-      ...(name === "attendingOtherDays"
-        ? { [name]: Boolean(Number(value)) }
-        : { [name]: value }),
-    }));
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
-  const postData = async (data: IRegister) => {
-    const subData = { ...data, name: data.userName };
-    setDataStatus(() => ({
-      error: "",
-      crud: true,
-    }));
-
-    try {
-      const result = await axios.post("/api/participant", subData);
-      setMessage(result.data.message);
-
-      setDataStatus((prev) => ({
-        error: "",
-        crud: false,
-      }));
-    } catch (e: any) {
-      setDataStatus(() => ({
-        error: e?.response?.data?.message,
-        crud: false,
-      }));
-
-      window.scroll({ top: 0, left: 0 });
-    }
-  };
-
-  const handleSubmit = (e: React.SyntheticEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    postData(userInputs);
+    console.log('Form Data Submitted:', formData);
+  };
+
+  const handleDelete = () => {
+    setFormData(initialFormState);
   };
 
   return (
-    <div className="p-3 mt-12">
-        {/* <h1 className="mb-2 text-3xl text-center font-semibold text-gray-800">
-          Web3 Lagos 2023 Registration
-        </h1>
-      <div className="p-10 mx-auto bg-white rounded-lg shadow md:w-3/4 lg:w-1/2 ">
-        <h3 className="text-center">Registration has closed!! See you at the event 😊</h3>
-      </div> */}
-        
-      <div className="text-center">
-        <h1 className="mb-2 text-3xl font-semibold text-gray-800">
-        Web3 Lagos 2023 Registration
-        </h1>
-        {!!dataStatus.error && (
-          <span className="text-red-500 ">{dataStatus.error}</span>
-        )}
-      </div>
-      <div className="p-10 mx-auto bg-white rounded-lg shadow md:w-3/4 lg:w-1/2">
-        {!!!message && (
-          <>
-            <form onSubmit={handleSubmit}>
-              <div className="mb-5">
-                <label
-                  htmlFor="userName"
-                  className="block mb-2 font-bold text-gray-600"
-                >
-                  Name <span className="text-red-600">* </span>
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="userName"
-                  onChange={handleChange}
-                  placeholder="put in your full name"
-                  className="w-full p-3 border border-gray-300 rounded shadow mb-"
-                  value={userName}
-                  required
-                />
-              </div>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="w-full max-w-2xl bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
 
-              <div className="mb-5">
-                <label
-                  htmlFor="twitter"
-                  className="block mb-2 font-bold text-gray-600"
-                >
-                  Email <span className="text-red-600">*</span>{" "}
-                </label>
-                <input
-                  type="email"
-                  id="twitter"
-                  name="email"
-                  onChange={handleChange}
-                  placeholder="Put in your email."
-                  className="w-full p-3 border rounded shadow"
-                  value={email}
-                  required
-                />
-              </div>
-              <div className="mb-5">
-                <label
-                  htmlFor="twitter"
-                  className="block mb-2 font-bold text-gray-600"
-                >
-                  Phone number <span className="text-red-600">*</span>{" "}
-                </label>
-                <input
-                  type="text"
-                  id="phone"
-                  name="phone"
-                  onChange={handleChange}
-                  placeholder="Put in your phone number."
-                  className="w-full p-3 border rounded shadow"
-                  value={phone}
-                  required
-                />
-              </div>
+      <div>
+  <h1>
+    Web3 Lagos Conference 2.0: Registration Form
+  </h1>
+  <h2>
+  Register Now!
+    </h2>
+    <h5> Be a part of the event</h5>
+    <h3> Fill in the information carefully</h3>
+    <h3>Is this your first submission or is it a revision?</h3>
+    <p>Please select whether this is your first submission (first time registering for the event) or if </p>
+    <p> you already have submitted a form but wish to change something from the original submission.</p>
 
-              <div className="mb-5">
-                <label className="block mb-2 font-bold text-gray-600">
-                  Location <span className="text-red-600">*</span>{" "}
-                </label>
-                <input
-                  type="text"
-                  name="location"
-                  placeholder="Lagos,Nigeria"
-                  className="w-full p-3 border rounded shadow"
-                  onChange={handleChange}
-                  value={location}
-                  required
-                />
-              </div>
+   <form>
+    <input type="radio" id='yes' name='yes' value={'yes'}/>
+    <label>yes</label>
+    <input type="radio" id='no' name='no' value={'no'}/>
+    <label>no</label>
+   </form>
 
-              <div className="mb-5 ">
-                <span className="block mb-2 font-bold text-gray-600">
-                  Are you attending workshop days (Thursday and Friday)?
-                </span>
-                <div className="flex items-center p-3 mt-2">
-                  <div className="">
-                    <input
-                      id="attendingOtherDays-yes"
-                      type="radio"
-                      className="form-radio"
-                      name="attendingOtherDays"
-                      value={1}
-                      onChange={handleChange}
-                    />
-                    <label
-                      htmlFor="attendingOtherDays-yes"
-                      className="inline-flex items-center"
-                    >
-                      <span className="">Yes</span>
-                    </label>
-                  </div>
 
-                  <div>
-                    <input
-                      id="attendingOtherDays-no"
-                      type="radio"
-                      className="form-radio"
-                      name="attendingOtherDays"
-                      value={0}
-                      onChange={handleChange}
-                    />
-                    <label
-                      htmlFor="attendingOtherDays-no"
-                      className="inline-flex items-center ml-6"
-                    >
-                      <span className="">No</span>
-                    </label>
-                  </div>
-                </div>
-              </div>
 
-              <div className="mb-5">
-                <label className="block mb-2 font-bold text-gray-600">
-                  Company Name{" "}
-                </label>
-                <input
-                  type="text"
-                  name="companyName"
-                  placeholder="Put in your company name."
-                  className="w-full p-3 border rounded shadow"
-                  onChange={handleChange}
-                  value={companyName}
-                />
-              </div>
+    <Link href="/apply/speaker">
+          <Button className="border  bg-blue text-black-200 py-2 px-6 text-[15px] leading-[24px] rounded-[1px]">
+            Register as a Speaker
+          </Button>
+        </Link>
 
-              <div className="mb-5">
-                <label className="block mb-2 font-bold text-gray-600">
-                  What best describes your role in web3{" "}
-                </label>
-                <select
-                  className="block w-full p-3 mt-1 border form-select"
-                  name="role"
-                  onChange={handleChange}
-                >
-                  <option selected disabled>
-                    Please Select an Option
-                  </option>
-                  <option value="beginner">I am new to Blockchain/Web3</option>
-                  <option value="developer">Developer</option>
-                  <option value="designer">Designer</option>
-                  <option value="content">Content Creator</option>
-                  <option value="community">Community Manager</option>
-                  <option value="others">Others</option>
-                </select>
-              </div>
-
-              <div>
-                <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4">
-                  <div className="mb-5 ">
-                    <label className="block mb-2 font-bold text-gray-600">
-                      <span> Telegram Username </span>
-                      <br />
-                      <span className="text-xs hover:text-sky-500">
-                        <a href="https://t.me/Web3bridge" target="_blank">
-                          Do join our telegram channel
-                        </a>
-                      </span>
-                    </label>
-                    <input
-                      type="text"
-                      name="telegramID"
-                      placeholder="Put in your telegram ID"
-                      className="w-full p-3 border rounded shadow"
-                      onChange={handleChange}
-                      value={telegramID}
-                    />
-                  </div>
-
-                  <div className="mb-5">
-                    <label className="block mb-2 font-bold text-gray-600">
-                      <span> Twitter Handle </span>
-                      <br />
-                      <span className="text-xs hover:text-sky-500">
-                        <a
-                          href="https://twitter.com/Web3Bridge"
-                          target="_blank"
-                        >
-                          Follow us on twitter
-                        </a>
-                      </span>
-                    </label>
-                    <input
-                      type="text"
-                      name="twitterHandle"
-                      placeholder="Put in your twitter handle"
-                      className="w-full p-3 border rounded shadow"
-                      onChange={handleChange}
-                      value={twitterHandle}
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <button
-                disabled={crud}
-                className="block w-full p-4 font-bold text-white bg-blue-500 rounded-lg"
-              >
-                {crud ? "Sending..." : "Submit"}
-              </button>
-            </form>
-          </>
-        )}
-
-        {!!message && message}
-        {!!message && (
-          <div>
-            <h4 className="mt-2">Make a tweet</h4>
-            <TwitterShareButton
-              className="items-center"
-              url="https://event.web3bridge.com/"
-              title="I just registered for web3Lagos Conference 2023 !!"
-              hashtags={[
-                "Web3",
-                "Blockchain",
-                "Web3Bridge",
-                "Web3LagosConference",
-              ]}
-              related={["@Web3Bridge"]}
-            >
-              <TwitterIcon size={32} round />
-            </TwitterShareButton>
+        </div>
+        <h1 className="text-2xl font-bold mb-4">Personal Detail Form</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Name:
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              type="text"
+              name="name"
+              placeholder="Enter your name"
+              value={formData.name}
+              onChange={handleChange}
+            />
           </div>
-        )}
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Email Address:
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              value={formData.email}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Phone Number:
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              type="tel"
+              name="phone"
+              placeholder="Enter your phone number"
+              value={formData.phone}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Location:
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              type="text"
+              name="location"
+              placeholder="Enter your location"
+              value={formData.location}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Telegram Username:
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              type="text"
+              name="telegramUsername"
+              placeholder="Enter your Telegram username"
+              value={formData.telegramUsername}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              X Handle:
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              type="text"
+              name="xHandle"
+              placeholder="Enter your X handle"
+              value={formData.xHandle}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-500 text-sm font-bold mb-2">
+              What Best Describes Your Role in Web3:
+            </label>
+            <select
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              name="role"
+              value={formData.role}
+              onChange={handleChange}
+            >
+              <option value="">Select a role</option>
+              {roles.map((role) => (
+                <option key={role} value={role}>
+                  {role}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="flex items-center justify-between">
+           
+            <button
+              className="bg-black-500 hover:bg-red-700 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              type="button"
+              onClick={handleDelete}
+            >
+              Clear Form
+            </button>
+            <button
+              className="bg-blue-700 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              type="submit"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+       
+          </div>
       </div>
-    </div>
   );
-};
-
-export default ApplyAsAnAttendant;
+}
