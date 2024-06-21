@@ -197,7 +197,7 @@ export default function PersonalDetailForm() {
               </label>
               <input
                 type="text"
-                name="telegramUsername"
+                name="telegramusername"
                 placeholder="Put in your telegram ID"
                 className="w-full p-3 rounded-lg border-[0.7px]"
                 onChange={handleChange}
@@ -211,7 +211,7 @@ export default function PersonalDetailForm() {
               </label>
               <input
                 type="text"
-                name="xHandle"
+                name="xhandle"
                 placeholder="Put in your X handle"
                 className="w-full p-3 rounded-lg border-[0.7px]"
                 onChange={handleChange}

@@ -120,7 +120,7 @@ const AboveFold = () => {
         </div>
 
         <div className="w-full space-x-1.5 flex justify-between">
-          <Link href="#">
+          <Link href="/apply/registration">
             <Button className="cta_header py-5 px-6 text-[20px] rounded-lg">
               Register Here
             </Button>
