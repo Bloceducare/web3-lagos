@@ -36,6 +36,8 @@ const AboveFold = () => {
   const [registrations, setRegistrations] = useState([]);
   const [speakers, setSpeakers] = useState([]);
 
+  console.log(registrations)
+
   useEffect(() => {
     async function fetchRegistrations() {
       try {
