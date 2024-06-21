@@ -43,7 +43,7 @@ const AboveFold = () => {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
+            // 'Access-Control-Allow-Origin': '*',
           },
         });
 
@@ -51,7 +51,7 @@ const AboveFold = () => {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
+            // 'Access-Control-Allow-Origin': '*',
           },
         });
 

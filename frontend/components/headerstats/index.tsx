@@ -16,7 +16,7 @@ function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 bg-header shadow-md z-10 p-2">
       <nav className="flex items-center justify-between w-full max-w-screen-xl mx-auto">
-        <Link href="#">
+        <Link href="/apply/registration">
           <Button className="cta_header rounded-lg">
             Register Here
           </Button>
