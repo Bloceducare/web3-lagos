@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import {ISkills, AreaOfContribution} from "@models/index"
+import {ISkills, AreaOfContribution} from "../../models/index"
 
 const Schema = mongoose.Schema;
 const VolunteerSchema = new Schema(

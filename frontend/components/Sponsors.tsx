@@ -1,5 +1,5 @@
 import Image from "next/image";
-import sponsor from "../public/Sponsors.png";
+import sponsor from "../public/sponsor.svg";
 import Partners from "../public/Partners.png";
 
 const Sponsors = () => {

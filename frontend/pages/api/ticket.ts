@@ -1,8 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { createRouter } from "next-connect";
-import connectDB, { closeDB } from "@servers/config/index";
-import usersDb from  "@servers/models/participant"
-import { sendTicketEmail } from "@servers/mailer";
+import connectDB, { closeDB } from "../../servers/config/index";
+import usersDb from  "../../servers/models/participant"
+import { sendTicketEmail } from "../../servers/mailer";
 
 
 const router = createRouter<NextApiRequest, NextApiResponse>();
@@ -21,7 +21,7 @@ router.get(async (req, res) => {
   
       const getWithPromiseAll = async () => {
          await Promise.all(
-          newArr.map(async (user) => {
+          newArr.map(async (user:any) => {
             const userType = user?.type ?? "Attendant" as string;
             // const userType =  user?.areaOfContribution ?? "Volunteer" ;
   

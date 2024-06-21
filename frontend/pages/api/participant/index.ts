@@ -1,10 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { createRouter } from "next-connect";
-import connectDB, { conferenceStatus } from "@servers/config/index";
-import participantsDb from "@servers/models/participant";
-import { registrationEmail, sendHackatonEmail, sendQrcodeEmail, sendTicketEmail } from "@servers/mailer";
-import cloudinary from "@servers/cloudinary";
-import QRcode from "@servers/qr-code";
+import connectDB, { conferenceStatus } from "../../../servers/config/index";
+import participantsDb from "../../../servers/models/participant";
+import { registrationEmail, sendHackatonEmail, sendQrcodeEmail, sendTicketEmail } from "../../../servers/mailer";
+import cloudinary from "../../../servers/cloudinary";
+import QRcode from "../../../servers/qr-code";
 
 connectDB();
 

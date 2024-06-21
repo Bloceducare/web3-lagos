@@ -1,5 +1,5 @@
 export { default as AboveFold } from "./AboveFold";
-export { default as DetailsCard } from "./DetailsCard";
+export { default as EventDetails } from "./EventDetails";
 export { default as SpeakersCards } from "./SpeakersCards";
 export { default as Schedule } from "./Schedule";
 export { default as Team } from "./Team";

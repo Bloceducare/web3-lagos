@@ -1,5 +1,5 @@
 import { blurUrl, speakersImg } from "@/data";
-import Image from "next/image";
+import Image, { ImageProps } from "next/image";
 import speaker from "../public/speaker.png";
 import speaker2 from "../public/speakers2.png";
 import speaker3 from "../public/speaker3.png";
@@ -7,7 +7,7 @@ import speaker4 from "../public/speaker4.png";
 import Button from "./button";
 import Contact from "./Contact";
 
-const Card = ({ src = "" }) => (
+const Card = ({ src }: { src: string }) => (
   <>
     <div className="relative mt-5 rounded-md flex  justify-center  ">
       <Image
@@ -21,8 +21,9 @@ const Card = ({ src = "" }) => (
     </div>
   </>
 );
+
 const SpeakersCards = () => {
-  const speakers = speakersImg.map((speaker, i) => <Card src={speaker} />);
+  const speakers = speakersImg.map((speaker, i) => <Card key={i} src={speaker} />);
 
   return (
     <>
