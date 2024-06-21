@@ -13,6 +13,7 @@ class GeneralRegistration(models.Model):
     location = models.CharField(max_length=200, null=True)
     telegramusername = models.CharField(max_length=200, null=True)
     xhandle = models.CharField(max_length=200, null=True)
+    role = models.CharField(max_length=2000, null=True)
 
 class Attendance(models.Model):
     participant = models.ForeignKey(GeneralRegistration, on_delete=models.CASCADE)

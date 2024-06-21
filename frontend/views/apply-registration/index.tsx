@@ -43,9 +43,20 @@ export default function personalDetailForm() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form Data Submitted:', formData);
+    setLoading(true);
+    setMessage('');
+    try {
+      const response = await axios.post('https://web3lagosbackend.onrender.com/api/general-registrations/', formData);
+      setMessage('Registration successful!');
+      setFormData(initialFormState);
+    } catch (error) {
+      console.error('There was an error submitting the form:', error);
+      setMessage('Registration failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleDelete = () => {
