@@ -14,6 +14,11 @@ type FormData = {
   telegramusername: string;
   xhandle: string;
   role: string;
+  gender: string;
+};
+
+type FormErrors = {
+  [key in keyof FormData]?: string[];
 };
 
 const initialFormState: FormData = {
@@ -25,15 +30,29 @@ const initialFormState: FormData = {
   telegramusername: '',
   xhandle: '',
   role: '',
+  gender: '',
 };
+
+const initialFormErrors: FormErrors = {};
 
 const roles = [
   'Developer',
   'Investor',
-  'Community Manager',
+  'Community Manager/Community Builder',
   'Trader',
+  'Newbies',
+  'Designer',
+  'Marketer',
+  'Product Manager',
+  'Content',
   'Researcher',
   'Other',
+];
+
+const genders = [
+  'Male',
+  'Female',
+  'Other'
 ];
 
 export default function PersonalDetailForm() {
@@ -41,6 +60,7 @@ export default function PersonalDetailForm() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
+  const [errors, setErrors] = useState<FormErrors>(initialFormErrors);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -48,25 +68,39 @@ export default function PersonalDetailForm() {
       ...formData,
       [name]: value,
     });
+    setErrors({
+      ...errors,
+      [name]: undefined,
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setMessage('');
-    try {
-      const response = await axios.post('https://web3lagosbackend.onrender.com/api/general-registrations/', formData);
+    setErrors(initialFormErrors);
+
+    const response = await fetch('https://web3lagosbackend.onrender.com/api/general-registrations/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    });
+
+    const data = await response.json();
+    
+    if (response.ok) {
       setMessage('Registration successful!');
       setFormData(initialFormState);
       setIsSuccess(true); // Show success screen
-    } catch (error) {
-      console.error('There was an error submitting the form:', error);
+    } else {
+      setErrors(data);
       setMessage('Registration failed. Please try again.');
-    } finally {
-      setLoading(false);
     }
-  };
 
+    setLoading(false);
+  };
   const handleDelete = () => {
     setFormData(initialFormState);
   };
@@ -74,7 +108,6 @@ export default function PersonalDetailForm() {
   if (isSuccess) {
     return (
       <div className="">
-
         <SuccessScreen />
       </div>
     );
@@ -123,6 +156,9 @@ export default function PersonalDetailForm() {
                 value={formData.name}
                 required
               />
+              {errors.name && (
+                <span className="text-red-500">{errors.name.join(', ')}</span>
+              )}
             </div>
 
             <div className="mb-5">
@@ -142,6 +178,9 @@ export default function PersonalDetailForm() {
                 value={formData.email}
                 required
               />
+              {errors.email && (
+                <span className="text-red-500">{errors.email.join(', ')}</span>
+              )}
             </div>
             <div className="mb-5">
               <label
@@ -160,6 +199,9 @@ export default function PersonalDetailForm() {
                 value={formData.phone}
                 required
               />
+              {errors.phone && (
+                <span className="text-red-500">{errors.phone.join(', ')}</span>
+              )}
             </div>
 
             <div className="mb-5">
@@ -175,6 +217,9 @@ export default function PersonalDetailForm() {
                 value={formData.country}
                 required
               />
+              {errors.country && (
+                <span className="text-red-500">{errors.country.join(', ')}</span>
+              )}
             </div>
             <div className="mb-5">
               <label className="block mb-2 font-bold text-gray-600">
@@ -189,6 +234,9 @@ export default function PersonalDetailForm() {
                 value={formData.location}
                 required
               />
+              {errors.location && (
+                <span className="text-red-500">{errors.location.join(', ')}</span>
+              )}
             </div>
 
             <div className="mb-5">
@@ -203,6 +251,9 @@ export default function PersonalDetailForm() {
                 onChange={handleChange}
                 value={formData.telegramusername}
               />
+              {errors.telegramusername && (
+                <span className="text-red-500">{errors.telegramusername.join(', ')}</span>
+              )}
             </div>
 
             <div className="mb-5">
@@ -217,6 +268,33 @@ export default function PersonalDetailForm() {
                 onChange={handleChange}
                 value={formData.xhandle}
               />
+              {errors.xhandle && (
+                <span className="text-red-500">{errors.xhandle.join(', ')}</span>
+              )}
+            </div>
+            <div className="mb-5">
+              <label className="block mb-2 font-bold text-gray-600">
+                Gender
+              </label>
+              <select
+                className="w-full p-3 bg-white rounded-lg border-[0.7px]"
+                name="gender"
+                onChange={handleChange}
+                value={formData.gender}
+                required
+              >
+                <option value="" disabled>
+                  Please Select an Option
+                </option>
+                {genders.map((gender) => (
+                  <option key={gender} value={gender}>
+                    {gender}
+                  </option>
+                ))}
+              </select>
+              {errors.gender && (
+                <span className="text-red-500">{errors.gender.join(', ')}</span>
+              )}
             </div>
             <div className="mb-5">
               <label className="block mb-2 font-bold text-gray-600">
@@ -238,6 +316,9 @@ export default function PersonalDetailForm() {
                   </option>
                 ))}
               </select>
+              {errors.role && (
+                <span className="text-red-500">{errors.role.join(', ')}</span>
+              )}
             </div>
             <div className="w-full justify-between flex">
 
