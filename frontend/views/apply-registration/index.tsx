@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { useState } from 'react';
 import Link from "next/link";
 import Button from '@/components/button';
@@ -296,7 +297,7 @@ export default function personalDetailForm() {
             </TwitterShareButton>
           </div>
         )}
-      </div>
+      </div> */}
     </div>
   );
 }
