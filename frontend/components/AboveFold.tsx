@@ -114,8 +114,8 @@ const AboveFold = () => {
         </div>
 
         <div className="flex items-center space-x-4 my-8 justify-between w-fit">
-          <Progress Title="Attendee" number={registrations ? `${registrations.length}`: '--'} imageSrc="/attendees.svg" />
-          <Progress Title="Speakers" number={speakers ? `${speakers.length}`: '--'} imageSrc="/speakers.svg" />
+          <Progress Title="Attendee" number={registrations.length > 0 ? `${registrations.length}`: '--'} imageSrc="/attendees.svg" />
+          <Progress Title="Speakers" number={speakers.length > 0 ? `${speakers.length}`: '--'} imageSrc="/speakers.svg" />
           <Progress Title="Sponsors" number="15+" imageSrc="/sponsor.svg" />
         </div>
 
