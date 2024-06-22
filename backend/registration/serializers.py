@@ -35,3 +35,9 @@ class RoadToWeb3LagosRegistrationSerializer(serializers.ModelSerializer):
     class Meta:
         model = RoadToWeb3LagosRegistration
         fields = '__all__'
+
+class VerifyCodeSerializer(serializers.Serializer):
+    code = serializers.CharField(required=True)
+
+    class Meta:
+        fields = 'code'
