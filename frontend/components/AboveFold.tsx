@@ -115,7 +115,7 @@ const AboveFold = () => {
           <Progress Title="Sponsors" number="15+" imageSrc="/sponsor.svg" />
         </div>
 
-        <div className="w-full space-x-1.5 flex justify-between">
+        <div className="w-full space-x-1.5 flex sm:w-1/2 justify-between">
           <Link href="/apply/registration">
             <Button className="cta_header w-full py-3 px-1 sm:py-5 sm:px-6 rounded-lg">
               Register Here
