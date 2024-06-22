@@ -8,10 +8,19 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        'custom-gradient': 'linear-gradient(90deg, #C96C4E 9.5%, #AC615D 27%, #895470 37%, #3E3797 70%, #BD6854 84%, #3E3797 100%)',
+      },
+      textColor: {
+        'custom-gradient': 'transparent',
+      },
+      backgroundClip: {
+        text: 'text',
+      },
       colors: {
         blue: {
           c1: "#122B47",
-        },  
+        }, 
         gray: {
           cgray: "#E9EFFF",
         },
