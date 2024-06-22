@@ -10,7 +10,11 @@ class GeneralRegistration(models.Model):
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=15)
     country = models.CharField(max_length=100)  
-    organization = models.CharField(max_length=200)
+    location = models.CharField(max_length=200, null=True)
+    gender = models.CharField(max_length=200, null=True)
+    telegramusername = models.CharField(max_length=200, null=True)
+    xhandle = models.CharField(max_length=200, null=True)
+    role = models.CharField(max_length=2000, null=True)
 
 class Attendance(models.Model):
     participant = models.ForeignKey(GeneralRegistration, on_delete=models.CASCADE)

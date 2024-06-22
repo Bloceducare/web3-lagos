@@ -95,7 +95,7 @@ const ApplyAsaSpeaker = () => {
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center bg-gray-100">
       <div className="w-full text-center">
-        <h1 style={gradientStyle} className="text-[50px] font-black">Web3 Lagos Conference 2.0: Registration Form</h1>
+        <h1 style={gradientStyle} className="text-[50px] font-black">Web3 Lagos Conference 3.0: Registration Form</h1>
         <div className="h-[150px] flex flex-col justify-between mt-5 pb-8 border-b-[1px] ">
           <h4 style={gradientStyle} className="text-[36px] font-black">Register Now!</h4>
           <p className="text-[#181818] ">Be a part of the event</p>
