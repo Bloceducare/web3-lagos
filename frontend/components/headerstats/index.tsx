@@ -21,7 +21,7 @@ function Header() {
             Register Here
           </Button>
         </Link>
-        <Link href="/apply/speaker">
+        <Link href="#">
           <Button className="border-[0.8px] border-dashed border-yellow-600 rounded-lg">
             Register as a Speaker
           </Button>
