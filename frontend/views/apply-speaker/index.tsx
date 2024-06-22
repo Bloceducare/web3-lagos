@@ -7,6 +7,7 @@ type FormData = {
   telegramID: string;
   twitterHandle: string;
   companyName: string;
+  phone: string;
   role: string;
   presentationTitle: string;
   pitchStory: string;
@@ -21,6 +22,7 @@ const initialFormState = {
   twitterHandle: "",
   companyName: "",
   presentationTitle: "",
+  phone:"",
   role: "",
   pitchStory: "",
   spokenAtWeb3Before: false,
@@ -64,7 +66,7 @@ const ApplyAsaSpeaker = () => {
 
           <h1 className="text-2xl font-bold mb-4"> Speaker's Detail Form </h1>
           <form onSubmit={handleSubmit}>
-            <div className="mb-4">
+            <div className="mb-4"   >
               <label className="block text-gray-700 text-sm font-bold mb-2">
                 userName:
               </label>
@@ -77,7 +79,9 @@ const ApplyAsaSpeaker = () => {
                 onChange={handleChange}
               />
             </div>
-            <div className="mb-4">
+            <div className="mb-4" 
+            >
+      
               <label className="block text-gray-700 text-sm font-bold mb-2">
                 Email Address:
               </label>
@@ -90,6 +94,19 @@ const ApplyAsaSpeaker = () => {
                 onChange={handleChange}
               />
             </div>
+            <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Phone Number:
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              type="tel"
+              name="phone"
+              placeholder="Enter your phone number"
+              value={formData.phone}
+              onChange={handleChange}
+            />
+          </div>
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2">
                 telegramID:
