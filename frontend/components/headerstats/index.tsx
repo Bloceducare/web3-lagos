@@ -27,7 +27,7 @@ function Header() {
           </Button>
         </Link>
         {/* Hamburger icon for mobile */}
-        <div className="lg:hidden z-[100]" >
+        <div className="md:hidden z-[100]" >
           {menuOpen ? (
             <FaTimes onClick={toggleMenu} size={24} color="black" />
           ) : (
@@ -38,7 +38,7 @@ function Header() {
         {/* Navigation links */}
         <ul
           className={`${
-            menuOpen ? "flex flex-col space-y-10 justify-between leading-3 absolute right-1 px-3 bg-[#fff] py-3 top-2 " : "sm:flex sm:justify-between sm:space-x-5 hidden"
+            menuOpen ? "flex flex-col space-y-10 justify-between leading-3 absolute right-1 px-3 bg-[#fff] py-3 top-2 " : "md:flex md:justify-between md:space-x-5 hidden"
           } `}
         >
           {headerLink.map((item) => (
