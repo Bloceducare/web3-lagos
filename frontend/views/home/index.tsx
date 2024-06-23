@@ -18,7 +18,7 @@ const HomeView = () => {
       {/* <Sponsors /> */}
       {/* <SpeakersCards /> */}
       <Gallery />
-      <Schedule />
+      {/* <Schedule /> */}
       <Team />
     </div>
   );
