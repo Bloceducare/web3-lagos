@@ -396,7 +396,7 @@ export const headerLink = [
     route:"/insight"
   },
   {
-    name:"Sponsorhips",
+    name:"Sponsorships",
     route:"#"
   }
 ]
