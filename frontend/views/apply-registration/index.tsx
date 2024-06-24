@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from 'next/image';
 import axios from 'axios';
 import SuccessScreen from '../successScreen'
+import React from 'react';
 
 type FormData = {
   name: string;
