@@ -5,7 +5,7 @@ from .models import Attendance, Team, SpeakerRegistration, GeneralRegistration, 
 class GeneralRegistrationSerializer(serializers.ModelSerializer):
     class Meta:
         model = GeneralRegistration
-        fields = '__all__'
+        exclude = ['unique_code']
 
 class TeamSerializer(serializers.ModelSerializer):
     members = serializers.PrimaryKeyRelatedField(many=True, queryset=GeneralRegistration.objects.all())
@@ -35,3 +35,9 @@ class RoadToWeb3LagosRegistrationSerializer(serializers.ModelSerializer):
     class Meta:
         model = RoadToWeb3LagosRegistration
         fields = '__all__'
+
+class VerifyCodeSerializer(serializers.Serializer):
+    code = serializers.CharField(required=True)
+
+    class Meta:
+        fields = 'code'

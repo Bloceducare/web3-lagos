@@ -3,7 +3,7 @@ import { AboveFold, EventDetails, SpeakersCards, Schedule, Team, Sponsors, Galle
 const HomeView = () => {
   return (
 
-    <div className="w-full flex flex-col px-4 overflow-clip space-y-3" >
+    <div className="w-full flex flex-col overflow-clip" >
       <AboveFold />
       <EventDetails />
       {/* <Slider /> */}
@@ -16,9 +16,9 @@ const HomeView = () => {
           address.
         </YoutubeIframe>
       {/* <Sponsors /> */}
-      <SpeakersCards />
+      {/* <SpeakersCards /> */}
       <Gallery />
-      <Schedule />
+      {/* <Schedule /> */}
       <Team />
     </div>
   );

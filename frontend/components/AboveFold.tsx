@@ -70,7 +70,7 @@ const AboveFold = () => {
     fetchRegistrations();
   }, []);
   return (
-    <div className="w-full flex bg-hero justify-center px-4 sm:px-3">
+    <div className="w-full flex bg-hero justify-center px-4 sm:px-8 py-4">
     <section className="flex justify-center items-center">
       <div className="w-full flex text-white m-auto justify-between">
         <div className="flex flex-col justify-center w-full">
@@ -91,10 +91,6 @@ const AboveFold = () => {
             The Web3 Lagos Conference is the largest Web3 Event in Lagos,
             Nigeria. This conference will bring together Web3 enthusiasts from all over
             Nigeria and beyond.
-          </p>
-          <p>
-            Here, community meets technology for three days of intensive
-            Networking and Learning experiences.
           </p>
         </div>
 
@@ -119,15 +115,15 @@ const AboveFold = () => {
           <Progress Title="Sponsors" number="15+" imageSrc="/sponsor.svg" />
         </div>
 
-        <div className="w-full space-x-1.5 flex justify-between">
+        <div className="w-full space-x-1.5 flex sm:w-1/2 justify-between">
           <Link href="/apply/registration">
-            <Button className="cta_header py-5 px-6 text-[20px] rounded-lg">
+            <Button className="cta_header w-full py-3 px-1 sm:py-5 sm:px-6 rounded-lg">
               Register Here
             </Button>
           </Link>
 
           <Link href="https://drive.google.com/file/d/12NdPRIdl13EW6X8sX7Hrzr-M4WfAkW06/view" target="_blank">
-            <button className="border-[3px] py-4 px-[30px] border-dashed border-gray-400 text-[#F0EFDA] text-[20px] rounded-lg">
+            <button className="border-[1px] w-full py-3 px-1 sm:py-5 sm:px-6 border-dashed border-gray-400 text-[#F0EFDA] rounded-lg">
               Sponsor's Deck
             </button>
           </Link>
