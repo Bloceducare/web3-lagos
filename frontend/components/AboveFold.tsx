@@ -10,7 +10,7 @@ import { FaRegCalendarAlt } from "react-icons/fa";
 import DateCountDown from "./dateCountDown";
 import Sponsors from "./Sponsors";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 type ProgressProps = {
   Title: string;
@@ -33,8 +33,44 @@ const Progress: React.FC<ProgressProps> = ({ Title, number, imageSrc }) => {
 }
 
 const AboveFold = () => {
+  const [registrations, setRegistrations] = useState([]);
+  const [speakers, setSpeakers] = useState([]);
+
+  console.log(registrations)
+
+  useEffect(() => {
+    async function fetchRegistrations() {
+      try {
+        const generalRegistrations = await fetch('https://web3lagosbackend.onrender.com/api/general-registrations/', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            // 'Access-Control-Allow-Origin': '*',
+          },
+        });
+
+        const speakerRegistrations = await fetch('https://web3lagosbackend.onrender.com/api/speaker-registrations/', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            // 'Access-Control-Allow-Origin': '*',
+          },
+        });
+
+        const generalData = await generalRegistrations.json();
+        const speakerData = await speakerRegistrations.json();
+        
+        setRegistrations(generalData);  
+        setSpeakers(speakerData);  
+      } catch (error) {
+        console.error('Error fetching registration data:', error);
+      }
+    }
+
+    fetchRegistrations();
+  }, []);
   return (
-    <div className="w-full flex bg-hero justify-center px-4 sm:px-0">
+    <div className="w-full flex bg-hero justify-center px-4 sm:px-8 py-4">
     <section className="flex justify-center items-center">
       <div className="w-full flex text-white m-auto justify-between">
         <div className="flex flex-col justify-center w-full">
@@ -56,10 +92,6 @@ const AboveFold = () => {
             Nigeria. This conference will bring together Web3 enthusiasts from all over
             Nigeria and beyond.
           </p>
-          <p>
-            Here, community meets technology for three days of intensive
-            Networking and Learning experiences.
-          </p>
         </div>
 
         <div className=" w-fit mt-4 flex flex-col gap-4 text-[#fae586]">
@@ -78,20 +110,20 @@ const AboveFold = () => {
         </div>
 
         <div className="flex items-center space-x-4 my-8 justify-between w-fit">
-          <Progress Title="Attendee" number="1.5k+" imageSrc="/attendees.svg" />
-          <Progress Title="Speakers" number="50+" imageSrc="/speakers.svg" />
+          <Progress Title="Attendee" number={registrations.length > 0 ? `${registrations.length}`: '--'} imageSrc="/attendees.svg" />
+          <Progress Title="Speakers" number={speakers.length > 0 ? `${speakers.length}`: '--'} imageSrc="/speakers.svg" />
           <Progress Title="Sponsors" number="15+" imageSrc="/sponsor.svg" />
         </div>
 
-        <div className="w-full space-x-1.5 flex justify-between">
-          <Link href="#">
-            <Button className="cta_header py-5 px-6 text-[20px] rounded-lg">
+        <div className="w-full space-x-1.5 flex sm:w-1/2 justify-between">
+          <Link href="/apply/registration">
+            <Button className="cta_header w-full py-3 px-1 sm:py-5 sm:px-6 rounded-lg">
               Register Here
             </Button>
           </Link>
 
           <Link href="https://drive.google.com/file/d/12NdPRIdl13EW6X8sX7Hrzr-M4WfAkW06/view" target="_blank">
-            <button className="border-[3px] py-4 px-[30px] border-dashed border-gray-400 text-[#F0EFDA] text-[20px] rounded-lg">
+            <button className="border-[1px] w-full py-3 px-1 sm:py-5 sm:px-6 border-dashed border-gray-400 text-[#F0EFDA] rounded-lg">
               Sponsor's Deck
             </button>
           </Link>

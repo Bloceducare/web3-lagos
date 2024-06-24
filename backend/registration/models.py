@@ -1,16 +1,37 @@
 from django.db import models
+from django.db import models
+
 class SpeakerRegistration(models.Model):
-    name = models.CharField(max_length=100)
+    firstname = models.CharField(max_length=100)
+    other_name = models.CharField(max_length=100, blank=True, null=True)
+    last_name = models.CharField(max_length=100, blank=True, null=True)
     email = models.EmailField(unique=True)
-    topic = models.CharField(max_length=200)
-    bio = models.TextField(blank=True)
+    phone_number = models.CharField(max_length=15)
+    company_name = models.CharField(max_length=100)
+    website_or_portfolio = models.URLField(blank=True, null=True)
+    country = models.CharField(max_length=100)
+    city = models.CharField(max_length=100, null=True)
+    x_handle = models.CharField(max_length=100, blank=True, null=True)
+    lecture_title = models.CharField(max_length=200)
+    category= models.CharField(max_length=200, blank=True, null=True)
+    session_abstract = models.TextField()
+    web3_role = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.speakers_name
+
 
 class GeneralRegistration(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=15)
     country = models.CharField(max_length=100)  
-    organization = models.CharField(max_length=200)
+    location = models.CharField(max_length=200, null=True)
+    gender = models.CharField(max_length=200, null=True)
+    telegramusername = models.CharField(max_length=200, null=True)
+    xhandle = models.CharField(max_length=200, null=True)
+    role = models.CharField(max_length=2000, null=True)
+    unique_code = models.CharField(max_length=200, blank=True, null=True)
 
 class Attendance(models.Model):
     participant = models.ForeignKey(GeneralRegistration, on_delete=models.CASCADE)

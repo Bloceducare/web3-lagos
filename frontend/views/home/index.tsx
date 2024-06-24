@@ -3,10 +3,10 @@ import { AboveFold, EventDetails, SpeakersCards, Schedule, Team, Sponsors, Galle
 const HomeView = () => {
   return (
 
-    <div className="w-full flex flex-col " >
+    <div className="w-full flex flex-col overflow-clip" >
       <AboveFold />
-      {/* <EventDetails /> */}
-      <Slider />
+      <EventDetails />
+      {/* <Slider /> */}
         <YoutubeIframe>
           The 2023 edition had over 1500 enthusiasts and players in the ecosystem
           in attendance.
@@ -16,9 +16,9 @@ const HomeView = () => {
           address.
         </YoutubeIframe>
       {/* <Sponsors /> */}
-      <SpeakersCards />
+      {/* <SpeakersCards /> */}
       <Gallery />
-      <Schedule />
+      {/* <Schedule /> */}
       <Team />
     </div>
   );

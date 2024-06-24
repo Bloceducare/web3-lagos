@@ -1,4 +1,4 @@
-import ApplyAsAnAttendant from "../../../views/apply-registration";
+import  ApplyAsAnAttendant  from "../../../views/apply-registration/index";
 
 const Register = () => {
   return (
