@@ -14,7 +14,8 @@ type FormData = {
   phone: string;
   companyName: string;
   telegramID: string;
-  location: string;
+  country: string;
+  city: string;
   XHandle: string;
   role: string;
   presentationTitle: string;
@@ -31,7 +32,8 @@ const initialFormState: FormData = {
   FirstName: "",
   OtherNames: "",
   email: "",
-  location: "",
+  country: "",
+  city: "",
   telegramID: "",
   XHandle: "",
   companyName: "",
@@ -258,15 +260,27 @@ export default function ApplyAsaSpeaker() {
             </div>
             <div className="sm:flex-wrap mb-4 w-full lg:flex lg:gap-[20px] lg:flex-nowrap justify-between align-bottom h-auto">
               <label className="block mb-2 font-bold text-gray-600">
-                Location <span className="text-red-600">*</span>{" "}
+                Country <span className="text-red-600">*</span>{" "}
               </label>
               <input
                 type="text"
-                name="location"
-                placeholder="Lagos,Nigeria"
+                name="country"
+                placeholder="e.g Nigeria"
                 className="w-full p-3 border rounded shadow"
                 onChange={handleChange}
-                value={formData.location}
+                value={formData.country}
+                required
+              />
+ <label className="block mb-2 font-bold text-gray-600">
+                City <span className="text-red-600">*</span>{" "}
+              </label>
+              <input
+                type="text"
+                name="city"
+                placeholder="e.g Abuja"
+                className="w-full p-3 border rounded shadow"
+                onChange={handleChange}
+                value={formData.city}
                 required
               />
 
