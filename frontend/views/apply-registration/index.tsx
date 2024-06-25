@@ -100,6 +100,12 @@ export default function PersonalDetailForm() {
 
     setLoading(false);
   };
+
+
+
+
+
+  
   const handleDelete = () => {
     setFormData(initialFormState);
   };
