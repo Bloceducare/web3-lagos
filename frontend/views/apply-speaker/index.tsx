@@ -4,7 +4,6 @@ import Image from "next/image";
 import axios from "axios";
 import SuccessScreen from "./successScreen";
 import React from "react";
-// import DateSelectionForm from "./dateSelection";
 import Category from "./category";
 
 
@@ -384,27 +383,25 @@ export default function ApplyAsaSpeaker() {
               <label className="block mb-2 font-bold text-gray-600">
                 I agree to submit my presentation prior to the Conference.
               </label>
-              <select
-                className="block w-full p-3 mt-1 border form-select"
-                name="role"
-                onChange={handleChange}
-              >
-                <option selected disabled>
-                  Please Select date
-                </option>
-                <option value="beginner">I am new to Blockchain/Web3</option>
-                <option value="developer">Developer</option>
-                <option value="designer">Designer</option>
-                <option value="content">Content Creator</option>
-                <option value="community">Community Manager</option>
-                <option value="others">Others</option>
-              </select>
+              <div className="">
+                    <input
+                      id="agree-yes"
+                      type="radio"
+                      className="form-radio"
+                      name="agree"
+                      value={1}
+                      onChange={handleChange}
+                    />
+                    <label
+                      htmlFor="agree-yes"
+                      className="inline-flex items-center"
+                    >
+                      <span className="">Yes</span>
+                    </label>
+                  </div>
             </div>
 
-            <div className="sm:flex-wrap mb-4 w-full lg:flex lg:gap-[20px] lg:flex-nowrap justify-between align-bottom h-auto">
-            I have verfied that all information provided is accurate and
-            complete.
-            </div>
+            
            
 
             <div className="mb-5">
@@ -439,7 +436,28 @@ export default function ApplyAsaSpeaker() {
               onChange={handleChange}
               value={formData.telegramID}
             />
-           
+           <div className="sm:flex-wrap mb-4 w-full lg:flex lg:gap-[20px] lg:flex-nowrap justify-between align-bottom h-auto">
+            I have verfied that all information provided is accurate and
+            complete.
+            </div>
+                  <div className="">
+                    <input
+                      id="verified-yes"
+                      type="radio"
+                      className="form-radio"
+                      name="verified"
+                      value={1}
+                      onChange={handleChange}
+                    />
+                    <label
+                      htmlFor="verified-yes"
+                      className="inline-flex items-center"
+                    >
+                      <span className="">Yes</span>
+                    </label>
+                  </div>
+
+
             {/* <button
                 disabled={crud}
                 className="block w-full p-4 font-bold text-white bg-blue-500 rounded-lg"
