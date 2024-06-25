@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -114,6 +115,8 @@ export default function ApplyAsaSpeaker() {
 
     setLoading(false);
   };
+
+
   const handleDelete = () => {
     setFormData(initialFormState);
   };
@@ -158,7 +161,10 @@ export default function ApplyAsaSpeaker() {
           <span className="text-red-500 ">{dataStatus.error}</span>
         )} */}
         {!!!message && (
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+
+            <div className="w-full">
+
             <div className="sm:flex-wrap mb-4 w-full lg:flex lg:gap-[20px] lg:flex-nowrap justify-between align-bottom h-auto">
               <label
                 htmlFor="FirstName"
@@ -198,7 +204,7 @@ export default function ApplyAsaSpeaker() {
                 htmlFor="email"
                 className="block mb-2 font-bold text-gray-600"
               >
-                Email Address <span className="text-red-600">*</span>{" "}
+                Email Address 
               </label>
               <input
                 type="email"
@@ -215,7 +221,7 @@ export default function ApplyAsaSpeaker() {
                 htmlFor="phone"
                 className="block mb-2 font-bold text-gray-600"
               >
-                Phone number <span className="text-red-600">*</span>{" "}
+                Phone number 
               </label>
               <input
                 type="text"
@@ -259,7 +265,7 @@ export default function ApplyAsaSpeaker() {
             </div>
             <div className="sm:flex-wrap mb-4 w-full lg:flex lg:gap-[20px] lg:flex-nowrap justify-between align-bottom h-auto">
               <label className="block mb-2 font-bold text-gray-600">
-                Location <span className="text-red-600">*</span>{" "}
+                Location 
               </label>
               <input
                 type="text"
@@ -272,7 +278,7 @@ export default function ApplyAsaSpeaker() {
               />
 
               <label className="block mb-2 font-bold text-gray-600">
-                XHandle <span className="text-red-600">*</span>{" "}
+                XHandle 
               </label>
               <input
                 type="text"
@@ -295,7 +301,7 @@ export default function ApplyAsaSpeaker() {
                   htmlFor="email"
                   className="block mb-2 font-bold text-gray-600"
                 >
-                  Title of your Lecture <span className="text-red-600">*</span>{" "}
+                  Title of your Lecture 
                 </label>
                 <input
                   type="text"
@@ -439,13 +445,31 @@ export default function ApplyAsaSpeaker() {
               onChange={handleChange}
               value={formData.telegramID}
             />
+            </div>
+
+
            
-            {/* <button
-                disabled={crud}
-                className="block w-full p-4 font-bold text-white bg-blue-500 rounded-lg"
-              >
-                {crud ? "Sending..." : "Submit"}
-              </button> */}
+           <div className="flex w-full">
+
+
+           <button
+              type="button"
+              className="flex rounded-md items-center justify-center text-center space-x-2"
+              onClick={handleDelete}
+            >
+              <Image src={'/clearform.svg'} alt="..." height={10} width={15} />
+              <p className="text-center">Clear Form</p>
+            </button>
+
+
+            <button
+              type="submit"
+              className="rounded-lg from-[#3E3797] to-[#111022] bg-gradient-to-r text-white px-3 py-1.5 text-center"
+              disabled={loading}
+            >
+              {loading ? "Sending..." : "Submit"}
+            </button>
+           </div>
           </form>
         )}
       </div>
