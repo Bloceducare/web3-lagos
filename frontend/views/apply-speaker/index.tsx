@@ -4,6 +4,9 @@ import Image from "next/image";
 import axios from "axios";
 import SuccessScreen from "./successScreen";
 import React from "react";
+// import DateSelectionForm from "./dateSelection";
+import Category from "./category";
+
 
 type FormData = {
   FirstName: string;
@@ -64,6 +67,8 @@ export default function ApplyAsaSpeaker() {
   const [message, setMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
   const [errors, setErrors] = useState<FormErrors>(initialFormErrors);
+  
+
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -188,7 +193,7 @@ export default function ApplyAsaSpeaker() {
                 required
               />
             </div>
-            <div className="sm:flex-wrap mb-4 w-full lg:flex lg:gap-[20px] lg:flex-nowrap justify-between align-bottom h-auto">
+            {/* <div className="sm:flex-wrap mb-4 w-full lg:flex lg:gap-[20px] lg:flex-nowrap justify-between align-bottom h-auto"> */}
               <label
                 htmlFor="email"
                 className="block mb-2 font-bold text-gray-600"
@@ -222,12 +227,13 @@ export default function ApplyAsaSpeaker() {
                 value={formData.phone}
                 required
               />
-            </div>
-            <div className="sm:flex-wrap mb-4 w-full lg:flex lg:gap-[20px] lg:flex-nowrap justify-between align-bottom h-auto">
+            {/* </div> */}
+
               <label className="block mb-2 font-bold text-gray-600">
                 Company's Name as Applicable. If not applicable place a N/A in
                 the box.
               </label>
+            <div className="sm:flex-wrap mb-4 w-full lg:flex lg:gap-[20px] lg:flex-nowrap justify-between align-bottom h-auto">
               <input
                 type="text"
                 id="companyname"
@@ -237,10 +243,11 @@ export default function ApplyAsaSpeaker() {
                 onChange={handleChange}
                 value={formData.companyName}
               />
-
+            </div>
               <label className="block mb-2 font-bold text-gray-600">
                 Link to Your website or Link to Your (Portfolio/Resume/GitHub)"
               </label>
+            <div className="sm:flex-wrap mb-4 w-full lg:flex lg:gap-[20px] lg:flex-nowrap justify-between align-bottom h-auto">
               <input
                 type="text"
                 id="telegramId"
@@ -300,54 +307,35 @@ export default function ApplyAsaSpeaker() {
                   value={formData.presentationTitle}
                   required
                 />
+           </div>
+           <div className="sm:flex-wrap mb-4 w-full lg:flex lg:gap-[20px] lg:flex-nowrap justify-between align-bottom h-auto">
 
-                <label
-                  htmlFor="category"
-                  className="block mb-2 font-bold text-gray-600"
-                >
-                  category <span className="text-red-600">*</span>{" "}
-                </label>
-              
-              <select
-                className="block w-full p-3 mt-1 border form-select"
-                name="role"
-                onChange={handleChange}
-              >
-                <option selected disabled>
-                  Please Select an Option
-                </option>
-                <option value="beginner">I am new to Blockchain/Web3</option>
-                <option value="developer">Developer</option>
-                <option value="designer">Designer</option>
-                <option value="content">Content Creator</option>
-                <option value="community">Community Manager</option>
-                <option value="others">Others</option>
-              </select>
-              </div>
+<Category/>
+</div>
             <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4">
               <label>
                 Write a compelling session abstract (150-250 words) that
                 showcases your content.
               </label>
+            </div>
               <textarea
                 name=""
                 id=""
                 rows={10}
                 className="appearance-none border rounded-[10px] py-3 px-3 mt-[12px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-[14px] lg:w-full"
               ></textarea>
-            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4">
               <label>
                 Outline Your Key Elements. List 4 to 5 primary or key elements
                 of your topic that you will be discussing.
               </label>
+            </div>
               <textarea
                 name=""
                 id=""
                 rows={10}
                 className="appearance-none border rounded-[10px] py-3 px-3 mt-[12px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-[14px] lg:w-full"
               ></textarea>
-            </div>
             <div>
               <label>Target Audience</label>
               <textarea
@@ -412,6 +400,7 @@ export default function ApplyAsaSpeaker() {
                 <option value="others">Others</option>
               </select>
             </div>
+
             <div className="sm:flex-wrap mb-4 w-full lg:flex lg:gap-[20px] lg:flex-nowrap justify-between align-bottom h-auto">
             I have verfied that all information provided is accurate and
             complete.
