@@ -21,7 +21,7 @@ const Button = ({ children, variant = "default", className }: Props) => {
       <button
         className={classNames(
           `${varType(variant)} ${className}`,
-          "border-0 px-2 py-4"
+          "border-0 p-2"
         )}
       >
         {children}

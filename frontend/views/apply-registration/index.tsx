@@ -1,58 +1,58 @@
-import { useState } from 'react';
-import Link from "next/link";
-import Image from 'next/image';
-import axios from 'axios';
-import SuccessScreen from '../successScreen'
+  import { useState } from 'react';
+  import Link from "next/link";
+  import Image from 'next/image';
+  import axios from 'axios';
+  import SuccessScreen from '../successScreen'
 
-type FormData = {
-  name: string;
-  email: string;
-  phone: string;
-  country: string;
-  location: string;
-  telegramusername: string;
-  xhandle: string;
-  role: string;
-  gender: string;
-};
+  type FormData = {
+    name: string;
+    email: string;
+    phone: string;
+    country: string;
+    location: string;
+    telegramusername: string;
+    xhandle: string;
+    role: string;
+    gender: string;
+  };
 
-type FormErrors = {
-  [key in keyof FormData]?: string[];
-};
+  type FormErrors = {
+    [key in keyof FormData]?: string[];
+  };
 
-const initialFormState: FormData = {
-  name: '',
-  email: '',
-  phone: '',
-  country: '',
-  location: '',
-  telegramusername: '',
-  xhandle: '',
-  role: '',
-  gender: '',
-};
+  const initialFormState: FormData = {
+    name: '',
+    email: '',
+    phone: '',
+    country: '',
+    location: '',
+    telegramusername: '',
+    xhandle: '',
+    role: '',
+    gender: '',
+  };
 
-const initialFormErrors: FormErrors = {};
+  const initialFormErrors: FormErrors = {};
 
-const roles = [
-  'Developer',
-  'Investor',
-  'Community Manager/Community Builder',
-  'Trader',
-  'Newbies',
-  'Designer',
-  'Marketer',
-  'Product Manager',
-  'Content',
-  'Researcher',
-  'Other',
-];
+  const roles = [
+    'Developer',
+    'Investor',
+    'Community Manager/Community Builder',
+    'Trader',
+    'Newbies',
+    'Designer',
+    'Marketer',
+    'Product Manager',
+    'Content',
+    'Researcher',
+    'Other',
+  ];
 
-const genders = [
-  'Male',
-  'Female',
-  'Other'
-];
+  const genders = [
+    'Male',
+    'Female',
+    'Other'
+  ];
 
 export default function PersonalDetailForm() {
   const [formData, setFormData] = useState<FormData>(initialFormState);
@@ -113,7 +113,7 @@ export default function PersonalDetailForm() {
   }
   
   return (
-    <div className="p-3">
+    <div className="px-3 pt-[8rem]">
       <div className="w-full flex-col flex items-center justify-center text-center">
         <h1 className="mb-2 w-full bg-gradient-to-r text-[2em] text-transparent bg-clip-text text-center font-semibold from-[#895470] via-[#BD6854] to-[#3E3797]">
           Web3 Lagos Conference 3.0: Registration Form
@@ -124,7 +124,7 @@ export default function PersonalDetailForm() {
 
         <p className="text-[0.8em]">Be a part of the Event</p>
 
-        <p className="text-[1.3em] font-[500] mt-4">Fill in the information carefully</p>
+        <p className="text-[1.3em] font-[500] mt-4 pb-10">Fill in the information carefully</p>
 
       </div>
       <hr className='font-bold text-black mb-4' />

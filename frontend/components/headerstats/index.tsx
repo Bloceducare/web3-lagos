@@ -14,37 +14,27 @@ function Header() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 bg-header shadow-md z-10 p-2">
-      <nav className="flex items-center justify-between w-full max-w-screen-xl mx-auto">
-        <Link href="/apply/registration">
-          <Button className="cta_header rounded-lg">
-            Register Here
-          </Button>
-        </Link>
-        <Link href="#">
-          <Button className="border-[0.8px] border-dashed border-yellow-600 rounded-lg">
-            Register as a Speaker
-          </Button>
-        </Link>
-        {/* Hamburger icon for mobile */}
-        <div className="md:hidden z-[100]" >
+    <header className="fixed top-0 left-0 right-0 bg-[#ffffff9d] shadow-md z-10 py-2  border-[2px]">
+      <nav className="flex items-center justify-between w-full lg:max-w-screen-lg xl:max-w-screen-xl mx-auto">
+        
+        <div className="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-4 rounded-md lg:hidden  z-[100]" >
           {menuOpen ? (
-            <FaTimes onClick={toggleMenu} size={24} color="black" />
+            <FaTimes onClick={toggleMenu} size={24} color="white" />
           ) : (
-            <FaBars onClick={toggleMenu} size={24} color="black" />
+            <FaBars onClick={toggleMenu} size={24} color="white" />
           )}
         </div>
 
         {/* Navigation links */}
         <ul
           className={`${
-            menuOpen ? "flex flex-col space-y-10 justify-between leading-3 absolute right-1 px-3 bg-[#fff] py-3 top-2 " : "md:flex md:justify-between md:space-x-5 hidden"
+            menuOpen ? "flex flex-col space-y-6 leading-3 flex-2 h-screen absolute -left-1 top-20 bg-[#fff] py-3 " : "md:justify-between md:space-x-1 hidden lg:flex"
           } `}
         >
           {headerLink.map((item) => (
             <Link href={item.route} key={item.name}>
               <li
-                className={`text-[20px] leading-[24px] ${
+                className={`text-[20px] leading-[24px hover:text-[#ffffff] p-5 lg:py-2 rounded-md ${
                   route.pathname === item.route ? "font-bold" : "font-normal"
                 }`}
               >
@@ -53,6 +43,20 @@ function Header() {
             </Link>
           ))}
         </ul>
+        <div className="lg:flex-4 md:w-[60%]flex justify-between">
+          {/* Nav Buttons */}
+          <Link href="#">
+            <Button className="border-[2px] border-solid border-[#756EE97D] py-[15px] border-yellow-600 rounded-lg px-5">
+              Register as a Speaker
+            </Button>
+          </Link>
+          <Link href="/apply/registration">
+            <Button className="cta_header rounded-lg px-5">
+              Register Here
+            </Button>
+          </Link>
+        </div>
+        {/* Hamburger icon for mobile */}
       </nav>
     </header>
   );

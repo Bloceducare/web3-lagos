@@ -42,16 +42,14 @@ const ApplyAsaSpeaker = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-  
-    // Type guard to handle 'checked' property only for checkboxes
-    const newValue = (e.target as HTMLInputElement).type === 'checkbox'
-      ? (e.target as HTMLInputElement).checked
-      : value;
-  
-    setFormData(prevFormData => ({
-      ...prevFormData,
-      [name]: newValue,
-    }));
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+    // setErrors({
+    //   ...errors,
+    //   [name]: undefined,
+    // });
   };
   
 
@@ -83,6 +81,9 @@ const ApplyAsaSpeaker = () => {
       </div>
     );
   };
+
+  
+  const inputStyle ="appearance-none border rounded-[10px] py-3 px-3 mt-[12px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-[14px]"; 
 
   const gradientStyle = {
     background: 'linear-gradient(90deg, #C96C4E 9.5%, #AC615D 27%, #895470 37%, #3E3797 70%, #BD6854 84%, #3E3797 100%, #C96C4E)',
@@ -119,7 +120,7 @@ const ApplyAsaSpeaker = () => {
               inputStyle=""
               label=""
               type="text"
-              name="userName"
+              name="otherName"
               placeholder="Other Name"
               value=""
               onChange={handleChange}
@@ -157,15 +158,29 @@ const ApplyAsaSpeaker = () => {
               value=""
               onChange={handleChange}
             />
-            <Input
+            {/* <Input
               inputStyle=""
               label="Link to Your website or Link to Your (Portfolio/Resume/GitHub)"
+              id="email"
               type="text"
               name="links"
               placeholder=""
-              value={formData.telegramID}
               onChange={handleChange}
-            />
+              value={formData.telegramID}
+            /> */}
+            <div>
+              <label>Link to Your website or Link to Your (Portfolio/Resume/GitHub)</label>
+              <input 
+                  type="email"
+                  id="email"
+                  name="email"
+                  onChange={handleChange}
+                  placeholder="Put in your email."
+                  className="w-full p-3 rounded-lg border-[0.7px]"
+                  value={formData.email}
+                  required
+              />
+            </div>
           </div>
 
           <div className="sm:flex-wrap mb-4 w-full lg:flex lg:gap-[20px] lg:flex-nowrap justify-between align-bottom h-auto">
@@ -221,8 +236,27 @@ const ApplyAsaSpeaker = () => {
               />
 
             </div>
-              <label>Write a compelling session abstract (150-250 words) that showcases your content.</label>
-              <textarea name="" id="" rows={10} className="appearance-none border rounded-[10px] py-3 px-3 mt-[12px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-[14px] lg:w-full"></textarea>
+              <div>
+                <label>Write a compelling session abstract (150-250 words) that showcases your content.</label>
+                <textarea name="" id="" rows={10} className= {`${inputStyle} lg:w-full`}></textarea>
+              </div>
+              <div>
+                <label>Outline Your Key Elements. List 4 to 5 primary or key elements of your topic that you will be discussing.</label>
+                <textarea name="" id="" rows={10} className= {`${inputStyle} lg:w-full`}></textarea>
+              </div>
+              <div>
+                <label>Testing!</label>
+                <input 
+                  type="text"
+                  id="time"
+                  name="time"
+                  onChange={handleChange}
+                  placeholder="Put in your email."
+                  className="w-full p-3 rounded-lg border-[0.7px]"
+                  value={formData.companyName}
+                  required
+                />
+              </div>
           </div>
 
           <div className="mb-4">

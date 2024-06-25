@@ -12,6 +12,8 @@ import Sponsors from "./Sponsors";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
+import heroImage from "../public/bg.png"
+
 type ProgressProps = {
   Title: string;
   number: string;
@@ -31,6 +33,23 @@ const Progress: React.FC<ProgressProps> = ({ Title, number, imageSrc }) => {
     </div>
   )
 }
+
+const gradientBorder: React.CSSProperties = {
+  // borderRadius: '50px',
+  // borderImageSlice: 1,
+  // borderWidth: '2px',
+  // borderImageSource: 'linear-gradient(139.45deg, #ffffff 2.44%, rgba(255, 255, 255, 0.17) 50.12%, #ffffff 98.85%)',
+};
+
+type containerProps = {
+  Content: string;
+}
+
+const TextContainer:React.FC<containerProps> = ({Content}) => (
+  <div className="bg-[#FFFFFF4F] px-5 py-2 border-[2px] rounded-[50px] text-white">
+    {Content}
+  </div>
+)
 
 const AboveFold = () => {
   const [registrations, setRegistrations] = useState([]);
@@ -69,71 +88,78 @@ const AboveFold = () => {
 
     fetchRegistrations();
   }, []);
+
+  const backgroundImageStyle = {
+    backgroundImage: "url('../public/bg.png')",
+  };
+
   return (
-    <div className="w-full flex bg-hero justify-center px-4 sm:px-8 py-4">
-    <section className="flex justify-center items-center">
-      <div className="w-full flex text-white m-auto justify-between">
-        <div className="flex flex-col justify-center w-full">
+    <div className="w-full h-fit flex items-center bg-no-repeat bg-center bg-[#100F21] pt-[9rem] pb-[3rem] justify-center px-4 sm:px-8 py-4" style={backgroundImageStyle}>
+    <section className="flex flex-col justify-center space-y-7 items-center text-center lg:max-w-`screen-lg xl:max-w-screen-xl">
+      {/* <div className="w-full flex text-white m-auto justify-between"> */}
+        {/* <div className="flex flex-col justify-center w-full"> */}
+        <div className="flex flex-wrap space-y-6 lg:space-y-0 lg:flex-nowrap justify-center lg:space-x-20 lg:justify-between mb-8">
+          <TextContainer Content="100% Remote Discord" />
+          <TextContainer Content="Friday, June 28th @4pm (GMT-3) to Sunday, June 30thRemote Discord" />
+        </div>
+
 
         <div className="text-[3.5rem] ">
           <div className=" flex flex-col justify-center w-fit font-bold">
-            <h1 className="leading-[4rem]">Web3 Lagos Conference 
+            <h1 className="leading-[4rem] text-white">Web3 Lagos Conference 
               <span className="text-[4rem] md:text-3xl lg:text-4xl font-normal">
                   {" "}
                   3.0
                 </span>
             </h1> 
           </div>
-        
         </div>
-        <div className="w-auto text-[1.1em] mt-2 leading-8">
+
+        <div className=" w-full p-4 lg:w-[70%] xl:w-[60%] text-[1.1em] mt-2 leading-8 text-white">
           <p>
             The Web3 Lagos Conference is the largest Web3 Event in Lagos,
             Nigeria. This conference will bring together Web3 enthusiasts from all over
             Nigeria and beyond.
           </p>
+          <p>
+          Here, community meets technology for three days of intensive Networking and Learning experiences. Future of money, you deserve to be in the know!
+          </p>
         </div>
-
-        <div className=" w-fit mt-4 flex flex-col gap-4 text-[#fae586]">
-          <DateCountDown />
-
-          <div className="flex flex-col items-center w-fit justify-center gap-3">
-            <div className="flex items-center text-[1.4em] font-bold">
-              <FaMapMarkerAlt className="text-[#fae586] mr-2" />
-              <div>The Zone, Gbagada, Lagos State.</div>
-            </div>
-            <div className="flex items-center text-[1.2em] font-bold">
-              <FaRegCalendarAlt className="text-[#fae586] mr-2" />
-              <div>September 05 - September 07, 2024</div>
-            </div>
-          </div>
-        </div>
-
-        <div className="flex items-center space-x-4 my-8 justify-between w-fit">
-          <Progress Title="Attendee" number={registrations.length > 0 ? `${registrations.length}`: '--'} imageSrc="/attendees.svg" />
-          <Progress Title="Speakers" number={speakers.length > 0 ? `${speakers.length}`: '--'} imageSrc="/speakers.svg" />
-          <Progress Title="Sponsors" number="15+" imageSrc="/sponsor.svg" />
-        </div>
-
-        <div className="w-full space-x-1.5 flex sm:w-1/2 justify-between">
+        <div className="flex space-x-10 justify-between">
           <Link href="/apply/registration">
-            <Button className="cta_header w-full py-3 px-1 sm:py-5 sm:px-6 rounded-lg">
+            <Button className="cta_header w-full sm:px-6 rounded-lg">
               Register Here
             </Button>
           </Link>
 
           <Link href="https://drive.google.com/file/d/12NdPRIdl13EW6X8sX7Hrzr-M4WfAkW06/view" target="_blank">
-            <button className="border-[1px] w-full py-3 px-1 sm:py-5 sm:px-6 border-dashed border-gray-400 text-[#F0EFDA] rounded-lg">
+            <Button className="border-[2px] w-full px-1 sm:px-6 border-solid border-[#756EE97D] text-[#F0EFDA] rounded-lg">
               Sponsor's Deck
-            </button>
+            </Button>
           </Link>
         </div>
 
-      </div>
-      <div className="w-fit justify-end h-full relative ">
-            <Image src='/bgimage.webp' width={370} height={350} alt='bgimg' className=" right-0" />
+        <div className=" w-fit mt-10 flex flex-col gap-4 text-white">
+
+          <div className="flex flex-col items-center w-fit justify-center gap-3">
+            <div className="flex items-center text-[1.1em] lg:text-[1.4em] font-medium">
+              <FaMapMarkerAlt className="text-[#fae586] mr-2" />
+              <div>The Zone, Gbagada, Lagos State.</div>
+            </div>
+
+          <DateCountDown />
+
+        <div className="flex flex-wrap lg:flex-nowrap items-center space-y-8 lg:space-y-0 lg:space-x-10 my-8 justify-between w-[88%] lg:w-fit">
+          <Progress Title="Attendee" number={registrations.length > 0 ? `${registrations.length}`: '--'} imageSrc="/attendees.svg" />
+          <Progress Title="Speakers" number={speakers.length > 0 ? `${speakers.length}`: '--'} imageSrc="/speakers.svg" />
+          <Progress Title="Sponsors" number="15+" imageSrc="/sponsor.svg" />
+          <Progress Title="Hackers" number={registrations.length > 0 ? `${registrations.length}`: '--'} imageSrc="/attendees.svg" />
+        </div>
           </div>
-      </div>
+        </div>
+
+      {/* </div> */}
+      {/* </div> */}
     </section>
   </div>
   );
