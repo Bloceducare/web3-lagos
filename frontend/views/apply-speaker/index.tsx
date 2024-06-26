@@ -203,7 +203,7 @@ export default function ApplyAsaSpeaker() {
               <div className="w-full sm:w-1/2">
                 <label
                   htmlFor="email"
-                  className="block mb-2 font-bold text-gray-600"
+                  className="block mb-2 font-bold text-gray-600 my-5"
                 >
                   Email Address
                 </label>
@@ -218,10 +218,10 @@ export default function ApplyAsaSpeaker() {
                   required
                 />
               </div>
-              <div className="w-full sm:w-1/2">
+              <div className="w-full sm:w-1/2 ">
                 <label
                   htmlFor="phone"
-                  className="block mb-2 font-bold text-gray-600"
+                  className="block mb-2 font-bold text-gray-600 my-5"
                 >
                   Phone number
                 </label>
@@ -240,7 +240,7 @@ export default function ApplyAsaSpeaker() {
 
             <div className="flex flex-col sm:flex-row justify-center items-center space-y-6 sm:space-x-6 sm:space-y-0">
               <div className="w-full sm:w-1/2">
-                <label className="block mb-2 font-bold text-gray-600">
+                <label className="block mb-2 font-bold text-gray-600 my-5">
                   Company's Name as Applicable. If not applicable place a N/A in
                   the box.
                 </label>
@@ -256,7 +256,7 @@ export default function ApplyAsaSpeaker() {
               </div>
 
               <div className="w-full sm:w-1/2">
-                <label className="block mb-2 font-bold text-gray-600">
+                <label className="block mb-2 font-bold text-gray-600 my-5">
                   Link to Your website or Link to Your
                   (Portfolio/Resume/GitHub)"
                 </label>
@@ -272,7 +272,7 @@ export default function ApplyAsaSpeaker() {
             </div>
             <div className="flex flex-col sm:flex-row justify-center items-center space-y-6 sm:space-x-6 sm:space-y-0">
               <div className="w-full sm:w-1/2">
-                <label className="block mb-2 font-bold text-gray-600">
+                <label className="block mb-2 font-bold text-gray-600 my-5">
                   Country <span className="text-red-600">*</span>{" "}
                 </label>
                 <input
@@ -286,7 +286,7 @@ export default function ApplyAsaSpeaker() {
                 />
               </div>
               <div className="w-full sm:w-1/2">
-                <label className="block mb-2 font-bold text-gray-600">
+                <label className="block mb-2 font-bold text-gray-600 my-5">
                   City <span className="text-red-600">*</span>{" "}
                 </label>
                 <input
@@ -300,18 +300,22 @@ export default function ApplyAsaSpeaker() {
                 />
               </div>
             </div>
-            <label className="block mb-2 font-bold text-gray-600">
-              XHandle
-            </label>
-            <input
-              type="text"
-              name="XHandle"
-              placeholder="xhandle"
-              className="w-1/2 p-3 border rounded-xl shadow"
-              onChange={handleChange}
-              value={formData.XHandle}
-              required
-            />
+
+            <div className=" ">
+              <label className="block mb-2 font-bold text-gray-600 my-5">
+                XHandle
+              </label>
+              <input
+                type="text"
+                name="XHandle"
+                placeholder="xhandle"
+                className=" p-3 border rounded-xl shadow w-full"
+                onChange={handleChange}
+                value={formData.XHandle}
+                required
+              />
+            </div>
+
             <div className="my-10">
               <p className="text-[20px]">
                 Craft a concise, informative, and attention-grabbing title for
@@ -342,8 +346,8 @@ export default function ApplyAsaSpeaker() {
                 <Category />
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4">
-              <label>
+            <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4 sm:w-full">
+              <label className="my-6">
                 Write a compelling session abstract (150-250 words) that
                 showcases your content.
               </label>
@@ -351,11 +355,11 @@ export default function ApplyAsaSpeaker() {
             <textarea
               name=""
               id=""
-              rows={10}
-              className="appearance-none border rounded-[10px] py-3 px-3 mt-[12px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-[14px] lg:w-full"
+              rows={6}
+              className="w-full p-2 rounded-xl border"
             ></textarea>
             <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4">
-              <label>
+              <label className="my-5">
                 Outline Your Key Elements. List 4 to 5 primary or key elements
                 of your topic that you will be discussing.
               </label>
@@ -363,26 +367,39 @@ export default function ApplyAsaSpeaker() {
             <textarea
               name=""
               id=""
-              rows={10}
-              className="appearance-none border rounded-[10px] py-3 px-3 mt-[12px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-[14px] lg:w-full"
+              rows={6}
+              className="w-full p-2 rounded-xl border"
             ></textarea>
-            <div>
+
+            <div className="w-full lg:w-1/2 my-5 ">
               <label>Target Audience</label>
-              <select className="block w-1/2 p-3 mt-1 border form-select rounded-xl">
+              <select
+                className="w-full p-3 bg-white rounded-xl  border-[0.7px] my-1"
+                name="role"
+                onChange={handleChange}
+                value={formData.role}
+                required
+              >
                 <option value="" disabled>
-                  Please Select an Option
+                  types of audience
                 </option>
-                <option value="">50-100</option>
-                <option value="">150-200</option>
+                {roles.map((role) => (
+                  <option key={role} value={role}>
+                    {role}
+                  </option>
+                ))}
               </select>
+              {errors.role && (
+                <span className="text-red-500">{errors.role.join(", ")}</span>
+              )}
             </div>
-            <div>
+            <div className="my-5 ">
               <label>
                 Have you given this presentation before and/or you do you intend
                 to present it elsewhere in the near future?
               </label>
 
-              <select className="block w-1/2 p-3 mt-1 border form-select rounded-xl">
+              <select className="block w-full lg:w-1/2 p-3 mt-1 border form-select rounded-xl">
                 <option value="" disabled>
                   Please Select an Option
                 </option>
@@ -399,44 +416,41 @@ export default function ApplyAsaSpeaker() {
               <textarea
                 name=""
                 id=""
-                rows={10}
-                className="appearance-none border rounded-[10px] py-3 px-3 mt-[12px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-[14px] lg:w-1/2 sm:w-full"
+                rows={6}
+                className="w-full lg:w-1/2 border rounded-xl"
               ></textarea>
             </div>
-            <div>
+            <div className="my-5">
               <label>
                 Please provide references with phone number or email - If NO
-                place N/A in the box.
+                place N/A in the box.<br></br>
               </label>
               <textarea
                 name=""
                 id=""
-                rows={10}
-                className="appearance-none border rounded-[10px] py-3 px-3 mt-[12px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-[14px] lg:w-1/2"
+                rows={6}
+                className="w-full lg:w-1/2 border rounded-xl"
               ></textarea>
             </div>
 
-            <div className="flex flex-col sm:flex-row justify-center  space-y-3 sm:space-x-3">
-              <div className="flex flex-col">
+            <div className="flex items-center sm:flex-rowspace-y-3 space-x-4">
+              <div className="flex">
                 <input
                   id="agree-yes"
-                  type="radio"
-                  className="form-radio"
+                  type="checkbox"
+                  className="apperance-none checked:bg-blue-500"
                   name="agree"
                   value={1}
                   onChange={handleChange}
                 />
-                <label htmlFor="agree-yes">
-                  <span className="">Yes</span>
-                </label>
               </div>
-              <label className="block mb-2 font-bold text-gray-600">
+              <label className="block  font-bold text-gray-600">
                 I agree to submit my presentation prior to the Conference.
               </label>
             </div>
             <div className="flex flex-col sm:flex-row justify-center items-center space-y-6 sm:space-x-6 sm:space-y-0">
-              <div className="w-full sm:w-1/2">
-                <label className="block mb-2 font-bold text-gray-600">
+              <div className="w-full lg:w-1/2 ">
+                <label className="block mb-2 font-bold text-gray-600 my-5">
                   What Best Describes Your Role In Web3
                 </label>
                 <select
@@ -460,7 +474,7 @@ export default function ApplyAsaSpeaker() {
                 )}
               </div>
               <div className="w-full sm:w-1/2">
-                <label className="block mb-2 font-bold text-gray-600">
+                <label className="block mb-2 font-bold text-gray-600 my-5">
                   Telgram Username
                 </label>
                 <input
@@ -474,51 +488,44 @@ export default function ApplyAsaSpeaker() {
                 />
               </div>
             </div>
-            <div className="flex flex-col sm:flex-row justify-center  space-y-3 sm:space-x-3">
-                <div className="flex flex-col">
-                  <input
-                    id="verified-yes"
-                    type="radio"
-                    className="form-radio"
-                    name="verified"
-                    value={1}
-                    onChange={handleChange}
-                  />
-                  <label
-                    htmlFor="verified-yes"
-                    className="inline-flex items-center"
-                  >
-                    <span className="">Yes</span>
-                  </label>
-                </div>
-                <label className="block mb-2 font-bold text-gray-600">
-                  I have verified that all information provided is accurate and
-                  complete.
-                </label>
+            <div className="flex items-center sm:flex-rowspace-y-3 space-x-4">
+              <div className="flex my-5">
+                <input
+                  id="verified-yes"
+                  type="checkbox"
+                  className="apperance-none checked:bg-blue-500 my-5"
+                  name="agree"
+                  value={1}
+                  onChange={handleChange}
+                />
               </div>
-
-              <div className="w-full justify-between flex">
-                <button
-                  type="button"
-                  className="flex rounded-md items-center justify-center text-center space-x-2"
-                  onClick={handleDelete}
-                >
-                  <Image
-                    src={"/clearform.svg"}
-                    alt="..."
-                    height={10}
-                    width={15}
-                  />
-                  <p className="text-center">Clear Form</p>
-                </button>
-                <button
-                  type="submit"
-                  className="rounded-lg from-[#3E3797] to-[#111022] bg-gradient-to-r text-white px-3 py-1.5 text-center"
-                  disabled={loading}
-                >
-                  {loading ? "Sending..." : "Submit"}
-                </button>
-              </div>
+              <label className="block  font-bold text-gray-600 my-5">
+                I have verified that all information provided is accurate and
+                complete.
+              </label>
+            </div>
+            <div className="w-full justify-between flex">
+              <button
+                type="button"
+                className="flex rounded-md items-center justify-center text-center space-x-2"
+                onClick={handleDelete}
+              >
+                <Image
+                  src={"/clearform.svg"}
+                  alt="..."
+                  height={10}
+                  width={15}
+                />
+                <p className="text-center">Clear Form</p>
+              </button>
+              <button
+                type="submit"
+                className="rounded-lg from-[#3E3797] to-[#111022] bg-gradient-to-r text-white px-3 py-1.5 text-center"
+                disabled={loading}
+              >
+                {loading ? "Sending..." : "Submit"}
+              </button>
+            </div>
           </div>
         </form>
       </div>
