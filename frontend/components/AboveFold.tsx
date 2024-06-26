@@ -34,13 +34,6 @@ const Progress: React.FC<ProgressProps> = ({ Title, number, imageSrc }) => {
   )
 }
 
-const gradientBorder: React.CSSProperties = {
-  // borderRadius: '50px',
-  // borderImageSlice: 1,
-  // borderWidth: '2px',
-  // borderImageSource: 'linear-gradient(139.45deg, #ffffff 2.44%, rgba(255, 255, 255, 0.17) 50.12%, #ffffff 98.85%)',
-};
-
 type containerProps = {
   Content: string;
 }
@@ -125,7 +118,7 @@ const AboveFold = () => {
           Here, community meets technology for three days of intensive Networking and Learning experiences. Future of money, you deserve to be in the know!
           </p>
         </div>
-        <div className="flex flex-wrap justify-center space-x-0 md:space-x-10 md:justify-between">
+        <div className="flex flex-col space-y-4 items-center md:space-y-0 md:flex-row justify-center space-x-0 md:space-x-10 md:justify-between">
           <Link href="/apply/registration">
             <Button className="bg-gradient-to-r from-[#3E3797] to-[#111022] text-white ring-[2px] border-[#756EE97D] rounded-lg px-5 w-full sm:px-6">
               Register Here
