@@ -56,14 +56,14 @@ const Countdown: React.FC<CountdownProps> = ({ endDate }) => {
   useEffect(() => {
     updateCountdown(endDate);
     const interval = setInterval(() => {
-      updateCountdown(endDate);
+      updateCountdown(endDate); 
     }, 1000);
 
     return () => clearInterval(interval);
   }, [endDate]);
 
   return (
-    <div className=" border-[#3E3797] border-[2px] bg-gradient-to-br from-[#3E3797] via-[#111022] to-[#111022] rounded-[10px] text-white text-[0.8em] font-bold flex items-center justify-between text-center">
+    <div className="bg-[#000] border-[2px] rounded-[10px] text-[0.8em] font-bold flex items-center justify-between text-center">
       <DateBlock timeStamp={countdown.days} text="Days" />: <DateBlock timeStamp={countdown.hours} text="Hours" />:<DateBlock timeStamp={countdown.minutes} text="Mins" />: <DateBlock timeStamp={countdown.seconds} text="Secs" />
     </div>
   );

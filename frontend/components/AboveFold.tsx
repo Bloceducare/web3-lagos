@@ -34,13 +34,6 @@ const Progress: React.FC<ProgressProps> = ({ Title, number, imageSrc }) => {
   )
 }
 
-const gradientBorder: React.CSSProperties = {
-  // borderRadius: '50px',
-  // borderImageSlice: 1,
-  // borderWidth: '2px',
-  // borderImageSource: 'linear-gradient(139.45deg, #ffffff 2.44%, rgba(255, 255, 255, 0.17) 50.12%, #ffffff 98.85%)',
-};
-
 type containerProps = {
   Content: string;
 }
@@ -94,7 +87,7 @@ const AboveFold = () => {
   };
 
   return (
-    <div className="w-full h-fit flex items-center bg-top bg-no-repeat bg-[#100F21] pt-[9rem] pb-[3rem] justify-center px-4 sm:px-8 py-4 bg-[url('../public/bg.png')]  bg-cover">
+    <div className="w-full h-fit flex items-center bg-top bg-no-repeat bg-gradient-to-br from-[#0096FF] to-[#000] pt-[9rem] pb-[3rem] justify-center px-4 sm:px-8 py-4">
     <section className="flex flex-col justify-center space-y-7 items-center text-center lg:max-w-screen-lg xl:max-w-screen-xl">
       {/* <div className="w-full flex text-white m-auto justify-between"> */}
         {/* <div className="flex flex-col justify-center w-full"> */}
@@ -125,15 +118,15 @@ const AboveFold = () => {
           Here, community meets technology for three days of intensive Networking and Learning experiences. Future of money, you deserve to be in the know!
           </p>
         </div>
-        <div className="flex flex-wrap justify-center space-x-0 md:space-x-10 md:justify-between">
+        <div className="flex flex-col space-y-4 items-center md:space-y-0 md:flex-row justify-center space-x-0 md:space-x-10 md:justify-between">
           <Link href="/apply/registration">
-            <Button className="bg-gradient-to-r from-[#3E3797] to-[#111022] text-white ring-[2px] border-[#756EE97D] rounded-lg px-5 w-full sm:px-6">
+            <Button className="bg-[#000] text-white lg:text-xl rounded-lg px-6">
               Register Here
             </Button>
           </Link>
 
           <Link href="https://drive.google.com/file/d/12NdPRIdl13EW6X8sX7Hrzr-M4WfAkW06/view" target="_blank">
-            <Button className="border-[2px] w-full px-1 sm:px-6 border-solid border-[#756EE97D] text-[#F0EFDA] rounded-lg">
+            <Button className="border-[2px] w-full px-5 border-solid border-[#fff] text-white rounded-lg">
               Sponsor's Deck
             </Button>
           </Link>
@@ -143,7 +136,7 @@ const AboveFold = () => {
 
           <div className="flex flex-col items-center w-fit justify-center gap-3">
             <div className="flex items-center text-[1.1em] lg:text-[1.4em] font-medium">
-              <FaMapMarkerAlt className="text-[#fae586] mr-2" />
+              <FaMapMarkerAlt className="text-[#fff] mr-2" />
               <div>The Zone, Gbagada, Lagos State.</div>
             </div>
 
