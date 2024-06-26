@@ -1,12 +1,13 @@
 import arrow from "../public/arrows.png";
 import Image from "next/image";
+
 const Gallery = () => {
   return (
     <>
-    <section>
-      <div className=" items-center bg-top bg-no-repeat bg-[url('../images/web3lagos.jpg')]  bg-cover ">
-        <div className="p-4 md:p-12  lg:p-12">
-          <div className="bg-transparent  text-gray-200">
+    {/* <section> */}
+      <div className="">
+        <div className="flex w-full items-center justify-center py-[3rem] md:px-5 md:py-[5rem] bg-top bg-no-repeat bg-[url('../images/web3lagos.jpg')]  bg-cover">
+          <div className="w-full px-4 lg:space-y-10 lg:max-w-screen-lg xl:max-w-screen-xl text-gray-200">
             <div className="text-3xl md:text-6xl lg:text-6xl font-bold leading-[50px] md:leading-[56px] lg:leading-[56px]">
               <h2>Our</h2>
               <h2>Success Story;</h2>
@@ -49,13 +50,11 @@ const Gallery = () => {
                   </p>
                 </div>
               </div>
-
-          
             </div>
           </div>
         </div>
       </div>
-      </section>
+      {/* </section> */}
     </>
   );
 };

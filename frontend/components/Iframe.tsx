@@ -19,9 +19,9 @@ const YoutubeIframe: React.FC<YoutubeIframeProps> = ({ children }) => {
   };
 
   return (
-    <section className="bg-hero h-[650px]">
-      <div className="flex justify-center p-4">
-        <div className="mt-12 2xl:w-[60vw] lg:w-[85vw] ">
+    <section className="flex flex-col items-center justify-between bg-hero space-y-6 w-full py-[3rem] md:py-[5rem]">
+      <div className="px-4 lg:max-w-screen-lg xl:max-w-screen-xl">
+        <div className="">
           <h3 className="text-center font-bold my-4 text-white text-3xl lg:text-4xl leading-10 lg:leading-12">
             Highlights from W3LC 2023
           </h3>
@@ -33,12 +33,12 @@ const YoutubeIframe: React.FC<YoutubeIframeProps> = ({ children }) => {
             />
           </div>
         </div>
+        {children && (
+          <p className="text-center my-6 text-lg  lg:leading-[33px] lg:text-[24px] px-4 lg:px-0 text-white">
+            {children}
+          </p>
+        )}
       </div>
-      {children && (
-        <p className="text-center my-6 2xl:w-[60vw] lg:w-[85vw] m-auto text-lg  lg:leading-[33px] lg:text-[24px] px-4 lg:px-0 text-white">
-          {children}
-        </p>
-      )}
     </section>
   );
 };

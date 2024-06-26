@@ -11,7 +11,7 @@ const DateBlock: React.FC<DateBlockProps> = ({ timeStamp, text }) => {
 
   const formattedTime = String(timeStamp).padStart(2, '0');
   return (
-    <div className="py-3 px-5 lg:px-8 text-black">
+    <div className="py-3 px-5 lg:px-8 text-white">
       <h1 className="text-[1.4em]">{formattedTime}</h1>
       <p className="">{text}</p>
     </div>
@@ -63,7 +63,7 @@ const Countdown: React.FC<CountdownProps> = ({ endDate }) => {
   }, [endDate]);
 
   return (
-    <div className="bg-header border-yellow-500 border-[0.2px] rounded-[10px] text-black text-[0.8em] font-bold flex items-center justify-between text-center">
+    <div className=" border-[#3E3797] border-[2px] bg-gradient-to-br from-[#3E3797] via-[#111022] to-[#111022] rounded-[10px] text-white text-[0.8em] font-bold flex items-center justify-between text-center">
       <DateBlock timeStamp={countdown.days} text="Days" />: <DateBlock timeStamp={countdown.hours} text="Hours" />:<DateBlock timeStamp={countdown.minutes} text="Mins" />: <DateBlock timeStamp={countdown.seconds} text="Secs" />
     </div>
   );

@@ -11,14 +11,14 @@ type DetailsCardProps = {
 
 const DetailsCard: React.FC<DetailsCardProps> = ({cardHeading, cardContent, cardLink, linkName }) => {
   return (
-    <div className="bg-white shadow-xl w-full flex flex-col items-center border rounded-2xl xl:h-[420px] lg:h-[420px] md:h-fit sm:h-fit sm:w-full justify-between">
-      <div className="p-[50px] sm:p-[30px]">
+    <div className="bg-white shadow-xl w-full flex flex-col items-center border rounded-2xl lg:h-[26rem] md:h-[31rem] sm:h-fit sm:w-full justify-between">
+      <div className="p-[30px] lg:px-[40px] lg:py-[30px]">
         <h3 className="mb-6 text-[#122C47] text-2xl font-semibold "> {cardHeading} </h3>
         <p className="text-slate-600">
           {cardContent}
         </p>
       </div>
-      <div className="border-t-[1px] w-full relative py-[20px] px-[50px] ">
+      <div className="border-t-[1px] w-full relative px-[30px] py-[20px] lg:px-[40px] ">
         <a className="text-left underline" href={cardLink}>{linkName}</a>
       </div>
   </div>
@@ -28,8 +28,8 @@ const DetailsCard: React.FC<DetailsCardProps> = ({cardHeading, cardContent, card
 const EventDetails = () => {
   return (
     <>
-      <div className="flex justify-center p-4 items-center mx-auto">
-        <div className="flex gap-4 h-full  w-full justify-between items-center m-auto flex-col md:flex-row">
+      <div className="flex justify-center items-center mx-auto">
+        <div className="flex gap-5 px-4 py-[3rem] md:px-5 md:py-[5rem] lg:h-full w-full justify-between items-center m-auto flex-col md:flex-row lg:max-w-screen-lg xl:max-w-screen-xl">
          <DetailsCard 
             cardHeading="Our Goal" 
             cardContent="At Web3bridge, we believe education is critical in the drive for adoption of blockchain technology. And we have set up Web3 Lagos conference to bring education across varying topics/subjects and comprehension of blockchain technology." 
