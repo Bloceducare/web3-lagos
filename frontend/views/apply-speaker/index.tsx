@@ -7,7 +7,6 @@ import SuccessScreen from "./successScreen";
 import React from "react";
 import Category from "./category";
 
-
 type FormData = {
   FirstName: string;
   OtherNames: string;
@@ -69,8 +68,6 @@ export default function ApplyAsaSpeaker() {
   const [message, setMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
   const [errors, setErrors] = useState<FormErrors>(initialFormErrors);
-  
-
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -117,7 +114,6 @@ export default function ApplyAsaSpeaker() {
     setLoading(false);
   };
 
-
   const handleDelete = () => {
     setFormData(initialFormState);
   };
@@ -139,8 +135,7 @@ export default function ApplyAsaSpeaker() {
   };
 
   return (
-     <div className="p-3 mt-12">
-
+    <div className="max-w-7xl mx-auto px-4 p-3 mt-12 ">
       <div className="w-full text-center">
         <h1 style={gradientStyle} className="text-[50px] font-black">
           Web3 Lagos Conference 3.0: Registration Form
@@ -155,166 +150,182 @@ export default function ApplyAsaSpeaker() {
           </p>
         </div>
       </div>
-      <div className="  w-[88vw] bg-white rounded lg:px-8 pt-6 pb-8 mb-4">
+      <div className="  w-full bg-white rounded lg:px-8 pt-6 pb-8 mb-4">
         <h1 className="text-4xl font-medium my-10">Speaker&apos;s Details</h1>
-
-        {/* {!!dataStatus.error && (
-          <span className="text-red-500 ">{dataStatus.error}</span>
-        )} */}
-        {!!!message && (
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-
-            <div className="w-full">
-
-            <div className="sm:flex-wrap mb-4 w-full lg:flex lg:gap-[20px] lg:flex-nowrap justify-between align-bottom h-auto">
-              <label
-                htmlFor="FirstName"
-                className="block mb-2 font-bold text-gray-600"
-              >
-                Speakers Name <span className="text-red-600">* </span>
-              </label><br></br>
-              <input
-                type="text"
-                id="firstname"
-                name="FirstName"
-                onChange={handleChange}
-                placeholder="put in your first name"
-                className="w-full p-3 border border-gray-300 rounded shadow mb-"
-                value={formData.FirstName}
-                required
-              />
-              <label
-                htmlFor="OtherNames"
-                className="block mb-2 font-bold text-gray-600"
-              >
-                OtherNames <span className="text-red-600">* </span>
-              </label>
-              <input
-                type="text"
-                id="othernames"
-                name="OtherNames"
-                onChange={handleChange}
-                placeholder="put in your other names"
-                className="w-full p-3 border border-gray-300 rounded shadow mb-"
-                value={formData.OtherNames}
-                required
-              />
+        <div className="text-center">
+          {!!message && (
+            <span
+              className={`text-${
+                message.includes("successful") ? "green" : "red"
+              }-500`}
+            >
+              {message}
+            </span>
+          )}
+        </div>
+        <form onSubmit={handleSubmit} className="">
+          <div className=" ">
+            <div className="flex flex-col sm:flex-row justify-center items-center space-y-6 sm:space-x-6 sm:space-y-0">
+              <div className="w-full sm:w-1/2">
+                <label className="block mb-2 font-bold text-gray-600">
+                  First Name <span className="text-red-600">* </span>
+                </label>
+                <input
+                  type="text"
+                  id="firstname"
+                  name="FirstName"
+                  onChange={handleChange}
+                  placeholder="Enter your first name"
+                  className="w-full p-3 border border-gray-300 rounded-xl shadow"
+                  value={formData.FirstName}
+                  required
+                />
+              </div>
+              <div className="w-full sm:w-1/2">
+                <label
+                  htmlFor="OtherNames"
+                  className="block mb-2 font-bold text-gray-600"
+                >
+                  Other Names <span className="text-red-600">* </span>
+                </label>
+                <input
+                  type="text"
+                  id="othernames"
+                  name="OtherNames"
+                  onChange={handleChange}
+                  placeholder="Other names"
+                  className="w-full p-3 border border-gray-300 rounded-xl shadow"
+                  value={formData.OtherNames}
+                />
+              </div>
             </div>
-            {/* <div className="sm:flex-wrap mb-4 w-full lg:flex lg:gap-[20px] lg:flex-nowrap justify-between align-bottom h-auto"> */}
-              <label
-                htmlFor="email"
-                className="block mb-2 font-bold text-gray-600"
-              >
-                Email Address 
-              </label>
-              <input
-                type="email"
-                id="twitter"
-                name="email"
-                onChange={handleChange}
-                placeholder="Put in your email."
-                className="w-full p-3 border rounded shadow"
-                value={formData.email}
-                required
-              />
-
-              <label
-                htmlFor="phone"
-                className="block mb-2 font-bold text-gray-600"
-              >
-                Phone number 
-              </label>
-              <input
-                type="text"
-                id="phone"
-                name="phone"
-                onChange={handleChange}
-                placeholder="Put in your phone number."
-                className="w-full p-3 border rounded shadow"
-                value={formData.phone}
-                required
-              />
-            {/* </div> */}
-
-              <label className="block mb-2 font-bold text-gray-600">
-                Company's Name as Applicable. If not applicable place a N/A in
-                the box.
-              </label>
-            <div className="sm:flex-wrap mb-4 w-full lg:flex lg:gap-[20px] lg:flex-nowrap justify-between align-bottom h-auto">
-              <input
-                type="text"
-                id="companyname"
-                name="companyName"
-                placeholder="Put in your company name."
-                className="w-full p-3 border rounded shadow"
-                onChange={handleChange}
-                value={formData.companyName}
-              />
+            <div className="flex flex-col sm:flex-row justify-center items-center space-y-6 sm:space-x-6 sm:space-y-0">
+              <div className="w-full sm:w-1/2">
+                <label
+                  htmlFor="email"
+                  className="block mb-2 font-bold text-gray-600"
+                >
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  id="twitter"
+                  name="email"
+                  onChange={handleChange}
+                  placeholder="Enter your email."
+                  className="w-full p-3 border rounded-xl shadow"
+                  value={formData.email}
+                  required
+                />
+              </div>
+              <div className="w-full sm:w-1/2">
+                <label
+                  htmlFor="phone"
+                  className="block mb-2 font-bold text-gray-600"
+                >
+                  Phone number
+                </label>
+                <input
+                  type="text"
+                  id="phone"
+                  name="phone"
+                  onChange={handleChange}
+                  placeholder="enter your phone number."
+                  className="w-full p-3 border rounded-xl "
+                  value={formData.phone}
+                  required
+                />
+              </div>
             </div>
-              <label className="block mb-2 font-bold text-gray-600">
-                Link to Your website or Link to Your (Portfolio/Resume/GitHub)"
-              </label>
-            <div className="sm:flex-wrap mb-4 w-full lg:flex lg:gap-[20px] lg:flex-nowrap justify-between align-bottom h-auto">
-              <input
-                type="text"
-                id="telegramId"
-                name="telegramID"
-                className="w-full p-3 border rounded shadow"
-                onChange={handleChange}
-                value={formData.telegramID}
-              />
-            </div>
-            <div className="sm:flex-wrap mb-4 w-full lg:flex lg:gap-[20px] lg:flex-nowrap justify-between align-bottom h-auto">
-              <label className="block mb-2 font-bold text-gray-600">
-                Country <span className="text-red-600">*</span>{" "}
-              </label>
-              <input
-                type="text"
-                name="country"
-                placeholder="e.g Nigeria"
-                className="w-full p-3 border rounded shadow"
-                onChange={handleChange}
-                value={formData.country}
-                required
-              />
- <label className="block mb-2 font-bold text-gray-600">
-                City <span className="text-red-600">*</span>{" "}
-              </label>
-              <input
-                type="text"
-                name="city"
-                placeholder="e.g Abuja"
-                className="w-full p-3 border rounded shadow"
-                onChange={handleChange}
-                value={formData.city}
-                required
-              />
 
-              <label className="block mb-2 font-bold text-gray-600">
-                XHandle 
-              </label>
-              <input
-                type="text"
-                name="XHandle"
-                placeholder="xhandle"
-                className="w-full p-3 border rounded shadow"
-                onChange={handleChange}
-                value={formData.XHandle}
-                required
-              />
+            <div className="flex flex-col sm:flex-row justify-center items-center space-y-6 sm:space-x-6 sm:space-y-0">
+              <div className="w-full sm:w-1/2">
+                <label className="block mb-2 font-bold text-gray-600">
+                  Company's Name as Applicable. If not applicable place a N/A in
+                  the box.
+                </label>
+                <input
+                  type="text"
+                  id="companyname"
+                  name="companyName"
+                  placeholder=" Enter your company name."
+                  className="w-full p-3 border rounded-xl shadow"
+                  onChange={handleChange}
+                  value={formData.companyName}
+                />
+              </div>
+
+              <div className="w-full sm:w-1/2">
+                <label className="block mb-2 font-bold text-gray-600">
+                  Link to Your website or Link to Your
+                  (Portfolio/Resume/GitHub)"
+                </label>
+                <input
+                  type="text"
+                  id="telegramId"
+                  name="telegramID"
+                  className="w-full p-3 border rounded-xl shadow"
+                  onChange={handleChange}
+                  value={formData.telegramID}
+                />
+              </div>
             </div>
+            <div className="flex flex-col sm:flex-row justify-center items-center space-y-6 sm:space-x-6 sm:space-y-0">
+              <div className="w-full sm:w-1/2">
+                <label className="block mb-2 font-bold text-gray-600">
+                  Country <span className="text-red-600">*</span>{" "}
+                </label>
+                <input
+                  type="text"
+                  name="country"
+                  placeholder="e.g Nigeria"
+                  className="w-full p-3 border rounded-xl shadow"
+                  onChange={handleChange}
+                  value={formData.country}
+                  required
+                />
+              </div>
+              <div className="w-full sm:w-1/2">
+                <label className="block mb-2 font-bold text-gray-600">
+                  City <span className="text-red-600">*</span>{" "}
+                </label>
+                <input
+                  type="text"
+                  name="city"
+                  placeholder="e.g Abuja"
+                  className="w-full p-3 border rounded-xl shadow"
+                  onChange={handleChange}
+                  value={formData.city}
+                  required
+                />
+              </div>
+            </div>
+            <label className="block mb-2 font-bold text-gray-600">
+              XHandle
+            </label>
+            <input
+              type="text"
+              name="XHandle"
+              placeholder="xhandle"
+              className="w-1/2 p-3 border rounded-xl shadow"
+              onChange={handleChange}
+              value={formData.XHandle}
+              required
+            />
             <div className="my-10">
               <p className="text-[20px]">
                 Craft a concise, informative, and attention-grabbing title for
                 your lecture.
               </p>
-</div>
-              <div className="sm:flex-wrap mb-4 w-full lg:flex lg:gap-[20px] lg:flex-nowrap justify-between align-bottom h-auto">
+            </div>
+
+            <div className="flex flex-col sm:flex-row justify-center items-center space-y-6 sm:space-x-6 sm:space-y-0">
+              <div className="w-full sm:w-1/2">
                 <label
                   htmlFor="email"
                   className="block mb-2 font-bold text-gray-600"
                 >
-                  Title of your Lecture 
+                  Title of your Lecture
                 </label>
                 <input
                   type="text"
@@ -322,69 +333,74 @@ export default function ApplyAsaSpeaker() {
                   name="title"
                   onChange={handleChange}
                   placeholder="What is the title of your Lecture?"
-                  className="w-full p-3 border rounded shadow"
+                  className="w-full p-3 border rounded-xl shadow"
                   value={formData.presentationTitle}
                   required
                 />
-           </div>
-           <div className="sm:flex-wrap mb-4 w-full lg:flex lg:gap-[20px] lg:flex-nowrap justify-between align-bottom h-auto">
-
-<Category/>
-</div>
+              </div>
+              <div className="w-full sm:w-1/2">
+                <Category />
+              </div>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4">
               <label>
                 Write a compelling session abstract (150-250 words) that
                 showcases your content.
               </label>
             </div>
-              <textarea
-                name=""
-                id=""
-                rows={10}
-                className="appearance-none border rounded-[10px] py-3 px-3 mt-[12px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-[14px] lg:w-full"
-              ></textarea>
+            <textarea
+              name=""
+              id=""
+              rows={10}
+              className="appearance-none border rounded-[10px] py-3 px-3 mt-[12px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-[14px] lg:w-full"
+            ></textarea>
             <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4">
               <label>
                 Outline Your Key Elements. List 4 to 5 primary or key elements
                 of your topic that you will be discussing.
               </label>
             </div>
-              <textarea
-                name=""
-                id=""
-                rows={10}
-                className="appearance-none border rounded-[10px] py-3 px-3 mt-[12px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-[14px] lg:w-full"
-              ></textarea>
+            <textarea
+              name=""
+              id=""
+              rows={10}
+              className="appearance-none border rounded-[10px] py-3 px-3 mt-[12px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-[14px] lg:w-full"
+            ></textarea>
             <div>
               <label>Target Audience</label>
-              <textarea
-                name=""
-                id=""
-                rows={10}
-                className="appearance-none border rounded-[10px] py-3 px-3 mt-[12px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-[14px] lg:w-full"
-              ></textarea>
+              <select className="block w-1/2 p-3 mt-1 border form-select rounded-xl">
+                <option value="" disabled>
+                  Please Select an Option
+                </option>
+                <option value="">50-100</option>
+                <option value="">150-200</option>
+              </select>
             </div>
             <div>
               <label>
                 Have you given this presentation before and/or you do you intend
                 to present it elsewhere in the near future?
               </label>
-              <textarea
-                name=""
-                id=""
-                rows={10}
-                className="appearance-none border rounded-[10px] py-3 px-3 mt-[12px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-[14px] lg:w-full"
-              ></textarea>
+
+              <select className="block w-1/2 p-3 mt-1 border form-select rounded-xl">
+                <option value="" disabled>
+                  Please Select an Option
+                </option>
+                <option value="yes">yes</option>
+                <option value="no">no</option>
+              </select>
             </div>
+
             <div>
               <label>
                 If YES, please list where and when - If NO place N/A in the box.
+                <br></br>
               </label>
               <textarea
                 name=""
                 id=""
                 rows={10}
-                className="appearance-none border rounded-[10px] py-3 px-3 mt-[12px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-[14px] lg:w-full"
+                className="appearance-none border rounded-[10px] py-3 px-3 mt-[12px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-[14px] lg:w-1/2 sm:w-full"
               ></textarea>
             </div>
             <div>
@@ -396,77 +412,116 @@ export default function ApplyAsaSpeaker() {
                 name=""
                 id=""
                 rows={10}
-                className="appearance-none border rounded-[10px] py-3 px-3 mt-[12px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-[14px] lg:w-full"
+                className="appearance-none border rounded-[10px] py-3 px-3 mt-[12px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-[14px] lg:w-1/2"
               ></textarea>
             </div>
-            <div className="mb-5">
+
+            <div className="flex flex-col sm:flex-row justify-center  space-y-3 sm:space-x-3">
+              <div className="flex flex-col">
+                <input
+                  id="agree-yes"
+                  type="radio"
+                  className="form-radio"
+                  name="agree"
+                  value={1}
+                  onChange={handleChange}
+                />
+                <label htmlFor="agree-yes">
+                  <span className="">Yes</span>
+                </label>
+              </div>
               <label className="block mb-2 font-bold text-gray-600">
                 I agree to submit my presentation prior to the Conference.
               </label>
-              <div className="">
-                    <input
-                      id="agree-yes"
-                      type="radio"
-                      className="form-radio"
-                      name="agree"
-                      value={1}
-                      onChange={handleChange}
-                    />
-                    <label
-                      htmlFor="agree-yes"
-                      className="inline-flex items-center"
-                    >
-                      <span className="">Yes</span>
-                    </label>
-                  </div>
             </div>
-
-            
-           
-
-            <div className="mb-5">
-              <label className="block mb-2 font-bold text-gray-600">
-                What best describes your role in web3{" "}
-              </label>
-              <select
-                className="block w-full p-3 mt-1 border form-select"
-                name="role"
-                onChange={handleChange}
-              >
-                <option selected disabled>
-                  Please Select an Option
-                </option>
-                <option value="beginner">I am new to Blockchain/Web3</option>
-                <option value="developer">Developer</option>
-                <option value="designer">Designer</option>
-                <option value="content">Content Creator</option>
-                <option value="community">Community Manager</option>
-                <option value="others">Others</option>
-              </select>
-            </div>
-            <label className="block mb-2 font-bold text-gray-600">
-              Telgram Username
-            </label>
-            <input
-              type="text"
-              id="telegramId"
-              name="telegramID"
-              placeholder="Put in your  telegram username"
-              className="w-full p-3 border rounded shadow"
-              onChange={handleChange}
-              value={formData.telegramID}
-            />
-           
-            {/* <button
-                disabled={crud}
-                className="block w-full p-4 font-bold text-white bg-blue-500 rounded-lg"
-              >
-                {crud ? "Sending..." : "Submit"}
-              </button> */}
+            <div className="flex flex-col sm:flex-row justify-center items-center space-y-6 sm:space-x-6 sm:space-y-0">
+              <div className="w-full sm:w-1/2">
+                <label className="block mb-2 font-bold text-gray-600">
+                  What Best Describes Your Role In Web3
+                </label>
+                <select
+                  className="w-full p-3 bg-white rounded-lx border-[0.7px]"
+                  name="role"
+                  onChange={handleChange}
+                  value={formData.role}
+                  required
+                >
+                  <option value="" disabled>
+                    Please Select an Option
+                  </option>
+                  {roles.map((role) => (
+                    <option key={role} value={role}>
+                      {role}
+                    </option>
+                  ))}
+                </select>
+                {errors.role && (
+                  <span className="text-red-500">{errors.role.join(", ")}</span>
+                )}
               </div>
-          </form>
-        )}
+              <div className="w-full sm:w-1/2">
+                <label className="block mb-2 font-bold text-gray-600">
+                  Telgram Username
+                </label>
+                <input
+                  type="text"
+                  id="telegramId"
+                  name="telegramID"
+                  placeholder="Put in your  telegram username"
+                  className="w-full p-3 border rounded-xl shadow"
+                  onChange={handleChange}
+                  value={formData.telegramID}
+                />
+              </div>
+            </div>
+            <div className="flex flex-col sm:flex-row justify-center  space-y-3 sm:space-x-3">
+                <div className="flex flex-col">
+                  <input
+                    id="verified-yes"
+                    type="radio"
+                    className="form-radio"
+                    name="verified"
+                    value={1}
+                    onChange={handleChange}
+                  />
+                  <label
+                    htmlFor="verified-yes"
+                    className="inline-flex items-center"
+                  >
+                    <span className="">Yes</span>
+                  </label>
+                </div>
+                <label className="block mb-2 font-bold text-gray-600">
+                  I have verified that all information provided is accurate and
+                  complete.
+                </label>
+              </div>
+
+              <div className="w-full justify-between flex">
+                <button
+                  type="button"
+                  className="flex rounded-md items-center justify-center text-center space-x-2"
+                  onClick={handleDelete}
+                >
+                  <Image
+                    src={"/clearform.svg"}
+                    alt="..."
+                    height={10}
+                    width={15}
+                  />
+                  <p className="text-center">Clear Form</p>
+                </button>
+                <button
+                  type="submit"
+                  className="rounded-lg from-[#3E3797] to-[#111022] bg-gradient-to-r text-white px-3 py-1.5 text-center"
+                  disabled={loading}
+                >
+                  {loading ? "Sending..." : "Submit"}
+                </button>
+              </div>
+          </div>
+        </form>
       </div>
-     </div>
+    </div>
   );
 }

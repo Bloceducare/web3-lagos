@@ -22,7 +22,7 @@ const Category: React.FC = () => {
       </label>
 
       <select
-        className="block w-full p-3 mt-1 border form-select"
+        className="block w-full p-3 mt-1 border form-select rounded-xl"
         name="category"
         value={category}
         onChange={handleChange}
@@ -51,7 +51,7 @@ const Category: React.FC = () => {
             name="otherCategory"
             value={otherCategory}
             onChange={handleOtherChange}
-            className="block w-full p-3 mt-1 border"
+            className="block w-full p-3 mt-1 border rounded-xl"
           />
         </div>
       )}
