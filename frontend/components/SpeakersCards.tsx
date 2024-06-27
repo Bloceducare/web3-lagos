@@ -1,15 +1,15 @@
 import { blurUrl, speakersImg } from "@/data";
 import Image, { ImageProps } from "next/image";
-import speaker from "../public/speaker.png";
-import speaker2 from "../public/speakers2.png";
-import speaker3 from "../public/speaker3.png";
-import speaker4 from "../public/speaker4.png";
+import speaker from "../public/arrows.png";
+import speaker2 from "../public/banner.png";
+import speaker3 from "../public/ayagigs-logo.png";
+import speaker4 from "../public/bayero-m.png";
 import Button from "./button";
 import Contact from "./Contact";
 
 const Card = ({ src }: { src: string }) => (
   <>
-    <div className="relative mt-5 rounded-md flex  justify-center  ">
+    <div className="relative mt-5 rounded-md flex  justify-center ">
       <Image
         src={src}
         placeholder="blur"
