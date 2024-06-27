@@ -82,9 +82,6 @@ const AboveFold = () => {
     fetchRegistrations();
   }, []);
 
-  const backgroundImageStyle = {
-    backgroundImage: "url('../public/bg.png')",
-  };
 
   return (
     <div className="w-full h-fit flex items-center bg-top bg-no-repeat bg-gradient-to-br from-[#0096FF] to-[#000] pt-[9rem] pb-[3rem] justify-center px-4 sm:px-8 py-4">

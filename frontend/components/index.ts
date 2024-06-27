@@ -7,4 +7,5 @@ export { default as Sponsors } from "./Sponsors";
 export { default as Gallery } from "./Gallery";
 export { default as About } from "./About";
 export { default as Contact } from "./Contact";
+export { default as DataFetcher } from "./DataFetcher";
 export { default as YoutubeIframe } from "./Iframe";

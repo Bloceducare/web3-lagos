@@ -3,6 +3,7 @@ import images from "../public/Sponsors/imageImports";
 
 type UIProps = {
   title: string;
+
 }
 
 const SponsorUI:React.FC<UIProps> = ({title}) => {
@@ -12,8 +13,8 @@ const SponsorUI:React.FC<UIProps> = ({title}) => {
         {title}
       </h1>
       <div className="flex flex-wrap w-full justify-center">
-        {images.map((image) => (
-          <Image src={image} alt="sponsor" />
+        {images.map((image, index) => (
+          <Image src={image} key={index} alt="sponsor" />
         ))}
       </div>
   </div>
