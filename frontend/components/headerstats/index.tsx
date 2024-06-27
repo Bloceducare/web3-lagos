@@ -15,13 +15,13 @@ function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 bg-[#fdfefff6] shadow-md z-10 py-2  border-[2px]">
-      <nav className="flex items-center justify-between w-full lg:max-w-screen-lg xl:max-w-screen-xl mx-auto md:px-6">
+      <nav className="flex items-center justify-between w-full px-4 lg:max-w-screen-lg xl:max-w-screen-xl mx-auto md:px-6">
         
-        <div className="bg-[#0DAC1D] p-4 rounded-md lg:hidden z-[100]" >
+        <div className="ring-[2px] ring-[#000] p-3 rounded-md lg:hidden z-[100]" >
           {menuOpen ? (
-            <FaTimes onClick={toggleMenu} size={24} color="white" />
+            <FaTimes onClick={toggleMenu} size={22} color="black" />
           ) : (
-            <FaBars onClick={toggleMenu} size={24} color="white" />
+            <FaBars onClick={toggleMenu} size={22} color="black" />
           )}
         </div>
 
@@ -43,15 +43,15 @@ function Header() {
             </Link>
           ))}
         </ul>
-        <div className="md:w-[50%] lg:w-[40%] xl:w-[33%] md:justify-between  flex justify-end">
+        <div className="md:w-[55%] lg:w-[43%] xl:w-[33%] md:justify-between  flex justify-end">
           {/* Nav Buttons */}
           <Link href="#">
-            <Button className="border-[2px] border-solid border-[#0096FF] py-2 rounded-lg px-5 text-lg hidden md:flex">
+            <Button className="border-[2px] border-solid border-[#000] py-2 rounded-lg px-5 text-lg hidden md:flex">
               Register as a Speaker
             </Button>
           </Link>
           <Link href="/apply/registration">
-            <Button className="bg-[#000] text-white lg:text-xl rounded-lg px-5 lg:py-[0.6rem]">
+            <Button className="bg-[#000] text-white lg:text-xl rounded-lg px-5 md:py-[0.6rem]">
               Register Here
             </Button>
           </Link>
