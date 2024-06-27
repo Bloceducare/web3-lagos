@@ -81,6 +81,7 @@ export default function ApplyAsaSpeaker() {
       ...errors,
       [name]: undefined,
     });
+
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -124,7 +125,11 @@ export default function ApplyAsaSpeaker() {
         <SuccessScreen />
       </div>
     );
+
   }
+
+
+
   const gradientStyle = {
     background:
       "linear-gradient(90deg, #C96C4E 9.5%, #AC615D 27%, #895470 37%, #3E3797 70%, #BD6854 84%, #3E3797 100%, #C96C4E)",
@@ -152,6 +157,7 @@ export default function ApplyAsaSpeaker() {
       </div>
       <div className="  w-full bg-white rounded lg:px-8 pt-6 pb-8 mb-4">
         <h1 className="text-4xl font-medium my-10">Speaker&apos;s Details</h1>
+
         <div className="text-center">
           {!!message && (
             <span
@@ -255,6 +261,7 @@ export default function ApplyAsaSpeaker() {
                 />
               </div>
 
+
               <div className="w-full sm:w-1/2">
                 <label className="block mb-2 font-bold text-gray-600 my-5">
                   Link to Your website or Link to Your
@@ -322,7 +329,6 @@ export default function ApplyAsaSpeaker() {
                 your lecture.
               </p>
             </div>
-
             <div className="flex flex-col sm:flex-row justify-center items-center space-y-6 sm:space-x-6 sm:space-y-0">
               <div className="w-full sm:w-1/2">
                 <label
