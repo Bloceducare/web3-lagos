@@ -9,9 +9,9 @@ import barchatStat from "../public/barchart.png";
 import { YoutubeIframe, Contact } from "@/components";
 function Insight() {
   return (
-    <div>
-      <section className="container mx-auto">
-        <div className="p-8 md:grid md:grid-cols-2 lg:grid lg:grid-cols-2 gap-x-24 items-baseline">
+    <div className="flex flex-col justify-center items-center w-full pt-[5.5rem]">
+      <section className="lg:max-w-screen-lg xl:max-w-screen-xl">
+        <div className="lg:px-6 md:grid md:grid-cols-2 lg:grid lg:grid-cols-2 gap-x-24 items-baseline">
           <div>
             <div className="bg-[#F8B135] p-6 rounded-lg">
               <div className="flex items-center space-x-12">
@@ -41,6 +41,7 @@ function Insight() {
               </ul>
             </div>
           </div>
+
           <div className="mt-6">
             <div className="bg-[#F8B135] p-6  rounded-lg">
               <div className="flex items-center space-x-12">
@@ -78,7 +79,7 @@ function Insight() {
 
         <div className="p-8 md:grid md:grid-cols-2 lg:grid lg:grid-cols-2 gap-x-24 items-baseline">
           <div>
-            <div className="bg-[#053758] p-6   rounded-lg">
+            <div className="bg-[#053758] p-6 rounded-lg">
               <div className="flex items-end space-x-12">
                 <div>
                   <Image src={speech} alt="stats" />
@@ -93,7 +94,7 @@ function Insight() {
                 </div>
               </div>
             </div>
-            <div className="my-4">
+            <div className="">
               <ul className="text-[#23242A] text-[32px] leading-[35px]">
                 <li>
                   Non Technical Speaker: <br /> <span>17</span>
@@ -145,7 +146,7 @@ function Insight() {
           </div>
         </div>
 
-        <div className="mt-24">
+        <div className="">
           <div className="flex justify-center my-8 items-center">
             <div>
               <Image src={barchat} alt="stats_icon" />
@@ -176,7 +177,7 @@ function Insight() {
         </div>
       </section>
       <YoutubeIframe />
-      <div className="mt-24">
+      <div className="">
         <Contact />
       </div>
     </div>
