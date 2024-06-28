@@ -16,6 +16,10 @@ const Insight: React.FC = () => {
     src: string;
   };
 
+  type listProps = {
+    text: string;
+  }
+
   const IconBox: React.FC<IconBoxProps> = ({ src, title, value }) => (
     <div className="w-[26rem] bg-[#ffffff] flex-shrink-0">
       <div className="flex w-full shadow-xl rounded-lg justify-between pl-10 py-8">
@@ -34,10 +38,14 @@ const Insight: React.FC = () => {
     </div>
   );
 
+  const ListData:React.FC<listProps> = ({text}) => (
+    <li className="w-full bg-[#ffffff] shadow-xl rounded-lg px-5 py-4">{text}</li>
+  );
+
   return (
     <div className="flex flex-col justify-center items-center w-full pt-[7.5rem] bg-[#fdfdfd]">
       <section className="lg:px-6 lg:max-w-screen-lg xl:max-w-screen-xl">
-        <h1 className="text-[#053758] font-[700] text-[2.6rem] tracking-wider mb-[2rem]">Event Overview</h1>
+        <h1 className="text-[#053758] font-[700] text-[2.6rem] tracking-wider mb-[4rem] pb-8 border-b-[1px] border-[#d2d2d2]">Event Overview</h1>
         <div className="gap-x-24 items-baseline">
           <div className="w-full overflow-x-scroll flex flex-col justify-center">
             <div className="flex pb-10 gap-10 w-max">
@@ -66,19 +74,92 @@ const Insight: React.FC = () => {
               </DataFetcher>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="mt-10">
-            <h2 className="text-[#23242A] text-[36px] leading-[39px] font-[700]">
-              Registration Breakdown
-            </h2>
-            <ul className="text-[#23242A] text-[22px] flex mt-[2rem] gap-5 leading-[35px]">
-              <li className="w-full bg-[#ffffff] shadow-xl rounded-lg px-5 py-4">23 States in Nigeria</li>
-              <li className="w-full bg-[#ffffff] shadow-xl rounded-lg px-5 py-4">14 African Countries</li>
-              <li className="w-full bg-[#ffffff] shadow-xl rounded-lg px-5 py-4">3 European Countries</li>
-              <li className="w-full bg-[#ffffff] shadow-xl rounded-lg px-5 py-4">3 Asian Countries</li>
-              <li className="w-full bg-[#ffffff] shadow-xl rounded-lg px-5 py-4">USA and UK</li>
-            </ul>
+      <section className=" bg-[#eee] w-full my-10 px-10 py-10">
+        <div className="lg:px-6 flex flex-col gap-8 lg:max-w-screen-lg xl:max-w-screen-xl">
+          <h2 className="text-[#23242A] text-[36px] leading-[39px] font-[700]">
+            Registration Breakdown
+          </h2>
+          <ul className="text-[#23242A] text-[22px] flex mt-[2rem] gap-5 leading-[35px]">
+            <ListData text="23 States in Nigeria" />
+            <ListData text="14 African Countries" />
+            <ListData text="3 European Countries" />
+            <ListData text="3 Asian Countries" />
+            <ListData text="USA and UK" />
+          </ul>
+        </div>
+      </section>
+
+      <section className=" bg-[#cdeaff] w-full mb-0 px-10 py-10">
+        <div className="lg:px-6 flex flex-col gap-8 lg:max-w-screen-lg xl:max-w-screen-xl">
+          <h2 className="text-[#23242A] text-[36px] leading-[39px] font-[700]">
+            Attendance Breakdown
+          </h2>
+          <ul className="text-[#23242A] text-[22px] flex mt-[2rem] gap-5 leading-[35px]">
+            <ListData text="Day 1: States in Nigeria" />
+            <ListData text="Day 2: African Countries" />
+            <ListData text="Day 3: European Countries" />
+          </ul>
+        </div>
+      </section>
+
+      <section className=" bg-[#daffcb] w-full mb-10 px-10 py-10">
+        <div className="lg:px-6 flex flex-col gap-8 lg:max-w-screen-lg xl:max-w-screen-xl">
+          <h2 className="text-[#23242A] text-[36px] leading-[39px] font-[700]">
+            Speakers Breakdown
+          </h2>
+          <ul className="text-[#23242A] text-[22px] flex mt-[2rem] gap-5 leading-[35px]">
+            <ListData text="Day 1: States in Nigeria" />
+            <ListData text="Day 2: African Countries" />
+            <ListData text="Day 3: European Countries" />
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        
+      <div className="">
+          <div className="flex justify-center my-8 items-center">
+            <div>
+              <Image src={barchat} alt="stats_icon" />
+            </div>
+            <p className="text-[48px] leading-[57px] text-[#053758]">
+              Statistical Summary
+            </p>
           </div>
+
+          <div className="md:flex p-2 lg:flex justify-between items-center">
+            <div>
+              <Image src={barchatStat} alt="stats-icon" />
+            </div>
+
+            <div className="mt-12 md:mt-0 lg:mt-0 p-4 md:p-0 lg:p-0">
+              <p className="text-[#23242A] text-[48px] leading-[52px]">
+                33% of Registrations
+                <br /> were from newbies
+                <br />
+                /beginners to Web3.
+                <br /> 27% were developers,
+                <br /> 10% were designers
+                <br />
+                /marketers.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <YoutubeIframe />
+      <div className="">
+        <Contact />
+      </div>
+    </div>
+  );
+};
+
+{/* 
+
 
           <div className="mt-6">
             <h2 className="text-[#23242A] text-[36px] leading-[39px] font-[700]">
@@ -86,13 +167,13 @@ const Insight: React.FC = () => {
             </h2>
             <ul className="text-[#23242A] text-[32px] leading-[35px]">
               <li>
-                <span>Day 1:</span> States in Nigeria
+                
               </li>
               <li>
-                <span>Day 2:</span> African Countries
+                <span>
               </li>
               <li>
-                <span>Day 3:</span> European Countries
+                <span>
               </li>
             </ul>
           </div>
@@ -166,43 +247,5 @@ const Insight: React.FC = () => {
             </div>
           </div>
         </div>
-
-        <div className="">
-          <div className="flex justify-center my-8 items-center">
-            <div>
-              <Image src={barchat} alt="stats_icon" />
-            </div>
-            <p className="text-[48px] leading-[57px] text-[#053758]">
-              Statistical Summary
-            </p>
-          </div>
-
-          <div className="md:flex p-2 lg:flex justify-between items-center">
-            <div>
-              <Image src={barchatStat} alt="stats-icon" />
-            </div>
-
-            <div className="mt-12 md:mt-0 lg:mt-0 p-4 md:p-0 lg:p-0">
-              <p className="text-[#23242A] text-[48px] leading-[52px]">
-                33% of Registrations
-                <br /> were from newbies
-                <br />
-                /beginners to Web3.
-                <br /> 27% were developers,
-                <br /> 10% were designers
-                <br />
-                /marketers.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-      <YoutubeIframe />
-      <div className="">
-        <Contact />
-      </div>
-    </div>
-  );
-};
-
+ */}
 export default Insight;

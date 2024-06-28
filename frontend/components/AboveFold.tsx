@@ -142,8 +142,8 @@ const AboveFold = () => {
         <div className="flex flex-wrap lg:flex-nowrap items-center space-y-8 md:space-y-0 md:space-x-10 my-8 justify-between w-[88%] md:w-fit">
           <Progress Title="Attendee" number={registrations.length > 0 ? `${registrations.length}`: '--'} imageSrc="/attendees.svg" />
           <Progress Title="Speakers" number={speakers.length > 0 ? `${speakers.length}`: '--'} imageSrc="/speakers.svg" />
-          {/* <Progress Title="Sponsors" number="15+" imageSrc="/sponsor.svg" />
-          <Progress Title="Hackers" number={registrations.length > 0 ? `${registrations.length}`: '--'} imageSrc="/attendees.svg" /> */}
+          <Progress Title="Sponsors" number="15+" imageSrc="/sponsor.svg" />
+          <Progress Title="Hackers" number='--' imageSrc="/attendees.svg" />
         </div>
           </div>
         </div>
