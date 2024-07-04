@@ -33,7 +33,7 @@ class SpeakerRegistrationViewSet(viewsets.ModelViewSet):
         subject = 'Speaker Registration Confirmation'
 
         context = {
-            'name': instance.name,
+            'name': instance.firstname + instance.other_name,
         }
 
         message_html = render_to_string('registration/speaker_registration_email.html', context)
