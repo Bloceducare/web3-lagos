@@ -23,7 +23,7 @@ type FormData = {
   pitchStory: string;
   spokenAtWeb3Before: boolean;
   gender: string;
-  type: string;
+  profilepicurl: string;
 };
 
 type FormErrors = {
@@ -43,7 +43,7 @@ const initialFormState: FormData = {
   pitchStory: "",
   spokenAtWeb3Before: false,
   gender: "",
-  type: "speaker",
+  profilepicurl: "",
 };
 
 const initialFormErrors: FormErrors = {};
