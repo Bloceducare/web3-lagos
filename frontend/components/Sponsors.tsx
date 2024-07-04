@@ -1,30 +1,34 @@
 import Image from "next/image";
-import sponsor from "../public/sponsor.svg";
-import Partners from "../public/Partners.png";
+import images from "../public/Sponsors/imageImports"; 
+
+type UIProps = {
+  title: string;
+
+}
+
+const SponsorUI:React.FC<UIProps> = ({title}) => {
+  return (
+    <div className="p-0 md:py-16 md:mt-5 xl:px-10 xl:mx-10">
+      <h1 className="text-[42px] md:text-[54px] text-center leading-[70px] font-bold text-[#23242A] flex justify-center mb-1 0 tracking-wide px-4 md:mb-10">
+        {title}
+      </h1>
+      <div className="flex flex-wrap w-full justify-center">
+        {images.map((image, index) => (
+          <Image src={image} key={index} alt="sponsor" />
+        ))}
+      </div>
+  </div>
+  );
+}
 
 const Sponsors = () => {
   return (
-    <section className="container mx-auto p-4 mb-24">
-      <div className="p-4 mt-12 md:px-3 md:py-16 md:mx-10 md:mt-4 lg:px-3 lg:py-16 lg:mx-10">
-        <h1 className="text-[64px] leading-[70px] font-bold text-[#23242A] flex justify-center mb-20 tracking-wide">
-          Our <span className="ml-2">Sponsors</span>
-        </h1>
-      </div>
-      <div className="flex -mt-6 lg:-mt-32 justify-center">
-        <Image src={sponsor} alt="sponsor" />
-      </div>
+    <section className="container py-10 mx-auto xl:px-4">
+      <SponsorUI title="Our Sponsors" />
+
       <div className="border-t linear my-8"></div>
 
-      <div className="p-4 mt-12 md:px-3 md:py-16 md:mx-10 md:mt-4 lg:px-3 lg:py-16 lg:mx-10">
-        <h1 className="text-[64px] leading-[70px] font-bold text-[#23242A] flex justify-center mb-20 tracking-wide">
-          Community Partners
-        </h1>
-      </div>
-      <div className="flex -mt-6 lg:-mt-32 justify-center">
-        <Image src={Partners} alt="sponsor" />
-      </div>
-
-     
+      <SponsorUI title="Community Partners" />
     </section>
   );
 };

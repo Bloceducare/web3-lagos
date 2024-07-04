@@ -11,8 +11,8 @@ const DateBlock: React.FC<DateBlockProps> = ({ timeStamp, text }) => {
 
   const formattedTime = String(timeStamp).padStart(2, '0');
   return (
-    <div className="p-4 text-black">
-      <h1 className="text-[2em]">{formattedTime}</h1>
+    <div className="py-3 px-5 lg:px-8 text-white">
+      <h1 className="text-[1.4em]">{formattedTime}</h1>
       <p className="">{text}</p>
     </div>
   );
@@ -56,14 +56,14 @@ const Countdown: React.FC<CountdownProps> = ({ endDate }) => {
   useEffect(() => {
     updateCountdown(endDate);
     const interval = setInterval(() => {
-      updateCountdown(endDate);
+      updateCountdown(endDate); 
     }, 1000);
 
     return () => clearInterval(interval);
   }, [endDate]);
 
   return (
-    <div className="bg-header border-yellow-500 border-[0.2px] rounded-[10px] text-black text-[1em] font-bold w-fit flex items-center text-center">
+    <div className="bg-[#000] border-[2px] rounded-[10px] text-[0.8em] font-bold flex items-center justify-between text-center">
       <DateBlock timeStamp={countdown.days} text="Days" />: <DateBlock timeStamp={countdown.hours} text="Hours" />:<DateBlock timeStamp={countdown.minutes} text="Mins" />: <DateBlock timeStamp={countdown.seconds} text="Secs" />
     </div>
   );
@@ -73,9 +73,9 @@ const endDate = new Date("2024-09-05T00:00:00");
 
 const DateCountDown: React.FC = () => {
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-between my-2">
       <div>
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-between">
         </div>
         <Countdown endDate={endDate} />
       </div>
