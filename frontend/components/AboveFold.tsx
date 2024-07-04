@@ -88,10 +88,10 @@ const AboveFold = () => {
     <section className="flex flex-col justify-center space-y-7 items-center text-center lg:max-w-screen-lg xl:max-w-screen-xl">
       {/* <div className="w-full flex text-white m-auto justify-between"> */}
         {/* <div className="flex flex-col justify-center w-full"> */}
-        <div className="flex flex-wrap space-y-6 lg:space-y-0 lg:flex-nowrap justify-center lg:space-x-20 lg:justify-between mb-8">
+        {/* <div className="flex flex-wrap space-y-6 lg:space-y-0 lg:flex-nowrap justify-center lg:space-x-20 lg:justify-between mb-8">
           <TextContainer Content="100% Remote Discord" />
           <TextContainer Content="Friday, June 28th @4pm (GMT-3) to Sunday, June 30thRemote Discord" />
-        </div>
+        </div> */}
 
 
         <div className="text-[2.6rem] lg:text-[3.5rem]">
@@ -143,7 +143,7 @@ const AboveFold = () => {
           <Progress Title="Attendee" number={registrations.length > 0 ? `${registrations.length}`: '--'} imageSrc="/attendees.svg" />
           <Progress Title="Speakers" number={speakers.length > 0 ? `${speakers.length}`: '--'} imageSrc="/speakers.svg" />
           <Progress Title="Sponsors" number="15+" imageSrc="/sponsor.svg" />
-          <Progress Title="Hackers" number={registrations.length > 0 ? `${registrations.length}`: '--'} imageSrc="/attendees.svg" />
+          <Progress Title="Hackers" number='--' imageSrc="/attendees.svg" />
         </div>
           </div>
         </div>

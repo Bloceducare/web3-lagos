@@ -14,7 +14,7 @@ const HomeView = () => {
           Ayodeji Awosika, Chief Mechanic at Web3Bridge delivered the keynote
           address.
         </YoutubeIframe>
-      <Sponsors />
+      {/* <Sponsors /> */}
       {/* <SpeakersCards /> */}
       <Gallery />
       {/* <Schedule /> */}
