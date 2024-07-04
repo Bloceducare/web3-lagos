@@ -8,6 +8,7 @@ from django.conf import settings
 from .serializers import GeneralRegistrationSerializer, AttendanceSerializer, VerifyCodeSerializer
 from.models import SpeakerRegistration, Team, GeneralRegistration, Attendance, HackathonRegistration, RoadToWeb3LagosRegistration
 from.serializers import (SpeakerRegistrationSerializer, GeneralRegistrationSerializer, TeamSerializer, HackathonRegistrationSerializer, RoadToWeb3LagosRegistrationSerializer)
+import uuid
 
 
 
@@ -29,10 +30,16 @@ class SpeakerRegistrationViewSet(viewsets.ModelViewSet):
         self.send_confirmation_email(instance)
 
     def send_confirmation_email(self, instance):
-        subject = 'Registration Confirmation'
-        message = f'Thank you for registering, {instance.name}.'
-        recipient_list = [instance.email]
-        send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, recipient_list)
+        subject = 'Speaker Registration Confirmation'
+
+        context = {
+            'name': instance.name,
+        }
+
+        message_html = render_to_string('registration/speaker_registration_email.html', context)
+        email = EmailMultiAlternatives(subject, '', settings.DEFAULT_FROM_EMAIL, [instance.email])
+        email.attach_alternative(message_html, 'text/html')
+        email.send()
 
 
 
@@ -49,10 +56,7 @@ class SpeakerRegistrationViewSet(viewsets.ModelViewSet):
 
 
 
-import uuid
-from django.core.mail import send_mail
-from django.conf import settings
-from rest_framework.response import Response
+
 
 class GeneralRegistrationViewSet(viewsets.ModelViewSet):
     queryset = GeneralRegistration.objects.all()

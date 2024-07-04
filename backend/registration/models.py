@@ -9,17 +9,18 @@ class SpeakerRegistration(models.Model):
     phone_number = models.CharField(max_length=15)
     company_name = models.CharField(max_length=100)
     website_or_portfolio = models.URLField(blank=True, null=True)
-    country = models.CharField(max_length=100)
-    city = models.CharField(max_length=100, null=True)
     x_handle = models.CharField(max_length=100, blank=True, null=True)
     lecture_title = models.CharField(max_length=200)
-    category= models.CharField(max_length=200, blank=True, null=True)
+    category = models.CharField(max_length=200, blank=True, null=True)
     session_abstract = models.TextField()
     web3_role = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.speakers_name
-
+    available_at_any_day = models.BooleanField(default=False)
+    location = models.CharField(max_length=200, blank=True, null=True)
+    telegram_id = models.CharField(max_length=100, blank=True, null=True)
+    pitch_story = models.TextField(blank=True, null=True)
+    spoken_at_web3_before = models.BooleanField(default=False)
+    gender = models.CharField(max_length=50, blank=True, null=True)
+    profilepicurl = models.URLField(max_length=300, blank=True)
 
 class GeneralRegistration(models.Model):
     name = models.CharField(max_length=100)
