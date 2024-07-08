@@ -14,11 +14,10 @@ backendEnv
 
 __pycache__/
 __migrations__/
+**migrations/
 *.py[cod]
 *$py.class
 blog/migrations/
-accounts/migrations/
-operations/migrations/
 .github/
 # C extensions
 *.so
