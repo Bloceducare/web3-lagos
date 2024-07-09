@@ -13,9 +13,6 @@ function Header() {
     setMenuOpen(!menuOpen);
   };
 
-  const closeMenu = () => {
-    setMenuOpen(false);
-  };
 
   return (
     <header className="fixed top-0 left-0 right-0 bg-[#fdfefff6] shadow-md z-10 py-2  border-[2px]">
@@ -29,7 +26,7 @@ function Header() {
         </div>
 
         {/* Navigation links */}
-        <ul onClick={closeMenu}
+        <ul onClick={() => {setMenuOpen(false)}}
           className={`${
             menuOpen
               ? "flex flex-col space-y-4 leading-3 flex-4 h-screen absolute -left-1 top-16 bg-[#8ba6ff] py-3 "
