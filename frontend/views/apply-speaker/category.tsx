@@ -1,33 +1,41 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent } from "react";
 
-const Category: React.FC = () => {
-  const [category, setCategory] = useState<string>('');
-  const [otherCategory, setOtherCategory] = useState<string>('');
+type CategoryProps = {
+  id: string;
+  name: string;
+  value: string;
+  onChange: (e: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => void;
+};
 
-  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
+const Category: React.FC<CategoryProps> = ({ id, name, value, onChange }) => {
+  const [category, setCategory] = useState<string>(value);
+  const [otherCategory, setOtherCategory] = useState<string>("");
+
+  const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setCategory(e.target.value);
-    if (e.target.value !== 'others') {
-      setOtherCategory('');
+    onChange(e);
+    if (e.target.value !== "others") {
+      setOtherCategory("");
     }
   };
 
   const handleOtherChange = (e: ChangeEvent<HTMLInputElement>) => {
     setOtherCategory(e.target.value);
+    onChange(e);
   };
 
   return (
     <div>
-      <label htmlFor="category" className="block mb-2 font-bold text-gray-600">
+      <label htmlFor={name} className="block mb-2 font-bold text-gray-600">
         Category <span className="text-red-600">*</span>
       </label>
 
       <select
         className="block w-full p-3 mt-1 border form-select rounded-xl"
-        name="category"
+        id={id}
+        name={name}
         value={category}
-        onChange={handleChange}
-        disabled={category === 'others'}
-      >
+        onChange={handleSelectChange}>
         <option value="" disabled>
           Please Select an Option
         </option>
@@ -41,9 +49,11 @@ const Category: React.FC = () => {
         <option value="others">Others</option>
       </select>
 
-      {category === 'others' && (
+      {category === "others" && (
         <div className="mt-4">
-          <label htmlFor="otherCategory" className="block mb-2 font-bold text-gray-600">
+          <label
+            htmlFor="otherCategory"
+            className="block mb-2 font-bold text-gray-600">
             Please specify your category <span className="text-red-600">*</span>
           </label>
           <input
