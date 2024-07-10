@@ -39,16 +39,16 @@ const Insight: React.FC = () => {
   );
 
   const ListData:React.FC<listProps> = ({text}) => (
-    <li className="w-full bg-[#ffffff] shadow-xl rounded-lg px-5 py-4">{text}</li>
+    <li className="w-[24rem] bg-[#ffffff] rounded-lg px-5 py-4">{text}</li>
   );
 
   return (
-    <div className="flex flex-col justify-center items-center w-full pt-[7.5rem] bg-[#fdfdfd]">
-      <section className="lg:px-6 lg:max-w-screen-lg xl:max-w-screen-xl">
+    <div className="flex flex-col justify-center items-center overflow-hidden w-full pt-[7.5rem] bg-[#fdfdfd]">
+      <section className=" w-full lg:px-6 lg:max-w-screen-lg xl:max-w-screen-xl">
         <h1 className="text-[#053758] font-[700] text-[2.6rem] tracking-wider mb-[4rem] pb-8 border-b-[1px] border-[#d2d2d2]">Event Overview</h1>
         <div className="gap-x-24 items-baseline">
-          <div className="w-full overflow-x-scroll flex flex-col justify-center">
-            <div className="flex pb-10 gap-10 w-max">
+          <div className="w-full flex overflow-auto flex-col justify-center">
+            <div className="flex p-5 lg:pb-10 gap-10 w-max">
               <DataFetcher>
                 {({ registrations }) => (
                   <IconBox src={notes} title="Total Registration" value={registrations.length > 0 ? `${registrations.length}` : '0'} />
@@ -77,12 +77,12 @@ const Insight: React.FC = () => {
         </div>
       </section>
 
-      <section className=" bg-[#eee] w-full my-10 px-10 py-10">
+      <section className=" bg-[#eef] w-full my-10 px-10 py-10">
         <div className="lg:px-6 flex flex-col gap-8 lg:max-w-screen-lg xl:max-w-screen-xl">
           <h2 className="text-[#23242A] text-[36px] leading-[39px] font-[700]">
             Registration Breakdown
           </h2>
-          <ul className="text-[#23242A] text-[22px] flex mt-[2rem] gap-5 leading-[35px]">
+          <ul className="text-[#23242A] text-[22px] overflow-x-scroll md:flex-wrap flex mt-[2rem] gap-5 leading-[35px]">
             <ListData text="23 States in Nigeria" />
             <ListData text="14 African Countries" />
             <ListData text="3 European Countries" />
@@ -98,6 +98,19 @@ const Insight: React.FC = () => {
             Attendance Breakdown
           </h2>
           <ul className="text-[#23242A] text-[22px] flex mt-[2rem] gap-5 leading-[35px]">
+            <ListData text="Day 1: States in Nigeria" />
+            <ListData text="Day 2: African Countries" />
+            <ListData text="Day 3: European Countries" /> 
+          </ul>
+        </div>
+      </section>
+
+      <section className=" bg-[#eef] w-full mb-10 px-10 py-10">
+        <div className="lg:px-6 flex flex-col gap-8 lg:max-w-screen-lg xl:max-w-screen-xl">
+          <h2 className="text-[#23242A] text-[36px] leading-[39px] font-[700]">
+            Speakers Breakdown
+          </h2>
+          <ul className="text-[#23242A] text-[22px] flex flex-col md:flex-row mt-[2rem] gap-5 leading-[35px]">
             <ListData text="Day 1: States in Nigeria" />
             <ListData text="Day 2: African Countries" />
             <ListData text="Day 3: European Countries" />
