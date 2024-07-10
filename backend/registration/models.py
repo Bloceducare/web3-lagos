@@ -8,6 +8,7 @@ class SpeakerRegistration(models.Model):
     email = models.EmailField(unique=True)
     phone_number = models.CharField(max_length=15)
     company_name = models.CharField(max_length=100)
+    session_type = models.CharField(max_length=100, default="Workshop 1hr")
     website_or_portfolio = models.URLField(blank=True, null=True)
     x_handle = models.CharField(max_length=100, blank=True, null=True)
     lecture_title = models.CharField(max_length=200)

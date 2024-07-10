@@ -25,6 +25,7 @@ type FormData = {
   pitch_story: string;
   spoken_at_web3_before: boolean | string;
   gender: string;
+  session_type: string;
   profilepicurl: string;
 };
 
@@ -50,6 +51,7 @@ const initialFormState: FormData = {
   pitch_story: "",
   spoken_at_web3_before: true,
   gender: "",
+  session_type: "",
   profilepicurl: "",
 };
 
@@ -67,6 +69,14 @@ const roles = [
   "Content",
   "Researcher",
   "Other",
+];
+const sessiontype = [
+  "Talk (25 + 5 QA)(30 minutes)",
+  "Workshop 1hr",
+  "Workshop 1hr (30 minutes)",
+  "Workshop 2hrs",
+  "Lightning Talk (10 minutes",
+  "Panel",
 ];
 
 export default function ApplyAsaSpeaker() {
@@ -317,8 +327,8 @@ export default function ApplyAsaSpeaker() {
                 />
               </div>
             </div>
-            <div className="flex flex-col sm:flex-row justify-center items-center space-y-6 sm:space-x-6 sm:space-y-0">
-              <div className="w-full sm:w-1/2">
+            <div className="flex flex-col sm:flex-row justify-center items-center space-y-6 mt-6 sm:space-x-6 sm:space-y-0">
+              <div className="w-full">
                 <Category
                   id="category"
                   name="category"
@@ -326,13 +336,36 @@ export default function ApplyAsaSpeaker() {
                   value={formData.category}
                 />
               </div>
+              <div className="w-full">
+                <label
+                  htmlFor="web3_role"
+                  className="block mb-2 font-bold text-gray-600">
+                  Session Type
+                  <span className="text-red-600">* </span>
+                </label>
+                <select
+                  id="session_type"
+                  name="session_type"
+                  onChange={handleChange}
+                  className="w-full p-3 border rounded-xl shadow"
+                  value={formData.session_type}
+                  required>
+                  <option value="">Select your role</option>
+                  {sessiontype.map((session) => (
+                    <option key={session} value={session}>
+                      {session}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
-              <div className="w-full sm:w-1/2">
+            </div>
+              <div className="w-full">
                 <label
                   htmlFor="session_abstract"
                   className="block mb-2 font-bold text-gray-600 my-5">
                   Write a compelling session abstract that showcases your
-                  content.
+                  content (if applicable else N/A).
                 </label>
                 <textarea
                   id="session_abstract"
@@ -343,7 +376,8 @@ export default function ApplyAsaSpeaker() {
                   value={formData.session_abstract}
                 />
               </div>
-            </div>
+            
+      
             <div className="flex flex-col sm:flex-row justify-center items-center space-y-6 sm:space-x-6 sm:space-y-0">
               <div className="w-full sm:w-1/2">
                 <label
@@ -472,6 +506,7 @@ export default function ApplyAsaSpeaker() {
                   <option value="">Select your gender</option>
                   <option value="male">Male</option>
                   <option value="female">Female</option>
+                  <option value="female">Others</option>
                 </select>
               </div>
               <div className="w-full sm:w-1/2">
