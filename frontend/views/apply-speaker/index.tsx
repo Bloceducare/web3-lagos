@@ -136,7 +136,7 @@ export default function ApplyAsaSpeaker() {
 
   if (isSuccess) {
     return (
-      <div className="">
+      <div className="w-full m-auto flex">
         <SuccessScreen />
       </div>
     );
@@ -371,7 +371,7 @@ export default function ApplyAsaSpeaker() {
                 <label
                   htmlFor="available_at_any_day"
                   className="block mb-2 font-bold text-gray-600 my-5">
-                  Available at Any Day <span className="text-red-600">* </span>
+                  Are You Available To Speak On Any Of The Three Days <span className="text-red-600">* </span>
                 </label>
                 <select
                   id="available_at_any_day"
