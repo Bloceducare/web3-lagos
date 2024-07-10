@@ -350,7 +350,7 @@ export default function ApplyAsaSpeaker() {
                   className="w-full p-3 border rounded-xl shadow"
                   value={formData.session_type}
                   required>
-                  <option value="">Select your role</option>
+                  <option value="">Select your session type</option>
                   {sessiontype.map((session) => (
                     <option key={session} value={session}>
                       {session}
