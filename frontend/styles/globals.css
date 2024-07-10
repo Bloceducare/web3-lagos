@@ -3,8 +3,8 @@
 @tailwind utilities;
 @import url(./speakers.css);
 @import url(./schedule.css);
-@import url(./hero.css);
-@import url(./stats.css);
+/* @import url(./hero.css); */
+/* @import url(./stats.css); */
 
 /* https://ifonts.xyz/nekst-font.html */
 @font-face {
