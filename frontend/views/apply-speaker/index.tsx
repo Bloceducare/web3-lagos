@@ -374,6 +374,7 @@ export default function ApplyAsaSpeaker() {
                   placeholder="Brief description of your session."
                   className="w-full p-3 border rounded-xl shadow"
                   value={formData.session_abstract}
+                  rows={8}
                 />
               </div>
             
