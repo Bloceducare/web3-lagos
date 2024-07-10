@@ -146,7 +146,8 @@ export default function ApplyAsaSpeaker() {
 
   if (isSuccess) {
     return (
-      <div className="w-full m-auto flex">
+      <div className="w-full m-auto h-screen justify-center align-middle items-center flex">
+        
         <SuccessScreen />
       </div>
     );
