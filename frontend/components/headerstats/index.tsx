@@ -29,9 +29,12 @@ function Header() {
         <ul onClick={() => {setMenuOpen(false)}}
           className={`${
             menuOpen
-              ? "flex flex-col space-y-4 leading-3 flex-4 h-screen absolute -left-1 top-16 bg-[#8ba6ff] py-3 "
+
+              ? "flex flex-col space-y-6 leading-3 flex-4 h-screen absolute -left-1 top-20 bg-[#fff] py-3 "
               : "md:justify-between md:space-x-1 hidden lg:flex lg:w-[30%] lg:justify-between"
-          } `}>
+          } `}
+        >
+
           {headerLink.map((item) => (
             <Link href={item.route}  key={item.name}>
               <li
@@ -39,7 +42,10 @@ function Header() {
                   route.pathname === item.route
                     ? "font-semibold text-[#0D2033]"
                     : "font-normal"
-                }`}>
+
+                }`}
+              >
+
                 {item.name}
               </li>
             </Link>
@@ -67,6 +73,12 @@ function Header() {
               Register Here
             </Button>
           </Link>
+
+          {/* <Link href="/hackathon/registration">
+            <Button className="border-[2px] border-solid border-[#000] py-2 rounded-lg px-5 text-lg hidden md:flex">
+              Hackaton Registration
+            </Button>
+          </Link> */}
         </div>
         {/* Hamburger icon for mobile */}
       </nav>
