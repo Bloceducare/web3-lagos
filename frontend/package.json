@@ -17,6 +17,7 @@
     "bcryptjs": "^2.4.3",
     "cloudinary": "^2.2.0",
     "handlebars": "^4.7.8",
+    "lucide-react": "^0.408.0",
     "mongoose": "^8.4.3",
     "next": "14.2.3",
     "next-connect": "^1.0.0",
