@@ -7,7 +7,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=255)
     other_name = models.CharField(max_length=255, null=True)
-    github_username = models.CharField(max_length=255)
+    github_username = models.CharField(max_length=255, null=True)
 
 
     objects = CustomUserManager()    

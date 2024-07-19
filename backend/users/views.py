@@ -21,6 +21,8 @@ class SignupView(generics.CreateAPIView):
 
     def create(self, request, *args, **kwargs):
         response = super().create(request, *args, **kwargs)
+        user = CustomUser.objects.get(email=request.data['email'])
+        self.send_confirmation_email(user)
         if response.status_code == status.HTTP_201_CREATED:
             return Response({
                 'message': 'User registered successfully.',
@@ -28,6 +30,12 @@ class SignupView(generics.CreateAPIView):
             }, status=status.HTTP_201_CREATED)
         else:
             return response
+        
+    def send_confirmation_email(self, user):
+        subject = 'Hackathon Registration Confirmation'
+        message = f'Thank you for registering for the hackathon, {user.first_name}.'
+        recipient_list = [user.email]
+        send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, recipient_list)
 
 
 
