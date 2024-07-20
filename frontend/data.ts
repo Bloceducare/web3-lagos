@@ -396,7 +396,7 @@ export const headerLink = [
     route:"/insight"
   },
   {
-    name:"Sponsorships",
-    route:"#"
+    name:"Hackathon",
+    route:"/hackathon"
   }
 ]

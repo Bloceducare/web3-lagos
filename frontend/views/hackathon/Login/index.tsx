@@ -11,6 +11,13 @@ type FormData = {
   password: string;
 };
 
+type User = {
+  email: string;
+  id: number;
+  first_name: string;
+  github_username:string;
+  other_name: string;
+}
 type FormErrors = {
   [key in keyof FormData]?: string[];
 };
@@ -61,11 +68,22 @@ export default function HackathonLogin() {
     );
 
     const data = await response.json();
+    console.log(data)
 
     if (response.ok) {
+      localStorage.setItem("token", data.accesss_token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+
+      /**
+       * to retrive user data from locl storage ensure
+       * to parse the strigified json data since local storage
+       * can not store other data types than strings
+       * console.log("user id is:", JSON.parse(user));
+       */
       setMessage("Login successful!");
+     
       setFormData(initialFormState);
-      setIsSuccess(true); // Show success screen
+      setIsSuccess(true); 
     } else {
       setErrors(data);
       setMessage("Please  check your details  and try again.");
