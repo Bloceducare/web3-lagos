@@ -5,7 +5,6 @@ import axios from "axios";
 import React from "react";
 import { EyeOff } from "lucide-react";
 import { Eye } from "lucide-react";
-import HackathonSuccessScreen from "../RegistrationForm/SuccessScreen";
 
 type FormData = {
   email: string;
@@ -22,7 +21,7 @@ const initialFormState: FormData = {
 
 const initialFormErrors: FormErrors = {};
 
-export default function HackathonRegistration() {
+export default function HackathonLogin() {
   const [formData, setFormData] = useState<FormData>(initialFormState);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
@@ -51,7 +50,7 @@ export default function HackathonRegistration() {
     setErrors(initialFormErrors);
 
     const response = await fetch(
-      "https://web3lagosbackend.onrender.com/api/hackathon-registrations/",
+      "https://web3lagosbackend.onrender.com/users/signin/",
       {
         method: "POST",
         headers: {
@@ -64,28 +63,20 @@ export default function HackathonRegistration() {
     const data = await response.json();
 
     if (response.ok) {
-      setMessage("Registration successful!");
+      setMessage("Login successful!");
       setFormData(initialFormState);
       setIsSuccess(true); // Show success screen
     } else {
       setErrors(data);
-      setMessage("Registration failed. Please try again.");
+      setMessage("Please  check your details  and try again.");
     }
 
     setLoading(false);
   };
 
-  if (isSuccess) {
-    return (
-      <div className="">
-        <HackathonSuccessScreen />
-      </div>
-    );
-  }
-
   return (
-    <div className=" mx-auto mt-10 max-w-3xl p-6 shadow-[6px_6px_0px_0px_#1ACF2C]">
-      <div className="  w-full bg-white rounded lg:px-8 pt-6 pb-8 mb-4">
+    <div className=" mx-auto mt-10 max-w-3xl p-6">
+      <div className=" border border-black rounded-lg w-full bg-white lg:px-8 pt-6 pb-8 mb-4 shadow-[6px_6px_0px_0px_#1ACF2C]">
         <h1 className="text-xl lg:text-4xl font-bold mt-3">Login</h1>
         <h3 className="mb-8">Enter your details to login to your account</h3>
         <div className="text-center">
@@ -144,8 +135,8 @@ export default function HackathonRegistration() {
                 {showPassword ? <EyeOff /> : <Eye />}
               </div>
             </div>
-            <Link href="/">
-            <h3 className="text-right text-blue-600"> Forgot Password?</h3>
+            <Link href="forgotpassword">
+              <h3 className="text-right text-blue-600"> Forgot Password?</h3>
             </Link>
             <button
               type="submit"

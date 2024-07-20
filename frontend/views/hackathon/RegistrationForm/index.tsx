@@ -59,7 +59,7 @@ export default function HackathonRegistration() {
     setErrors(initialFormErrors);
 
     const response = await fetch(
-      "https://web3lagosbackend.onrender.com/api/hackathon-registrations/",
+      "https://web3lagosbackend.onrender.com/users/signup/",
       {
         method: "POST",
         headers: {
@@ -92,8 +92,8 @@ export default function HackathonRegistration() {
   }
 
   return (
-    <div className=" mx-auto mt-10 max-w-3xl p-6 shadow-[6px_6px_0px_0px_#1ACF2C]">
-      <div className="  w-full bg-white rounded lg:px-8 pt-6 pb-8 mb-4">
+    <div className=" grid mx-auto mt-10 max-w-3xl p-6 ">
+      <div className=" border border-black rounded-lg w-full bg-white lg:px-8 pt-6 pb-8 mb-4 shadow-[6px_6px_0px_0px_#1ACF2C]">
         <h1 className="text-xl lg:text-4xl font-bold mt-3">
           Create an Account
         </h1>
