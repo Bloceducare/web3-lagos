@@ -5,30 +5,31 @@ import axios from "axios";
 import React from "react";
 import { EyeOff } from "lucide-react";
 import { Eye } from "lucide-react";
+import ResetPasswordSuccessScreen from "./SuccessScreen"
 
 type FormData = {
-  email: string;
   password: string;
+  confirmpassword: string;
 };
 
 type FormErrors = {
   [key in keyof FormData]?: string[];
 };
 const initialFormState: FormData = {
-  email: "",
   password: "",
+  confirmpassword: "",
 };
 
 const initialFormErrors: FormErrors = {};
 
-export default function HackathonLogin() {
+export default function ResetPassword() {
   const [formData, setFormData] = useState<FormData>(initialFormState);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
   const [errors, setErrors] = useState<FormErrors>(initialFormErrors);
   const [showPassword, setShowPassword] = useState(false);
-
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -50,7 +51,7 @@ export default function HackathonLogin() {
     setErrors(initialFormErrors);
 
     const response = await fetch(
-      "https://web3lagosbackend.onrender.com/users/signin/",
+      "https://web3lagosbackend.onrender.com/users/complete-reset-password/",
       {
         method: "POST",
         headers: {
@@ -63,22 +64,34 @@ export default function HackathonLogin() {
     const data = await response.json();
 
     if (response.ok) {
-      setMessage("Login successful!");
+      setMessage("Reset password successful!");
       setFormData(initialFormState);
       setIsSuccess(true); // Show success screen
     } else {
       setErrors(data);
-      setMessage("Please  check your details  and try again.");
+      setMessage("Reset password failed. Please try again.");
     }
 
     setLoading(false);
   };
+  if (isSuccess) {
+    return (
+      <div className="">
+        <ResetPasswordSuccessScreen />
+      </div>
+    );
+  }
 
   return (
-    <div className=" mx-auto mt-10 max-w-3xl p-6">
+    <div className=" grid mx-auto mt-10 max-w-3xl p-6 ">
       <div className=" border border-black rounded-lg w-full bg-white lg:px-8 pt-6 pb-8 mb-4 shadow-[6px_6px_0px_0px_#1ACF2C]">
-        <h1 className="text-xl lg:text-4xl font-bold mt-3">Login</h1>
-        <h3 className="mb-8">Enter your details to login to your account</h3>
+        <h1 className="text-xl lg:text-4xl font-bold mt-3">
+          Reset your password
+        </h1>
+        <h3 className="mb-8">
+          Enter your new password and confirm it to complete the password reset
+          process.
+        </h3>
         <div className="text-center">
           {!!message && (
             <span
@@ -91,25 +104,7 @@ export default function HackathonLogin() {
           )}
         </div>
         <form onSubmit={handleSubmit} className="">
-          <div className="w-full ">
-            <label
-              htmlFor="email"
-              className="block mb-2 font-bold text-gray-600 my-8"
-            >
-              Email
-            </label>
-            <input
-              type="email"
-              id="twitter"
-              name="email"
-              onChange={handleChange}
-              placeholder="example@email.com"
-              className="w-full p-4 border border-black shadow-[4px_4px_0px_0px_#1E1E1E]"
-              value={formData.email}
-              required
-            />
-          </div>
-          <div className="w-full ">
+          <div className=" ">
             <label
               htmlFor="password"
               className="block mb-2 font-bold text-gray-600 my-8"
@@ -135,23 +130,38 @@ export default function HackathonLogin() {
                 {showPassword ? <EyeOff /> : <Eye />}
               </div>
             </div>
-            <Link href="forgotpassword">
-              <h3 className="text-right text-blue-600"> Forgot Password?</h3>
-            </Link>
+            <label
+              htmlFor="confirmpassword"
+              className="block mb-2 font-bold text-gray-600 my-9"
+            >
+              Confirm password
+            </label>
+            <div className="relative w-full">
+              <input
+                type={showConfirmPassword ? "text" : "password"}
+                id="confirmpassword"
+                name="confirmpassword"
+                onChange={handleChange}
+                placeholder="confirmpassword."
+                className="w-full p-4 border border-black shadow-[4px_4px_0px_0px_#1E1E1E] "
+                value={formData.confirmpassword}
+                required
+              />
+              <div
+                className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              >
+                {showConfirmPassword ? <EyeOff /> : <Eye />}
+              </div>
+            </div>
             <button
               type="submit"
-              className="  w-full mt-12 p-6  bg-[#1E1E1E]  text-white  text-center shadow-[-5px_-5px_0px_0px_#0096FF]
+              className=" mt-20 w-full  p-5  bg-[#1E1E1E]  text-white  text-center shadow-[-5px_-5px_0px_0px_#0096FF]
                  "
               disabled={loading}
             >
-              {loading ? "Sending..." : "LogIn"}
+              {loading ? "Sending..." : "Reset"}
             </button>
-            <h3 className="text-center m-4">
-              Don’t have an account?
-              <Link href="registration">
-                <span className="text-blue-600 px-1 ">Sign Up</span>
-              </Link>
-            </h3>
           </div>
         </form>
       </div>

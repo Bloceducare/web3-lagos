@@ -90,7 +90,7 @@ export default function ForgotPassword() {
               name="email"
               onChange={handleChange}
               placeholder="example@email.com"
-              className="w-full p-4 border shadow-[4px_4px_0px_0px_#1E1E1E]"
+              className="w-full p-4 border  border-black shadow-[4px_4px_0px_0px_#1E1E1E]"
               value={formData.email}
               required
             />
