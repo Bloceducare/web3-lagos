@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
+
 import { useState } from "react";
 import React from "react";
 import { useRouter } from "next/router"; // Import useRouter from next/router
@@ -107,3 +108,4 @@ export default function ForgotPassword() {
     </div>
   );
 }
+
