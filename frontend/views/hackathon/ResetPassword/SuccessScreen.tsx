@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function HackathonSuccessScreen() {
+export default function ResetPasswordSuccessScreen() {
   return (
     <div className=" w-1/2 mt-40 items-center m-auto">
       <div className=" border border-black rounded-lg w-full bg-white lg:px-8 pt-6 pb-8 mb-4 shadow-[6px_6px_0px_0px_#1ACF2C]">
@@ -23,11 +23,11 @@ export default function HackathonSuccessScreen() {
           />
         </div>
         <h1 className="mt-10  text-[2em]  text-center font-bold">
-          Registration Successful
+          Password Reset Successfully
         </h1>
         <h3 className="px-40 text-center">
           Congratulations! You’ve successfully registered for the Web3 Lagos 3.0
-          Hackathon. Secure your spot by creating or joining an existing team.
+          Hackathon.
         </h3>
 
         <Link href="/">
@@ -39,3 +39,5 @@ export default function HackathonSuccessScreen() {
     </div>
   );
 }
+
+

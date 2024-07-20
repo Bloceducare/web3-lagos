@@ -63,6 +63,11 @@ function Header() {
         </ul>
         <div className="md:w-[55%] lg:w-[43%] xl:w-[33%] md:justify-between  flex justify-end">
           {/* Nav Buttons */}
+           <Link href="/hackathon/registration">
+            <Button className="border-[2px] border-solid border-[#000] py-2 rounded-lg px-5 text-lg hidden md:flex">
+              Hackaton Registration
+            </Button>
+          </Link>
           <Link href="/apply/speaker">
             <Button className="border-[2px] border-solid border-[#000] py-2 rounded-lg px-5 text-lg hidden md:flex">
               Register as a Speaker
@@ -74,11 +79,7 @@ function Header() {
             </Button>
           </Link>
 
-          {/* <Link href="/hackathon/registration">
-            <Button className="border-[2px] border-solid border-[#000] py-2 rounded-lg px-5 text-lg hidden md:flex">
-              Hackaton Registration
-            </Button>
-          </Link> */}
+         
         </div>
         {/* Hamburger icon for mobile */}
       </nav>
