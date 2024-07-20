@@ -42,19 +42,7 @@ class Attendance(models.Model):
     class Meta:
         unique_together = ('participant', 'day')
 
-class Team(models.Model):
-    name = models.CharField(max_length=100)
-    creator = models.ForeignKey(GeneralRegistration, on_delete=models.CASCADE)
-    description = models.TextField(blank=True, max_length=1000)
-    project_repository = models.URLField(blank=True)
-    live_link = models.URLField(blank=True)  
-    members = models.ManyToManyField(GeneralRegistration, related_name='teams', blank=True)
 
-class HackathonRegistration(models.Model):
-    participant = models.ForeignKey(GeneralRegistration, on_delete=models.CASCADE)
-    stack = models.CharField(max_length=200)
-    personal_github = models.URLField(blank=True)
-    team = models.ForeignKey(Team, on_delete=models.CASCADE)
 
 class RoadToWeb3LagosRegistration(models.Model):
     name = models.CharField(max_length=100)
