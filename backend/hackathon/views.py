@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework import viewsets, permissions, status
 from django.core.mail import send_mail
 from django.conf import settings
-from .serializers import TeamSerializer
+from .serializers import TeamSerializer, ProjectSerializer
 from .models import Team, Project
 from users.models import CustomUser
 
