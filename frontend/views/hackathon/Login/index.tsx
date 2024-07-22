@@ -81,7 +81,7 @@ export default function HackathonLogin() {
        * console.log("user id is:", JSON.parse(user));
        */
       setMessage("Login successful!");
-
+      window.location.href ="/hackathon/dashboard";
       setFormData(initialFormState);
       setIsSuccess(true);
     } else {
@@ -93,10 +93,10 @@ export default function HackathonLogin() {
   };
 
   return (
-    <div className=" mx-auto mt-10 max-w-3xl p-6">
-      <div className=" border border-black rounded-lg w-full bg-white lg:px-8 pt-6 pb-8 mb-4 shadow-[6px_6px_0px_0px_#1ACF2C]">
-        <h1 className="text-xl lg:text-4xl font-bold mt-3">Login</h1>
-        <h3 className="mb-8">Enter your details to login to your account</h3>
+    <div className=" mx-auto mt-20 md:w-2/4 w-full px-8 md:px-0">
+      <div className=" border border-black rounded-lg w-full bg-white px-8 mb-4 shadow-[6px_6px_0px_0px_#1ACF2C]">
+        <h1 className="text-[2em] font-bold mt-3">Login</h1>
+        <h3 className="mb-4">Enter your details to login to your account</h3>
         <div className="text-center">
           {!!message && (
             <span
@@ -153,7 +153,7 @@ export default function HackathonLogin() {
                 {showPassword ? <EyeOff /> : <Eye />}
               </div>
             </div>
-            <Link href="forgotpassword">
+            <Link href="/hackathon/forgotpassword">
               <h3 className="text-right text-blue-600"> Forgot Password?</h3>
             </Link>
             <button
@@ -162,7 +162,7 @@ export default function HackathonLogin() {
                  "
               disabled={loading}
             >
-              {loading ? "Sending..." : "LogIn"}
+              {loading ? "Loading..." : "LogIn"}
             </button>
             <h3 className="text-center m-4">
               Don’t have an account?
