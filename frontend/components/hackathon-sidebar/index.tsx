@@ -1,7 +1,11 @@
 import React from "react";
 import Image from "next/image";
+import { IoMdLogOut } from "react-icons/io";
+import { AiOutlineSchedule } from "react-icons/ai";
+import { GoProjectRoadmap } from "react-icons/go";
 import { AiOutlineTeam } from "react-icons/ai";
 import { IoHomeOutline } from "react-icons/io5";
+import { MdOutlineContactSupport } from "react-icons/md";
 
 function SideBar() {
   return (
@@ -21,7 +25,7 @@ function SideBar() {
             type="button"
             className="flex rounded-md items-center justify-center text-center space-x-2"
           >
-            <IoHomeOutline />
+            <IoHomeOutline className="w-8 h-6 mr-2" />
             <p className="text-center">Home</p>
           </button>
 
@@ -29,22 +33,37 @@ function SideBar() {
             type="button"
             className="flex rounded-md items-center justify-center text-center space-x-2 mt-8"
           >
-            <IoHomeOutline />
+            <AiOutlineSchedule className="w-8 h-6 mr-2" />
             <p className="text-center">Schedule</p>
           </button>
           <button
             type="button"
             className="flex rounded-md items-center justify-center text-center space-x-2 mt-8"
           >
-            <AiOutlineTeam />
+            <AiOutlineTeam className="w-8 h-6 mr-2" />
             <p className="text-center">Team</p>
           </button>
           <button
             type="button"
             className="flex rounded-md items-center justify-center text-center space-x-2 mt-8"
           >
-            <IoHomeOutline />
+            <GoProjectRoadmap className="w-8 h-6 mr-2" />
             <p className="text-center">Project</p>
+          </button>
+          
+          <button
+            type="button"
+            className="flex rounded-md items-center justify-center text-center space-x-2 mt-8"
+          >
+            <MdOutlineContactSupport className="w-8 h-6 mr-2" />
+            <p className="text-center">Support</p>
+          </button>
+          <button
+            type="button"
+            className="flex rounded-md items-center justify-center text-center space-x-2 mt-8"
+          >
+            <IoMdLogOut className="w-8 h-6 mr-2" />
+            <p className="text-center">Logout</p>
           </button>
         </div>
       </div>
