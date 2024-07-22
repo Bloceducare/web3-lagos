@@ -1,8 +1,11 @@
 import React from 'react'
+import Dashboards from '@/views/hackathon/dashbord'
 
 const Dashboard = () => {
   return (
-    <div>Dashboard</div>
+    <div>
+      <Dashboards />
+    </div>
   )
 }
 

@@ -1,9 +1,9 @@
-import VolunteersView from "../views/users/volunteers"
+// import VolunteersView from "../views/users/volunteers"
 
 const Volunteers = () => {
     return (
         <>
-        <VolunteersView />
+        {/* <VolunteersView /> */}
         </>
     )
 }

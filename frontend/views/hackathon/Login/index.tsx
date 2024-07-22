@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import axios from "axios";
 import React from "react";
 import { EyeOff } from "lucide-react";
@@ -35,6 +36,8 @@ export default function HackathonLogin() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [errors, setErrors] = useState<FormErrors>(initialFormErrors);
   const [showPassword, setShowPassword] = useState(false);
+
+  const router = useRouter()
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -84,6 +87,9 @@ export default function HackathonLogin() {
      
       setFormData(initialFormState);
       setIsSuccess(true); 
+      router.push({
+        pathname:"/hackathon/dashboard"
+      })
     } else {
       setErrors(data);
       setMessage("Please  check your details  and try again.");
@@ -127,7 +133,7 @@ export default function HackathonLogin() {
               required
             />
           </div>
-          <div className="w-full ">
+          <div className="w-full">
             <label
               htmlFor="password"
               className="block mb-2 font-bold text-gray-600 my-8"
@@ -166,7 +172,7 @@ export default function HackathonLogin() {
             </button>
             <h3 className="text-center m-4">
               Don’t have an account?
-              <Link href="registration">
+              <Link href="hackathon/registration">
                 <span className="text-blue-600 px-1 ">Sign Up</span>
               </Link>
             </h3>
