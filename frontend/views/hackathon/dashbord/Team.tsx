@@ -5,6 +5,12 @@ import EmailInput from "@/components/Email";
 
 type TeamData = {
     name : string;
+    creator : BigInteger;
+    members : number[];
+    joining_code: string;
+}
+type CreateTeam = {
+  name : string
 }
 type TeamCode = {
   name : string
@@ -12,7 +18,7 @@ type TeamCode = {
 type FormErrors = {
     [key in keyof TeamData]?: string[];
 };
-const initialFormState: TeamData = {
+const initialFormState: CreateTeam = {
     name : ""
 };
 const initialCodeState: TeamCode = {
@@ -22,13 +28,13 @@ const initialCodeState: TeamCode = {
   const initialFormErrors: FormErrors = {};
 
 const Team: React.FC = () => {
-    const [formData, setFormData] = useState<TeamData>(initialFormState);
+    const [formData, setFormData] = useState<CreateTeam>(initialFormState);
     const [formCode, setFormCode] = useState<TeamCode>(initialCodeState)
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
     const [isSuccess, setIsSuccess] = useState(false);
     const [errors, setErrors] = useState<FormErrors>(initialFormErrors);
-    const [data, setData] = useState(null)
+    const [data, setData] = useState<TeamData | null>(null)
     const [teamCreated, setTeamCreated] = useState(false);
     const [emails, setEmails] = useState<string[]>([]);
     const [input, setInput] = useState<string>('');
@@ -163,7 +169,7 @@ const Team: React.FC = () => {
         <p>Number of Members: <b>{data ? data.members.length : 'Null'}</b></p>
       </div>
       <div className="px-8 py-5 bg-[#0096FF] rounded-xl">
-        <p>Role: <b>{data ? data.role : 'Null'}</b></p>
+        <p>Role: <b>Null</b></p>
       </div>
     </section>
 
