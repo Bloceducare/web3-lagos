@@ -37,15 +37,15 @@ const HackathonHeader: React.FC<HackathonHeaderProps> = ({ user }) => {
 
   return (
     <div className="flex w-full flex-row-reverse  items-start justify-between">
-      <div className="flex justify-end mr-20 ">
+      <div className="flex justify-end  w-fit">
         <IoIosNotificationsOutline className="w-10 h-10" />
         <MdOutlineAccountCircle className="w-10 h-10" />
       </div>
-      <div className="w-fit justify-start text-start ">
+      <div className="w-full justify-start text-start ">
         <h1 className="text-2xl text-black text-start font-bold mr-20">
           Welcome, {user ? user.first_name : "Guest"}!
         </h1>
-        <h3 className="text-black mr-40 text-center">
+        <h3 className="text-black mr-40 text-start">
           {currentDate}
         </h3>
       </div>

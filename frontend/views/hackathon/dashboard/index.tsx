@@ -25,11 +25,11 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className="flex w-full h-full mt-[4.7rem]">
-      <div className="w-1/5 fixed h-full sm:flex hidden">
+    <div className="flex w-full h-full mt-[4.7rem] px-4 sm:px-0">
+      <div className="sm:w-1/5 sm:fixed h-full sm:flex hidden">
         <SideBar />
       </div>
-      <div className="flex flex-col w-4/5 ml-[20%] px-8">
+      <div className="flex flex-col sm:w-4/5  w-full sm:ml-[20%] sm:px-8 ">
         <div className="w-full">
           <HackathonHeader user={user} />
         </div>
@@ -45,6 +45,7 @@ const Dashboard = () => {
             />
             <h3>Web3Lagos 3.0 is happening primarily in person.</h3>
           </div>
+          
           <div className="flex items-center space-x-3 mt-4 px-4">
             <Image
               src={"/Vector (6).png"}
@@ -68,6 +69,7 @@ const Dashboard = () => {
               be judged; no online-only submissions.
             </h3>
           </div>
+
           <div className="flex items-center space-x-3 mt-4 px-4">
             <Image
               src={"/Vector (6).png"}
