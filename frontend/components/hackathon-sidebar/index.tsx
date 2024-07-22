@@ -23,7 +23,7 @@ function SideBar() {
         <div className="mt-20 text-1xl px-12  ">
           <button
             type="button"
-            className="flex rounded-md items-center justify-center text-center space-x-2"
+            className="flex rounded-md items-center justify-center text-center space-x-2 onhover-white"
           >
             <IoHomeOutline className="w-8 h-6 mr-2" />
             <p className="text-center">Home</p>
@@ -50,22 +50,21 @@ function SideBar() {
             <GoProjectRoadmap className="w-8 h-6 mr-2" />
             <p className="text-center">Project</p>
           </button>
-          <div
-          className="mt-60 ">
-          <button
-            type="button"
-            className="flex rounded-md items-center justify-center text-center space-x-2 mt-8"
-          >
-            <MdOutlineContactSupport className="w-8 h-6 mr-2" />
-            <p className="text-center">Support</p>
-          </button>
-          <button
-            type="button"
-            className="flex rounded-md items-center justify-center text-center space-x-2 mt-8"
-          >
-            <IoMdLogOut className="w-8 h-6 mr-2" />
-            <p className="text-center">Logout</p>
-          </button>
+          <div className="mt-60 ">
+            <button
+              type="button"
+              className="flex rounded-md items-center justify-center text-center space-x-2 mt-8"
+            >
+              <MdOutlineContactSupport className="w-8 h-6 mr-2" />
+              <p className="text-center">Support</p>
+            </button>
+            <button
+              type="button"
+              className="flex rounded-md items-center justify-center text-center space-x-2 mt-8"
+            >
+              <IoMdLogOut className="w-8 h-6 mr-2" />
+              <p className="text-center">Log Out</p>
+            </button>
           </div>
         </div>
       </div>

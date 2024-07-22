@@ -43,6 +43,7 @@ export default function HackathonLogin() {
     setFormData({
       ...formData,
       [name]: value,
+      
     });
     setErrors({
       ...errors,
@@ -108,7 +109,7 @@ export default function HackathonLogin() {
             </span>
           )}
         </div>
-        <form onSubmit={handleSubmit} className="">
+        <form onSubmit={handleSubmit}>
           <div className="w-full ">
             <label
               htmlFor="email"
