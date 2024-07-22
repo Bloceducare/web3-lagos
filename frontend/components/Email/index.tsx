@@ -48,7 +48,7 @@ const EmailInput: React.FC<EmailInputProps> = ({ emails, setEmails }) => {
           onChange={handleChange}
           onKeyDown={handleKeyDown}
           placeholder="Search email"
-          className="w-full p-4 border text-black border-black shadow-[4px_4px_0px_0px_#1E1E1E] mt-3"
+          className="w-full p-4 outline-none m-3"
         />
       </div>
     </div>

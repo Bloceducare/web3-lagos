@@ -1,11 +1,39 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import SideBar from "@/components/hackathon-sidebar";
+import HackathonHeader from "@/components/hackathon-header";
+
+
+type User = {
+    email: string;
+    id: number;
+    first_name: string;
+    github_username: string;
+    other_name: string;
+  };
 
 const Schedule: React.FC = () => {
-    return (
-      <div className='mt-14'>
+    const [user, setUser] = useState<User | null>(null);
 
+  useEffect(() => {
+    const userData = localStorage.getItem("user");
+    if (userData) {
+      setUser(JSON.parse(userData));
+    }
+    console.log(userData);
+  }, []);
+    return (
+      <div className='flex  mt-[5rem] mb-5 px-4 sm:px-0'>
+
+    <div className="sm:w-[27%] h-full sm:flex hidden">
+        <SideBar />
+      </div>
+
+    <section className="flex flex-col sm:w-4/5  w-full  sm:px-8 ">
+    <div className="w-full">
+          <HackathonHeader user={user} />
+        </div>
         <section>
-            <h1 className='text-3xl font-bold'>Event Schedule</h1>
+            <h1 className='text-3xl font-bold mt-5'>Event Schedule</h1>
         </section>
 
         <section className='text-[#FFFF] flex flex-wrap items-start mt-10'>
@@ -61,7 +89,7 @@ const Schedule: React.FC = () => {
 
          
         </section>
-
+        </section>
       </div>
     );
   };
