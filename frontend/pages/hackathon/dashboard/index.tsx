@@ -1,9 +1,10 @@
 import React from 'react'
+import Dashboard from '@/views/hackathon/dashboard/index'
 
-const Dashboard = () => {
+const dashboard = () => {
   return (
-    <div>Dashboard</div>
+    <Dashboard/>
   )
 }
 
-export default Dashboard
+export default dashboard
