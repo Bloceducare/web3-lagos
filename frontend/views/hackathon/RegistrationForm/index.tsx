@@ -8,24 +8,24 @@ import { Eye } from "lucide-react";
 import HackathonSuccessScreen from "./SuccessScreen";
 
 type FormData = {
-  FirstName: string;
-  OtherName: string;
+  first_name: string;
+  other_name: string;
   email: string;
   password: string;
   confirmpassword: string;
-  GithubUsername: string;
+  github_username: string;
 };
 
 type FormErrors = {
   [key in keyof FormData]?: string[];
 };
 const initialFormState: FormData = {
-  FirstName: "",
-  OtherName: "",
+  first_name: "",
+  other_name: "",
   email: "",
   password: "",
   confirmpassword: "",
-  GithubUsername: "",
+  github_username: "",
 };
 
 const initialFormErrors: FormErrors = {};
@@ -75,6 +75,7 @@ export default function HackathonRegistration() {
       setMessage("Registration successful!");
       setFormData(initialFormState);
       setIsSuccess(true); // Show success screen
+      window.location.href= "/hackathon/login";
     } else {
       setErrors(data);
       setMessage("Registration failed. Please try again.");
@@ -128,7 +129,7 @@ export default function HackathonRegistration() {
                   onChange={handleChange}
                   placeholder="John"
                   className="w-full p-4 border  border-black shadow-[4px_4px_0px_0px_#1E1E1E] "
-                  value={formData.FirstName}
+                  value={formData.first_name}
                   required
                 />
               </div>
@@ -146,7 +147,7 @@ export default function HackathonRegistration() {
                   onChange={handleChange}
                   placeholder="jullie Doe"
                   className="w-full p-4 border border-black shadow-[4px_4px_0px_0px_#1E1E1E]"
-                  value={formData.OtherName}
+                  value={formData.other_name}
                   required
                 />
               </div>
@@ -184,7 +185,7 @@ export default function HackathonRegistration() {
                   onChange={handleChange}
                   placeholder="John"
                   className="w-full p-4 border  border-black shadow-[4px_4px_0px_0px_#1E1E1E] "
-                  value={formData.GithubUsername}
+                  value={formData.github_username}
                   required
                 />
               </div>
