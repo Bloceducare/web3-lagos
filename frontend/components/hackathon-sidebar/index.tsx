@@ -50,7 +50,8 @@ function SideBar() {
             <GoProjectRoadmap className="w-8 h-6 mr-2" />
             <p className="text-center">Project</p>
           </button>
-          
+          <div
+          className="mt-60 ">
           <button
             type="button"
             className="flex rounded-md items-center justify-center text-center space-x-2 mt-8"
@@ -65,6 +66,7 @@ function SideBar() {
             <IoMdLogOut className="w-8 h-6 mr-2" />
             <p className="text-center">Logout</p>
           </button>
+          </div>
         </div>
       </div>
     </div>
