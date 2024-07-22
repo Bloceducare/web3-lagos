@@ -16,3 +16,21 @@ class Team(models.Model):
 
     def __str__(self):
         return self.name
+
+
+
+class Project(models.Model):
+    """
+    Project name 
+    Category, description , live link , demo video and GitHub URL
+    """
+    name = models.CharField(max_length=100)
+    category = models.CharField(max_length=100)
+    description = models.TextField()
+    live_link = models.URLField(blank=True)
+    demo_video = models.URLField(blank=True)
+    github_url = models.URLField(blank=True)
+    team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='projects')
+
+    def __str__(self):
+        return self.name
