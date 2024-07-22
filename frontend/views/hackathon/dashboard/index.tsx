@@ -26,7 +26,7 @@ const Dashboard = () => {
 
   return (
     <div className="flex w-full h-full mt-[4.7rem]">
-      <div className="w-1/5 fixed h-full">
+      <div className="w-1/5 fixed h-full sm:flex hidden">
         <SideBar />
       </div>
       <div className="flex flex-col w-4/5 ml-[20%] px-8">
