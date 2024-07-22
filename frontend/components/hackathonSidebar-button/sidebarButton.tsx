@@ -2,22 +2,18 @@ import { ReactNode } from "react";
 import { IoHomeOutline } from "react-icons/io5";
 
 interface Props {
-  children: ReactNode;
-  variant?: string;
+  children?: ReactNode;
   className?: string;
 }
 
-const SidebarButton = () {
-
+const SidebarButton: React.FC<Props> = ({ children, className = "" }) => {
   return (
-    <>
-      <button  variant="ghost" className="gap-2">
-            <IoHomeOutline />
-            <p className="text-center">Home</p>
-
-      </button>
-    </>
-  )
+    <button className={`gap-2 ${className}`}>
+      <IoHomeOutline />
+      <p className="text-center">Home</p>
+      {children}
+    </button>
+  );
 };
 
 export default SidebarButton;
