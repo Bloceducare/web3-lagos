@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import classNames from "@/utils/classNames";
+import { IoHomeOutline } from "react-icons/io5";
 
 interface Props {
   children: ReactNode;
@@ -7,27 +7,17 @@ interface Props {
   className?: string;
 }
 
-const text = "";
-const SidebarButton = ({ children, variant = "ghost", className='gap-2' }: Props) => {
-  const varType = (type: string) => {
-    if (type === "primary") {
-      return "bg-red-500 text-white";
-    }
+const SidebarButton = () {
 
-    return "";
-  };
   return (
     <>
-      <button
-        className={classNames(
-          `${varType(variant)} ${className}`,
-          "border-0 p-2"
-        )}
-      >
-        {children}
+      <button  variant="ghost" className="gap-2">
+            <IoHomeOutline />
+            <p className="text-center">Home</p>
+
       </button>
     </>
-  );
+  )
 };
 
 export default SidebarButton;

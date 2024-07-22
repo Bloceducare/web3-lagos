@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-
+import { AiOutlineTeam } from "react-icons/ai";
 import { IoHomeOutline } from "react-icons/io5";
 
 function SideBar() {
@@ -16,13 +16,35 @@ function SideBar() {
             className=" w-[215px] h-[60px]"
           />
         </div>
-        <div className="mt-20 font-bold text-2xl px-12 ">
+        <div className="mt-20 text-1xl px-12  ">
           <button
             type="button"
             className="flex rounded-md items-center justify-center text-center space-x-2"
           >
             <IoHomeOutline />
             <p className="text-center">Home</p>
+          </button>
+
+          <button
+            type="button"
+            className="flex rounded-md items-center justify-center text-center space-x-2 mt-8"
+          >
+            <IoHomeOutline />
+            <p className="text-center">Schedule</p>
+          </button>
+          <button
+            type="button"
+            className="flex rounded-md items-center justify-center text-center space-x-2 mt-8"
+          >
+            <AiOutlineTeam />
+            <p className="text-center">Team</p>
+          </button>
+          <button
+            type="button"
+            className="flex rounded-md items-center justify-center text-center space-x-2 mt-8"
+          >
+            <IoHomeOutline />
+            <p className="text-center">Project</p>
           </button>
         </div>
       </div>
