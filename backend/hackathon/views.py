@@ -3,9 +3,11 @@ from rest_framework.response import Response
 from rest_framework import viewsets, permissions, status
 from django.core.mail import send_mail
 from django.conf import settings
-from .serializers import TeamSerializer, ProjectSerializer
+from .serializers import InviteSerializer, JoinTeamSerializer, TeamSerializer, ProjectSerializer
 from .models import Team, Project
 from users.models import CustomUser
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
 
 class TeamViewSet(viewsets.ModelViewSet):
     queryset = Team.objects.all()
@@ -30,13 +32,18 @@ class TeamViewSet(viewsets.ModelViewSet):
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
+    @swagger_auto_schema(
+        request_body=JoinTeamSerializer,
+        responses={200: openapi.Response('Successfully joined the team.'),
+                   400: openapi.Response('Invalid joining code or already part of a team.')}
+    )
     @action(detail=False, methods=['post'], url_path='join')
     def join_team(self, request, *args, **kwargs):
-        joining_code = request.data.get('joining_code')
-        user = request.user
+        serializer = JoinTeamSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
 
-        if not joining_code:
-            return Response({"error": "Joining code is required."}, status=status.HTTP_400_BAD_REQUEST)
+        joining_code = serializer.validated_data.get('joining_code')
+        user = request.user
 
         try:
             team = Team.objects.get(joining_code=joining_code)
@@ -51,11 +58,48 @@ class TeamViewSet(viewsets.ModelViewSet):
 
         return Response({"message": "Successfully joined the team."}, status=status.HTTP_200_OK)
 
+
+    @action(detail=False, methods=['get'], url_path='my-teams')
+    def my_teams(self, request, *args, **kwargs):
+        user = request.user
+        teams = Team.objects.filter(creator=user) | Team.objects.filter(members=user)
+        serializer = self.get_serializer(teams, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    
+    @swagger_auto_schema(
+        request_body=InviteSerializer,
+        responses={200: openapi.Response('Invitations sent successfully.'),
+                   403: openapi.Response('Only team members or the creator can invite others.')}
+    )
+    @action(detail=True, methods=['post'], url_path='invite')
+    def invite_to_team(self, request, pk=None):
+        team = self.get_object()
+        user = request.user
+
+        if user not in team.members.all() and user != team.creator:
+            return Response({"error": "Only team members or the creator can invite others."}, status=status.HTTP_403_FORBIDDEN)
+
+        serializer = InviteSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        emails = serializer.validated_data.get('emails', [])
+
+        for email in emails:
+            self.send_invite_email(email, team)
+
+        return Response({"message": "Invitations sent successfully."}, status=status.HTTP_200_OK)
+
     def send_confirmation_email(self, instance):
         subject = 'Team Creation Confirmation'
-        message = f'Thank you for creating the team, {instance.creator.first_name}. Your team joining code is {instance.joining_code}.'
+        message = f'successful team creation, {instance.creator.first_name}. Your team joining code is {instance.joining_code}.'
         recipient_list = [instance.creator.email]
         send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, recipient_list)
+
+    def send_invite_email(self, email, team):
+        subject = 'Team Invitation'
+        message = f'You have been invited to join the team {team.name}. Use the following joining code to join the team: {team.joining_code}'
+        send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [email])
 
 
 class ProjectViewSet(viewsets.ModelViewSet):

@@ -96,7 +96,7 @@ const Team: React.FC = () => {
           const user = JSON.parse(userString);
           if (user && user.id) {
             const response = await fetch(
-              `https://web3lagosbackend.onrender.com/hackathon/teams/${user.id}/`,
+              `https://web3lagosbackend.onrender.com/hackathon/teams/my-teams/`,
               {
                 method: "GET",
                 headers: {
@@ -106,7 +106,7 @@ const Team: React.FC = () => {
               }
             );
             const data = await response.json();
-            setData(data);
+            setData(data[0])
             console.log('Response:', data);
             setTeamCreated(true);
           } else {
@@ -226,15 +226,24 @@ const Team: React.FC = () => {
         </section>
 
         <section className="flex flex-wrap gap-5 text-white mt-5 text-lg md:text-xl">
-          <div className="px-8 py-5 bg-[#0096FF] rounded-xl">
-            <p>Team Name: <b>{data ? data.name : 'Null'}</b></p>
-          </div>
-          <div className="px-8 py-5 bg-[#0096FF] rounded-xl">
-            <p>Number of Members: <b>{data ? data.members.length : 'Null'}</b></p>
-          </div>
-          <div className="px-8 py-5 bg-[#0096FF] rounded-xl">
-            <p>Role: <b>Null</b></p>
-          </div>
+      <div className="px-8 py-5 bg-[#0096FF] rounded-xl">
+        <p>Team Name: <b>{data ? data.name : 'Null'}</b></p>
+      </div>
+      <div className="px-8 py-5 bg-[#0096FF] rounded-xl">
+        <p>Number of Members: <b>{data ? data.members?.length : 'Null'}</b></p>
+      </div>
+      <div className="px-8 py-5 bg-[#0096FF] rounded-xl">
+        <p>Joining code: <b>{data ? data.joining_code : 'Null'}</b></p>
+      </div>
+    </section>
+
+        <section className="flex justify-center gap-5 w-[100%] sm:w-[50%] md:w-[70%] lg:w-[38%] px-1 py-1  my-16 border-2 border-black rounded-2xl">
+            <div className="px-8 py-5 bg-[#1E1E1E] text-white rounded-xl">
+                <p>  {teamCreated ? 'Invite to Team' : 'Create Team'} </p>
+            </div>
+            <div className="px-8 py-5  rounded-xl">
+                <p>Join Team </p>
+            </div>
         </section>
 
         <section className="flex justify-center gap-5 w-[100%] sm:w-[50%] md:w-[70%] lg:w-[38%] px-1 py-1 my-16 border-2 border-black rounded-2xl">

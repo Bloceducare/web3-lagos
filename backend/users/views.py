@@ -1,18 +1,18 @@
 from django.conf import settings
-from rest_framework import generics
+from rest_framework import generics, status
 from rest_framework.response import Response
-from rest_framework import status
 from django.core.mail import send_mail
 from .serializers import SignupSerializer, SigninSerializer
 from django.contrib.auth import authenticate
 from .models import CustomUser
 from rest_framework_simplejwt.tokens import RefreshToken
-from rest_framework.authtoken.models import Token
 from .serializers import CustomUserDetailSerializer, ResetPasswordSerializer, CompletePasswordResetSerializer
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.utils.encoding import force_str, force_bytes
 from django.contrib.auth.tokens import default_token_generator
 from rest_framework.permissions import IsAuthenticated
+from django.template.loader import render_to_string
+from django.core.mail import send_mail, EmailMultiAlternatives
 from rest_framework.parsers import MultiPartParser, FormParser
 
 class SignupView(generics.CreateAPIView):
@@ -22,7 +22,7 @@ class SignupView(generics.CreateAPIView):
     def create(self, request, *args, **kwargs):
         response = super().create(request, *args, **kwargs)
         user = CustomUser.objects.get(email=request.data['email'])
-        self.send_confirmation_email(user)
+        # self.send_confirmation_email(user)
         if response.status_code == status.HTTP_201_CREATED:
             return Response({
                 'message': 'User registered successfully.',
@@ -31,11 +31,20 @@ class SignupView(generics.CreateAPIView):
         else:
             return response
         
-    def send_confirmation_email(self, user):
+    def perform_create(self, serializer):
+            instance = serializer.save()
+            self.send_confirmation_email(instance)
+
+    def send_confirmation_email(self, instance):
         subject = 'Hackathon Registration Confirmation'
-        message = f'Thank you for registering for the hackathon, {user.first_name}.'
-        recipient_list = [user.email]
-        send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, recipient_list)
+        context = {
+            'name': instance.first_name,
+        }
+
+        message_html = render_to_string('users/email.html', context)
+        email = EmailMultiAlternatives(subject, '', settings.DEFAULT_FROM_EMAIL, [instance.email])
+        email.attach_alternative(message_html, 'text/html')
+        email.send()
 
 
 
