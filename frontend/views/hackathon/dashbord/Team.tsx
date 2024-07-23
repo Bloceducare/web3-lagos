@@ -1,16 +1,15 @@
-import React, { useEffect, useState, ChangeEvent,  KeyboardEvent } from "react";
+import React, { useEffect, useState, ChangeEvent, FormEvent } from "react";
 import EmailInput from "@/components/Email";
 import SideBar from "@/components/hackathon-sidebar";
 import HackathonHeader from "@/components/hackathon-header";
 
-
-
 type TeamData = {
-    name : string;
-    creator : BigInteger;
-    members : number[];
-    joining_code: string;
-}
+  name: string;
+  creator: BigInteger;
+  members: number[];
+  joining_code: string;
+};
+
 type User = {
   email: string;
   id: number;
@@ -18,39 +17,43 @@ type User = {
   github_username: string;
   other_name: string;
 };
+
 type CreateTeam = {
-  name : string
-}
-type TeamCode = {
-  name : string
-}
+  name: string;
+};
+
+type JoinTeam = {
+  joining_code: string;
+};
+
 type FormErrors = {
-    [key in keyof TeamData]?: string[];
+  [key in keyof TeamData]?: string[];
 };
+
 const initialFormState: CreateTeam = {
-    name : ""
+  name: "",
 };
-const initialCodeState: TeamCode = {
-  name : ""
+
+const initialCodeState: JoinTeam = {
+  joining_code: "",
 };
-  
-  const initialFormErrors: FormErrors = {};
+
+const initialFormErrors: FormErrors = {};
 
 const Team: React.FC = () => {
-    const [formData, setFormData] = useState<CreateTeam>(initialFormState);
-    const [formCode, setFormCode] = useState<TeamCode>(initialCodeState)
-    const [loading, setLoading] = useState(false);
-    const [message, setMessage] = useState("");
-    const [isSuccess, setIsSuccess] = useState(false);
-    const [errors, setErrors] = useState<FormErrors>(initialFormErrors);
-    const [data, setData] = useState<TeamData | null>(null)
-    const [teamCreated, setTeamCreated] = useState(false);
-    const [emails, setEmails] = useState<string[]>([]);
-    const [input, setInput] = useState<string>('');
+  const [formData, setFormData] = useState<CreateTeam>(initialFormState);
+  const [formCode, setFormCode] = useState<JoinTeam>(initialCodeState);
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [errors, setErrors] = useState<FormErrors>(initialFormErrors);
+  const [data, setData] = useState<TeamData | null>(null);
+  const [teamCreated, setTeamCreated] = useState(false);
+  const [jointeam, setJoinTeam] = useState(false);
+  const [emails, setEmails] = useState<string[]>([]);
+  const [input, setInput] = useState<string>('');
 
-    console.log(formData)
-
-    const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     const userData = localStorage.getItem("user");
@@ -60,12 +63,11 @@ const Team: React.FC = () => {
     console.log(userData);
   }, []);
 
-   
-     const handleChange = (
+  const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
-    console.log(name)
+    console.log(name);
     setFormData({
       ...formData,
       [name]: value,
@@ -76,29 +78,37 @@ const Team: React.FC = () => {
     });
   };
 
+  const handleCodeChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setFormCode({
+      ...formCode,
+      joining_code: e.target.value,
+    });
+  };
 
   useEffect(() => {
     const renderData = async () => {
       if (typeof window !== 'undefined') {
         const userString = localStorage.getItem('user');
-        const yourToken = localStorage.getItem('token')
+        const yourToken = localStorage.getItem('token');
         if (userString && yourToken) {
           const user = JSON.parse(userString);
           if (user && user.id) {
             const response = await fetch(
-                `https://web3lagosbackend.onrender.com/hackathon/teams/my-teams/`,
+              `https://web3lagosbackend.onrender.com/hackathon/teams/my-teams/`,
               {
                 method: "GET",
                 headers: {
                   "Content-Type": "application/json",
-                   "Authorization": `Bearer ${yourToken}`
+                  "Authorization": `Bearer ${yourToken}`,
                 },
               }
             );
             const data = await response.json();
             setData(data[0])
             console.log('Response:', data);
-            setTeamCreated(true)
+            setTeamCreated(true);
           } else {
             console.error('User data is invalid or missing user.id');
           }
@@ -110,84 +120,110 @@ const Team: React.FC = () => {
     renderData();
   }, []);
 
-    const handleSubmit = async (e: React.FormEvent) => { 
-      e.preventDefault();
-        setLoading(true);
-        setMessage("");
-        setErrors(initialFormErrors);
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setMessage("");
+    setErrors(initialFormErrors);
 
-        const yourToken = localStorage.getItem('token')
-        console.log(yourToken)
-        const response = await fetch(
-            "https://web3lagosbackend.onrender.com/hackathon/teams/",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                 "Authorization": `Bearer ${yourToken}`
-              },
-              body: JSON.stringify(formData),
-            }
-          );
-          const data = await response.json();
-          console.log(data)
-          if (response.ok) {
-            setTeamCreated(true)
-            setFormData(initialFormState);
-            setIsSuccess(true); 
-          } else {
-            setErrors(data);
-          }
-    }
-
-
-    const handleJoinTeam = async () => {
-      const yourToken = localStorage.getItem("token");
-      const userString = localStorage.getItem("user");
-  
-      if (yourToken && userString) {
-        const user = JSON.parse(userString);
-        const response = await fetch(
-          `https://web3lagosbackend.onrender.com/hackathon/teams/join/${user.id}/`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${yourToken}`
-            }
-          }
-        );
-  
-        if (response.ok) {
-          const data = await response.json();
-          setMessage("Successfully joined the team");
-          setData(data);
-        } else {
-          setMessage("Failed to join the team");
-        }
-      } else {
-        setMessage("No token or user data found");
+    const yourToken = localStorage.getItem('token');
+    const response = await fetch(
+      "https://web3lagosbackend.onrender.com/hackathon/teams/",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${yourToken}`,
+        },
+        body: JSON.stringify(formData),
       }
-    };
-  
+    );
+    const data = await response.json();
+    console.log(data);
+    if (response.ok) {
+      setTeamCreated(true);
+      setFormData(initialFormState);
+      setIsSuccess(true);
+    } else {
+      setErrors(data);
+    }
+    setLoading(false);
+  };
 
-    return(
+  const handleInviteSubmit = async (e: FormEvent) => {
+    e.preventDefault()
+    const yourToken = localStorage.getItem("token");
+    const userString = localStorage.getItem("user");
 
-        <div className='flex  mt-[5rem] mb-5 px-4 sm:px-0'>
+    if (yourToken && userString) {
+      const user = JSON.parse(userString);
+      const response = await fetch(
+        `https://web3lagosbackend.onrender.com/hackathon/teams/${user.id}/invite/`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${yourToken}`,
+          },
+          body: JSON.stringify({ emails }),
+        }
+      );
 
-       <div className="sm:w-[27%] h-full sm:flex hidden">
+      if (response.ok) {
+        const data = await response.json();
+        setMessage("Invitation sent");
+      } else {
+        setMessage("Failed to send invite");
+      }
+    } else {
+      setMessage("No token or user data found");
+    }
+  }
+
+  const handleJoinTeam = async (e: FormEvent) => {
+    const yourToken = localStorage.getItem("token");
+    const userString = localStorage.getItem("user");
+    e.preventDefault()
+
+    if (yourToken && userString) {
+      const user = JSON.parse(userString);
+      const response = await fetch(
+        `https://web3lagosbackend.onrender.com/hackathon/teams/join/`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${yourToken}`,
+          },
+          body: JSON.stringify(formCode),
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        setMessage("Successfully joined the team");
+        setData(data);
+      } else {
+        setMessage("Failed to join the team");
+      }
+    } else {
+      setMessage("No token or user data found");
+    }
+  };
+
+  return (
+    <div className='flex mt-[5rem] mb-5 px-4 sm:px-0'>
+      <div className="sm:w-[27%] h-full sm:flex hidden">
         <SideBar />
-        </div>
+      </div>
 
-<section className="flex flex-col sm:w-4/5  w-full  sm:px-8 ">
-
-<div className="w-full">
+      <section className="flex flex-col sm:w-4/5 w-full sm:px-8">
+        <div className="w-full">
           <HackathonHeader user={user} />
         </div>
         <section>
-            <h1 className='text-3xl font-bold mt-5'>Team Overview</h1>
+          <h1 className='text-3xl font-bold mt-5'>Team Overview</h1>
         </section>
-
 
         <section className="flex flex-wrap gap-5 text-white mt-5 text-lg md:text-xl">
       <div className="px-8 py-5 bg-[#0096FF] rounded-xl">
@@ -210,54 +246,101 @@ const Team: React.FC = () => {
             </div>
         </section>
 
+        <section className="flex justify-center gap-5 w-[100%] sm:w-[50%] md:w-[70%] lg:w-[38%] px-1 py-1 my-16 border-2 border-black rounded-2xl">
+          <div className="px-8 py-5 bg-[#1E1E1E] text-white rounded-xl cursor-pointer"  onClick={() => setJoinTeam(false)}>
+            <p>{teamCreated ? 'Invite to Team' : 'Create Team'} </p>
+          </div>
+          <div className="px-8 py-5 bg-[#1E1E1E] text-white rounded-xl cursor-pointer"  onClick={() => setJoinTeam(true)}>
+            <p>Join Team</p>
+          </div>
+        </section>
 
-        <section>
-          { teamCreated ?
-            <form>
-            <div className='w-[100%] sm:w-[70%] md:w-[60%] mt-7'>
-                <label htmlFor="teamName" >Search email</label>
+        {message && (
+          <div
+            className={`mt-4 p-4 text-center text-black ${isSuccess ? 'bg-green-500' : 'bg-red-500'} border rounded-md`}
+          >
+            {message}
+          </div>
+        )}
+
+    {!jointeam && ( 
+    <section>
+       {!teamCreated && (
+          <section>
+            <form onSubmit={handleSubmit}>
+              <div className='w-[100%] sm:w-[60%] md:w-[40%] mt-7'>
+                <label htmlFor="teamName">Team Name</label>
+                <input
+                  type="text"
+                  id="teamName"
+                  name="name"
+                  onChange={handleChange}
+                  placeholder="E.g Smart Contract"
+                  className="w-full p-4 border text-black border-black shadow-[4px_4px_0px_0px_#1E1E1E] mt-3"
+                  value={formData.name}
+                  required
+                />
+                <div className="w-[100%] sm:w-[60%] md:w-[40%]">
+                  <button
+                    type="submit"
+                    className="w-full mt-12 p-6 bg-[#1E1E1E] text-white text-xl text-center shadow-[-5px_-5px_0px_0px_#0096FF]"
+                  >
+                    Create Team
+                  </button>
+                </div>
+              </div>
+            </form>
+          </section>
+         )} : {
+          <section>
+            <form onSubmit={handleInviteSubmit}>
+              <div className='w-[100%] sm:w-[70%] md:w-[60%] mt-7'>
+                <label htmlFor="teamName">Search email</label>
                 <EmailInput emails={emails} setEmails={setEmails} />
+                <div className="w-[100%] sm:w-[60%] md:w-[40%]">
+                  <button
+                    type="submit"
+                    className="w-full mt-12 p-6 bg-[#1E1E1E] text-white text-xl text-center shadow-[-5px_-5px_0px_0px_#0096FF]"
+                    disabled={loading}
+                 >
+                     {loading ? "Loading..." : "Send Invite"}
+                  </button>
+                </div>
+              </div>
+            </form>
+          </section>
+        }
+ </section>)}
+        {jointeam && (
+          <section>
+            <div className='w-[100%] sm:w-[60%] md:w-[40%] mt-7'>
+              <label htmlFor="joining_code">Joining Code</label>
+              <input
+                type="text"
+                id="joining_code"
+                name="joining_code"
+                onChange={handleCodeChange}
+                placeholder="Enter Joining Code"
+                className="w-full p-4 border text-black border-black shadow-[4px_4px_0px_0px_#1E1E1E] mt-3"
+                value={formCode.joining_code}
+                required
+              />
               <div className="w-[100%] sm:w-[60%] md:w-[40%]">
-           
-           <button
-           type="submit"
-           className="w-full mt-12 p-6  bg-[#1E1E1E]  text-white text-xl  text-center shadow-[-5px_-5px_0px_0px_#0096FF] "
-         >
-            Send Invite
-         </button>  
-         </div>
-         </div>
-         </form>  :
-<form onSubmit={handleSubmit}>
-<div className='w-[100%] sm:w-[60%] md:w-[40%] mt-7'>
-    <label htmlFor="teamName" >Team Name</label>
-    <input
-  type="text"
-  id="twitter"
-  name="name"
-  onChange={handleChange}
-  placeholder="E.g Smart Contract"
-  className="w-full p-4 border text-black border-black shadow-[4px_4px_0px_0px_#1E1E1E] mt-3"
-  value={formData.name}
-  required
-/>
-<div className="w-[100%] sm:w-[60%] md:w-[40%]">
-<button
-type="submit"
-className="w-full mt-12 p-6  bg-[#1E1E1E]  text-white text-xl  text-center shadow-[-5px_-5px_0px_0px_#0096FF] "
->
- Create Team
-</button>
-
-</div>
-</div>
-</form>
-          }
-           
-        </section>
-        </section>
-        </div>
-    )
-}
+                <button
+                  type="button"
+                  onClick={handleJoinTeam}
+                  className="w-full mt-12 p-6 bg-[#1E1E1E] text-white text-xl text-center shadow-[-5px_-5px_0px_0px_#0096FF]"
+                >
+                  Join Team
+                </button>
+              </div>
+            </div>
+          </section>
+        )}
+      </section>
+    </div>
+  );
+};
 
 export default Team;
+
