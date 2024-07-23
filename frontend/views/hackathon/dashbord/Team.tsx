@@ -86,7 +86,7 @@ const Team: React.FC = () => {
           const user = JSON.parse(userString);
           if (user && user.id) {
             const response = await fetch(
-                `https://web3lagosbackend.onrender.com/hackathon/teams/${user.id}/`,
+                `https://web3lagosbackend.onrender.com/hackathon/teams/my-teams/`,
               {
                 method: "GET",
                 headers: {
@@ -194,7 +194,7 @@ const Team: React.FC = () => {
         <p>Team Name: <b>{data ? data.name : 'Null'}</b></p>
       </div>
       <div className="px-8 py-5 bg-[#0096FF] rounded-xl">
-        <p>Number of Members: <b>{data ? data.members.length : 'Null'}</b></p>
+        <p>Number of Members: <b>{data ? data.members?.length : 'Null'}</b></p>
       </div>
       <div className="px-8 py-5 bg-[#0096FF] rounded-xl">
         <p>Role: <b>Null</b></p>
