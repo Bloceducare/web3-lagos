@@ -1,20 +1,18 @@
-from django.core.mail import EmailMessage
-from django.utils.html import strip_tags
 from django.conf import settings
-from rest_framework import generics
+from rest_framework import generics, status
 from rest_framework.response import Response
-from rest_framework import status
 from django.core.mail import send_mail
 from .serializers import SignupSerializer, SigninSerializer
 from django.contrib.auth import authenticate
 from .models import CustomUser
 from rest_framework_simplejwt.tokens import RefreshToken
-from rest_framework.authtoken.models import Token
 from .serializers import CustomUserDetailSerializer, ResetPasswordSerializer, CompletePasswordResetSerializer
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.utils.encoding import force_str, force_bytes
 from django.contrib.auth.tokens import default_token_generator
 from rest_framework.permissions import IsAuthenticated
+from django.template.loader import render_to_string
+from django.core.mail import send_mail, EmailMultiAlternatives
 from rest_framework.parsers import MultiPartParser, FormParser
 
 class SignupView(generics.CreateAPIView):
@@ -24,7 +22,7 @@ class SignupView(generics.CreateAPIView):
     def create(self, request, *args, **kwargs):
         response = super().create(request, *args, **kwargs)
         user = CustomUser.objects.get(email=request.data['email'])
-        self.send_confirmation_email(user)
+        # self.send_confirmation_email(user)
         if response.status_code == status.HTTP_201_CREATED:
             return Response({
                 'message': 'User registered successfully.',
@@ -33,28 +31,20 @@ class SignupView(generics.CreateAPIView):
         else:
             return response
         
+    def perform_create(self, serializer):
+            instance = serializer.save()
+            self.send_confirmation_email(instance)
 
-    def send_confirmation_email(self, user):
+    def send_confirmation_email(self, instance):
         subject = 'Hackathon Registration Confirmation'
-        html_message = f'''
-        <p>Hello,</p>
+        context = {
+            'name': instance.first_name,
+        }
 
-        <p>Congratulations on successfully applying to be part of this year’s Web3 Lagos conference hackathon. This year, we are having IRL hackathons and we are working to ensure this happens in four (4) different locations.</p>
-
-        <p>We advise you to get acquainted with the platform, read all information on the dashboard, register your team, and also ensure that you join the hackathon <a href="https://t.me/+Wu8DKYZweFMxMTdk">telegram group</a> to interact with the team and others in the hackathon and also find others who might be looking for teams.</p>
-
-        <p>We are looking forward to seeing very interesting and usable ideas and can’t wait to see what you and your team will be building.</p>
-
-        <p>Best,</p>
-
-        <p>Faith Roberts<br>For the Hackathon team</p>
-        '''
-        plain_message = strip_tags(html_message)
-        recipient_list = [user.email]
-        email = EmailMessage(subject, plain_message, settings.DEFAULT_FROM_EMAIL, recipient_list)
-        email.content_subtype = "html"
+        message_html = render_to_string('users/email.html', context)
+        email = EmailMultiAlternatives(subject, '', settings.DEFAULT_FROM_EMAIL, [instance.email])
+        email.attach_alternative(message_html, 'text/html')
         email.send()
-
 
 
 
