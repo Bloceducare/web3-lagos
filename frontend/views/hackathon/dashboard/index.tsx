@@ -45,7 +45,7 @@ const Dashboard = () => {
             />
             <h3>Web3Lagos 3.0 is happening primarily in person.</h3>
           </div>
-          
+
           <div className="flex items-center space-x-3 mt-4 px-4">
             <Image
               src={"/Vector (6).png"}
@@ -136,9 +136,8 @@ const Dashboard = () => {
               className=""
             />
             <h3>
-              Please respect our{" "}
-              <span className="text-[#FFD700] underline">Code</span>
-              <span className="text-[#1ACF2C] underline"> of Conduct.</span>
+              Please respect our code of conduct
+         
             </h3>
           </div>
         </div>
@@ -148,7 +147,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
-Dashboard.getLayout = function getLayout({ page }: { page: React.ReactNode }) {
-  return <Layout>{page}</Layout>;
-};
