@@ -7,6 +7,7 @@ interface EmailInputProps {
 
 const EmailInput: React.FC<EmailInputProps> = ({ emails, setEmails }) => {
   const [input, setInput] = useState<string>('');
+  const [error, setError] = useState<string>('');
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' || e.key === ',') {
@@ -16,6 +17,10 @@ const EmailInput: React.FC<EmailInputProps> = ({ emails, setEmails }) => {
   };
 
   const addEmail = (email: string) => {
+    if (emails.length >= 4) {
+      setError('You can only add up to 4 emails');
+      return;
+    }
     if (email && !emails.includes(email)) {
       setEmails([...emails, email]);
     }
