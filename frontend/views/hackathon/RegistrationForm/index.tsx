@@ -8,24 +8,24 @@ import { Eye } from "lucide-react";
 import HackathonSuccessScreen from "./SuccessScreen";
 
 type FormData = {
-  FirstName: string;
-  OtherName: string;
+  first_name: string;
+  other_name: string;
   email: string;
   password: string;
   confirmpassword: string;
-  GithubUsername: string;
+  github_username: string;
 };
 
 type FormErrors = {
   [key in keyof FormData]?: string[];
 };
 const initialFormState: FormData = {
-  FirstName: "",
-  OtherName: "",
+  first_name: "",
+  other_name: "",
   email: "",
   password: "",
   confirmpassword: "",
-  GithubUsername: "",
+  github_username: "",
 };
 
 const initialFormErrors: FormErrors = {};
@@ -75,6 +75,7 @@ export default function HackathonRegistration() {
       setMessage("Registration successful!");
       setFormData(initialFormState);
       setIsSuccess(true); // Show success screen
+      window.location.href= "/hackathon/login";
     } else {
       setErrors(data);
       setMessage("Registration failed. Please try again.");
@@ -116,37 +117,37 @@ export default function HackathonRegistration() {
             <div className="flex flex-col  sm: w-full sm:flex-row justify-center items-center space-y-6 sm:space-x-6 sm:space-y-0">
               <div className="w-full sm:w-full">
                 <label
-                  htmlFor="firstname"
+                  htmlFor="first_name"
                   className="block mb-2 font-bold text-gray-600 my-8"
                 >
                   FirstName
                 </label>
                 <input
-                  type="Firstname"
-                  id="Firstname"
-                  name="FirstName"
+                  type="first_name"
+                  id="first_name"
+                  name="first_name"
                   onChange={handleChange}
                   placeholder="John"
                   className="w-full p-4 border  border-black shadow-[4px_4px_0px_0px_#1E1E1E] "
-                  value={formData.FirstName}
+                  value={formData.first_name}
                   required
                 />
               </div>
               <div className="w-full sm:w-full">
                 <label
-                  htmlFor="othername"
+                  htmlFor="other_name"
                   className="block mb-2 font-bold text-gray-600 my-5"
                 >
                   OtherName
                 </label>
                 <input
-                  type="OtherName"
-                  id="twitter"
-                  name="OtherName"
+                  type="other_name"
+                  id="other_name"
+                  name="other_name"
                   onChange={handleChange}
                   placeholder="jullie Doe"
                   className="w-full p-4 border border-black shadow-[4px_4px_0px_0px_#1E1E1E]"
-                  value={formData.OtherName}
+                  value={formData.other_name}
                   required
                 />
               </div>
@@ -172,19 +173,19 @@ export default function HackathonRegistration() {
               </div>
               <div className="w-full sm:w-full ">
                 <label
-                  htmlFor="githubUsername"
+                  htmlFor="github_username"
                   className="block mb-2 font-bold text-gray-600 my-8"
                 >
                   GithubUsername
                 </label>
                 <input
                   type="text"
-                  id="GithubUsername"
-                  name="GithubUsername"
+                  id="github_username"
+                  name="github_username"
                   onChange={handleChange}
                   placeholder="John"
                   className="w-full p-4 border  border-black shadow-[4px_4px_0px_0px_#1E1E1E] "
-                  value={formData.GithubUsername}
+                  value={formData.github_username}
                   required
                 />
               </div>
