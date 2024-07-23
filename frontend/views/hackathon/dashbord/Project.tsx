@@ -106,10 +106,10 @@ const Project: React.FC = () => {
 
   return (
     <div className='flex mt-[5rem] mb-5 px-4 sm:px-0'>
-      <div className="sm:w-[27%] h-full sm:flex hidden">
+      <div className="sm:w-1/5 sm:fixed h-full sm:flex hidden">
         <SideBar />
       </div>
-      <section className="flex flex-col sm:w-4/5 w-full sm:px-8">
+      <section className="flex flex-col sm:w-4/5 sm:ml-[20%] w-full  sm:px-8 ">
         <div className="w-full">
           <HackathonHeader user={user} />
         </div>
@@ -200,7 +200,7 @@ const Project: React.FC = () => {
                 className="w-full mt-12 p-6 bg-[#1E1E1E] text-white text-xl text-center shadow-[-5px_-5px_0px_0px_#0096FF]"
                 disabled={loading}
               >
-                {loading ? "Loading..." : "Create"}
+                {loading ? "Loading..." : "Submit"}
               </button>
             </div>
           </div>
