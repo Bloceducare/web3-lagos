@@ -8,6 +8,13 @@ class TeamSerializer(serializers.ModelSerializer):
         read_only_fields = ['creator', 'members', 'joining_code']
 
 
+class JoinTeamSerializer(serializers.Serializer):
+    joining_code = serializers.CharField()
+class InviteSerializer(serializers.Serializer):
+    emails = serializers.ListField(
+        child=serializers.EmailField(),
+        max_length=4
+    )
 
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:

@@ -1,3 +1,5 @@
+from django.core.mail import EmailMessage
+from django.utils.html import strip_tags
 from django.conf import settings
 from rest_framework import generics
 from rest_framework.response import Response
@@ -31,11 +33,28 @@ class SignupView(generics.CreateAPIView):
         else:
             return response
         
+
     def send_confirmation_email(self, user):
         subject = 'Hackathon Registration Confirmation'
-        message = f'Thank you for registering for the hackathon, {user.first_name}.'
+        html_message = f'''
+        <p>Hello,</p>
+
+        <p>Congratulations on successfully applying to be part of this year’s Web3 Lagos conference hackathon. This year, we are having IRL hackathons and we are working to ensure this happens in four (4) different locations.</p>
+
+        <p>We advise you to get acquainted with the platform, read all information on the dashboard, register your team, and also ensure that you join the hackathon <a href="https://t.me/+Wu8DKYZweFMxMTdk">telegram group</a> to interact with the team and others in the hackathon and also find others who might be looking for teams.</p>
+
+        <p>We are looking forward to seeing very interesting and usable ideas and can’t wait to see what you and your team will be building.</p>
+
+        <p>Best,</p>
+
+        <p>Faith Roberts<br>For the Hackathon team</p>
+        '''
+        plain_message = strip_tags(html_message)
         recipient_list = [user.email]
-        send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, recipient_list)
+        email = EmailMessage(subject, plain_message, settings.DEFAULT_FROM_EMAIL, recipient_list)
+        email.content_subtype = "html"
+        email.send()
+
 
 
 

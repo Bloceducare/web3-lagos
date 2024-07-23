@@ -96,7 +96,7 @@ const Team: React.FC = () => {
               }
             );
             const data = await response.json();
-            setData(data)
+            setData(data[0])
             console.log('Response:', data);
             setTeamCreated(true)
           } else {
@@ -197,7 +197,7 @@ const Team: React.FC = () => {
         <p>Number of Members: <b>{data ? data.members?.length : 'Null'}</b></p>
       </div>
       <div className="px-8 py-5 bg-[#0096FF] rounded-xl">
-        <p>Role: <b>Null</b></p>
+        <p>Joining code: <b>{data ? data.joining_code : 'Null'}</b></p>
       </div>
     </section>
 
