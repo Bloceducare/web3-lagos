@@ -1,5 +1,7 @@
 import React, { useEffect, useState, ChangeEvent,  KeyboardEvent } from "react";
 import EmailInput from "@/components/Email";
+import SideBar from "@/components/hackathon-sidebar";
+import HackathonHeader from "@/components/hackathon-header";
 
 
 
@@ -9,6 +11,13 @@ type TeamData = {
     members : number[];
     joining_code: string;
 }
+type User = {
+  email: string;
+  id: number;
+  first_name: string;
+  github_username: string;
+  other_name: string;
+};
 type CreateTeam = {
   name : string
 }
@@ -40,6 +49,16 @@ const Team: React.FC = () => {
     const [input, setInput] = useState<string>('');
 
     console.log(formData)
+
+    const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const userData = localStorage.getItem("user");
+    if (userData) {
+      setUser(JSON.parse(userData));
+    }
+    console.log(userData);
+  }, []);
 
    
      const handleChange = (
@@ -154,10 +173,19 @@ const Team: React.FC = () => {
 
     return(
 
-        <div className='mt-14'>
+        <div className='flex  mt-[5rem] mb-5 px-4 sm:px-0'>
 
+       <div className="sm:w-[27%] h-full sm:flex hidden">
+        <SideBar />
+        </div>
+
+<section className="flex flex-col sm:w-4/5  w-full  sm:px-8 ">
+
+<div className="w-full">
+          <HackathonHeader user={user} />
+        </div>
         <section>
-            <h1 className='text-3xl font-bold'>Team Overview</h1>
+            <h1 className='text-3xl font-bold mt-5'>Team Overview</h1>
         </section>
 
 
@@ -226,6 +254,7 @@ className="w-full mt-12 p-6  bg-[#1E1E1E]  text-white text-xl  text-center shado
 </form>
           }
            
+        </section>
         </section>
         </div>
     )

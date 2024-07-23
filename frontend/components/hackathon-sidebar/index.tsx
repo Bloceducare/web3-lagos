@@ -10,8 +10,8 @@ import { MdOutlineContactSupport } from "react-icons/md";
 
 function SideBar() {
   return (
-    <div className="w-full h-full left-0 top-16 border-r bg-[#0096FF] rounded-tr-3xl rounded-br-3xl">
-      <div className="h-full px-3 py-4 text-white">
+    <div className="w-full h-full pb-20 pt-10 left-0 top-16 border-r bg-[#0096FF] rounded-tr-3xl rounded-br-3xl">
+      <div className="h-full  px-3 py-4 text-white">
         <div className="">
           <Image
             src={"/Logo.png"}
@@ -27,7 +27,7 @@ function SideBar() {
             <p className="text-center">Home</p>
           </Link>
 
-          <Link href="/schedule" className="flex rounded-md space-x-2 mt-8 ">
+          <Link href="/hackathon/schedule" className="flex rounded-md space-x-2 mt-8 ">
             <AiOutlineSchedule className="w-8 h-6" />
             <p className="text-center">Schedule</p>
           </Link>
@@ -42,7 +42,7 @@ function SideBar() {
             <p className="text-center">Project</p>
           </Link>
 
-          <div className="mt-24">
+          <div className="mt-32">
             <Link href="#" className="flex rounded-md space-x-2 mt-8 ">
               <MdOutlineContactSupport className="w-8 h-6" />
               <p className="text-center">Support</p>
