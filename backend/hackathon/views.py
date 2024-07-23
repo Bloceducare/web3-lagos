@@ -51,13 +51,18 @@ class TeamViewSet(viewsets.ModelViewSet):
 
         return Response({"message": "Successfully joined the team."}, status=status.HTTP_200_OK)
 
+    @action(detail=False, methods=['get'], url_path='my-teams')
+    def my_teams(self, request, *args, **kwargs):
+        user = request.user
+        teams = Team.objects.filter(creator=user) | Team.objects.filter(members=user)
+        serializer = self.get_serializer(teams, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
     def send_confirmation_email(self, instance):
         subject = 'Team Creation Confirmation'
         message = f'Thank you for creating the team, {instance.creator.first_name}. Your team joining code is {instance.joining_code}.'
         recipient_list = [instance.creator.email]
         send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, recipient_list)
-
-
 class ProjectViewSet(viewsets.ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
