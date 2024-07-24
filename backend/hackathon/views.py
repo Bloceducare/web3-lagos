@@ -6,6 +6,7 @@ from django.conf import settings
 from .serializers import InviteSerializer, JoinTeamSerializer, TeamSerializer, ProjectSerializer
 from .models import Team, Project
 from users.models import CustomUser
+from django.db import models
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
 
@@ -102,6 +103,7 @@ class TeamViewSet(viewsets.ModelViewSet):
         send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [email])
 
 
+
 class ProjectViewSet(viewsets.ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
@@ -116,11 +118,22 @@ class ProjectViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
-        team = Team.objects.get(id=request.data.get('team'))
-        if request.user != team.creator:
-            return Response({"error": "Only the team creator can create a project for the team."}, status=status.HTTP_400_BAD_REQUEST)
+        # Fetch the team from the request.user's teams (either as a creator or member)
+        try:
+            team = Team.objects.filter(
+                models.Q(creator=request.user) | models.Q(members=request.user)
+            ).distinct().get()
+        except Team.DoesNotExist:
+            return Response({"error": "You must belong to a team to create a project."}, status=status.HTTP_400_BAD_REQUEST)
+        except Team.MultipleObjectsReturned:
+            return Response({"error": "You belong to multiple teams. Please specify a team."}, status=status.HTTP_400_BAD_REQUEST)
 
-        project = serializer.save()
+        # Check if the team already has a project
+        if Project.objects.filter(team=team).exists():
+            return Response({"error": "This team already has a project. You can only update or delete the existing project."}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Save the project with the associated team
+        project = serializer.save(team=team)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
@@ -130,23 +143,19 @@ class ProjectViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(instance, data=request.data, partial=partial)
         serializer.is_valid(raise_exception=True)
 
-        team = Team.objects.get(id=request.data.get('team'))
-        if request.user != team.creator:
-            return Response({"error": "Only the team creator can update the project for the team."}, status=status.HTTP_400_BAD_REQUEST)
+        # Ensure only the team creator can update the project
+        if request.user != instance.team.creator:
+            return Response({"error": "Only the team creator can update the project."}, status=status.HTTP_400_BAD_REQUEST)
 
         self.perform_update(serializer)
-
         return Response(serializer.data)
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
-        team = instance.team
 
-        if request.user != team.creator:
-            return Response({"error": "Only the team creator can delete the project for the team."}, status=status.HTTP_400_BAD_REQUEST)
+        # Ensure only the team creator can delete the project
+        if request.user != instance.team.creator:
+            return Response({"error": "Only the team creator can delete the project."}, status=status.HTTP_400_BAD_REQUEST)
 
         self.perform_destroy(instance)
-
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-    
