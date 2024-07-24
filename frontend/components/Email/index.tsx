@@ -38,7 +38,7 @@ const EmailInput: React.FC<EmailInputProps> = ({ emails, setEmails }) => {
 
   return (
     <div>
-      <div className="flex flex-wrap gap-2 p-2 bg-gray-100 border rounded">
+      <div className="w-full p-4 flex flex-wrap gap-5 border border-black shadow-[4px_4px_0px_0px_#1E1E1E] mt-3">
         {emails.map((email, index) => (
           <div key={index} className="flex items-center border rounded-3xl p-1 bg-blue-500 text-black px-3">
             <span>{email}</span>

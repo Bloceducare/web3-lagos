@@ -108,7 +108,11 @@ const Team: React.FC = () => {
             const data = await response.json();
             setData(data[0])
             console.log('Response:', data);
+            if (Array.isArray(data) && data.length === 0) {
+              setTeamCreated(false);
+          } else {
             setTeamCreated(true);
+          }
           } else {
             console.error('User data is invalid or missing user.id');
           }
@@ -213,11 +217,11 @@ const Team: React.FC = () => {
 
   return (
     <div className='flex mt-[5rem] mb-5 px-4 sm:px-0'>
-      <div className="sm:w-[27%] h-full sm:flex hidden">
+      <div className="sm:w-1/5 sm:fixed h-full sm:flex hidden">
         <SideBar />
       </div>
 
-      <section className="flex flex-col sm:w-4/5 w-full sm:px-8">
+      <section className="flex flex-col sm:w-4/5 sm:ml-[20%] w-full  sm:px-8 ">
         <div className="w-full">
           <HackathonHeader user={user} />
         </div>
@@ -225,7 +229,7 @@ const Team: React.FC = () => {
           <h1 className='text-3xl font-bold mt-5'>Team Overview</h1>
         </section>
 
-        <section className="flex flex-wrap gap-5 text-white mt-5 text-lg md:text-xl">
+      {teamCreated && ( <section className="flex flex-wrap gap-5 text-white mt-5 text-lg md:text-xl">
       <div className="px-8 py-5 bg-[#0096FF] rounded-xl">
         <p>Team Name: <b>{data ? data.name : 'Null'}</b></p>
       </div>
@@ -235,22 +239,12 @@ const Team: React.FC = () => {
       <div className="px-8 py-5 bg-[#0096FF] rounded-xl">
         <p>Joining code: <b>{data ? data.joining_code : 'Null'}</b></p>
       </div>
-    </section>
-
-        <section className="flex justify-center gap-5 w-[100%] sm:w-[50%] md:w-[70%] lg:w-[38%] px-1 py-1  my-16 border-2 border-black rounded-2xl">
-            <div className="px-8 py-5 bg-[#1E1E1E] text-white rounded-xl">
-                <p>  {teamCreated ? 'Invite to Team' : 'Create Team'} </p>
-            </div>
-            <div className="px-8 py-5  rounded-xl">
-                <p>Join Team </p>
-            </div>
-        </section>
-
+    </section>)}
         <section className="flex justify-center gap-5 w-[100%] sm:w-[50%] md:w-[70%] lg:w-[38%] px-1 py-1 my-16 border-2 border-black rounded-2xl">
           <div className="px-8 py-5 bg-[#1E1E1E] text-white rounded-xl cursor-pointer"  onClick={() => setJoinTeam(false)}>
             <p>{teamCreated ? 'Invite to Team' : 'Create Team'} </p>
           </div>
-          <div className="px-8 py-5 bg-[#1E1E1E] text-white rounded-xl cursor-pointer"  onClick={() => setJoinTeam(true)}>
+          <div className="px-8 py-5 rounded-xl cursor-pointer"  onClick={() => setJoinTeam(true)}>
             <p>Join Team</p>
           </div>
         </section>
@@ -291,7 +285,8 @@ const Team: React.FC = () => {
               </div>
             </form>
           </section>
-         )} : {
+         )} 
+          {teamCreated &&
           <section>
             <form onSubmit={handleInviteSubmit}>
               <div className='w-[100%] sm:w-[70%] md:w-[60%] mt-7'>
