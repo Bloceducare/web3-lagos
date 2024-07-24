@@ -45,6 +45,7 @@ const Project: React.FC = () => {
   const [formData, setFormData] = useState<Project>(initialFormState);
   const [errors, setErrors] = useState<FormErrors>(initialFormErrors);
   const [loading, setLoading] = useState(false);
+  const [showButtons, setShowButtons] = useState(false)
   const [showProject, setShowProject] = useState(false)
   const [creatorID, setCreatorID] = useState()
   const [isCreator, setisCreator] = useState(false);
@@ -85,7 +86,7 @@ const Project: React.FC = () => {
               setCreatorID(data[0].creator)
               setShowProject(true)
               if (creatorID === users.id) {
-                setisCreator(true)
+                 setisCreator(true)
               }
             }
         } else {
@@ -113,6 +114,24 @@ const Project: React.FC = () => {
       ...errors,
       [name]: undefined,
     });
+  };
+  const handleUpdateChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    console.log(name, value);
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+    setErrors({
+      ...errors,
+      [name]: undefined,
+    });
+    if (creatorID ===  user?.id) {
+      setisCreator(true)
+   }
+    setShowButtons(true)
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -352,7 +371,7 @@ const Project: React.FC = () => {
             <input
               type="text"
               name="name"
-              onChange={handleChange}
+              onChange={handleUpdateChange}
               placeholder="E.g Smart Contract"
               className="w-full p-4 border border-black shadow-[4px_4px_0px_0px_#1E1E1E] mt-3"
               value={formData.name}
@@ -361,7 +380,7 @@ const Project: React.FC = () => {
           </div>
           <div className='w-full mt-7'>
             <label>Category</label>
-            <select name="category" onChange={handleChange} value={formData.category} className="w-full p-4 border  border-black shadow-[4px_4px_0px_0px_#1E1E1E] mt-3">
+            <select name="category" onChange={handleUpdateChange} value={formData.category} className="w-full p-4 border  border-black shadow-[4px_4px_0px_0px_#1E1E1E] mt-3">
               <option value="Open Governance in the Africa Electoral Process" >Application in open Governance in the Africa Electoral Process</option>
               <option value=" Entertainment and media">Application in Entertainment and media</option>
               <option value="Digital collectibles">Application in digital collectibles</option>
@@ -374,7 +393,7 @@ const Project: React.FC = () => {
             <input
               type="text"
               className="w-full p-4 border border-black shadow-[4px_4px_0px_0px_#1E1E1E] mt-3"
-              onChange={handleChange}
+              onChange={handleUpdateChange}
               name="description"
               value={formData.description}
             />
@@ -384,7 +403,7 @@ const Project: React.FC = () => {
             <input
               type="text"
               name="github_url"
-              onChange={handleChange}
+              onChange={handleUpdateChange}
               value={formData.github_url}
               placeholder="Link to Github Repository"
               className="w-full p-4 border border-black shadow-[4px_4px_0px_0px_#1E1E1E] mt-3"
@@ -396,7 +415,7 @@ const Project: React.FC = () => {
             <input
               type="text"
               name="live_link"
-              onChange={handleChange}
+              onChange={handleUpdateChange}
               value={formData.live_link}
               placeholder="Link to Live app/Website"
               className="w-full p-4 border border-black shadow-[4px_4px_0px_0px_#1E1E1E] mt-3"
@@ -408,13 +427,13 @@ const Project: React.FC = () => {
             <input
               type="text"
               name="demo_video"
-              onChange={handleChange}
+              onChange={handleUpdateChange}
               value={formData.demo_video}
               placeholder="Link to Project Demo video"
               className="w-full p-4 border border-black shadow-[4px_4px_0px_0px_#1E1E1E] mt-3"
               required
             />
-            <div className='flex justify-between w-full gap-10'>
+            {showButtons && (<div className='flex justify-between w-full gap-10'>
               <button
                 type="submit"
                 className="w-full mt-12 p-6 bg-[#1E1E1E] text-white text-xl text-center shadow-[-5px_-5px_0px_0px_#0096FF]"
@@ -431,7 +450,7 @@ const Project: React.FC = () => {
                 {loading ? "Loading..." : "Delete"}
               </button>)}
 
-            </div>
+            </div>)}
           </div>
         </form>)}
       </section>
