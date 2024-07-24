@@ -45,7 +45,7 @@ const Schedule: React.FC = () => {
             <div className='w-[100%] sm:w-[33.3%] md:w-[25%] bg-[#0096FF]  border-r-2 border-b-2 flex flex-col gap-2 text-start pl-3 pr-10 pt-10 pb-20 '>
                 <h3 className='bg-[#1ACF2C] w-[80px] rounded-xl pl-2'>11.59PM WAT</h3>
                 <p>4th August, 2024</p>
-                <p className='font-bold text-lg'>Registration Begins</p>
+                <p className='font-bold text-lg'>Registration Ends</p>
             </div>    <div className='w-[100%] sm:w-[33.3%] md:w-[25%] bg-[#0096FF]  border-r-2 border-b-2 flex flex-col gap-2 text-start pl-3 pr-10 pt-10 pb-20 '>
                 <h3 className='bg-[#1ACF2C] w-[80px] rounded-xl pl-2'>10am - 4pm WAT</h3>
                 <p>5th August, 2024</p>
