@@ -65,10 +65,10 @@ const Hackathon = () => {
             </p>
           </div>
           <div className="flex flex-col items-center space-y-5 md:flex-row md:space-y-0 md:space-x-[3rem] ">
-            <Link href="#">
+            <Link href="/hackathon/registration">
               <button className="border-[1px] bg-[#fff] text-black border-black shadow-[-5px_-5px_0px_0px_rgba(0,0,0)] px-6 py-3">Register Today</button>
             </Link>
-            <Link href="#">
+            <Link href="#learnmore">
               <button className="border-[1px] bg-[#fff] text-black border-black shadow-[-5px_-5px_0px_0px_rgba(0,0,0)] px-6 py-3">Learn More</button>
             </Link>
           </div>
@@ -84,7 +84,7 @@ const Hackathon = () => {
         <div className={`${container} p-4`}>
         <article>
           <Heading src="/hackathon/Group16.png" alt="" title="Overview" />
-          <p className={`${textSize}`}>The Web3 Lagos 3.0 Hackathon is a 3-day in-person event designed to bring together the brightest minds in blockchain technology. Participants will collaborate in teams to build impactful projects that address real-world challenges.</p>
+          <p id="learnmore" className={`${textSize}`}>The Web3 Lagos 3.0 Hackathon is a 3-day in-person event designed to bring together the brightest minds in blockchain technology. Participants will collaborate in teams to build impactful projects that address real-world challenges.</p>
           <p className={`${textSize}`}>The hackathon aims to build projects with real-world impact. Teams of 3 to 5 members will tackle problems in various categories.</p>
         </article>
 
