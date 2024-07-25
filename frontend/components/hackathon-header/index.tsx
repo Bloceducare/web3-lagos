@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import { IoMdLogOut } from "react-icons/io";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { MdOutlineAccountCircle } from "react-icons/md";
+// import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 type User = {
   email: string;
@@ -19,10 +22,28 @@ const HackathonHeader: React.FC<HackathonHeaderProps> = ({ user }) => {
 
   useEffect(() => {
     const formatDate = (date: Date): string => {
-      const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      const days = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ];
       const months = [
-        "January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
       ];
       const dayName = days[date.getDay()];
       const day = date.getDate();
@@ -38,16 +59,38 @@ const HackathonHeader: React.FC<HackathonHeaderProps> = ({ user }) => {
   return (
     <div className="flex w-full flex-row-reverse  items-start justify-between">
       <div className="flex justify-end  w-fit">
-        <IoIosNotificationsOutline className="w-10 h-10" />
-        <MdOutlineAccountCircle className="w-10 h-10" />
+        <IoIosNotificationsOutline className="w-10 h-6" />
+        {/* <div>
+          <SignedOut>
+            <SignInButton />
+          </SignedOut>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+        </div> */}
+        <button className="group text-black">
+          <MdOutlineAccountCircle className="w-8 h-6" />
+          <div className="z-10 hidden  rounded-lg shadow w-32 group-focus:block top-full right-0 ">
+            <div className="py-2 mb-2 ">
+              <Link href="/" className="flex rounded-md space-x-2 ">
+                <IoMdLogOut className="w-4 h-8 " />
+                <p className="text-center ">Logout</p>
+              </Link>
+              <Link href="/" className="flex rounded-md space-x-2 ">
+                <IoMdLogOut className="w-4 h-8 " />
+                <p className="text-center ">Logout</p>
+              </Link>{" "}
+            </div>
+          </div>
+        </button>
       </div>
-      <div className="w-full justify-start text-start ">
-        <h1 className="text-2xl text-black text-start font-bold mr-20">
-          Welcome, {user ? user.first_name : "Guest"}!
-        </h1>
-        <h3 className="text-black mr-40 text-start">
-          {currentDate}
-        </h3>
+      <div className="w-full flex justify-center items-center sm:justify-start">
+        <div>
+          <h1 className="text-2xl text-black text-start font-bold mr-20">
+            Welcome, {user ? user.first_name : "Guest"}!
+          </h1>
+          <h3 className="text-black mr-40 text-start">{currentDate}</h3>
+        </div>
       </div>
     </div>
   );

@@ -7,6 +7,7 @@ interface EmailInputProps {
 
 const EmailInput: React.FC<EmailInputProps> = ({ emails, setEmails }) => {
   const [input, setInput] = useState<string>('');
+  const [error, setError] = useState<string>('');
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' || e.key === ',') {
@@ -16,6 +17,10 @@ const EmailInput: React.FC<EmailInputProps> = ({ emails, setEmails }) => {
   };
 
   const addEmail = (email: string) => {
+    if (emails.length >= 4) {
+      setError('You can only add up to 4 emails');
+      return;
+    }
     if (email && !emails.includes(email)) {
       setEmails([...emails, email]);
     }
@@ -48,7 +53,7 @@ const EmailInput: React.FC<EmailInputProps> = ({ emails, setEmails }) => {
           onChange={handleChange}
           onKeyDown={handleKeyDown}
           placeholder="Search email"
-          className="w-full p-4 border text-black border-black shadow-[4px_4px_0px_0px_#1E1E1E] mt-3"
+          className="w-full p-4 outline-none m-3"
         />
       </div>
     </div>

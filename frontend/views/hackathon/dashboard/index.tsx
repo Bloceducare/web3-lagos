@@ -4,6 +4,7 @@ import Image from "next/image";
 import Layout from "../layout";
 import HackathonHeader from "@/components/hackathon-header";
 import SideBar from "@/components/hackathon-sidebar";
+import { FaArrowCircleRight } from "react-icons/fa";
 
 type User = {
   email: string;
@@ -29,6 +30,7 @@ const Dashboard = () => {
       <div className="sm:w-1/5 sm:fixed h-full sm:flex hidden">
         <SideBar />
       </div>
+      <FaArrowCircleRight className="w-8 h-6" />
       <div className="flex flex-col sm:w-4/5  w-full sm:ml-[20%] sm:px-8 ">
         <div className="w-full">
           <HackathonHeader user={user} />
@@ -45,7 +47,7 @@ const Dashboard = () => {
             />
             <h3>Web3Lagos 3.0 is happening primarily in person.</h3>
           </div>
-          
+
           <div className="flex items-center space-x-3 mt-4 px-4">
             <Image
               src={"/Vector (6).png"}
@@ -65,8 +67,8 @@ const Dashboard = () => {
               className=""
             />
             <h3>
-              A minimum of 3 members of your team will need to be at the venue to
-              be judged; no online-only submissions.
+              A minimum of 3 members of your team will need to be at the venue
+              to be judged; no online-only submissions.
             </h3>
           </div>
 
@@ -110,8 +112,8 @@ const Dashboard = () => {
             />
             <h3>
               All code for projects must be written within the time frame of
-              Hackathon; there can be no previously written code submitted to the
-              judging process.
+              Hackathon; there can be no previously written code submitted to
+              the judging process.
             </h3>
           </div>
           <div className="flex items-center space-x-3 mt-4 px-4">
@@ -135,11 +137,7 @@ const Dashboard = () => {
               width={20}
               className=""
             />
-            <h3>
-              Please respect our{" "}
-              <span className="text-[#FFD700] underline">Code</span>
-              <span className="text-[#1ACF2C] underline"> of Conduct.</span>
-            </h3>
+            <h3>Please respect our code of conduct</h3>
           </div>
         </div>
       </div>
@@ -148,7 +146,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
-Dashboard.getLayout = function getLayout({ page }: { page: React.ReactNode }) {
-  return <Layout>{page}</Layout>;
-};
