@@ -33,6 +33,19 @@ const overview = [
   }
 ]
 
+const eventSchedule = [
+  {id: 1, time: "11am WAT", date: "15th July, 2024", title: "Registration Begins", color: "bg-[#080D46]"},
+  {id: 2, time: "11:59pm WAT", date: "4th August, 2024", title: "Registration Ends", color: "bg-[#333866]"},
+  {id: 3, time: "10am - 4pm WAT", date: "5th August, 2024", title: "Workshop for Hackers", color: "bg-[#080D46]"},
+  {id: 4, time: "7am WAT", date: "1st September, 2024", title: "HackerHouse Resumption", color: "bg-[#1B27B7]"},
+  {id: 5, time: "7am WAT", date: "2nd September, 2024", title: "Hackerthon Kickstart", color: "bg-[#1B27B7]"},
+  {id: 6, time: "11:59pm WAT", date: "4th September, 2024", title: "Submission Deadline", color: "bg-[#080D46]"},
+  {id: 7, time: "9am WAT", date: "5th September, 2024", title: "Web3 Lagos Grand Opening", color: "bg-[#333866]"},
+  {id: 8, time: "2pm WAT", date: "6th September, 2024", title: "Judging Begins", color: "bg-[#080D46]"},
+  {id: 9, time: "12pm WAT", date: "7th September, 2024", title: "Submission of Results", color: "bg-[#080D46]"},
+  {id: 10, time: "TBC", date: "7th September, 2024", title: "Announcement of Winners", color: "bg-[#333866]"}
+]
+
 const Hackathon = () => {
 
   type headingProps = {
@@ -42,13 +55,13 @@ const Hackathon = () => {
   }
 
   const Heading:React.FC<headingProps> = ({title, src, alt}) => (
-    <div className="flex my-7 space-x-4">
+    <div className="flex items-center my-7 space-x-4">
       <Image src={src} height={25} width={60} alt={alt} />
-      <h1 className="text-[40px] font-semibold">{title}</h1>
+      <h1 className="text-[26px] md:text-[32px] lg:text-[44px] xl:text-[48px] font-semibold">{title}</h1>
     </div>
   )
 
-  const container = "md:p-4 lg:p-10 xl:p-20 lg:max-w-screen-lg xl:max-w-screen-xl";
+  const container = "md:p-4 lg:p-8 xl:p-20 lg:max-w-screen-lg xl:max-w-screen-xl";
 
   const textSize = "text-[18px] md:text-[19px] lg:text-[24px] xl:text-[26px] py-3";
 
@@ -104,11 +117,21 @@ const Hackathon = () => {
         </div>
       </section>
 
-      <section className="bg-[#0096FF]">
-        <div>
+      <section className="flex flex-col w-full items-center bg-[#0096FF]">
+        <div className={`flex flex-col justify-between p-4 md:space-y-10 ${container}`}>
           <header className="text-[#fff]">
             <Heading src="/hackathon/Vector.png" alt="" title="Event Schedule" />
           </header>
+          
+          <section className="flex justify-center md:justify-start flex-wrap">
+            {eventSchedule.map((card) => (
+              <article key={card.id} className={`space-y-2 border-b-[1px] border-[#fff] px-7 py-12 w-full md:h-[200px] md:w-[240px] lg:h-[230px] lg:w-[230px] xl:w-[280px] text-[#fff] ${card.color}`}>
+                <p className="text-[14px] bg-[#1ACF2C] w-fit px-2 py-1 rounded-md">{card.time}</p>
+                <p className="text-[17px]">{card.date}</p>
+                <h3 className="text-[22px] pt-8 font-medium h-[60px] flex items-center">{card.title}</h3>
+              </article>
+            ) )}
+          </section>
         </div>
       </section>
         {/* <HackathonLogin /> */}
