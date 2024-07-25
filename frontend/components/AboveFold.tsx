@@ -116,7 +116,7 @@ const AboveFold = () => {
           </p>
         </div>
         <div className="flex flex-col space-y-4 items-center md:space-y-0 md:flex-row justify-center space-x-0 md:space-x-10 md:justify-between">
-          <Link href="../pages/apply/registration">
+          <Link href="/apply/registration">
             <Button className="bg-[#000] text-white lg:text-xl rounded-lg px-6">
               Register Here
             </Button>
