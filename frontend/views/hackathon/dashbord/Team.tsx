@@ -51,8 +51,7 @@ const Team: React.FC = () => {
   const [teamCreated, setTeamCreated] = useState(false);
   const [jointeam, setJoinTeam] = useState(false);
   const [emails, setEmails] = useState<string[]>([]);
-  const [input, setInput] = useState<string>('');
-
+  const [userHasTeam, setUserHasTeam] = useState(false);
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
@@ -77,6 +76,8 @@ const Team: React.FC = () => {
       [name]: undefined,
     });
   };
+
+  const inviteLimit = 5 - (data?.members?.length || 0);
 
   const handleCodeChange = (
     e: React.ChangeEvent<HTMLInputElement>
@@ -106,9 +107,14 @@ const Team: React.FC = () => {
               }
             );
             const data = await response.json();
-            setData(data[0])
+            setData(data[0]);
+            setUserHasTeam(data.length > 0);
             console.log('Response:', data);
-            setTeamCreated(true);
+            if (Array.isArray(data) && data.length === 0) {
+              setTeamCreated(false);
+            } else {
+              setTeamCreated(true);
+            }
           } else {
             console.error('User data is invalid or missing user.id');
           }
@@ -119,7 +125,7 @@ const Team: React.FC = () => {
     };
     renderData();
   }, []);
-
+  
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -151,7 +157,7 @@ const Team: React.FC = () => {
   };
 
   const handleInviteSubmit = async (e: FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     const yourToken = localStorage.getItem("token");
     const userString = localStorage.getItem("user");
 
@@ -178,12 +184,12 @@ const Team: React.FC = () => {
     } else {
       setMessage("No token or user data found");
     }
-  }
+  };
 
   const handleJoinTeam = async (e: FormEvent) => {
     const yourToken = localStorage.getItem("token");
     const userString = localStorage.getItem("user");
-    e.preventDefault()
+    e.preventDefault();
 
     if (yourToken && userString) {
       const user = JSON.parse(userString);
@@ -213,11 +219,11 @@ const Team: React.FC = () => {
 
   return (
     <div className='flex mt-[5rem] mb-5 px-4 sm:px-0'>
-      <div className="sm:w-[27%] h-full sm:flex hidden">
+      <div className="sm:w-1/5 sm:fixed h-full sm:flex hidden">
         <SideBar />
       </div>
 
-      <section className="flex flex-col sm:w-4/5 w-full sm:px-8">
+      <section className="flex flex-col sm:w-4/5 sm:ml-[20%] w-full sm:px-8 ">
         <div className="w-full">
           <HackathonHeader user={user} />
         </div>
@@ -225,35 +231,56 @@ const Team: React.FC = () => {
           <h1 className='text-3xl font-bold mt-5'>Team Overview</h1>
         </section>
 
-        <section className="flex flex-wrap gap-5 text-white mt-5 text-lg md:text-xl">
-      <div className="px-8 py-5 bg-[#0096FF] rounded-xl">
-        <p>Team Name: <b>{data ? data.name : 'Null'}</b></p>
-      </div>
-      <div className="px-8 py-5 bg-[#0096FF] rounded-xl">
-        <p>Number of Members: <b>{data ? data.members?.length : 'Null'}</b></p>
-      </div>
-      <div className="px-8 py-5 bg-[#0096FF] rounded-xl">
-        <p>Joining code: <b>{data ? data.joining_code : 'Null'}</b></p>
-      </div>
-    </section>
-
-        <section className="flex justify-center gap-5 w-[100%] sm:w-[50%] md:w-[70%] lg:w-[38%] px-1 py-1  my-16 border-2 border-black rounded-2xl">
-            <div className="px-8 py-5 bg-[#1E1E1E] text-white rounded-xl">
-                <p>  {teamCreated ? 'Invite to Team' : 'Create Team'} </p>
+        {teamCreated && ( 
+          <section className="flex flex-wrap gap-5 text-white mt-5 text-lg md:text-xl">
+            <div className="px-8 py-5 bg-[#0096FF] rounded-xl">
+              <p>Team Name: <b>{data ? data.name : 'Null'}</b></p>
             </div>
-            <div className="px-8 py-5  rounded-xl">
-                <p>Join Team </p>
+            <div className="px-8 py-5 bg-[#0096FF] rounded-xl">
+              <p>Number of Members: <b>{data ? data.members?.length : 'N/A'}</b></p>
             </div>
-        </section>
+            <div className="px-8 py-5 bg-[#0096FF] rounded-xl">
+              <p>Joining code: <b>{data ? data.joining_code : 'N/A'}</b></p>
+            </div>
+          </section>
+        )}
 
-        <section className="flex justify-center gap-5 w-[100%] sm:w-[50%] md:w-[70%] lg:w-[38%] px-1 py-1 my-16 border-2 border-black rounded-2xl">
-          <div className="px-8 py-5 bg-[#1E1E1E] text-white rounded-xl cursor-pointer"  onClick={() => setJoinTeam(false)}>
-            <p>{teamCreated ? 'Invite to Team' : 'Create Team'} </p>
-          </div>
-          <div className="px-8 py-5 bg-[#1E1E1E] text-white rounded-xl cursor-pointer"  onClick={() => setJoinTeam(true)}>
-            <p>Join Team</p>
-          </div>
-        </section>
+{userHasTeam ? (
+  <section className="flex justify-center gap-5 w-[100%] px-1 py-1 my-16 border-black ">
+    <div 
+      className={` font-bold rounded-xl  text-[1.6em] cursor-pointer `}  
+      onClick={() => {
+        setJoinTeam(false);
+        if (!teamCreated) {
+          setTeamCreated(false);
+        }
+      }}
+    >
+      <p>Invite Team members</p>
+    </div>
+  </section>
+) : (
+  <section className="flex justify-center gap-5 w-[100%] sm:w-[50%] md:w-[70%] lg:w-[38%] px-1 py-1 my-16 border-2 border-black rounded-2xl">
+    <div 
+      className={`px-8 py-5 rounded-xl cursor-pointer ${!jointeam ? 'bg-[#1E1E1E] text-white' : 'bg-[#fff] text-black'}`}  
+      onClick={() => {
+        setJoinTeam(false);
+        if (!teamCreated) {
+          setTeamCreated(false);
+        }
+      }}
+    >
+      <p>{teamCreated ? 'Invite to Team' : 'Create Team'}</p>
+    </div>
+    <div 
+      className={`px-8 py-5 rounded-xl cursor-pointer ${jointeam ? 'bg-[#1E1E1E] text-white' : 'bg-[#fff] text-black'}`}  
+      onClick={() => setJoinTeam(true)}
+    >
+      <p>Join Team</p>
+    </div>
+  </section>
+)}
+
 
         {message && (
           <div
@@ -263,54 +290,58 @@ const Team: React.FC = () => {
           </div>
         )}
 
-    {!jointeam && ( 
-    <section>
-       {!teamCreated && (
+        {!jointeam && (
           <section>
-            <form onSubmit={handleSubmit}>
-              <div className='w-[100%] sm:w-[60%] md:w-[40%] mt-7'>
-                <label htmlFor="teamName">Team Name</label>
-                <input
-                  type="text"
-                  id="teamName"
-                  name="name"
-                  onChange={handleChange}
-                  placeholder="E.g Smart Contract"
-                  className="w-full p-4 border text-black border-black shadow-[4px_4px_0px_0px_#1E1E1E] mt-3"
-                  value={formData.name}
-                  required
-                />
-                <div className="w-[100%] sm:w-[60%] md:w-[40%]">
-                  <button
-                    type="submit"
-                    className="w-full mt-12 p-6 bg-[#1E1E1E] text-white text-xl text-center shadow-[-5px_-5px_0px_0px_#0096FF]"
-                  >
-                    Create Team
-                  </button>
-                </div>
-              </div>
-            </form>
+            {!teamCreated && (
+              <section>
+                <form onSubmit={handleSubmit}>
+                  <div className='w-[100%] sm:w-[60%] md:w-[40%] mt-7'>
+                    <label htmlFor="teamName">Team Name</label>
+                    <input
+                      type="text"
+                      id="teamName"
+                      name="name"
+                      onChange={handleChange}
+                      placeholder="E.g Smart Contract"
+                      className="w-full p-4 border text-black border-black shadow-[4px_4px_0px_0px_#1E1E1E] mt-3"
+                      value={formData.name}
+                      required
+                    />
+                    <div className="w-[100%] sm:w-[60%] md:w-[40%]">
+                      <button
+                        type="submit"
+                        className={`w-full mt-12 p-6 text-xl text-center shadow-[-5px_-5px_0px_0px_#0096FF] ${formData.name ? 'bg-[#1E1E1E] text-white' : 'bg-[#202020cb] text-[#a8a7a7]'} `}
+                        disabled={!formData.name}
+                      >
+                        Create Team
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </section>
+            )}
+            {teamCreated &&
+              <section>
+                <form onSubmit={handleInviteSubmit}>
+                  <div className='w-[100%] sm:w-[70%] md:w-[60%] mt-7'>
+                    <label htmlFor="teamName">Search email</label>
+                    <EmailInput emails={emails} setEmails={setEmails} limit={inviteLimit}/>
+                    <div className="w-[100%] sm:w-[60%] md:w-[40%]">
+                      <button
+                        type="submit"
+                        className={`w-full mt-12 p-6 text-xl text-center shadow-[-5px_-5px_0px_0px_#0096FF] ${emails.length > 0 ? 'bg-[#1E1E1E] text-white' : 'bg-[#202020cb] text-[#a8a7a7]'} `}
+                        disabled={emails.length === 0 || loading}
+                      >
+                        {loading ? "Loading..." : "Send Invite"}
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </section>
+            }
           </section>
-         )} : {
-          <section>
-            <form onSubmit={handleInviteSubmit}>
-              <div className='w-[100%] sm:w-[70%] md:w-[60%] mt-7'>
-                <label htmlFor="teamName">Search email</label>
-                <EmailInput emails={emails} setEmails={setEmails} />
-                <div className="w-[100%] sm:w-[60%] md:w-[40%]">
-                  <button
-                    type="submit"
-                    className="w-full mt-12 p-6 bg-[#1E1E1E] text-white text-xl text-center shadow-[-5px_-5px_0px_0px_#0096FF]"
-                    disabled={loading}
-                 >
-                     {loading ? "Loading..." : "Send Invite"}
-                  </button>
-                </div>
-              </div>
-            </form>
-          </section>
-        }
- </section>)}
+        )}
+
         {jointeam && (
           <section>
             <div className='w-[100%] sm:w-[60%] md:w-[40%] mt-7'>
@@ -329,7 +360,8 @@ const Team: React.FC = () => {
                 <button
                   type="button"
                   onClick={handleJoinTeam}
-                  className="w-full mt-12 p-6 bg-[#1E1E1E] text-white text-xl text-center shadow-[-5px_-5px_0px_0px_#0096FF]"
+                  className={`w-full mt-12 p-6 text-xl text-center shadow-[-5px_-5px_0px_0px_#0096FF] ${formCode.joining_code ? 'bg-[#1E1E1E] text-white' : 'bg-[#202020cb] text-[#a8a7a7]'} `}
+                  disabled={!formCode.joining_code}
                 >
                   Join Team
                 </button>
@@ -343,4 +375,3 @@ const Team: React.FC = () => {
 };
 
 export default Team;
-

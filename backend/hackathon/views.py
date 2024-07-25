@@ -99,7 +99,7 @@ class TeamViewSet(viewsets.ModelViewSet):
 
     def send_invite_email(self, email, team):
         subject = 'Team Invitation'
-        message = f'You have been invited to join the team {team.name}. Use the following joining code to join the team: {team.joining_code}'
+        message = f'You have been invited to join the team {team.name}. Use the following joining code to join the team: {team.joining_code}. https://event.web3bridge.com/hackathon/team'
         send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [email])
 
 
