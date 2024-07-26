@@ -8,6 +8,7 @@ import barchat from "../public/bar.svg";
 import barchatStat from "../public/barchart.png";
 import { YoutubeIframe, Contact } from "@/components";
 import { DataFetcher } from "../components";
+import Layout from "@/components/layout";
 
 const Insight: React.FC = () => {
   type IconBoxProps = {
@@ -43,6 +44,8 @@ const Insight: React.FC = () => {
   );
 
   return (
+    <Layout>
+
     <div className="flex flex-col justify-center items-center overflow-hidden w-full pt-[7.5rem] bg-[#fdfdfd]">
       <section className=" w-full lg:px-6 lg:max-w-screen-lg xl:max-w-screen-xl">
         <h1 className="text-[#053758] font-[700] text-[2.6rem] tracking-wider mb-[4rem] pb-8 border-b-[1px] border-[#d2d2d2]">Event Overview</h1>
@@ -168,6 +171,7 @@ const Insight: React.FC = () => {
         <Contact />
       </div>
     </div>
+    </Layout>
   );
 };
 

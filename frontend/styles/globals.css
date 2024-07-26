@@ -4,31 +4,31 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('./speakers.css');
-@import url('./schedule.css');
-@import url('./hero.css');
-@import url('./stats.css');
+@import url("./speakers.css");
+@import url("./schedule.css");
+@import url("./hero.css");
+@import url("./stats.css");
 
 /* https://ifonts.xyz/nekst-font.html */
 
 @font-face {
-  font-family: 'ProductSans';
-  src: url('/assets/fonts/Product-Sans/ProductSans-Medium.ttf');
+  font-family: "ProductSans";
+  src: url("/assets/fonts/Product-Sans/ProductSans-Medium.ttf");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'AcidGrotesk';
-  src: url('/assets/fonts/Acid-Grotesk/AcidGrotesRegular.otf');
+  font-family: "AcidGrotesk";
+  src: url("/assets/fonts/Acid-Grotesk/AcidGrotesRegular.otf");
   font-weight: 400;
   font-style: normal;
 }
 
 html,
 body {
-  font-family: AcidGrotesk, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: AcidGrotesk, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
+    Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 .bg-gradient {
@@ -44,17 +44,17 @@ body {
   background-color: #f0f4ff;
 }
 
-input[type='radio'] {
+input[type="radio"] {
   opacity: 0;
 }
 
-input[type='radio']:focus + label,
-input[type='radio']:checked + label {
+input[type="radio"]:focus + label,
+input[type="radio"]:checked + label {
   background-color: #2d3035;
   color: #fff;
 }
 
-input[type='radio'] + label {
+input[type="radio"] + label {
   cursor: pointer;
   margin-left: -0.5rem;
   margin-right: 0.35rem;
@@ -74,4 +74,95 @@ input[type='radio'] + label {
     margin: 0.5rem 0rem;
     display: block;
   }
+}
+.sidebar__wrapper {
+  position: relative;
+}
+
+.sidebar {
+  width: 17rem;
+  height: 100%;
+  background-color: var(--color-bg);
+  padding: 1rem;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+  overflow: hidden;
+}
+
+.sidebar__top {
+  width: max-content;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.sidebar__logo {
+  width: 3.5rem;
+  height: 3.5rem;
+  object-fit: contain;
+  border-radius: 1rem;
+}
+
+.sidebar__logo-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.sidebar__list {
+  list-style: none;
+}
+
+.sidebar__link {
+  display: inline-block;
+  font-size: 1rem;
+  text-decoration: none;
+  color: #000;
+  padding: 0.8rem 1rem;
+  display: flex;
+  background-color: var(--color-sidebar-item);
+  margin-bottom: 1rem;
+  border-radius: 0.8rem;
+}
+
+.sidebar__link--active {
+  color: #fff;
+  background-color: #10b981;
+}
+
+.sidebar__icon {
+  display: inline-block;
+  font-size: 1.2rem;
+}
+
+.sidebar__name {
+  margin-left: 0.5rem;
+}
+
+[data-collapse="true"] {
+  width: 5.3rem;
+}
+
+[data-collapse="true"] .sidebar__name,
+[data-collapse="true"] .sidebar__logo-name {
+  display: none;
+}
+
+.btn {
+  position: absolute;
+  right: 0;
+  top: 4.7rem;
+  border: none;
+  background-color: var(--color-bg);
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transform: translateX(50%);
+  font-size: 1.1rem;
 }
