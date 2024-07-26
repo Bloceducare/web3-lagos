@@ -16,6 +16,7 @@ interface FormData {
 
 
 type Project = {
+  id: number;
   name: string;
   category: string;
   description: string;
@@ -30,6 +31,7 @@ type FormErrors = {
 };
 
 const initialFormState: Project = {
+  id: 0,
   name: "",
   category: "",
   description: "",
@@ -46,6 +48,8 @@ const Project: React.FC = () => {
   const [errors, setErrors] = useState<FormErrors>(initialFormErrors);
   const [loading, setLoading] = useState(false);
   const [showButtons, setShowButtons] = useState(false)
+  const [projectDetail, setProjectDetail] = useState(false)
+  const [data, setData] = useState<Project | null>(null);
   const [showProject, setShowProject] = useState(false)
   const [creatorID, setCreatorID] = useState()
   const [isCreator, setisCreator] = useState(false);
@@ -80,11 +84,14 @@ const Project: React.FC = () => {
             );
             const data = await response.json();
             console.log(data[0])
+            console.log(user?.id)
             if (Array.isArray(data) && data.length === 0) {
               setShowProject(false)
             } else {
               setCreatorID(data[0].creator)
               setShowProject(true)
+              setData(data[0])
+              setProjectDetail(true)
               if (creatorID === users.id) {
                  setisCreator(true)
               }
@@ -193,7 +200,7 @@ const Project: React.FC = () => {
       }, {} as FormData);
       
     const response = await fetch(
-      `https://web3lagosbackend.onrender.com/hackathon/teams/${user?.id}/`,
+      `https://web3lagosbackend.onrender.com/hackathon/teams/${data?.id}/`,
       {
         method: "PUT",
         headers: {
@@ -203,17 +210,18 @@ const Project: React.FC = () => {
         body: JSON.stringify(filteredFormData),
       }
     );
-    const data = await response.json();
-    console.log(data);
+    const datas = await response.json();
+    console.log(datas);
     if (response.ok) {
-      localStorage.setItem("token", data.access_token);
-      localStorage.setItem("user", JSON.stringify(data.user));
+      localStorage.setItem("token", datas.access_token);
+      localStorage.setItem("user", JSON.stringify(datas.user));
       
       setMessage("Project Updated Successfully");
       setFormData(initialFormState);
       setIsSuccess(true);
+      setProjectDetail(true)
     } else {
-      setErrors(data);
+      setErrors(datas);
       setMessage("Unable to update, Please try again");
       setIsSuccess(false);      
     }
@@ -365,7 +373,36 @@ const Project: React.FC = () => {
           </div>
         </form>)}
 
-        {showProject &&(  <form onSubmit={handleUpdate}>
+        {showProject &&( 
+
+
+<section>
+          
+       {projectDetail && (   <section>
+        <section className="flex flex-wrap gap-5 text-white mt-5 text-lg md:text-xl">
+               <div className="px-8 py-5 bg-[#0096FF] rounded-xl">
+              <p>Team Name: <b>{data ? data.name : 'Null'}</b></p>
+            </div>
+            <div className="px-8 py-5 bg-[#0096FF] rounded-xl">
+              <p>Number of Members: <b>{data ? data.members?.length : 'N/A'}</b></p>
+            </div>
+            <div className="px-8 py-5 bg-[#0096FF] rounded-xl">
+              <p>Joining code: <b>{data ? data.joining_code : 'N/A'}</b></p>
+            </div>
+            </section>
+
+            <div>
+              <button className="w-[30%] mt-12 p-6 bg-[#1E1E1E] text-white text-xl text-center shadow-[-5px_-5px_0px_0px_#0096FF]" onClick={() => setProjectDetail(false)}>
+              Update your project
+              </button>
+            </div>
+            </section>
+          )}
+          
+          
+          
+          
+        {!projectDetail && (  <form onSubmit={handleUpdate}>
           <div className='w-full mt-7'>
             <label>Project</label>
             <input
@@ -436,7 +473,7 @@ const Project: React.FC = () => {
             {showButtons && (<div className='flex justify-between w-full gap-10'>
               <button
                 type="submit"
-                className="w-full mt-12 p-6 bg-[#1E1E1E] text-white text-xl text-center shadow-[-5px_-5px_0px_0px_#0096FF]"
+                className="w-[80%] mt-12 p-6 bg-[#1E1E1E] text-white text-xl text-center shadow-[-5px_-5px_0px_0px_#0096FF]"
                 disabled={loading}
               >
                 {loading ? "Loading..." : "Update"}
@@ -444,7 +481,7 @@ const Project: React.FC = () => {
 
             {isCreator && (  <button
                 onClick={handleDelete}
-                className="w-full mt-12 p-6 bg-[#1E1E1E] text-white text-xl text-center shadow-[-5px_-5px_0px_0px_#0096FF]"
+                className=" w-[15%] mt-12 p-4 bg-[#FF0000] text-white text-xl text-center shadow-[-5px_-5px_0px_0px_#0096FF]"
                 disabled={loading}
               >
                 {loading ? "Loading..." : "Delete"}
@@ -453,6 +490,9 @@ const Project: React.FC = () => {
             </div>)}
           </div>
         </form>)}
+        
+        </section>
+        )}
       </section>
     </div>
   );
