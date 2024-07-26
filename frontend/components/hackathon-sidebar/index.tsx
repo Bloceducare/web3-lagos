@@ -55,7 +55,7 @@ function SideBar() {
   const router = useRouter();
   const { isCollapsed, toggleSidebarcollapse } = useContext(SidebarContext);
   return (
-    <div className="sidebar__wrapper">
+    <div className="sidebar__wrapper bg-[#0096FF]">
     <button className="btn" onClick={toggleSidebarcollapse}>
       {isCollapsed ? <MdKeyboardArrowRight /> : <MdKeyboardArrowLeft />}
     </button>
