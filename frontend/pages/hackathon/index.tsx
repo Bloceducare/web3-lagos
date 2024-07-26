@@ -3,7 +3,8 @@ import Image from "next/image"
 import DateCountDown from "@/components/dateCountDown"
 
 import HackathonLogin from "@/views/hackathon/Login"
-// import heroBg from "../../public/hackathon/Hero.png"
+import footerImage from "../../public/hackathon/Group17.png"
+import footerLogo from "../../public/hackathon/Group545.png"
 
 const overview = [
   {
@@ -61,14 +62,14 @@ const Hackathon = () => {
     </div>
   )
 
-  const container = "md:p-4 lg:p-8 xl:p-20 lg:max-w-screen-lg xl:max-w-screen-xl";
+  const container = " lg:max-w-screen-lg xl:max-w-screen-xl";
 
   const textSize = "text-[18px] md:text-[19px] lg:text-[24px] xl:text-[26px] py-3";
 
   return (
     <main className="flex flex-col w-screen">
       <section className="flex justify-center w-full py-10 md:pb-0 bg-[#0096FFCC] bg-[url('/hackathon/hero.png')] bg-cover bg-center">
-       <div className={`flex flex-col justify-between space-y-[3rem] md:space-y-[3rem] w-full items-center p-2 text-[#fff] ${container}`}>
+       <div className={`flex flex-col justify-between space-y-[3rem] md:space-y-[3rem] w-full items-center p-2 md:p-4 lg:p-8 xl:p-20 text-[#fff] ${container}`}>
         <div></div>
         <div className="flex flex-col space-y-[3rem] justify-center items-center h-full w-full">
           <div className="text-center space-y-4 md:space-y-6">
@@ -87,14 +88,14 @@ const Hackathon = () => {
           </div>
         </div>
         <div className="flex flex-col justify-center items-center text-black w-full space-y-7 border-[1px] bg-[#fff] border-[#1E1E1E] shadow-[-5px_5px_0px_0px_rgba(0,0,0)] p-6">
-          <p>Registration Ends In:</p>
+          <p className="font-semibold md:text-[24px] lg:text-[34px]">Registration Ends In:</p>
           <DateCountDown />
         </div>
        </div>
       </section>
 
       <section className="flex flex-col justify-center items-center w-full">
-        <div className={`${container} p-4`}>
+        <div className={`md:p-7  lg:py-8 xl:py-20 ${container} p-4`}>
         <article>
           <Heading src="/hackathon/Group16.png" alt="" title="Overview" />
           <p id="learnmore" className={`${textSize}`}>The Web3 Lagos 3.0 Hackathon is a 3-day in-person event designed to bring together the brightest minds in blockchain technology. Participants will collaborate in teams to build impactful projects that address real-world challenges.</p>
@@ -118,7 +119,7 @@ const Hackathon = () => {
       </section>
 
       <section className="flex flex-col w-full items-center bg-[#0096FF]">
-        <div className={`flex flex-col justify-between p-4 md:space-y-10 ${container}`}>
+        <div className={`flex flex-col justify-between p-4 md:space-y-10 md:p-7 lg:pb-20  ${container}`}>
           <header className="text-[#fff]">
             <Heading src="/hackathon/Vector.png" alt="" title="Event Schedule" />
           </header>
@@ -134,9 +135,40 @@ const Hackathon = () => {
           </section>
         </div>
       </section>
+
+      <section>
+        <div>
+         <Heading src="/hackathon/Group9.png" alt="" title="Categories" />
+        </div>
+      </section>
+
+      <footer className="flex flex-col w-full">
+        <span className="w-full h-[40px] bg-[url('/hackathon/Group544.png')] bg-cover bg-center "></span>
+        <main className={`flex flex-col w-full items-center pb-3`}>
+        </main>
+      </footer>
         {/* <HackathonLogin /> */}
     </main>
   )
 }
 
 export default Hackathon
+        //  <div className={` ${container}`}>
+        //   <div className="flex justify-between py-5 w-full">
+        //       <div className="flex flex-col justify-center space-y-8">
+        //         <Image src={footerLogo} alt="" width={0} height={0} />
+        //         <div>
+        //           <Link href="#" className="flex">
+        //             <Image src="" alt="" width={20} height={0} />
+        //             event@web3bridge.com
+        //           </Link>
+        //           <Link href="#" className="flex">
+        //             <Image src={footerImage} alt="" width={20} height={0} />
+        //             event@web3bridge.com
+        //           </Link>
+        //         </div>
+        //       </div>
+        //       <Image src={footerImage} alt="" width={0} height={0} className="w-[450px]" />
+        //     </div>
+        //     <div>Copyright© Web3.0 Lagos</div>
+        //  </div>
