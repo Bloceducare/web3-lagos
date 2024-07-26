@@ -8,6 +8,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(max_length=255)
     other_name = models.CharField(max_length=255, null=True)
     github_username = models.CharField(max_length=255, null=True)
+    web3_knowledge = models.CharField(max_length=255, null=True)
+    hacking_role = models.CharField(max_length=255, null=True)
 
 
     objects = CustomUserManager()    
