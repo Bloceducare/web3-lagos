@@ -1,7 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import Layout from "../layout";
 import HackathonHeader from "@/components/hackathon-header";
 import SideBar from "@/components/hackathon-sidebar";
 
@@ -65,8 +64,8 @@ const Dashboard = () => {
               className=""
             />
             <h3>
-              A minimum of 3 members of your team will need to be at the venue to
-              be judged; no online-only submissions.
+              A minimum of 3 members of your team will need to be at the venue
+              to be judged; no online-only submissions.
             </h3>
           </div>
 
@@ -110,8 +109,8 @@ const Dashboard = () => {
             />
             <h3>
               All code for projects must be written within the time frame of
-              Hackathon; there can be no previously written code submitted to the
-              judging process.
+              Hackathon; there can be no previously written code submitted to
+              the judging process.
             </h3>
           </div>
           <div className="flex items-center space-x-3 mt-4 px-4">
@@ -135,10 +134,7 @@ const Dashboard = () => {
               width={20}
               className=""
             />
-            <h3>
-              Please respect our code of conduct
-         
-            </h3>
+            <h3>Please respect our code of conduct</h3>
           </div>
         </div>
       </div>

@@ -1,10 +1,10 @@
-import React from 'react'
-import Project from '@/views/hackathon/dashbord/Project'
+import React from "react";
+import Project from "@/views/hackathon/dashbord/Project";
 
 const project = () => {
   return (
-    <Project />
-  )
-}
+      <Project />
+  );
+};
 
-export default project
+export default project;
