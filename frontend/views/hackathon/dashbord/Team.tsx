@@ -2,8 +2,10 @@ import React, { useEffect, useState, ChangeEvent, FormEvent } from "react";
 import EmailInput from "@/components/Email";
 import SideBar from "@/components/hackathon-sidebar";
 import HackathonHeader from "@/components/hackathon-header";
+import team from "@/pages/hackathon/team";
 
 type TeamData = {
+  id: number;
   name: string;
   creator: BigInteger;
   members: number[];
@@ -149,6 +151,7 @@ const Team: React.FC = () => {
     console.log(data);
     if (response.ok) {
       setTeamCreated(true);
+      setData(data);
       setFormData(initialFormState);
       setIsSuccess(true);
       setShowModal(true);
@@ -174,7 +177,7 @@ const Team: React.FC = () => {
     if (yourToken && userString) {
       const user = JSON.parse(userString);
       const response = await fetch(
-        `https://web3lagosbackend.onrender.com/hackathon/teams/${user.id}/invite/`,
+        `https://web3lagosbackend.onrender.com/hackathon/teams/${data?.id}/invite/`,
         {
           method: "POST",
           headers: {
