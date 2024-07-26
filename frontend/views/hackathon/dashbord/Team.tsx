@@ -46,6 +46,7 @@ const Team: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [errors, setErrors] = useState<FormErrors>(initialFormErrors);
   const [data, setData] = useState<TeamData | null>(null);
   const [teamCreated, setTeamCreated] = useState(false);
@@ -150,8 +151,17 @@ const Team: React.FC = () => {
       setTeamCreated(true);
       setFormData(initialFormState);
       setIsSuccess(true);
+      setShowModal(true);
+      setTimeout(() => {
+        setShowModal(false);
+      }, 5000);
     } else {
       setErrors(data);
+      setIsSuccess(false);
+      setShowModal(true);
+      setTimeout(() => {
+        setShowModal(false);
+      }, 5000);
     }
     setLoading(false);
   };
@@ -178,11 +188,23 @@ const Team: React.FC = () => {
       if (response.ok) {
         const data = await response.json();
         setMessage("Invitation sent");
+        setEmails([]); // Clear emails after successful invite
+        setIsSuccess(true);
       } else {
         setMessage("Failed to send invite");
+        setIsSuccess(false);
       }
+      setShowModal(true);
+      setTimeout(() => {
+        setShowModal(false);
+      }, 5000);
     } else {
       setMessage("No token or user data found");
+      setIsSuccess(false);
+      setShowModal(true);
+      setTimeout(() => {
+        setShowModal(false);
+      }, 5000);
     }
   };
 
@@ -209,11 +231,22 @@ const Team: React.FC = () => {
         const data = await response.json();
         setMessage("Successfully joined the team");
         setData(data);
+        setIsSuccess(true);
       } else {
         setMessage("Failed to join the team");
+        setIsSuccess(false);
       }
+      setShowModal(true);
+      setTimeout(() => {
+        setShowModal(false);
+      }, 5000);
     } else {
       setMessage("No token or user data found");
+      setIsSuccess(false);
+      setShowModal(true);
+      setTimeout(() => {
+        setShowModal(false);
+      }, 5000);
     }
   };
 
@@ -282,9 +315,9 @@ const Team: React.FC = () => {
 )}
 
 
-        {message && (
+        {showModal && (
           <div
-            className={`mt-4 p-4 text-center text-black ${isSuccess ? 'bg-green-500' : 'bg-red-500'} border rounded-md`}
+            className={`fixed bottom-4 right-4 p-4 text-center text-white ${isSuccess ? 'bg-[#00ff00]' : 'bg-[#ff0000]'} border rounded-md`}
           >
             {message}
           </div>

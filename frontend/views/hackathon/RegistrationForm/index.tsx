@@ -15,7 +15,7 @@ type FormData = {
   confirmpassword: string;
   github_username: string;
   web3_knowledge: string;
-  role: string;
+  hacking_role: string;
 };
 
 type FormErrors = {
@@ -29,7 +29,7 @@ const initialFormState: FormData = {
   confirmpassword: "",
   github_username: "",
   web3_knowledge: "",
-  role: ""
+  hacking_role: ""
 };
 
 const initialFormErrors: FormErrors = {};
@@ -268,13 +268,13 @@ export default function HackathonRegistration() {
               </div>
               <div className="w-full sm:w-1/2 ">
                 <label
-                  htmlFor="Role"
+                  htmlFor="hacking_role"
                   className="block mb-2 font-bold text-gray-600 my-9"
                 >
                   Role
                 </label>
                 <div>
-                <select name="role" onChange={handleChange} value={formData.role} className="w-full p-4 border  border-black shadow-[4px_4px_0px_0px_#1E1E1E] mt-3">
+                <select name="hacking_role" onChange={handleChange} value={formData.hacking_role} className="w-full p-4 border  border-black shadow-[4px_4px_0px_0px_#1E1E1E] mt-3">
               <option value="Developer">Developer</option>
               <option value="UI/UX Designer">UI/UX Designer</option>
               <option value="Project Manager">Project Manager</option>

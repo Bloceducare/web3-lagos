@@ -16,13 +16,13 @@ interface FormData {
 
 
 type Project = {
-  id: number;
   name: string;
   category: string;
   description: string;
   live_link: string;
   demo_video: string;
   github_url: string;
+  id?: number;
   [key: string]: any; 
 };
 
@@ -91,6 +91,7 @@ const Project: React.FC = () => {
               setCreatorID(data[0].creator)
               setShowProject(true)
               setData(data[0])
+              setFormData(data[0].projects)
               setProjectDetail(true)
               if (creatorID === users.id) {
                  setisCreator(true)
@@ -169,7 +170,7 @@ const Project: React.FC = () => {
       localStorage.setItem("user", JSON.stringify(data.user));
       
       setMessage("Created Successfully");
-      setFormData(initialFormState);
+      setFormData(data);
       setIsSuccess(true);
     } else {
       setErrors(data);
@@ -200,7 +201,7 @@ const Project: React.FC = () => {
       }, {} as FormData);
       
     const response = await fetch(
-      `https://web3lagosbackend.onrender.com/hackathon/teams/${data?.id}/`,
+      `https://web3lagosbackend.onrender.com/hackathon/project/${formData?.id}/`,
       {
         method: "PUT",
         headers: {
@@ -245,7 +246,7 @@ const Project: React.FC = () => {
 
     if (creatorID === users.id) {      
     const response = await fetch(
-     `https://web3lagosbackend.onrender.com/hackathon/teams/${user?.id}/`,
+     `https://web3lagosbackend.onrender.com/hackathon/teams/${formData.id}/`,
       {
         method: "DELETE",
         headers: {
