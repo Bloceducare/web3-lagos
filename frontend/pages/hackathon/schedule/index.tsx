@@ -1,10 +1,13 @@
-import React from 'react'
-import Schedule from '@/views/hackathon/dashbord/Schedule'
+import React from "react";
+import Schedule from "@/views/hackathon/dashbord/Schedule";
+import Layout from "@/views/hackathon/Layout";
 
 const schedule = () => {
-  return (
-    <Schedule />
+  return(
+  <Layout>
+    <Schedule />;
+  </Layout>
   )
-}
+};
 
 export default schedule;

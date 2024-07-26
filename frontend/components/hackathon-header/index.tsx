@@ -3,7 +3,6 @@ import Link from "next/link";
 import { IoMdLogOut } from "react-icons/io";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { MdOutlineAccountCircle } from "react-icons/md";
-// import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 type User = {
   email: string;
@@ -60,26 +59,15 @@ const HackathonHeader: React.FC<HackathonHeaderProps> = ({ user }) => {
     <div className="flex w-full flex-row-reverse  items-start justify-between">
       <div className="flex justify-end  w-fit">
         <IoIosNotificationsOutline className="w-10 h-6" />
-        {/* <div>
-          <SignedOut>
-            <SignInButton />
-          </SignedOut>
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
-        </div> */}
+
         <button className="group text-black">
           <MdOutlineAccountCircle className="w-8 h-6" />
           <div className="z-10 hidden  rounded-lg shadow w-32 group-focus:block top-full right-0 ">
             <div className="py-2 mb-2 ">
-              <Link href="/" className="flex rounded-md space-x-2 ">
+              <Link href="/hackathon" className="flex rounded-md space-x-2 ">
                 <IoMdLogOut className="w-4 h-8 " />
                 <p className="text-center ">Logout</p>
               </Link>
-              <Link href="/" className="flex rounded-md space-x-2 ">
-                <IoMdLogOut className="w-4 h-8 " />
-                <p className="text-center ">Logout</p>
-              </Link>{" "}
             </div>
           </div>
         </button>

@@ -1,13 +1,13 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import Layout from "../components/layout";
+import { SidebarProvider } from "@/components/hackathon-sidebar/SidebarContext";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      <Layout>
+      <SidebarProvider>
         <Component {...pageProps} />
-      </Layout>
+      </SidebarProvider>
     </>
   );
 }

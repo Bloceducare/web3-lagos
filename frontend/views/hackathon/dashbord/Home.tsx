@@ -1,10 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import Layout from "../layout";
 import HackathonHeader from "@/components/hackathon-header";
 import SideBar from "@/components/hackathon-sidebar";
-import { FaArrowCircleRight } from "react-icons/fa";
 
 type User = {
   email: string;
@@ -30,7 +28,6 @@ const Dashboard = () => {
       <div className="sm:w-1/5 sm:fixed h-full sm:flex hidden">
         <SideBar />
       </div>
-      <FaArrowCircleRight className="w-8 h-6" />
       <div className="flex flex-col sm:w-4/5  w-full sm:ml-[20%] sm:px-8 ">
         <div className="w-full">
           <HackathonHeader user={user} />
