@@ -1,5 +1,6 @@
 import React, { createContext, useState, ReactNode, FC } from 'react';
 
+
 // Define the shape of the context value
 interface SidebarContextType {
   isCollapsed: boolean;
