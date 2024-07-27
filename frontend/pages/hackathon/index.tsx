@@ -2,7 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import DateCountDown from "@/components/dateCountDown";
 import HackathonLogin from "@/views/hackathon/Login";
-// import heroBg from "../../public/hackathon/Hero.png"
+
+import Logo from "../../public/hackathon/Logo.png"
 
 const overview = [
   {
@@ -133,17 +134,31 @@ const Hackathon = () => {
 
   return (
       <main className="flex flex-col w-screen">
-        <section className="flex justify-center w-full py-10 md:pb-10 md:px-5 bg-[#0096FFCC] bg-[url('/hackathon/hero.png')] bg-cover bg-center">
-          <div
-            className={`flex flex-col justify-between space-y-[3rem] md:space-y-[3rem] w-full items-center p-2 md:p-4 lg:p-8 xl:p-20 text-[#fff] ${container}`}
-          >
-            <div></div>
-            <div className="flex flex-col space-y-[3rem] justify-center items-center h-full w-full">
+        <section className="flex justify-center w-full md:pb-10 md:px-5 pt-3 md:pt-0 bg-[#0096FFCC] bg-[url('/hackathon/hero.png')] bg-cover bg-center">
+          <div className={`flex flex-col justify-between space-y-[3rem] md:space-y-[3rem] w-full items-center p-2 md:p-4 lg:p-8 text-[#fff] ${container}`}>
+            <header className="flex justify-between items-center w-full">
+              <Image src={Logo} alt="" width={0} height={0} className="w-[140px] md:w-[160px] lg:w-[200px] xl:w-[220px]" />
+              <nav className="flex items-center md:gap-10">
+                <Link href="/hackathon/registration" className="invisible md:visible">
+                  <button className=" border-[1px] bg-[#fff] text-black border-black shadow-[-5px_-5px_0px_0px_rgba(0,0,0)] px-4 py-[6px] md:py-[8px] lg:px-6 lg:py-3">
+                    Register Today
+                  </button>
+                </Link>
+                <Link href="#">
+                  <button className="border-[1px] bg-[#fff] text-black border-black shadow-[-5px_-5px_0px_0px_rgba(0,0,0)] px-4 py-[6px] md:py-[8px] lg:px-6 lg:py-3">
+                    Login
+                  </button>
+                </Link>
+              </nav>
+            </header>
+
+            {/* Hero Section */}
+            <div className="flex flex-col space-y-[3rem] lg:pt-14 justify-center items-center h-full w-full">
               <div className="text-center space-y-4 md:space-y-6">
-                <h1 className="text-[40px] md:text-[50px] lg:text-[70px] xl:text-[80px]">
-                  Web 3.0 <span>Lagos</span> Hackathon{" "}
+                <h1 className="text-[40px] font-bold md:text-[50px] lg:py-5 lg:text-[70px] xl:text-[90px]">
+                  Web 3.0 <span className="text-[#1ACF2C]">Lagos</span> Hackathon{" "}
                 </h1>
-                <p className="text-[17px] lg:text-[26px] xl:text-[28px]">
+                <p className="text-[17px] md:px-16 lg:text-[26px] xl:text-[28px]">
                   Innovate, Collaborate, and Transform: Build Cutting-Edge
                   Blockchain Solutions with Global Impact and Win Incredible
                   Prizes!
@@ -242,9 +257,9 @@ const Hackathon = () => {
           </div>
         </section>
 
-      <section>
-        <div>
-         <Heading src="/hackathon/Group9.png" alt="" title="Categories" />
+      <section className="flex flex-col items-center">
+        <div className={`flex w-full ${container} p-4 md:space-y-10 md:p-7 lg:pb-20`}>
+         <Heading src="/hackathon/Group15.png" alt="" title="Prizes and Awards" />
         </div>
       </section>
 
