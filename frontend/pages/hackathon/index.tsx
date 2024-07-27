@@ -68,7 +68,7 @@ const Hackathon = () => {
 
   return (
     <main className="flex flex-col w-screen">
-      <section className="flex justify-center w-full py-10 md:pb-0 bg-[#0096FFCC] bg-[url('/hackathon/hero.png')] bg-cover bg-center">
+      <section className="flex justify-center w-full py-10 md:pb-10 md:px-5 bg-[#0096FFCC] bg-[url('/hackathon/hero.png')] bg-cover bg-center">
        <div className={`flex flex-col justify-between space-y-[3rem] md:space-y-[3rem] w-full items-center p-2 md:p-4 lg:p-8 xl:p-20 text-[#fff] ${container}`}>
         <div></div>
         <div className="flex flex-col space-y-[3rem] justify-center items-center h-full w-full">
@@ -107,9 +107,9 @@ const Hackathon = () => {
           <p className={`${textSize}`}>The hackathon aims to build projects with real-world impact. Teams of 3 to 5 members will tackle problems in various categories.</p>
         </article>
 
-        <section className="flex flex-wrap justify-strat">
+        <section className="flex flex-wrap gap-x-10 justify-strat">
           {overview.map((card) => (
-            <article key={card.id} className="space-y-7 p-7 mb-7 md:m-5 md:ml-0 md:h-[400px] md:w-[320px] lg:h-[350px] lg:w-[350px] text-[#fff] bg-[#0096FF] border-[1px] rounded-lg border-[#fff] shadow-[5px_5px_0px_0px_#1ACF2C]">
+            <article key={card.id} className="space-y-7  p-7 mb-7 md:m-5 md:ml-0 md:h-[400px] md:max-w-[310px] lg:h-[370px] lg:min-w-[250px] lg:flex-auto lg:max-w-[270px] xl:max-w-[360px] xl:pr-20 text-[#fff] bg-[#0096FF] border-[1px] rounded-lg border-[#fff] shadow-[5px_5px_0px_0px_#1ACF2C]">
               <h3 className="text-[22px] font-medium h-[60px] flex items-center">{card.title}</h3>
               <p className="text-[17px]">{card.content}</p>
             </article>
@@ -124,9 +124,9 @@ const Hackathon = () => {
             <Heading src="/hackathon/Vector.png" alt="" title="Event Schedule" />
           </header>
           
-          <section className="flex justify-center md:justify-start flex-wrap">
+          <section className="flex justify-start items-center w-full flex-wrap">
             {eventSchedule.map((card) => (
-              <article key={card.id} className={`space-y-2 border-b-[1px] border-[#fff] px-7 py-12 w-full md:h-[200px] md:w-[240px] lg:h-[230px] lg:w-[230px] xl:w-[280px] text-[#fff] ${card.color}`}>
+              <article key={card.id} className={`space-y-2 border-b-[1px] border-[#fff] px-7 py-12 w-full md:h-[200px] md:w-[230px] lg:h-[230px] lg:min-w-[250px] lg:max-w-[300px]  lg:flex-1 xl:w-[280px] text-[#fff] ${card.color}`}>
                 <p className="text-[14px] bg-[#1ACF2C] w-fit px-2 py-1 rounded-md">{card.time}</p>
                 <p className="text-[17px]">{card.date}</p>
                 <h3 className="text-[22px] pt-8 font-medium h-[60px] flex items-center">{card.title}</h3>
