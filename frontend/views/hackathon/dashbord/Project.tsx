@@ -235,11 +235,11 @@ const Project: React.FC = () => {
   };
 
   return (
-    <div className='flex mt-[5rem] mb-5 px-4 sm:px-0'>
-      <div className="sm:w-1/5 sm:fixed h-full sm:flex hidden">
+    <div className='flex w-full h-full px-4 sm:px-0'>
+      <div className="sm:w-1/5 fixed h-full sm:flex">
         <SideBar />
       </div>
-      <section className="flex flex-col sm:w-4/5 sm:ml-[20%] w-full  sm:px-8 ">
+      <section className="flex flex-col sm:w-4/5 sm:ml-[20%] w-full mt-14 sm:px-8 ">
         <div className="w-full">
           <HackathonHeader user={user} />
         </div>

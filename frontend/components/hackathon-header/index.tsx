@@ -72,9 +72,9 @@ const HackathonHeader: React.FC<HackathonHeaderProps> = ({ user }) => {
           </div>
         </button>
       </div>
-      <div className="w-full flex justify-center items-center sm:justify-start">
+      <div className="w-full flex justify-center items-center sm:justify-start ">
         <div>
-          <h1 className="text-2xl text-black text-start font-bold mr-20">
+          <h1 className="text-2xl text-black text-start font-bold mr-20 ">
             Welcome, {user ? user.first_name : "Guest"}!
           </h1>
           <h3 className="text-black mr-40 text-start">{currentDate}</h3>

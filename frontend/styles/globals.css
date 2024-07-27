@@ -76,16 +76,18 @@ input[type="radio"] + label {
   }
 }
 .sidebar__wrapper {
-  position: relative;
+  position: fixed;
 }
 
 .sidebar {
-  width: 17rem;
-  height: 100%;
-  background-color: var(--color-bg);
+  width: 15rem;
+  height: 100vh;
+
+  background-color: #0096ff;
   padding: 1rem;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-  overflow: hidden;
 }
 
 .sidebar__top {
@@ -127,8 +129,8 @@ input[type="radio"] + label {
 }
 
 .sidebar__link--active {
-  color: #fff;
-  background-color: #10b981;
+  color: #141414;
+  background-color: #fff;
 }
 
 .sidebar__icon {
@@ -138,31 +140,4 @@ input[type="radio"] + label {
 
 .sidebar__name {
   margin-left: 0.5rem;
-}
-
-[data-collapse="true"] {
-  width: 5.3rem;
-}
-
-[data-collapse="true"] .sidebar__name,
-[data-collapse="true"] .sidebar__logo-name {
-  display: none;
-}
-
-.btn {
-  position: absolute;
-  right: 0;
-  top: 4.7rem;
-  border: none;
-  background-color: var(--color-bg);
-  width: 1.5rem;
-  height: 1.5rem;
-  border: 1px solid var(--color-border);
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transform: translateX(50%);
-  font-size: 1.1rem;
 }
