@@ -2,7 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import DateCountDown from "@/components/dateCountDown";
 import HackathonLogin from "@/views/hackathon/Login";
-// import heroBg from "../../public/hackathon/Hero.png"
+
+import Logo from "../../public/hackathon/Logo.png"
 
 const overview = [
   {
@@ -126,25 +127,38 @@ const Hackathon = () => {
     </div>
   );
 
-  const container =
-    "md:p-4 lg:p-8 xl:p-20 lg:max-w-screen-lg xl:max-w-screen-xl";
+  const container = " lg:max-w-screen-lg xl:max-w-screen-xl";
 
   const textSize =
     "text-[18px] md:text-[19px] lg:text-[24px] xl:text-[26px] py-3";
 
   return (
       <main className="flex flex-col w-screen">
-        <section className="flex justify-center w-full py-10 md:pb-0 bg-[#0096FFCC] bg-[url('/hackathon/hero.png')] bg-cover bg-center">
-          <div
-            className={`flex flex-col justify-between space-y-[3rem] md:space-y-[3rem] w-full items-center p-2 text-[#fff] ${container}`}
-          >
-            <div></div>
-            <div className="flex flex-col space-y-[3rem] justify-center items-center h-full w-full">
+        <section className="flex justify-center w-full md:pb-10 md:px-5 pt-3 md:pt-0 bg-[#0096FFCC] bg-[url('/hackathon/hero.png')] bg-cover bg-center">
+          <div className={`flex flex-col justify-between space-y-[3rem] md:space-y-[3rem] w-full items-center p-2 md:p-4 lg:p-8 text-[#fff] ${container}`}>
+            <header className="flex justify-between items-center w-full">
+              <Image src={Logo} alt="" width={0} height={0} className="w-[140px] md:w-[160px] lg:w-[200px] xl:w-[220px]" />
+              <nav className="flex items-center md:gap-10">
+                <Link href="/hackathon/registration" className="invisible md:visible">
+                  <button className=" border-[1px] bg-[#fff] text-black border-black shadow-[-5px_-5px_0px_0px_rgba(0,0,0)] px-4 py-[6px] md:py-[8px] lg:px-6 lg:py-3">
+                    Register Today
+                  </button>
+                </Link>
+                <Link href="#">
+                  <button className="border-[1px] bg-[#fff] text-black border-black shadow-[-5px_-5px_0px_0px_rgba(0,0,0)] px-4 py-[6px] md:py-[8px] lg:px-6 lg:py-3">
+                    Login
+                  </button>
+                </Link>
+              </nav>
+            </header>
+
+            {/* Hero Section */}
+            <div className="flex flex-col space-y-[3rem] lg:pt-14 justify-center items-center h-full w-full">
               <div className="text-center space-y-4 md:space-y-6">
-                <h1 className="text-[40px] md:text-[50px] lg:text-[70px] xl:text-[80px]">
-                  Web 3.0 <span>Lagos</span> Hackathon{" "}
+                <h1 className="text-[40px] font-bold md:text-[50px] lg:py-5 lg:text-[70px] xl:text-[90px]">
+                  Web 3.0 <span className="text-[#1ACF2C]">Lagos</span> Hackathon{" "}
                 </h1>
-                <p className="text-[17px] lg:text-[26px] xl:text-[28px]">
+                <p className="text-[17px] md:px-16 lg:text-[26px] xl:text-[28px]">
                   Innovate, Collaborate, and Transform: Build Cutting-Edge
                   Blockchain Solutions with Global Impact and Win Incredible
                   Prizes!
@@ -164,14 +178,14 @@ const Hackathon = () => {
               </div>
             </div>
             <div className="flex flex-col justify-center items-center text-black w-full space-y-7 border-[1px] bg-[#fff] border-[#1E1E1E] shadow-[-5px_5px_0px_0px_rgba(0,0,0)] p-6">
-              <p>Registration Ends In:</p>
+              <p className="font-semibold md:text-[24px] lg:text-[34px]">Registration Ends In:</p>
               <DateCountDown />
             </div>
           </div>
         </section>
 
         <section className="flex flex-col justify-center items-center w-full">
-          <div className={`${container} p-4`}>
+          <div className={`md:p-7  lg:py-8 xl:py-20 ${container} p-4`}>
             <article>
               <Heading src="/hackathon/Group16.png" alt="" title="Overview" />
               <p id="learnmore" className={`${textSize}`}>
@@ -196,11 +210,11 @@ const Hackathon = () => {
               </p>
             </article>
 
-            <section className="flex flex-wrap justify-strat">
+            <section className="flex flex-wrap gap-x-10 justify-strat">
               {overview.map((card) => (
                 <article
                   key={card.id}
-                  className="space-y-7 p-7 mb-7 md:m-5 md:ml-0 md:h-[400px] md:w-[320px] lg:h-[350px] lg:w-[350px] text-[#fff] bg-[#0096FF] border-[1px] rounded-lg border-[#fff] shadow-[5px_5px_0px_0px_#1ACF2C]"
+                  className="space-y-7  p-7 mb-7 md:m-5 md:ml-0 md:h-[400px] md:max-w-[310px] lg:h-[370px] lg:min-w-[250px] lg:flex-auto lg:max-w-[270px] xl:max-w-[360px] xl:pr-20 text-[#fff] bg-[#0096FF] border-[1px] rounded-lg border-[#fff] shadow-[5px_5px_0px_0px_#1ACF2C]"
                 >
                   <h3 className="text-[22px] font-medium h-[60px] flex items-center">
                     {card.title}
@@ -214,7 +228,7 @@ const Hackathon = () => {
 
         <section className="flex flex-col w-full items-center bg-[#0096FF]">
           <div
-            className={`flex flex-col justify-between p-4 md:space-y-10 ${container}`}
+            className={`flex flex-col justify-between p-4 md:space-y-10 md:p-7 lg:pb-20  ${container}`}
           >
             <header className="text-[#fff]">
               <Heading
@@ -224,11 +238,11 @@ const Hackathon = () => {
               />
             </header>
 
-            <section className="flex justify-center md:justify-start flex-wrap">
+            <section className="flex justify-start items-center w-full flex-wrap">
               {eventSchedule.map((card) => (
                 <article
                   key={card.id}
-                  className={`space-y-2 border-b-[1px] border-[#fff] px-7 py-12 w-full md:h-[200px] md:w-[240px] lg:h-[230px] lg:w-[230px] xl:w-[280px] text-[#fff] ${card.color}`}
+                  className={`space-y-2 border-b-[1px] border-[#fff] px-7 py-12 w-full md:h-[200px] md:w-[230px] lg:h-[230px] lg:min-w-[250px] lg:max-w-[300px]  lg:flex-1 xl:w-[280px] text-[#fff] ${card.color}`}
                 >
                   <p className="text-[14px] bg-[#1ACF2C] w-fit px-2 py-1 rounded-md">
                     {card.time}
@@ -242,9 +256,41 @@ const Hackathon = () => {
             </section>
           </div>
         </section>
+
+      <section className="flex flex-col items-center">
+        <div className={`flex w-full ${container} p-4 md:space-y-10 md:p-7 lg:pb-20`}>
+         <Heading src="/hackathon/Group15.png" alt="" title="Prizes and Awards" />
+        </div>
+      </section>
+
+      <footer className="flex flex-col w-full">
+        <span className="w-full h-[40px] bg-[url('/hackathon/Group544.png')] bg-cover bg-center "></span>
+        <main className={`flex flex-col w-full items-center pb-3`}>
+        </main>
+      </footer>
         {/* <HackathonLogin /> */}
       </main>
   );
 };
 
 export default Hackathon;
+
+        //  <div className={` ${container}`}>
+        //   <div className="flex justify-between py-5 w-full">
+        //       <div className="flex flex-col justify-center space-y-8">
+        //         <Image src={footerLogo} alt="" width={0} height={0} />
+        //         <div>
+        //           <Link href="#" className="flex">
+        //             <Image src="" alt="" width={20} height={0} />
+        //             event@web3bridge.com
+        //           </Link>
+        //           <Link href="#" className="flex">
+        //             <Image src={footerImage} alt="" width={20} height={0} />
+        //             event@web3bridge.com
+        //           </Link>
+        //         </div>
+        //       </div>
+        //       <Image src={footerImage} alt="" width={0} height={0} className="w-[450px]" />
+        //     </div>
+        //     <div>Copyright© Web3.0 Lagos</div>
+        //  </div>
