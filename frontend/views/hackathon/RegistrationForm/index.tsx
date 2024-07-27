@@ -14,6 +14,8 @@ type FormData = {
   password: string;
   confirmpassword: string;
   github_username: string;
+  web3_knowledge: string;
+  hacking_role: string;
 };
 
 type FormErrors = {
@@ -26,6 +28,8 @@ const initialFormState: FormData = {
   password: "",
   confirmpassword: "",
   github_username: "",
+  web3_knowledge: "",
+  hacking_role: ""
 };
 
 const initialFormErrors: FormErrors = {};
@@ -245,6 +249,40 @@ export default function HackathonRegistration() {
                 </div>
               </div>
             </div>
+            <div className="flex flex-col sm:flex-row justify-center items-center space-y-6 sm:space-x-6 sm:space-y-0">
+              <div className="w-full sm:w-1/2">
+                <label
+                  htmlFor="Web3 Knowledge"
+                  className="block mb-2 font-bold text-gray-600 my-8"
+                >
+                  Web3 Knowledge
+                </label>
+                <div className="relative w-full">
+                <select name="web3_knowledge" onChange={handleChange} value={formData.web3_knowledge}  className="w-full p-4 border  border-black shadow-[4px_4px_0px_0px_#1E1E1E] mt-3">
+              <option value="Newbie" >Newbie</option>
+              <option value="Beginner">Beginner</option>
+              <option value="Intermediate">Intermediate </option>
+              <option value="Expert">Expert</option>
+            </select>
+                </div>
+              </div>
+              <div className="w-full sm:w-1/2 ">
+                <label
+                  htmlFor="hacking_role"
+                  className="block mb-2 font-bold text-gray-600 my-9"
+                >
+                  Role
+                </label>
+                <div>
+                <select name="hacking_role" onChange={handleChange} value={formData.hacking_role} className="w-full p-4 border  border-black shadow-[4px_4px_0px_0px_#1E1E1E] mt-3">
+              <option value="Developer">Developer</option>
+              <option value="UI/UX Designer">UI/UX Designer</option>
+              <option value="Project Manager">Project Manager</option>
+            </select>
+                </div>
+              </div>
+            </div>
+
             <div className="flex items-center sm:flex-rowspace-y-3 space-x-3">
               <div className="flex">
                 <input

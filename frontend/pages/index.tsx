@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import HomeView from "@/views/home";
+import Layout from "@/components/layout";
 
 const Home: NextPage = () => {
   return (
@@ -8,11 +9,15 @@ const Home: NextPage = () => {
       <Head>
         <title>Web3Lagos Sep 5 - Sep 9, 2024</title>
       </Head>
+      <Layout>
 
       <HomeView />
+      </Layout>
     </div>
   );
 };
+
+
 
 export default Home;
 

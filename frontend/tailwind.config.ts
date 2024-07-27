@@ -29,10 +29,19 @@ module.exports = {
         'big' :"1441px"
       }
     },
+    
     backgroundColor:{
       header:"rgba(255, 255, 255, 1)",
       hero:"rgba(5, 55, 88, 1)"
     }
   },
   plugins: [],
+  extend:{
+    variants:{
+extend:{
+  display: ["focus-group"]
+
+}
+    }
+  }
 };

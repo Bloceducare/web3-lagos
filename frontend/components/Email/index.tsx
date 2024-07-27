@@ -59,10 +59,11 @@ const EmailInput: React.FC<EmailInputProps> = ({ emails, setEmails, limit }) => 
     setInput(value);
 
     if (value) {
+      const emailMatch = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      const fullMatch = new RegExp(`^${value}$`, 'i');
+
       const filteredSuggestions = availableUsers.filter(user =>
-        user.email.toLowerCase().includes(value.toLowerCase()) ||
-        user.first_name.toLowerCase().includes(value.toLowerCase()) ||
-        user.github_username.toLowerCase().includes(value.toLowerCase())
+        emailMatch.test(value) ? user.email.toLowerCase().includes(value.toLowerCase()) : fullMatch.test(user.github_username)
       ).filter(user => !emails.includes(user.email));
 
       setSuggestions(filteredSuggestions);
@@ -93,7 +94,7 @@ const EmailInput: React.FC<EmailInputProps> = ({ emails, setEmails, limit }) => 
           value={input}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
-          placeholder="Search email, name, or GitHub username"
+          placeholder="Enter email or GitHub username"
           className="w-full p-4 outline-none m-3"
         />
         {suggestions.length > 0 && (
@@ -104,7 +105,7 @@ const EmailInput: React.FC<EmailInputProps> = ({ emails, setEmails, limit }) => 
                 onClick={(e) => handleSuggestionClick(user, e)}
                 className="p-2 cursor-pointer hover:bg-gray-100"
               >
-                {user.email} {user.first_name && `(${user.first_name})`} {user.github_username && `(@${user.github_username})`}
+                {user.email} {user.github_username && `(@${user.github_username})`}
               </li>
             ))}
           </ul>
