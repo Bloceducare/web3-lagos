@@ -90,9 +90,10 @@ export default function HackathonRegistration() {
 
   if (isSuccess) {
     return (
-      <div className="">
-        <HackathonSuccessScreen />
-      </div>
+      <div className="mx-auto min-h-screen flex items-center justify-center">
+      <HackathonSuccessScreen />
+    </div>
+    
     );
   }
 
