@@ -5,8 +5,6 @@ from django.core.mail import send_mail
 from .serializers import SignupSerializer, SigninSerializer
 from django.contrib.auth import authenticate
 from .models import CustomUser
-from django.db import IntegrityError
-from rest_framework.exceptions import ValidationError
 from rest_framework_simplejwt.tokens import RefreshToken
 from .serializers import CustomUserDetailSerializer, ResetPasswordSerializer, CompletePasswordResetSerializer
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
@@ -22,43 +20,16 @@ class SignupView(generics.CreateAPIView):
     serializer_class = SignupSerializer
 
     def create(self, request, *args, **kwargs):
-        try:
-            response = super().create(request, *args, **kwargs)
-            if response.status_code == status.HTTP_201_CREATED:
-                return Response({
-                    'message': 'User registered successfully.',
-                    **response.data
-                }, status=status.HTTP_201_CREATED)
-            else:
-                return response
-        except ValidationError as e:
-            error_messages = {
-                'email': 'A user with this email already exists or the email format is invalid.',
-                'first_name': 'First name is required and must be valid.',
-                'other_name': 'Other name must be valid.',
-                'github_username': 'GitHub username must be valid.',
-                'web3_knowledge': 'Web3 knowledge must be valid.',
-                'hacking_role': 'Hacking role must be valid.'
-            }
-            default_error_message = 'There was a validation error.'
-            field_errors = {field: error_messages.get(field, default_error_message) for field in e.detail.keys()}
-
+        response = super().create(request, *args, **kwargs)
+        user = CustomUser.objects.get(email=request.data['email'])
+        # self.send_confirmation_email(user)
+        if response.status_code == status.HTTP_201_CREATED:
             return Response({
-                'message': 'There were validation errors.',
-                'errors': field_errors
-            }, status=status.HTTP_400_BAD_REQUEST)
-        except IntegrityError:
-            # Handle integrity errors such as unique constraints
-            return Response({
-                'message': 'A user with this email already exists.',
-                'errors': {'email': 'A user with this email already exists.'}
-            }, status=status.HTTP_400_BAD_REQUEST)
-        except Exception as e:
-            # Handle any other errors
-            return Response({
-                'message': 'An unexpected error occurred.',
-                'errors': str(e)
-            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+                'message': 'User registered successfully.',
+                **response.data
+            }, status=status.HTTP_201_CREATED)
+        else:
+            return response
         
     def perform_create(self, serializer):
             instance = serializer.save()
