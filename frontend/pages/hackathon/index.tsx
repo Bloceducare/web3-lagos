@@ -49,7 +49,7 @@ const eventSchedule = [
   {
     id: 2,
     time: "11:59pm WAT",
-    date: "4th August, 2024",
+    date: "20th August, 2024",
     title: "Registration Ends",
     color: "bg-[#333866]",
   },

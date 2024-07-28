@@ -17,6 +17,10 @@ class TeamSerializer(serializers.ModelSerializer):
 
 class JoinTeamSerializer(serializers.Serializer):
     joining_code = serializers.CharField()
+
+class LeaveTeamSerializer(serializers.Serializer):
+    class Meta:
+        fields = None
 class InviteSerializer(serializers.Serializer):
     emails = serializers.ListField(
         child=serializers.EmailField(),

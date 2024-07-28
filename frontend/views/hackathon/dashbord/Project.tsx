@@ -273,8 +273,10 @@ const Project: React.FC = () => {
             <div className='w-full mt-7'>
               <label>Category</label>
               <select name="category" onChange={handleChange} value={formData.category} className="w-full p-4 border  border-black shadow-[4px_4px_0px_0px_#1E1E1E] mt-3">
+                <option value="">Select A category</option>
                 <option value="Open Governance in the Africa Electoral Process">Application in open Governance in the Africa Electoral Process</option>
                 <option value="Entertainment and media">Application in Entertainment and media</option>
+                <option value="Real World Assets">Real World Assets</option>
                 <option value="Digital collectibles">Application in digital collectibles</option>
                 <option value="Financial inclusion and education">Application in financial inclusion and education</option>
                 <option value="Sustainability">Application in sustainability</option>
@@ -357,8 +359,10 @@ const Project: React.FC = () => {
             <div className='w-full mt-7'>
               <label>Category</label>
               <select name="category" onChange={handleUpdateChange} value={formData.category} className="w-full p-4 border  border-black shadow-[4px_4px_0px_0px_#1E1E1E] mt-3">
+                <option value="Open Governance in the Africa Electoral Process">Select A Category</option>
                 <option value="Open Governance in the Africa Electoral Process">Application in open Governance in the Africa Electoral Process</option>
                 <option value="Entertainment and media">Application in Entertainment and media</option>
+                <option value="Real World Assets">Real World Assets</option>
                 <option value="Digital collectibles">Application in digital collectibles</option>
                 <option value="Financial inclusion and education">Application in financial inclusion and education</option>
                 <option value="Sustainability">Application in sustainability</option>
