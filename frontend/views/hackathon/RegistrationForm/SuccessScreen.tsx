@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function HackathonSuccessScreen() {
   return (
-    <div className=" w-1/2 mt-40 items-center m-auto">
+    <div className=" w-fit mt-40 items-center m-auto">
       <div className=" border border-black rounded-lg w-full bg-white lg:px-8 pt-6 pb-8 mb-4 shadow-[6px_6px_0px_0px_#1ACF2C]">
         <Image
           src={"/Polygon 23.png"}
@@ -30,9 +30,14 @@ export default function HackathonSuccessScreen() {
           Hackathon. Secure your spot by creating or joining an existing team.
         </h3>
 
+
+        <h3 className="px-40 text-center">
+          But first, You need to Join the Telegram group using the link below
+        </h3>
+        
         <Link href="/">
           <button className="ml-60  text-center w-1/3  p-5 m-20  bg-[#1E1E1E]  text-white shadow-[-5px_-5px_0px_0px_#0096FF]">
-            Go to Dashboard
+            Join Telegram
           </button>
         </Link>
       </div>

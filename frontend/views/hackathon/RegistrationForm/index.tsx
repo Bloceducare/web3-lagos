@@ -79,7 +79,7 @@ export default function HackathonRegistration() {
       setMessage("Registration successful!");
       setFormData(initialFormState);
       setIsSuccess(true); // Show success screen
-      window.location.href= "/hackathon/login";
+      // window.location.href= "/hackathon/login";
     } else {
       setErrors(data);
       setMessage("Registration failed. Please try again.");
