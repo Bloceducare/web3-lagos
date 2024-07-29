@@ -29,12 +29,19 @@ export default function HackathonSuccessScreen() {
         <h3 className="px-4 font-bold text-center">
           But first, You need to Join the Telegram group using the link below
         </h3>
-        
-        <Link href="https://t.me/+mQ4RF188nBo5ZThk">
-          <button className=" text-center  p-5 mt-14 bg-[#1E1E1E]  text-white shadow-[-5px_-5px_0px_0px_#0096FF]">
+        <div className="w-fit justify-between flex gap-16">
+
+        <Link href="https://t.me/+mQ4RF188nBo5ZThk" target="_blank">
+          <button className=" text-center  p-5 mt-14 bg-[#0096FF]  text-white shadow-[-5px_-5px_0px_0px_#1E1E1E]">
             Join Telegram
           </button>
         </Link>
+        <Link href="/hackathon/login" >
+          <button className=" text-center  p-5 mt-14 bg-[#1E1E1E]  text-white shadow-[-5px_-5px_0px_0px_#0096FF]">
+            Login to continue
+          </button>
+        </Link>
+        </div>
       </div>
     </div>
   );
