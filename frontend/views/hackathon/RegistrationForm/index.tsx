@@ -129,7 +129,7 @@ export default function HackathonRegistration() {
     <div className="grid mx-auto mt-10 max-w-3xl p-6">
       <div className="border border-black rounded-lg w-full bg-white lg:px-8 pt-6 pb-8 mb-4 shadow-[6px_6px_0px_0px_#1ACF2C]">
         <h1 className="text-xl lg:text-4xl font-bold mt-3">Create an Account</h1>
-        <h3 className="mb-8">Enter your details to create a Hacker’s account</h3>
+        <h3 className="mb-4">Enter your details to create a Hacker’s account</h3>
         <div className="text-center">
           {!!message && (
             <span className={`text-${message.includes("successful") ? "[#00ff00]" : "[#ff0000]"}`}>
@@ -283,7 +283,7 @@ export default function HackathonRegistration() {
               <p className="text-red-500 text-sm absolute">{errors.web3_knowledge}</p>
             )}
           </div>
-          <div className="mb-4">
+          <div className="mb-16 ">
             <label htmlFor="hacking_role" className="block mb-2 font-bold text-gray-600 my-4">
               Hacking Role
             </label>
@@ -314,6 +314,12 @@ export default function HackathonRegistration() {
           >
             {loading ? "Submitting..." : "Create Account"}
           </button>
+           <h3 className="text-center m-4">
+              Already have an account?
+              <Link href="login">
+                <span className="text-blue-600 px-1 ">Log In</span>
+              </Link>
+            </h3>
         </form>
       </div>
     </div>

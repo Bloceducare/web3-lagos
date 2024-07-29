@@ -169,6 +169,42 @@ const Team: React.FC = () => {
     setLoading(false);
   };
 
+  const handleLeaveTeam = async(e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setMessage("");
+    const yourToken = localStorage.getItem("token");
+    const userString = localStorage.getItem('user'); 
+
+    if (userString && yourToken) {
+      
+    const response = await fetch(
+      `https://web3lagosbackend.onrender.com/hackathon/teams/leave/`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${yourToken}`,
+        },
+      }
+    );
+    const datas = await response.json();
+    console.log(datas);
+    if (response.ok) {
+      
+      setMessage(`You have successfully left ${data?.name} team.`);
+      setIsSuccess(true);
+      window.location.reload();
+    } else {
+      setErrors(datas);
+      setMessage(`Unable to leave ${data?.name} Team, Try again later`);
+      setIsSuccess(false);      
+    }
+  } else {
+    setMessage("something went wrong Try again Please ")
+  }
+    setLoading(false);
+  }
   const handleInviteSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const yourToken = localStorage.getItem("token");
@@ -217,7 +253,6 @@ const Team: React.FC = () => {
     e.preventDefault();
 
     if (yourToken && userString) {
-      const user = JSON.parse(userString);
       const response = await fetch(
         `https://web3lagosbackend.onrender.com/hackathon/teams/join/`,
         {
@@ -233,8 +268,7 @@ const Team: React.FC = () => {
       if (response.ok) {
         const data = await response.json();
         setMessage("Successfully joined the team");
-        setData(data);
-        setIsSuccess(true);
+        window.location.reload();
       } else {
         setMessage("Failed to join the team");
         setIsSuccess(false);
@@ -405,7 +439,17 @@ const Team: React.FC = () => {
             </div>
           </section>
         )}
+      {data != null &&
+  (user?.id !== parseInt(data?.creator?.toString())) &&
+  (<div className="mb-8">
+    <button className="w-fit mt-12 p-3 bg-[#530101] text-white text-xl text-center shadow-[-5px_-5px_0px_0px_#0096FF]" onClick={handleLeaveTeam}>
+      Leave team
+    </button>
+  </div>)
+}
       </section>
+{/* O8J2OKU */}
+
     </div>
   );
 };
