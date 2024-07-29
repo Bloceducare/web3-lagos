@@ -394,8 +394,9 @@ const Team: React.FC = () => {
               <section>
                 <form onSubmit={handleInviteSubmit}>
                   <div className='w-[100%] sm:w-[70%] md:w-[60%] mt-7'>
-                    <label htmlFor="teamName">Search email</label>
+                    <label htmlFor="teamName" className="text-[1.2em]">Search email</label>
                     <EmailInput emails={emails} setEmails={setEmails} limit={inviteLimit}/>
+                    <p className="font-bold">Note: only registered participants can be invited</p>
                     <div className="w-[100%] sm:w-[60%] md:w-[40%]">
                       <button
                         type="submit"
@@ -448,7 +449,6 @@ const Team: React.FC = () => {
   </div>)
 }
       </section>
-{/* O8J2OKU */}
 
     </div>
   );
