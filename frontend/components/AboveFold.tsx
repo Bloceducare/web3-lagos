@@ -4,10 +4,9 @@ import useTotalParticipants from "@/views/home/hooks/useTotalParticipants";
 
 import Button from "./button";
 import { BsFillPeopleFill } from "react-icons/bs";
-import { FaPaperPlane } from "react-icons/fa";
-import { FaMapMarkerAlt } from "react-icons/fa";
-import { FaRegCalendarAlt } from "react-icons/fa";
 import DateCountDown from "./dateCountDown";
+import { FaPaperPlane, FaMapMarkerAlt, FaRegCalendarAlt, FaUserNinja } from "react-icons/fa";
+
 import Sponsors from "./Sponsors";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
@@ -17,22 +16,27 @@ import heroImage from "../public/bg.png"
 type ProgressProps = {
   Title: string;
   number: string;
-  imageSrc: string;
+  imageSrc: string | null;
 }
 
 const Progress: React.FC<ProgressProps> = ({ Title, number, imageSrc }) => {
   return (
-    <div className="flex items-center space-x-2">
+    <div className="flex items-center space-x-2 ">
       <div>
-        <img alt="stats-icon" width="49" height="49" decoding="async" data-nimg="1" src={imageSrc} />
+        {imageSrc ? (
+          <Image alt="stats-icon" width="49" height="49" decoding="async" data-nimg="1" src={imageSrc} />
+        ) : (
+          <FaUserNinja className="text-3xl text-[#F0EFDA]" />  
+        )}
       </div>
       <div>
         <span className="block text-[#F0EFDA] text-2xl md:text-3xl leading-tight font-semibold">{number}</span>
         <span className="font-normal text-sm md:text-base leading-tight text-[#F0EFDA]">{Title}</span>
       </div>
     </div>
-  )
-}
+  );
+};
+
 
 type containerProps = {
   Content: string;
@@ -47,6 +51,7 @@ const TextContainer:React.FC<containerProps> = ({Content}) => (
 const AboveFold = () => {
   const [registrations, setRegistrations] = useState([]);
   const [speakers, setSpeakers] = useState([]);
+  const [hackers, setHackers] = useState([]);
 
   console.log(registrations)
 
@@ -69,11 +74,21 @@ const AboveFold = () => {
           },
         });
 
+        const hackerrRegistrations = await fetch('https://web3lagosbackend.onrender.com/users/users/', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            // 'Access-Control-Allow-Origin': '*',
+          },
+        });
+
         const generalData = await generalRegistrations.json();
         const speakerData = await speakerRegistrations.json();
+        const hackers = await hackerrRegistrations.json();
         
         setRegistrations(generalData);  
         setSpeakers(speakerData);  
+        setHackers(hackers)
       } catch (error) {
         console.error('Error fetching registration data:', error);
       }
@@ -139,12 +154,12 @@ const AboveFold = () => {
 
           <DateCountDown />
 
-        <div className="flex flex-wrap lg:flex-nowrap items-center space-y-8 md:space-y-0 md:space-x-10 my-8 justify-between w-[88%] md:w-fit">
+        <div className="flex flex-wrap lg:flex-nowrap items-center gap-6 md:space-y-0 md:space-x-10 my-8 justify-between w-[88%] md:w-fit">
           <Progress Title="Attendee" number={registrations.length > 0 ? `${registrations.length}`: '--'} imageSrc="/attendees.svg" />
           <Progress Title="Speakers" number={speakers.length > 0 ? `${speakers.length}`: '--'} imageSrc="/speakers.svg" />
           <Progress Title="Sponsors" number="15+" imageSrc="/sponsor.svg" />
-          <Progress Title="Hackers" number='--' imageSrc="/attendees.svg" />
-        </div>
+          <Progress Title="Hackers" number={hackers.length > 0 ? `${hackers.length}` : '--'} imageSrc={null} />
+          </div>
           </div>
         </div>
 
