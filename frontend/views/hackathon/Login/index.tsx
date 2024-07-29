@@ -37,7 +37,7 @@ export default function HackathonLogin() {
   const [errors, setErrors] = useState<FormErrors>(initialFormErrors);
   const [showPassword, setShowPassword] = useState(false);
 
-  const router = useRouter()
+  const router = useRouter();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -46,7 +46,6 @@ export default function HackathonLogin() {
     setFormData({
       ...formData,
       [name]: value,
-      
     });
     setErrors({
       ...errors,
@@ -85,7 +84,7 @@ export default function HackathonLogin() {
        * console.log("user id is:", JSON.parse(user));
        */
       setMessage("Login successful!");
-      window.location.href ="/hackathon/dashboard";
+      window.location.href = "/hackathon/dashboard";
       setFormData(initialFormState);
       setIsSuccess(true);
     } else {
@@ -170,7 +169,7 @@ export default function HackathonLogin() {
             </button>
             <h3 className="text-center m-4">
               Don’t have an account?
-              <Link href="hackathon/registration">
+              <Link href="registration">
                 <span className="text-blue-600 px-1 ">Sign Up</span>
               </Link>
             </h3>
