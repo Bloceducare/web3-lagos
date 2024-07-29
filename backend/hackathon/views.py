@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework import viewsets, permissions, status
 from django.core.mail import send_mail
 from django.conf import settings
-from .serializers import InviteSerializer, JoinTeamSerializer, TeamSerializer, ProjectSerializer
+from .serializers import InviteSerializer, JoinTeamSerializer, LeaveTeamSerializer, TeamSerializer, ProjectSerializer
 from .models import Team, Project
 from users.models import CustomUser
 from django.db import models
@@ -101,6 +101,27 @@ class TeamViewSet(viewsets.ModelViewSet):
         subject = 'Team Invitation'
         message = f'You have been invited to join the team {team.name}. Use the following joining code to join the team: {team.joining_code}. https://event.web3bridge.com/hackathon/team'
         send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [email])
+
+    @swagger_auto_schema(
+        request_body=LeaveTeamSerializer,
+        responses={200: openapi.Response('Team Left Successfully'),
+                   403: openapi.Response('Only team members or the creator can invite others.')}
+    )
+    @action(detail=False, methods=['post'], url_path='leave')
+    def leave_team(self, request, *args, **kwargs):
+        user = request.user
+        try:
+            team = Team.objects.get(members=user)
+        except Team.DoesNotExist:
+            return Response({"error": "User is not part of any team."}, status=status.HTTP_400_BAD_REQUEST)
+
+        if team.creator == user:
+            return Response({"error": "Team creator cannot leave the team."}, status=status.HTTP_403_FORBIDDEN)
+
+        team.members.remove(user)
+        team.save()
+
+        return Response({"message": "Successfully left the team."}, status=status.HTTP_200_OK)
 
 
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import SideBar from "@/components/hackathon-sidebar";
 import HackathonHeader from "@/components/hackathon-header";
+import { useRouter } from 'next/router';
 
 type User = {
   email: string;
@@ -55,6 +56,8 @@ const Project: React.FC = () => {
   const [isCreator, setisCreator] = useState(false);
   const [message, setMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
+
+  const router = useRouter();
 
 
   useEffect(() => {
@@ -272,12 +275,56 @@ const Project: React.FC = () => {
   }
   }
 
+  const handleLeaveTeam = async(e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setMessage("");
+    const yourToken = localStorage.getItem("token");
+    const userString = localStorage.getItem('user'); 
+
+    if (userString && yourToken) {
+    const users = JSON.parse(userString);
+      
+    const response = await fetch(
+      `https://web3lagosbackend.onrender.com/hackathon/hackathon/teams/leave/`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${yourToken}`,
+        },
+        body: JSON.stringify(formData.id),
+      }
+    );
+    const datas = await response.json();
+    console.log(datas);
+    if (response.ok) {
+      localStorage.setItem("token", datas.access_token);
+      localStorage.setItem("user", JSON.stringify(datas.user));
+      
+      setMessage(`You have successfully leave ${data?.name} team.`);
+      setFormData(initialFormState);
+      setIsSuccess(true);
+      setProjectDetail(true)
+      router.push("/team")
+    } else {
+      setErrors(datas);
+      setMessage(`Unable to leave ${data?.name} Team, Try again later`);
+      setIsSuccess(false);      
+    }
+  } else {
+    setMessage("Sorry you can't update a project. Only team creators are allowed to do that ")
+  }
+    setLoading(false);
+  }
+  
+
   return (
-    <div className='flex mt-[5rem] mb-5 px-4 sm:px-0'>
-      <div className="sm:w-1/5 sm:fixed h-full sm:flex hidden">
+    <div className='flex w-full h-full px-4 sm:px-0'>
+      <div className="sm:w-1/5 fixed h-full sm:flex">
         <SideBar />
       </div>
-      <section className="flex flex-col sm:w-4/5 sm:ml-[20%] w-full  sm:px-8 ">
+      <section className="flex flex-col sm:w-4/5 sm:ml-[20%] w-full mt-14 sm:px-8 ">
         <div className="w-full">
         <HackathonHeader user={user} />
         </div>
@@ -294,84 +341,89 @@ const Project: React.FC = () => {
           </div>
         )}
 
-      {!showProject &&(  <form onSubmit={handleSubmit}>
-          <div className='w-full mt-7'>
-            <label>Project</label>
-            <input
-              type="text"
-              name="name"
-              onChange={handleChange}
-              placeholder="E.g Smart Contract"
-              className="w-full p-4 border border-black shadow-[4px_4px_0px_0px_#1E1E1E] mt-3"
-              value={formData.name}
-              required
-            />
-          </div>
-          <div className='w-full mt-7'>
-            <label>Category</label>
-            <select name="category" onChange={handleChange} value={formData.category} className="w-full p-4 border  border-black shadow-[4px_4px_0px_0px_#1E1E1E] mt-3">
-              <option value="Open Governance in the Africa Electoral Process" >Application in open Governance in the Africa Electoral Process</option>
-              <option value="Entertainment and media">Application in Entertainment and media</option>
-              <option value="Digital collectibles">Application in digital collectibles</option>
-              <option value="Financial inclusion and education">Application in financial inclusion and education</option>
-              <option value="E-identity and verification">Application in e-identity and verification</option>
-            </select>
-          </div>
-          <div className='w-full mt-7'>
-            <label>Project description</label>
-            <input
-              type="text"
-              className="w-full p-4 border border-black shadow-[4px_4px_0px_0px_#1E1E1E] mt-3"
-              onChange={handleChange}
-              name="description"
-              value={formData.description}
-            />
-          </div>
-          <div className='w-full mt-7'>
-            <label>Github repository URL</label>
-            <input
-              type="text"
-              name="github_url"
-              onChange={handleChange}
-              value={formData.github_url}
-              placeholder="Link to Github Repository"
-              className="w-full p-4 border border-black shadow-[4px_4px_0px_0px_#1E1E1E] mt-3"
-              required
-            />
-          </div>
-          <div className='w-full mt-7'>
-            <label>Live Link URL</label>
-            <input
-              type="text"
-              name="live_link"
-              onChange={handleChange}
-              value={formData.live_link}
-              placeholder="Link to Live app/Website"
-              className="w-full p-4 border border-black shadow-[4px_4px_0px_0px_#1E1E1E] mt-3"
-              required
-            />
-          </div>
-          <div className='w-full mt-7'>
-            <label>Demo video URL</label>
-            <input
-              type="text"
-              name="demo_video"
-              onChange={handleChange}
-              value={formData.demo_video}
-              placeholder="Link to Project Demo video"
-              className="w-full p-4 border border-black shadow-[4px_4px_0px_0px_#1E1E1E] mt-3"
-              required
-            />
-            <div className='w-[50%]'>
+        {!showProject && (
+          <form onSubmit={handleSubmit}>
+            <div className='w-full mt-7'>
+              <label>Project</label>
+              <input
+                type="text"
+                name="name"
+                onChange={handleChange}
+                placeholder="E.g Smart Contract"
+                className="w-full p-4 border border-black shadow-[4px_4px_0px_0px_#1E1E1E] mt-3"
+                value={formData.name}
+                required
+              />
+            </div>
+            <div className='w-full mt-7'>
+              <label>Category</label>
+              <select name="category" onChange={handleChange} value={formData.category} className="w-full p-4 border appearance-none  border-black shadow-[4px_4px_0px_0px_#1E1E1E] mt-3">
+                <option value="">Select A category</option>
+                <option value="Open Governance in the Africa Electoral Process">Application in open Governance in the Africa Electoral Process</option>
+                <option value="Entertainment and media">Application in Entertainment and media</option>
+                <option value="Real World Assets">Real World Assets</option>
+                <option value="Digital collectibles">Application in digital collectibles</option>
+                <option value="Financial inclusion and education">Application in financial inclusion and education</option>
+                <option value="Sustainability">Application in sustainability</option>
+              </select>
+            </div>
+            <div className='w-full mt-7'>
+              <label>Description</label>
+              <input
+                type="text"
+                name="description"
+                onChange={handleChange}
+                placeholder="Description of your project"
+                className="w-full p-4 border border-black shadow-[4px_4px_0px_0px_#1E1E1E] mt-3"
+                value={formData.description}
+                required
+              />
+            </div>
+            <div className='w-full mt-7'>
+              <label>Live Link</label>
+              <input
+                type="text"
+                name="live_link"
+                onChange={handleChange}
+                placeholder="https://web3bridge.com"
+                className="w-full p-4 border border-black shadow-[4px_4px_0px_0px_#1E1E1E] mt-3"
+                value={formData.live_link}
+                required
+              />
+            </div>
+            <div className='w-full mt-7'>
+              <label>Demo video</label>
+              <input
+                type="text"
+                name="demo_video"
+                onChange={handleChange}
+                placeholder="https://www.youtube.com"
+                className="w-full p-4 border border-black shadow-[4px_4px_0px_0px_#1E1E1E] mt-3"
+                value={formData.demo_video}
+                required
+              />
+            </div>
+            <div className='w-full mt-7'>
+              <label>GitHub Link</label>
+              <input
+                type="text"
+                name="github_url"
+                onChange={handleChange}
+                placeholder="https://github.com/username/repository"
+                className="w-full p-4 border border-black shadow-[4px_4px_0px_0px_#1E1E1E] mt-3"
+                value={formData.github_url}
+                required
+              />
+            </div>
+            <div className='w-full mt-7'>
               <button
                 type="submit"
                 className="w-full mt-12 p-6 bg-[#1E1E1E] text-white text-xl text-center shadow-[-5px_-5px_0px_0px_#0096FF]"
                 disabled={loading}
               >
-                {loading ? "Loading..." : "Create"}
+                {loading ? "Loading..." : ""}
               </button>
             </div>
-          </div>
         </form>)}
 
         {showProject &&( 
@@ -384,19 +436,38 @@ const Project: React.FC = () => {
                <div className="px-8 py-5 bg-[#0096FF] rounded-xl">
               <p>Team Name: <b>{data ? data.name : 'Null'}</b></p>
             </div>
-            <div className="px-8 py-5 bg-[#0096FF] rounded-xl">
-              <p>Number of Members: <b>{data ? data.members?.length : 'N/A'}</b></p>
+            <div className='w-full mt-7 text-black'>
+              <label>Category</label>
+              <select name="category" onChange={handleUpdateChange} value={formData.category} className="w-full p-4 border appearance-none  border-black shadow-[4px_4px_0px_0px_#1E1E1E] mt-3" aria-disabled="true">
+                <option value="Open Governance in the Africa Electoral Process">Select A Category</option>
+                <option value="Open Governance in the Africa Electoral Process">Application in open Governance in the Africa Electoral Process</option>
+                <option value="Entertainment and media">Application in Entertainment and media</option>
+                <option value="Real World Assets">Real World Assets</option>
+                <option value="Digital collectibles">Application in digital collectibles</option>
+                <option value="Financial inclusion and education">Application in financial inclusion and education</option>
+                <option value="Sustainability">Application in sustainability</option>
+              </select>
             </div>
             <div className="px-8 py-5 bg-[#0096FF] rounded-xl">
               <p>Joining code: <b>{data ? data.joining_code : 'N/A'}</b></p>
             </div>
             </section>
 
+            <section className='flex flex-wrap gap-10 pb-8'>
+
             <div>
-              <button className="w-[30%] mt-12 p-6 bg-[#1E1E1E] text-white text-xl text-center shadow-[-5px_-5px_0px_0px_#0096FF]" onClick={() => setProjectDetail(false)}>
+              <button className="w-[100%] mt-12 p-6 bg-[#1E1E1E] text-white text-xl text-center shadow-[-5px_-5px_0px_0px_#0096FF]" onClick={() => setProjectDetail(false)}>
               Update your project
               </button>
             </div>
+
+
+          {!isCreator &&(  <div>
+              <button className="w-[100%] mt-12 p-6 bg-[#1E1E1E] text-white text-xl text-center shadow-[-5px_-5px_0px_0px_#0096FF]" onClick={handleLeaveTeam}>
+              Leave team
+              </button>
+            </div>)}
+            </section>
             </section>
           )}
           
@@ -418,7 +489,7 @@ const Project: React.FC = () => {
           </div>
           <div className='w-full mt-7'>
             <label>Category</label>
-            <select name="category" onChange={handleUpdateChange} value={formData.category} className="w-full p-4 border  border-black shadow-[4px_4px_0px_0px_#1E1E1E] mt-3">
+            <select name="category" onChange={handleUpdateChange} value={formData.category} className="w-full p-4 border appearance-none  border-black shadow-[4px_4px_0px_0px_#1E1E1E] mt-3">
               <option value="Open Governance in the Africa Electoral Process" >Application in open Governance in the Africa Electoral Process</option>
               <option value=" Entertainment and media">Application in Entertainment and media</option>
               <option value="Digital collectibles">Application in digital collectibles</option>

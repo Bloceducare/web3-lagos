@@ -5,6 +5,7 @@ import { Bell } from "lucide-react";
 import Schedule from "./Schedule";
 import Team from "./Team";
 import Project from "./Project";
+import Home from "./Home";
 
 function Dashboards() {
   const [fullName, setFullName] = useState<string>("");
@@ -43,7 +44,7 @@ function Dashboards() {
               <Bell />
             </div>
           </div>
-
+          <Home />
           <Schedule />
           <Project />
           <Team />

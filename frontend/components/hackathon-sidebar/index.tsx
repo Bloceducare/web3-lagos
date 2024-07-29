@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { IoMdLogOut } from "react-icons/io";
@@ -6,11 +6,9 @@ import { AiOutlineSchedule } from "react-icons/ai";
 import { GoProjectRoadmap } from "react-icons/go";
 import { AiOutlineTeam } from "react-icons/ai";
 import { IoHomeOutline } from "react-icons/io5";
+import { FaBars, FaTimes } from "react-icons/fa";
 import { MdOutlineContactSupport } from "react-icons/md";
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import { useRouter } from "next/router";
-import { useContext } from "react";
-import { SidebarContext } from "./SidebarContext";
 
 interface SidebarItem {
   name: string;
@@ -27,7 +25,7 @@ const sidebarItems: SidebarItem[] = [
   {
     name: "Schedule",
     icon: <AiOutlineSchedule />,
-    href: "/schedule",
+    href: "/hackathon/schedule",
   },
   {
     name: "Team",
@@ -42,7 +40,7 @@ const sidebarItems: SidebarItem[] = [
   {
     name: "Support",
     icon: <MdOutlineContactSupport />,
-    href: "/hackathon/support",
+    href: "https://t.me/+mQ4RF188nBo5ZThk",
   },
   {
     name: "Logout",
@@ -52,42 +50,63 @@ const sidebarItems: SidebarItem[] = [
 ];
 
 function SideBar() {
-  const router = useRouter();
-  const { isCollapsed, toggleSidebarcollapse } = useContext(SidebarContext);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const route = useRouter();
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
   return (
-    <div className="sidebar__wrapper bg-[#0096FF]">
-    <button className="btn" onClick={toggleSidebarcollapse}>
-      {isCollapsed ? <MdKeyboardArrowRight /> : <MdKeyboardArrowLeft />}
-    </button>
-    <aside className="sidebar" data-collapse={isCollapsed}>
-      <div className="sidebar__top">
-        <Image
-          src={"/Logo.png"}
-          alt="Logo"
-          height={100}
-          width={200}
-          className=""
-        />
+    <div className="sidebar__wrapper ">
+      <div className="ring-[2px] ring-[#000] p-3 rounded-md lg:hidden sm:  z-[100] ">
+        {menuOpen ? (
+          <FaTimes onClick={toggleMenu} size={22} color="black" />
+        ) : (
+          <FaBars onClick={toggleMenu} size={22} color="black" />
+        )}
       </div>
-      <ul className="sidebar__list">
-        {sidebarItems.map(({ name, href, icon }) => (
-          <li className="sidebar__item" key={name}>
-            <Link
-              className={`sidebar__link ${
-                router.pathname === href ? "sidebar__link--active" : ""
-              }`}
-              href={href}
-            >
-              <span className="sidebar__icon">{icon}</span>
-              <span className="sidebar__name">{name}</span>
-            </Link>
-          </li>
-        ))}
+      <ul
+        onClick={() => {
+          setMenuOpen(false);
+        }}
+        className={`${
+          menuOpen
+            ? "flex flex-col space-y-6 leading-3 flex-4 h-screen absolute -left-1 top-20 py-3 "
+            : "md:justify-between md:space-x-1 hidden lg:flex lg:w-[30%] lg:justify-between"
+        } `}
+      >
+        <aside className=" sidebar">
+          <div className="sidebar__top">
+            <Image
+              src={"/Logo.png"}
+              alt="Logo"
+              height={100}
+              width={200}
+              className=""
+            />
+          </div>
+          <ul className="sidebar__list">
+            {sidebarItems.map(({ name, href, icon }) => (
+              <li className="sidebar__item" key={name}>
+                <Link
+                  className={`sidebar__link ${
+                    route.pathname === href ? "sidebar__link--active" : ""
+                  }`}
+                  href={href}
+                >
+                  <span className="sidebar__icon">{icon}</span>
+                  <span className="sidebar__name">{name}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </aside>
       </ul>
-    </aside>
-  </div>
+    </div>
+
     // <div>
     //   <div className=" fixed w-64 h-full left-0 top-16 border-r bg-[#0096FF] rounded-tr-3xl rounded-br-3xl ">
+
     //     <div className="h-full px-3 py-4 text-white">
     //       <div className="">
     //         <Image
@@ -98,9 +117,7 @@ function SideBar() {
     //           className=""
     //         />
     //       </div>
-    //       <button className="  flex justify-center cursor-pointer translate-x-56 items-center text-black  w-[8] h-[8] rounded-lg px-4">
-    //         <MdOutlineArrowBackIos />
-    //       </button>
+
     //       <div className="mt-24 text-1xl px-12">
     //         <div className="py-2 mb-2 rounded-lg  hover:shadow hover:bg-white-500  hover:text-black">
     //           <Link

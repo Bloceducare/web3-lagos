@@ -4,35 +4,35 @@ import Image from "next/image";
 
 export default function HackathonSuccessScreen() {
   return (
-    <div className=" w-1/2 mt-40 items-center m-auto">
-      <div className=" border border-black rounded-lg w-full bg-white lg:px-8 pt-6 pb-8 mb-4 shadow-[6px_6px_0px_0px_#1ACF2C]">
+    <div className=" w-fit md:w-1/2 flex items-center m-auto justify-self-auto justify-center">
+      <div className=" border flex py-4 flex-col items-center justify-center m-auto  border-black rounded-lg w-full bg-white shadow-[6px_6px_0px_0px_#1ACF2C]">
+        <div className="w-fit">
+
         <Image
-          src={"/Polygon 23.png"}
+          src={"/polygon-success.svg"}
           alt="..."
           height={30}
           width={70}
-          className="  ml-80 mt-10 "
+          className=""
         />
-        <div className="ml-80 relative ">
-          <Image
-            src={"/Vector (5).png"}
-            alt="..."
-            height={10}
-            width={30}
-            className=" -mt-12 ml-5"
-          />
         </div>
+  
         <h1 className="mt-10  text-[2em]  text-center font-bold">
           Registration Successful
         </h1>
-        <h3 className="px-40 text-center">
+        <h3 className="px-4 text-center">
           Congratulations! You’ve successfully registered for the Web3 Lagos 3.0
           Hackathon. Secure your spot by creating or joining an existing team.
         </h3>
 
-        <Link href="/">
-          <button className="ml-60  text-center w-1/3  p-5 m-20  bg-[#1E1E1E]  text-white shadow-[-5px_-5px_0px_0px_#0096FF]">
-            Go to Dashboard
+
+        <h3 className="px-4 font-bold text-center">
+          But first, You need to Join the Telegram group using the link below
+        </h3>
+        
+        <Link href="https://t.me/+mQ4RF188nBo5ZThk">
+          <button className=" text-center  p-5 mt-14 bg-[#1E1E1E]  text-white shadow-[-5px_-5px_0px_0px_#0096FF]">
+            Join Telegram
           </button>
         </Link>
       </div>
