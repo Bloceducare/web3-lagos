@@ -40,7 +40,7 @@ const sidebarItems: SidebarItem[] = [
   {
     name: "Support",
     icon: <MdOutlineContactSupport />,
-    href: "/hackathon/support",
+    href: "https://t.me/+mQ4RF188nBo5ZThk",
   },
   {
     name: "Logout",
