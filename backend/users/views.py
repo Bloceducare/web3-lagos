@@ -136,7 +136,7 @@ class ResetPasswordView(generics.CreateAPIView):
             uid = urlsafe_base64_encode(force_bytes(user.pk))
 
             # Generate the reset link
-            resetlink = f"https://event.web3bridge.com/reset-password/{uid}/{token}/"
+            resetlink = f"https://event.web3bridge.com/hackathon/reset-password/{uid}/{token}/"
 
             # Send the reset link to the user's email
             send_reset_password_mail(user.email, resetlink)
