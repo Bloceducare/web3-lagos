@@ -1,6 +1,7 @@
 from django.conf import settings
 from rest_framework import generics, status
 from rest_framework.response import Response
+import codecs
 from django.core.mail import send_mail
 from .serializers import SignupSerializer, SigninSerializer
 from django.contrib.auth import authenticate
@@ -10,6 +11,7 @@ from .serializers import CustomUserDetailSerializer, ResetPasswordSerializer, Co
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.utils.encoding import force_str, force_bytes
 from django.contrib.auth.tokens import default_token_generator
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from rest_framework.permissions import IsAuthenticated
 from django.template.loader import render_to_string
 from django.core.mail import send_mail, EmailMultiAlternatives
@@ -127,13 +129,15 @@ class ResetPasswordView(generics.CreateAPIView):
     """Request for reset password link user password by providing email"""
     serializer_class = ResetPasswordSerializer
 
+    
     def create(self, request, *args, **kwargs):
         email = request.data.get('email')
         user = CustomUser.objects.filter(email=email).first() 
         if user is not None:
             # Generate a token for password reset
             token = default_token_generator.make_token(user)
-            uid = urlsafe_base64_encode(force_bytes(user.pk))
+            uid = codecs.encode(force_bytes(user.pk), 'base64')
+            print("uid is : ",uid)
 
             # Generate the reset link
             resetlink = f"https://event.web3bridge.com/hackathon/resetpassword/{uid}/{token}/"
@@ -145,18 +149,27 @@ class ResetPasswordView(generics.CreateAPIView):
         else:
             return Response({'error': 'User with this email does not exist.'}, status=status.HTTP_404_NOT_FOUND)
 
+def add_padding(base64_bytes):
+    if isinstance(base64_bytes, str):
+        base64_bytes = base64_bytes.encode()
+    padding = b'=' * (-len(base64_bytes) % 4)
+    return base64_bytes + padding
 class CompletePasswordResetView(generics.CreateAPIView):
     """Complete the password reset process"""
     serializer_class = CompletePasswordResetSerializer
+
     def create(self, request, *args, **kwargs):
         uid = request.data.get('uid')
         token = request.data.get('token')
         new_password = request.data.get('new_password')
         confirm_new_password = request.data.get('confirm_new_password')
+        newuid = add_padding(uid)
+        print("original uid:", newuid)
+        decoded_uid = codecs.decode(newuid, "base64")
+        print("uid is : ",uid)
         
-        uid = force_str(urlsafe_base64_decode(uid))  # Decode and convert to string
-        
-        user = CustomUser.objects.filter(pk=uid).first()
+        user = CustomUser.objects.filter(pk=decoded_uid).first()
+        print(user)
 
         if user is not None and default_token_generator.check_token(user, token):
             if new_password == confirm_new_password:
@@ -169,4 +182,3 @@ class CompletePasswordResetView(generics.CreateAPIView):
             return Response({'error': 'Invalid reset link.'}, status=status.HTTP_400_BAD_REQUEST)
         
 
-        
