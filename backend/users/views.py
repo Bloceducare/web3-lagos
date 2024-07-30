@@ -164,9 +164,8 @@ class CompletePasswordResetView(generics.CreateAPIView):
         new_password = request.data.get('new_password')
         confirm_new_password = request.data.get('confirm_new_password')
         newuid = add_padding(uid)
-        print("original uid:", newuid)
         decoded_uid = codecs.decode(newuid, "base64")
-        print("uid is : ",uid)
+        
         
         user = CustomUser.objects.filter(pk=decoded_uid).first()
         print(user)
