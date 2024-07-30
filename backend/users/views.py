@@ -167,3 +167,6 @@ class CompletePasswordResetView(generics.CreateAPIView):
                 return Response({'error': 'Passwords do not match.'}, status=status.HTTP_400_BAD_REQUEST)
         else:
             return Response({'error': 'Invalid reset link.'}, status=status.HTTP_400_BAD_REQUEST)
+        
+
+        

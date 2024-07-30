@@ -16,8 +16,8 @@ const overview = [
     id: 2,
     title: "Financial Inclusion and Education",
     content:
-      "Applications in open governance involving smart contracts in the African Electoral process; voter registration, casting, and collation of votes, diaspora voting, using zk technology to anonymize casted votes, etc",
-  },
+      "Exploring the role of blockchain technology in enhancing financial inclusion and education. Applications include decentralized finance (DeFi) platforms for microloans and savings, blockchain-based identity solutions for the unbanked, and educational tools leveraging smart contracts to create transparent and verifiable certification processes. This also encompasses financial literacy programs powered by blockchain to empower individuals with the knowledge to manage their finances and investments securely.",
+  },  
   {
     id: 3,
     title: "E-Identity and Verification",
