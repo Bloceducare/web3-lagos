@@ -270,8 +270,8 @@ const Hackathon = () => {
         </section>
 
       <section className="flex flex-col items-center">
-        <div className={`flex flex-col w-full ${container} p-4 md:space-y-10 md:p-7 lg:pb-20`}>
-         <div className="mb-7 lg:pt-8">
+        <div className={`flex flex-col w-full ${container} bg-[url('/hackathon/Vector3.png')] bg-auto bg-right-bottom md:bg-right-top bg-no-repeat p-4 md:mt-10 md:px-7 pb-14 lg:pb-20`}>
+         <div className="mb-7 lg:pb-8">
             <Heading style="my-2" src="/hackathon/Group15.png" alt="" title="Prizes and Awards" />
             <p className="text-[20px] lg:text-[26px]">Unlock your potential and win big</p>
          </div>
