@@ -1,7 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import DateCountDown from "@/components/dateCountDown";
-import HackathonLogin from "@/views/hackathon/Login";
+
+import envelope from "@/public/hackathon/Group.png"
+import twitter from "@/public/hackathon/Vector (2).png"
+import footerLogo from "@/public/hackathon/Group545.png"
+import footerImage from "@/public/hackathon/Group17.png"
 import firstPrice from "@/public/hackathon/Frame 8.png"
 import secondPrice from "@/public/hackathon/Frame 12.png"
 import thirdPrice from "@/public/hackathon/Frame7.png"
@@ -287,13 +291,29 @@ const Hackathon = () => {
         </div>
       </section>
 
-      <footer className="flex flex-col w-full">
+      <footer className="flex flex-col items-center w-full">
         <span className="w-full h-[40px] bg-[url('/hackathon/Group544.png')] bg-cover bg-center "></span>
-        <main className={`flex flex-col w-full items-center pb-3`}>
+        <main className={`flex flex-col w-full px-10 items-center pb-3 ${container}`}>
+          <div className="flex flex-wrap flex-col-reverse md:flex-row gap-5 md:gap-0 md:flex-nowrap justify-between items-center w-full">
+            <div className="flex flex-col items-center md:items-start gap-2 md:gap-0 pb-20 md:p-0 space-y-10">
+              <Image src={footerLogo} alt="" width={0} height={0} />
+              <div className="space-y-2">
+                <Link href="mailto:event@web3bridge.com" className="flex font-medium text-[#1E1E1E] items-center gap-2 text-[18px] lg:text-[24px]">
+                  <Image src={envelope} alt="" width={26} height={0} className=""/>
+                event@web3bridge.com
+                </Link>
+                <Link href="#" className="flex font-medium text-[#1E1E1E] items-center gap-2 text-[18px] lg:text-[24px]">
+                  <Image src={twitter} alt="" width={26} height={0} className=""/>
+                  event@web3bridge.com
+                </Link>
+              </div>
+            </div>
+            <Image src={footerImage} alt="" width={0} height={0} className="w-[250px] md:w-[350px] lg:w-[400px]" />
+          </div>
+          <div className="text-[17px] lg:text-[20px] py-1">Copyright© Web3.0 Lagos</div>
         </main>
       </footer>
-        {/* <HackathonLogin /> */}
-      </main>
+    </main>
   );
 };
 
@@ -303,16 +323,7 @@ export default Hackathon;
         //   <div className="flex justify-between py-5 w-full">
         //       <div className="flex flex-col justify-center space-y-8">
         //         <Image src={footerLogo} alt="" width={0} height={0} />
-        //         <div>
-        //           <Link href="#" className="flex">
-        //             <Image src="" alt="" width={20} height={0} />
-        //             event@web3bridge.com
-        //           </Link>
-        //           <Link href="#" className="flex">
-        //             <Image src={footerImage} alt="" width={20} height={0} />
-        //             event@web3bridge.com
-        //           </Link>
-        //         </div>
+        //        
         //       </div>
         //       <Image src={footerImage} alt="" width={0} height={0} className="w-[450px]" />
         //     </div>
