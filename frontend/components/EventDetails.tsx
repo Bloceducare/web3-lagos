@@ -36,7 +36,7 @@ const EventDetails = () => {
             cardLink="#" 
             linkName="Learn More" />
          
-         <DetailsCard cardHeading="Event Overview " cardContent="Web3 Lagos Conference is a 3-day physical and virtual event comprising of hackathon, workshops, networking, career fair, panel session, talks, etc. The event focuses on onboarding and supporting the growth of individual new to the concept of blockchain and decentralisation, helping technical and non-technical blockchain native persons realise the endless possibilities and opportunities of the Blockchain & Ethereum ecosystem." cardLink="#" linkName="Visit X(Twitter) to Learn More" />
+         <DetailsCard cardHeading="Event Overview " cardContent="Web3 Lagos Conference is a 3-day physical and virtual event comprising of hackathon, workshops, networking, career fair, panel session, talks, etc. The event focuses on onboarding and supporting the growth of individual new to the concept of blockchain and decentralisation, helping technical and non-technical blockchain native persons realise the endless possibilities and opportunities of the Blockchain & Ethereum ecosystem." cardLink="https://x.com/Web3LagosCon?t=GsypdcemdkbHLj0OfWFf3g&s=09" linkName="Visit X(Twitter) to Learn More" />
         </div>
       </div>
     </>
