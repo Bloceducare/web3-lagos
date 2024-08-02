@@ -2,6 +2,11 @@ import Link from "next/link";
 import Image from "next/image";
 import DateCountDown from "@/components/dateCountDown";
 import HackathonLogin from "@/views/hackathon/Login";
+import firstPrice from "@/public/hackathon/Frame 8.png"
+import secondPrice from "@/public/hackathon/Frame 12.png"
+import thirdPrice from "@/public/hackathon/Frame7.png"
+import bestPrice from "@/public/hackathon/Frame11.png"
+import innovativePrice from "@/public/hackathon/Frame9.png"
 
 import Logo from "../../public/hackathon/Logo.png"
 
@@ -116,11 +121,12 @@ const Hackathon = () => {
     title: string;
     src: string;
     alt: string;
+    style: string;
   };
 
-  const Heading: React.FC<headingProps> = ({ title, src, alt }) => (
-    <div className="flex items-center my-7 space-x-4">
-      <Image src={src} height={25} width={60} alt={alt} />
+  const Heading: React.FC<headingProps> = ({ title, src, alt, style }) => (
+    <div className={`flex items-center space-x-4 ${style}`}>
+      <Image src={src} height={25} width={60} alt={alt} className="" />
       <h1 className="text-[26px] md:text-[32px] lg:text-[44px] xl:text-[48px] font-semibold">
         {title}
       </h1>
@@ -189,7 +195,7 @@ const Hackathon = () => {
         <section className="flex flex-col justify-center items-center w-full">
           <div className={`md:p-7  lg:py-8 xl:py-20 ${container} p-4`}>
             <article>
-              <Heading src="/hackathon/Group16.png" alt="" title="Overview" />
+              <Heading style="my-5" src="/hackathon/Group16.png" alt="" title="Overview" />
               <p id="learnmore" className={`${textSize}`}>
                 The Web3 Lagos 3.0 Hackathon is a 3-day in-person event designed
                 to bring together the brightest minds in blockchain technology.
@@ -204,7 +210,7 @@ const Hackathon = () => {
             </article>
 
             <article>
-              <Heading src="/hackathon/Group9.png" alt="" title="Categories" />
+              <Heading style="my-5" src="/hackathon/Group9.png" alt="" title="Categories" />
               <p className={`${textSize}`}>
                 The hackathon aims to build projects with real-world impact.
                 Teams of 3 to 5 members will tackle problems in various
@@ -233,7 +239,7 @@ const Hackathon = () => {
             className={`flex flex-col justify-between p-4 md:space-y-10 md:p-7 lg:pb-20  ${container}`}
           >
             <header className="text-[#fff]">
-              <Heading
+              <Heading style="my-5"
                 src="/hackathon/Vector.png"
                 alt=""
                 title="Event Schedule"
@@ -260,8 +266,24 @@ const Hackathon = () => {
         </section>
 
       <section className="flex flex-col items-center">
-        <div className={`flex w-full ${container} p-4 md:space-y-10 md:p-7 lg:pb-20`}>
-         <Heading src="/hackathon/Group15.png" alt="" title="Prizes and Awards" />
+        <div className={`flex flex-col w-full ${container} p-4 md:space-y-10 md:p-7 lg:pb-20`}>
+         <div className="mb-7 lg:pt-8">
+            <Heading style="my-2" src="/hackathon/Group15.png" alt="" title="Prizes and Awards" />
+            <p className="text-[20px] lg:text-[26px]">Unlock your potential and win big</p>
+         </div>
+         <div className="flex flex-wrap w-full gap-7">
+            <div className="flex flex-col h-full w-full lg:w-[51.5%] gap-7">
+              <Image src={firstPrice} width={0} height={0} alt="" className="w-full"/>
+              <div className="flex w-full gap-7">
+              <Image src={innovativePrice} width={0} height={0} alt="" className="w-[45%] md:w-[48%]" />
+              <Image src={bestPrice} width={0} height={0} alt="" className="w-[45%] md:w-[48%]" />
+              </div>
+            </div>
+            <div className="flex flex-col w-full lg:w-[45%] h-full gap-7">
+              <Image src={secondPrice} width={0} height={0} alt="" className="h-full w-full" />
+              <Image src={thirdPrice} width={0} height={0} alt=""className="h-full lg:h-[45%] w-full" />
+            </div>
+         </div>
         </div>
       </section>
 
