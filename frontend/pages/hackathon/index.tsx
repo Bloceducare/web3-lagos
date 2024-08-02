@@ -302,7 +302,7 @@ const Hackathon = () => {
                   <Image src={envelope} alt="" width={26} height={0} className=""/>
                 event@web3bridge.com
                 </Link>
-                <Link href="#" className="flex font-medium text-[#1E1E1E] items-center gap-2 text-[18px] lg:text-[24px]">
+                <Link href="https://x.com/Web3LagosCon?t=GsypdcemdkbHLj0OfWFf3g&s=09" className="flex font-medium text-[#1E1E1E] items-center gap-2 text-[18px] lg:text-[24px]">
                   <Image src={twitter} alt="" width={26} height={0} className=""/>
                   event@web3bridge.com
                 </Link>
