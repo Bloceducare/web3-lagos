@@ -144,7 +144,7 @@ const Hackathon = () => {
 
   return (
       <main className="flex flex-col w-full">
-        <section className="flex justify-center w-full md:pb-10 md:px-5 pt-3 md:pt-0 bg-[#0096FFCC] bg-[url('/hackathon/hero.png')] bg-cover bg-center">
+        <section className="flex justify-center w-full md:pb-10 md:px-5 pt-3 md:pt-0 bg-[#0096FFCC] bg-[url('/hackathon/Hero2.png')] bg-cover bg-center">
           <div className={`flex flex-col justify-between space-y-[3rem] md:space-y-[3rem] w-full items-center p-2 md:p-4 lg:p-8 text-[#fff] ${container}`}>
             <header className="flex justify-between items-center w-full">
               <Link href="/">
@@ -318,14 +318,3 @@ const Hackathon = () => {
 };
 
 export default Hackathon;
-
-        //  <div className={` ${container}`}>
-        //   <div className="flex justify-between py-5 w-full">
-        //       <div className="flex flex-col justify-center space-y-8">
-        //         <Image src={footerLogo} alt="" width={0} height={0} />
-        //        
-        //       </div>
-        //       <Image src={footerImage} alt="" width={0} height={0} className="w-[450px]" />
-        //     </div>
-        //     <div>Copyright© Web3.0 Lagos</div>
-        //  </div>
