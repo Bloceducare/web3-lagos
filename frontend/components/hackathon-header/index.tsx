@@ -4,6 +4,8 @@ import Link from "next/link";
 import { IoMdLogOut } from "react-icons/io";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { MdOutlineAccountCircle } from "react-icons/md";
+import { format } from "date-fns";
+import { enUS } from "date-fns/locale";
 
 type User = {
   email: string;
@@ -22,42 +24,14 @@ const HackathonHeader: React.FC<HackathonHeaderProps> = ({ user }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const router = useRouter();
 
+
   useEffect(() => {
     const formatDate = (date: Date): string => {
-      const days = [
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-      ];
-      const months = [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December",
-      ];
-      const dayName = days[date.getDay()];
-      const day = date.getDate();
-      const monthName = months[date.getMonth()];
-      const year = date.getFullYear();
-
-      return `${dayName} ${day}th ${monthName}, ${year}`;
+      return format(date, "EEEE do MMMM, yyyy", { locale: enUS });
     };
 
     setCurrentDate(formatDate(new Date()));
   }, []);
-
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };

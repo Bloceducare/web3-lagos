@@ -59,6 +59,10 @@ export default function HackathonLogin() {
     setMessage("");
     setErrors(initialFormErrors);
 
+    const formDataToSend = {
+      ...formData,
+      email: formData.email.toLowerCase(),
+    };
     const response = await fetch(
       "https://web3lagosbackend.onrender.com/users/signin/",
       {
@@ -66,7 +70,7 @@ export default function HackathonLogin() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formDataToSend),
       }
     );
 

@@ -80,7 +80,7 @@ const eventSchedule = [
     id: 5,
     time: "7am WAT",
     date: "2nd September, 2024",
-    title: "Hackerthon Kickstart",
+    title: "Hackathon Kickstart",
     color: "bg-[#1B27B7]",
   },
   {
