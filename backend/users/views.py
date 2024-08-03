@@ -58,9 +58,12 @@ class SigninView(generics.CreateAPIView):
         email = request.data.get('email')
         password = request.data.get('password')
 
-        user = authenticate(username=email, password=password)
+        try:
+            user = CustomUser.objects.get(email__iexact=email)  
+        except CustomUser.DoesNotExist:
+            user = None
 
-        if user is not None:
+        if user is not None and user.check_password(password):
             refresh = RefreshToken.for_user(user)
             access_token = str(refresh.access_token)
             return Response({
@@ -76,21 +79,15 @@ class SigninView(generics.CreateAPIView):
             }, status=status.HTTP_200_OK)
         else:
             # Check specific reasons for authentication failure
-            user = CustomUser.objects.filter(email=email).first()
-
             if user is None:
                 error_message = 'User with this email does not exist.'
-            elif not user.check_password(password):
-                error_message = 'Incorrect password.'
             else:
-                error_message = 'Authentication failed for an unknown reason.'
+                error_message = 'Incorrect password.'
 
             return Response({
                 'error': error_message,
                 'message': 'Authentication failed.'
             }, status=status.HTTP_401_UNAUTHORIZED)
-
-
 class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
     """Get a user details from tthe user table by passing the user id as a slug"""
     queryset = CustomUser.objects.all()
