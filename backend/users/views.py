@@ -133,7 +133,7 @@ class ResetPasswordView(generics.CreateAPIView):
         if user is not None:
             # Generate a token for password reset
             token = default_token_generator.make_token(user)
-            uid = codecs.encode(force_bytes(user.pk), 'base64')
+            uid = urlsafe_base64_encode(force_bytes(user.pk))
             print("uid is : ",uid)
 
             # Generate the reset link
