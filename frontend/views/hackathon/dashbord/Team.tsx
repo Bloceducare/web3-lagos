@@ -291,7 +291,7 @@ const Team: React.FC = () => {
     }
   };
 
-  const handUpdate = async (e: FormEvent) => {
+  const handUpdate = async () => {
     router.push("/hackathon/updateuser")
   }
 
