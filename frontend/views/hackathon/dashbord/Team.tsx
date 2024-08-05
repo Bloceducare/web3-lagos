@@ -2,7 +2,9 @@ import React, { useEffect, useState, ChangeEvent, FormEvent } from "react";
 import EmailInput from "@/components/Email";
 import SideBar from "@/components/hackathon-sidebar";
 import HackathonHeader from "@/components/hackathon-header";
+import UpdateUser from "./UserUpdate";
 import team from "@/pages/hackathon/team";
+import { useRouter } from "next/router";
 
 type TeamData = {
   id: number;
@@ -56,6 +58,8 @@ const Team: React.FC = () => {
   const [emails, setEmails] = useState<string[]>([]);
   const [userHasTeam, setUserHasTeam] = useState(false);
   const [user, setUser] = useState<User | null>(null);
+
+  const router = useRouter()
 
   useEffect(() => {
     const userData = localStorage.getItem("user");
@@ -287,6 +291,10 @@ const Team: React.FC = () => {
     }
   };
 
+  const handUpdate = async (e: FormEvent) => {
+    router.push("/hackathon/updateuser")
+  }
+
   return (
     <div className='flex w-full h-full px-4 sm:px-0'>
       <div className="sm:w-1/5 fixed h-full sm:flex">
@@ -448,8 +456,9 @@ const Team: React.FC = () => {
     </button>
   </div>)
 }
-      </section>
 
+       <button onClick={handUpdate} className="text-white bg-[#000] px-10 py-10 text-xl">Edit your profie</button>
+      </section>
     </div>
   );
 };
