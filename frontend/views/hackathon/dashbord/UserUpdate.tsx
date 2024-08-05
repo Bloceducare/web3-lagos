@@ -57,7 +57,7 @@ export default function UpdateUser () {
 
 
     useEffect(() => {
-        const userData = localStorage.getItem("user");
+        const userData = localStorage.getItem("user"); 
         if (userData) {
           setUser(JSON.parse(userData));
         }
