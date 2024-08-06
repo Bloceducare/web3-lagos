@@ -12,7 +12,8 @@ type UserData = {
     first_name: string;
     email: string;
     github_username: string;
-   
+    web3_knowledge: string,
+    hacking_role: string
 };
 
 type User = {
@@ -31,6 +32,8 @@ const initialFormState: UserData = {
     first_name: "",
     email: "",
     github_username: "",
+    web3_knowledge: "",
+    hacking_role: "",
 };
 
 const initialFormErrors: FormErrors = {};
@@ -171,6 +174,54 @@ export default function UpdateUser () {
                 required
               />
             </div>
+
+            <div className='w-full mt-7'>
+            <label htmlFor="web3_knowledge" className="block mb-2 font-bold text-gray-600 my-4">
+              Web3 Knowledge
+            </label>
+            <select
+              id="web3_knowledge"
+              name="web3_knowledge"
+              onChange={handleChange}
+              value={formData.web3_knowledge}
+              className="w-full p-4 border border-[#1E1E1E] shadow-[4px_4px_0px_0px_[#1E1E1E]] mt-3"
+              required
+            >
+              <option value="" disabled>
+                Select your knowledge level
+              </option>
+              <option value="Beginner">Beginner</option>
+              <option value="Intermediate">Intermediate</option>
+              <option value="Advanced">Advanced</option>
+            </select>
+          </div>
+
+
+          <div className='w-full mt-7'>
+            <label htmlFor="hacking_role" className="block mb-2 font-bold text-gray-600 my-4">
+              Hacking Role
+            </label>
+            <select
+              id="hacking_role"
+              name="hacking_role"
+              onChange={handleChange}
+              value={formData.hacking_role}
+              className="w-full p-4 border border-[#1E1E1E] shadow-[4px_4px_0px_0px_[#1E1E1E]] mt-3"
+              required
+            >
+              <option value="" disabled>
+                Select your role
+              </option>
+              <option value="Developer">Developer</option>
+              <option value="Designer">Designer</option>
+              <option value="Project Manager">Project Manager</option>
+            </select>
+          </div>
+
+
+
+
+
 
           <div className="flex gap-10">
 
