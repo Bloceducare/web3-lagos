@@ -39,11 +39,6 @@ const sidebarItems: SidebarItem[] = [
     href: "/hackathon/project",
   },
   {
-    name: "Edit Profile",
-    icon: <AiTwotoneProfile />,
-    href: "/hackathon/updateuser",
-  },
-  {
     name: "Support",
     icon: <MdOutlineContactSupport />,
     href: "https://t.me/+mQ4RF188nBo5ZThk",
@@ -52,6 +47,11 @@ const sidebarItems: SidebarItem[] = [
     name: "Logout",
     icon: <IoMdLogOut />,
     href: "/hackathon",
+  },
+  {
+    name: "Edit Profile",
+    icon: <AiTwotoneProfile />,
+    href: "/hackathon/updateuser",
   },
 ];
 

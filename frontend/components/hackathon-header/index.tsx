@@ -55,6 +55,7 @@ const HackathonHeader: React.FC<HackathonHeaderProps> = ({ user }) => {
                 >
                   <IoMdLogOut className="w-4 h-8 mr-2" />
                   <span>Logout</span>
+                  <Link href="/hackathon/updateuser" ><span>Edit Profile</span></Link>
                 </button>
               </div>
             </div>
