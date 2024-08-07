@@ -1,61 +1,32 @@
-import { IoMdClose } from "react-icons/io";
-import { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
+"use client";
 
-const Notifications = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+import React, { useEffect, useCallback } from "react";
 
-  const handleModalClose = () => {
-    setIsModalOpen(!isModalOpen);
+export default function Notifications() {
+  const sendNotification = () => {
+    if ("Notification" in window && Notification.permission === "granted") {
+      const notification = new Notification("Hello Welcome", {
+        body: "Join our telegram page for more information.",
+        icon: "/favicon-16x16.png",
+      });
+      notification.onclick = () => {
+        window.open("https://t.me/+mQ4RF188nBo5ZThk");
+      };
+    }
   };
-
-  return (
-    <div>
-      <Image src="/favicon-16x16.png" alt="" />
-      <div className=" fixed  bg-[#fff] inline-block align-bottom border border-[#545457] border-r-4 border-b-4  rounded-lg text-left overflow-hidden shadow-[-4px_-4px_0px_2px_#0096FF] transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-        <div className="  px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-          <div className="flex justify-between items-center">
-            <h3
-              className="text-lg leading-6 font-medium text-gray-900"
-              id="modal-title"
-            >
-              Notification
-            </h3>
-            <button onClick={handleModalClose} className="text-black-600">
-              <IoMdClose className=" w-6 h-6 " />
-            </button>
-          </div>
-
-          <div className="mt-2">
-            <p className="text-sm text-black mt-2">
-              will you like to join our telegram page for more information?
-              click the join telegram button.
-            </p>
-            <p className="mt-2 text-sm text-black">
-              To update your profile click the update profile button
-            </p>
-          </div>
-        </div>
-        <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-          <button
-            type="button"
-            className="w-full inline-flex justify-center rounded-md border border-black  px-4 py-2  text-base font-medium  hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm shadow-[-5px_-5px_0px_0px_#0096FF]"
-          >
-            Update Profile
-          </button>
-          <Link href="https://t.me/web3bridge">
-            <button
-              type="button"
-              className=" shadow-[-5px_-5px_0px_0px_#0096FF] mt-3 w-full inline-flex justify-center rounded-md border border-black  px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm"
-            >
-              Join Telegram
-            </button>
-          </Link>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default Notifications;
+  const requestNotificationPermission = useCallback(() => {
+    if ("Notification" in window) {
+      Notification.requestPermission().then(function (permission) {
+        if (permission === "granted") {
+          console.log("Notification permission granted");
+          sendNotification();
+        }
+      });
+    }
+  }, []);
+  useEffect(() => {
+    if ("Notification" in window) {
+      requestNotificationPermission();
+    }
+  }, [requestNotificationPermission]);
+}

@@ -50,7 +50,7 @@ const PushNotify: React.FC<PushNotifyProps> = ({ user }) => {
               >
                 &#8203;
               </span>
-              <div className=" fixed  bg-[#fff] inline-block align-bottom border border-[#545457] border-r-4 border-b-4  rounded-lg text-left overflow-hidden shadow-[-4px_-4px_0px_2px_#0096FF] transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+              <div className=" fixed  bg-[#fff] inline-block align-bottom border border-[#545457] border-r-4 border-b-4 border-l-4 rounded-lg text-left overflow-hidden shadow-[0px_-6px_0px_0px_#0096FF] transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
                 <div className="  px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                   <div className="flex justify-between items-center">
                     <h3
@@ -73,8 +73,8 @@ const PushNotify: React.FC<PushNotifyProps> = ({ user }) => {
                       Hello, {user ? user.first_name : "Guest"}!{" "}
                     </span>
                     <p className="text-sm text-black mt-2">
-                      will you like to join our telegram page for more
-                      information? click the join telegram button.
+                      Join our telegram page for more information by clicking
+                      the join telegram button.
                     </p>
                     <p className="mt-2 text-sm text-black">
                       To update your profile click the update profile button
@@ -88,7 +88,7 @@ const PushNotify: React.FC<PushNotifyProps> = ({ user }) => {
                   >
                     Update Profile
                   </button>
-                  <Link href="https://t.me/web3bridge">
+                  <Link href="https://t.me/+mQ4RF188nBo5ZThk">
                     <button
                       type="button"
                       className=" shadow-[-5px_-5px_0px_0px_#0096FF] mt-3 w-full inline-flex justify-center rounded-md border border-black  px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm"
