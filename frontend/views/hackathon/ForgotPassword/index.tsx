@@ -1,8 +1,11 @@
+
 /* eslint-disable react/no-unescaped-entities */
 
 import { useState } from "react";
 import React from "react";
 import { useRouter } from "next/router"; // Import useRouter from next/router
+import BackgroundColor from "@/components/hackathon-bg";
+
 
 type FormData = {
   email: string;
@@ -72,8 +75,12 @@ export default function ForgotPassword() {
   };
 
   return (
-    <div className="h-screen mx-auto mt-40 overflow- max-w-3xl p-6">
-      <div className="border border-black rounded-lg w-full bg-white lg:px-8 pt-6 pb-8 mb-4 shadow-[6px_6px_0px_0px_#1ACF2C]">
+    <main className=" relative flex flex-col min-h-screen overflow-hidden ">
+
+    <BackgroundColor />
+
+    <div className=" mx-auto mt-40  max-w-3xl p-6 ">
+      <div className="border border-black rounded-lg w-full bg-[#fff] lg:px-8 pt-6 pb-8 mb-4 shadow-[6px_6px_0px_0px_#1ACF2C]">
         <h1 className="text-xl lg:text-4xl font-bold mt-3">
           Enter your email address
         </h1>
@@ -106,6 +113,9 @@ export default function ForgotPassword() {
         </form>
       </div>
     </div>
+    </main>
   );
 }
+
+
 

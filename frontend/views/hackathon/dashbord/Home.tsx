@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import HackathonHeader from "@/components/hackathon-header";
 import SideBar from "@/components/hackathon-sidebar";
+import Notifications from "@/components/hackathon-header/browserNotification.tsx";
 
 type User = {
   email: string;
@@ -22,6 +23,7 @@ const Dashboard = () => {
     }
     console.log(userData);
   }, []);
+  Notifications();
 
   return (
     <div className="flex w-full h-full px-4 sm:px-0">

@@ -1,11 +1,16 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import BackgroundColor from "@/components/hackathon-bg";
+
 
 export default function ResetPasswordSuccessScreen() {
   return (
+    <main className=" relative flex flex-col min-h-screen w-full overflow-hidden ">
+
+      <BackgroundColor />
     <div className=" w-1/2 mt-40 items-center m-auto">
-      <div className=" border border-black rounded-lg w-full bg-white lg:px-8 pt-6 pb-8 mb-4 shadow-[6px_6px_0px_0px_#1ACF2C]">
+      <div className=" border border-black rounded-lg w-full bg-[#fff] lg:px-8 pt-6 pb-8 mb-4 shadow-[6px_6px_0px_0px_#1ACF2C]">
         <Image
           src={"/Polygon 23.png"}
           alt="..."
@@ -37,6 +42,7 @@ export default function ResetPasswordSuccessScreen() {
         </Link>
       </div>
     </div>
+    </main>
   );
 }
 

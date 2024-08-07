@@ -1,11 +1,16 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import BackgroundColor from "@/components/hackathon-bg";
+
 
 export default function HackathonSuccessScreen() {
   return (
-    <div className=" w-fit md:w-1/2 flex items-center m-auto justify-self-auto justify-center">
-      <div className=" border flex py-4 flex-col items-center justify-center m-auto  border-black rounded-lg w-full bg-white shadow-[6px_6px_0px_0px_#1ACF2C]">
+    <main className=" relative flex flex-col min-h-screen w-full overflow-hidden ">
+
+      <BackgroundColor />
+    <div className=" w-fit md:w-1/2 flex items-center m-auto justify-self-auto justify-center ">
+      <div className=" border flex py-4 flex-col items-center justify-center m-auto  border-black rounded-lg w-full bg-[#fff] shadow-[6px_6px_0px_0px_#1ACF2C]">
         <div className="w-fit">
 
         <Image
@@ -20,7 +25,7 @@ export default function HackathonSuccessScreen() {
         <h1 className="mt-10  text-[2em]  text-center font-bold">
           Registration Successful
         </h1>
-        <h3 className="px-4 text-center">
+        <h3 className="px-4 text-center font-md">
           Congratulations! You’ve successfully registered for the Web3 Lagos 3.0
           Hackathon. Secure your spot by creating or joining an existing team.
         </h3>
@@ -44,5 +49,6 @@ export default function HackathonSuccessScreen() {
         </div>
       </div>
     </div>
+    </main>
   );
 }
