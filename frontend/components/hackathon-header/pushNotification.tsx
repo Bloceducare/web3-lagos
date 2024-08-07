@@ -1,6 +1,7 @@
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { useState } from "react";
 import Link from "next/link";
+import { IoMdClose } from "react-icons/io";
 
 type User = {
   email: string;
@@ -62,7 +63,7 @@ const PushNotify: React.FC<PushNotifyProps> = ({ user }) => {
                       onClick={handleModalClose}
                       className="text-black-600"
                     >
-                      X
+                      <IoMdClose className=" w-6 h-6 " />
                     </button>
                   </div>
 

@@ -1,7 +1,7 @@
-
+import { IoMdClose } from "react-icons/io";
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image"
+import Image from "next/image";
 
 const Notifications = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,7 +23,7 @@ const Notifications = () => {
               Notification
             </h3>
             <button onClick={handleModalClose} className="text-black-600">
-              X
+              <IoMdClose className=" w-6 h-6 " />
             </button>
           </div>
 
