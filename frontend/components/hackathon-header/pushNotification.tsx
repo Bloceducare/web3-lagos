@@ -1,5 +1,6 @@
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { useState } from "react";
+import Link from "next/link";
 
 type User = {
   email: string;
@@ -96,6 +97,8 @@ const PushNotify: React.FC<PushNotifyProps> = ({ user }) => {
                   >
                     Update Profile
                   </button>
+                  <Link href="https://t.me/web3bridge">
+
                   <button
                     type="button"
                     onClick={handleTelegramLinkClick}
@@ -103,6 +106,8 @@ const PushNotify: React.FC<PushNotifyProps> = ({ user }) => {
                   >
                     Join Telegram
                   </button>
+                  </Link>
+
                 </div>
               </div>
             </div>
