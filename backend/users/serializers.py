@@ -31,7 +31,7 @@ class SigninSerializer(serializers.Serializer):
 class CustomUserDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['id', 'email', 'first_name', 'other_name', 'github_username']
+        fields = ['id', 'email', 'first_name', 'other_name', 'github_username', 'web3_knowledge', 'hacking_role']
         read_only_fields = ['verified']
 
 
