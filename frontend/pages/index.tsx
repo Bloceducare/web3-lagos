@@ -10,8 +10,7 @@ const Home: NextPage = () => {
         <title>Web3Lagos Sep 5 - Sep 9, 2024</title>
       </Head>
       <Layout>
-
-      <HomeView />
+        <HomeView />
       </Layout>
     </div>
   );

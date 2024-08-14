@@ -1,8 +1,8 @@
-import img0 from './Frame 10.png';
-import img1 from './Frame 11.png';
-import img2 from './Frame 13.png';
-import img3 from './Frame 14.png';
-import img4 from './Frame 16.png';
+import img0 from './EF-ESP-logo.svg';
+import img1 from './ETHOS.png';
+import img2 from './Lisklogo.png';
+import img3 from './Stellar_Stacked.png';
+import img4 from './webjs.png';
 import img5 from './Frame 17.png';
 import img6 from './Frame 18.png';
 import img7 from './Frame 19.png';
@@ -20,14 +20,14 @@ export default [
   img2,
   img3,
   img4,
-  img5,
-  img6,
-  img7,
-  img8,
-  img9,
-  img10,
-  img11,
-  img12,
-  img13,
-  img14
+  // img5,
+  // img6,
+  // img7,
+  // img8,
+  // img9,
+  // img10,
+  // img11,
+  // img12,
+  // img13,
+  // img14
 ];
