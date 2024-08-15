@@ -10,6 +10,7 @@ import Link from "next/link";
 
 type UserData = {
     first_name: string;
+    other_name: string,
     email: string;
     github_username: string;
     web3_knowledge: string,
@@ -30,6 +31,7 @@ type FormErrors = {
   
 const initialFormState: UserData = {
     first_name: "",
+    other_name: "",
     email: "",
     github_username: "",
     web3_knowledge: "",
@@ -76,17 +78,23 @@ export default function UpdateUser () {
       }, []);
 
     const handleUpdate = async (e: React.FormEvent) => {
+      e.preventDefault()
         const yourToken = localStorage.getItem("token");
         setLoading(true)
+        console.log(formData)
+
+        const formDataToSend = new FormData();
+        Object.entries(formData).forEach(([key, value]) => {
+          formDataToSend.append(key, value);
+        });             
         const response = await fetch(
-            `https://web3lagosbackend.onrender.com/hackathon/users/users/${user?.id}/`,
+            `https://web3lagosbackend.onrender.com/users/users/${user?.id}/`,
             {
               method: "PUT",
               headers: {
-                "Content-Type": "application/json",
                 Authorization: `Bearer ${yourToken}`,
               },
-              body: JSON.stringify(formData),
+              body: formDataToSend,
             }
           );
 
@@ -114,7 +122,7 @@ export default function UpdateUser () {
 
 
 
-            <section className="flex flex-col w-full mt-8 px-4 sm:px-8 ">
+            <section className="flex flex-col w-full mt-14 md:ml-64 px-4 sm:px-8 ">
             <div className="w-full bg-[#fff]">
           <HackathonHeader user={user} />
         </div>
@@ -136,9 +144,26 @@ export default function UpdateUser () {
                 id="first_name"
                 name="first_name"
                 onChange={handleChange}
-                placeholder="John doe"
+                placeholder={user?.first_name}
                 className="w-full p-4 border border-[#1E1E1E] shadow-[4px_4px_0px_0px_[#1E1E1E]] mt-3"
                 value={formData.first_name}
+                required
+              />
+
+            </div>
+
+            <div className='w-full mt-7'>
+              <label>
+                Other names
+              </label>
+              <input
+                type="text"
+                id="other_name"
+                name="other_name"
+                onChange={handleChange}
+                placeholder={user?.other_name}
+                className="w-full p-4 border border-[#1E1E1E] shadow-[4px_4px_0px_0px_[#1E1E1E]] mt-3"
+                value={formData.other_name}
                 required
               />
 
@@ -153,7 +178,7 @@ export default function UpdateUser () {
                 id="email"
                 name="email"
                 onChange={handleChange}
-                placeholder="John"
+                placeholder={user?.email}
                  className="w-full p-4 border border-[#1E1E1E] shadow-[4px_4px_0px_0px_[#1E1E1E]] mt-3"
                 value={formData.email}
                 required
@@ -168,7 +193,7 @@ export default function UpdateUser () {
                 id="github_username"
                 name="github_username"
                 onChange={handleChange}
-                placeholder="Jullie Doe"
+                placeholder={user?.github_username}
                 className="w-full p-4 border border-[#1E1E1E] shadow-[4px_4px_0px_0px_[#1E1E1E]] mt-3"
                 value={formData.github_username}
                 required
@@ -223,11 +248,11 @@ export default function UpdateUser () {
 
 
 
-          <div className="flex gap-10">
+          <div className="flex gap-10 py-10">
 
 
        {!change && (   <button
-            className={`w-full p-5 bg-[#1E1E1E] text-center shadow-[-5px_-5px_0px_0px_#0096FF] text-white font-bold rounded-lg hover:bg-green-600 transition duration-300"}`}
+            className={` p-5 bg-[#1E1E1E] text-center shadow-[-5px_-5px_0px_0px_#0096FF] text-white  font-bold rounded-lg hover:bg-green-600 transition duration-300"}`}
             onClick={handleEdit}
             >
              <span className="flex gap-2">Edit Info <BsPencil className="mt-1"/> </span>
@@ -235,7 +260,7 @@ export default function UpdateUser () {
 
        {change && (   <button
             type="submit"
-            className={`w-full p-5 bg-[#1E1E1E] text-center shadow-[-5px_-5px_0px_0px_#0096FF] text-white font-bold rounded-lg hover:bg-green-600 transition duration-300"}`}>
+            className={` p-5 bg-[#1E1E1E] text-center shadow-[-5px_-5px_0px_0px_#0096FF] text-white font-bold rounded-lg hover:bg-green-600 transition duration-300"}`}>
             {loading ? "Saving..." :  <span className="flex gap-2">Save <BsPencil className="mt-1"/> </span>}
           </button>)}
 
