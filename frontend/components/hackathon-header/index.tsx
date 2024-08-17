@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { IoMdLogOut } from "react-icons/io";
-import { IoIosNotificationsOutline } from "react-icons/io";
 import { MdOutlineAccountCircle } from "react-icons/md";
 import { format } from "date-fns";
 import { enUS } from "date-fns/locale";
+import PushNotify from "./pushNotification";
 
 type User = {
   email: string;
@@ -23,7 +23,6 @@ const HackathonHeader: React.FC<HackathonHeaderProps> = ({ user }) => {
   const [currentDate, setCurrentDate] = useState<string>("");
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const router = useRouter();
-
 
   useEffect(() => {
     const formatDate = (date: Date): string => {
@@ -43,7 +42,7 @@ const HackathonHeader: React.FC<HackathonHeaderProps> = ({ user }) => {
   return (
     <div className="flex w-full flex-row-reverse items-start justify-between">
       <div className="flex justify-end w-fit">
-        <IoIosNotificationsOutline className="w-10 h-6" />
+        <PushNotify user={user}  />
         <button onClick={toggleDropdown} className="group text-black  relative">
           <MdOutlineAccountCircle className="w-8 h-6" />
           {isDropdownOpen && (
