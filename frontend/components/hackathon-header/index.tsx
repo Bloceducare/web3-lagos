@@ -51,10 +51,11 @@ const HackathonHeader: React.FC<HackathonHeaderProps> = ({ user }) => {
               <div className="py-2">
                 <button
                   onClick={handleLogout}
-                  className="flex items-center w-full px-4 py-2 text-black hover:bg-gray-100"
+                  className="flex flex-col items-start gap-3 justify-start text-start w-full px-4 py-2 text-black hover:bg-gray-100"
                 >
                   <IoMdLogOut className="w-4 h-8 mr-2" />
                   <span>Logout</span>
+                  <Link href="/hackathon/updateuser" ><span>Edit Profile</span></Link>
                 </button>
               </div>
             </div>
