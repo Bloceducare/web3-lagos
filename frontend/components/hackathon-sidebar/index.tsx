@@ -9,6 +9,7 @@ import { IoHomeOutline } from "react-icons/io5";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { MdOutlineContactSupport } from "react-icons/md";
 import { useRouter } from "next/router";
+import { AiTwotoneProfile } from "react-icons/ai";
 
 interface SidebarItem {
   name: string;
@@ -46,6 +47,11 @@ const sidebarItems: SidebarItem[] = [
     name: "Logout",
     icon: <IoMdLogOut />,
     href: "/hackathon",
+  },
+  {
+    name: "Edit Profile",
+    icon: <AiTwotoneProfile />,
+    href: "/hackathon/updateuser",
   },
 ];
 
