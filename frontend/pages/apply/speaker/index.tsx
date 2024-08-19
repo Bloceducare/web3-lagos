@@ -8,7 +8,7 @@ const Speaker = () => {
 
       {/* // <ApplyAsaSpeaker /> */}
 
-      <h3 className="text-center text-[#ff0000]  text-[2em]"> Registraton Closed</h3>
+      <h3 className="text-center m-auto mt-[4em] text-[#ff0000]  text-[2em]"> Registraton Closed</h3>
     </Layout>
     </>
   );
