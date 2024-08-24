@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 type TeamData = {
   id: number;
   name: string;
-  creator: BigInteger;
+  creator: BigInteger | null | undefined;
   members: number[];
   joining_code: string;
 };
@@ -67,6 +67,7 @@ const Team: React.FC = () => {
       setUser(JSON.parse(userData));
     }
     console.log(userData);
+    // console.log(user)
   }, []);
 
   const handleChange = (
@@ -209,6 +210,40 @@ const Team: React.FC = () => {
   }
     setLoading(false);
   }
+
+  const handleDeleteTeam = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setMessage("");
+    const yourToken = localStorage.getItem("token");
+  
+    if (yourToken && data) {
+      const response = await fetch(
+        `https://web3lagosbackend.onrender.com/hackathon/teams/${data.id}/`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${yourToken}`,
+          },
+        }
+      );
+      if (response.ok) {
+        setMessage(`Team ${data.name} deleted successfully.`);
+        setIsSuccess(true);
+        setUserHasTeam(false);
+        setData(null);
+        window.location.reload();
+      } else {
+        setMessage(`Unable to delete ${data.name} team. Try again later.`);
+        setIsSuccess(false);
+      }
+    } else {
+      setMessage("Something went wrong. Please try again.");
+      setIsSuccess(false);
+    }
+    setLoading(false);
+  };
   const handleInviteSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const yourToken = localStorage.getItem("token");
@@ -444,15 +479,25 @@ const Team: React.FC = () => {
             </div>
           </section>
         )}
-      {data != null &&
-  (user?.id !== parseInt(data?.creator?.toString())) &&
-  (<div className="mb-8">
-    <button className="w-fit mt-12 p-3 bg-[#530101] text-white text-xl text-center shadow-[-5px_-5px_0px_0px_#0096FF]" onClick={handleLeaveTeam}>
-      Leave team
-    </button>
-  </div>)
-}
-
+      {userHasTeam && data && (
+    <section className="flex justify-center gap-5 w-[100%] px-1 py-1 my-16 border-black  ">
+      {user?.id == data?.creator?.toString() ? (
+        <button
+          className="font-bold rounded-xl text-[1.6em] bg-[#4b0707] cursor-pointer bg-red-600 text-white px-8 py-5"
+          onClick={handleDeleteTeam}
+        >
+          Delete Team
+        </button>
+      ) : (
+        <button
+          className="font-bold rounded-xl text-[1.6em] cursor-pointer bg-[#4b0707] text-white px-8 py-5"
+          onClick={handleLeaveTeam}
+        >
+          Leave Team
+        </button>
+      )}
+ </section>
+  )}
       </section>
     </div>
   );
