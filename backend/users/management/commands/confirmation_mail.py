@@ -14,29 +14,36 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         # Subject of the email
         subject = "Confirm Your Participation in Web3Lagos Conference 3.0 Hackerhouse"
-        
+
         try:
             # Render the email template from the file
-            html_message = render_to_string('users/email_template.html')
+            html_message_template = render_to_string('users/email_template.html')
 
             # Get all users' email addresses
-            users = list(CustomUser.objects.values_list('email', flat=True))
-            print(users)
-            
-            email_message = EmailMessage(
-                subject,
-                html_message,
-                settings.DEFAULT_FROM_EMAIL,  
-                bcc=users,
-            )
-            email_message.content_subtype = "html"
-            
-            # Attempt to send the email
-            email_message.send(fail_silently=False)
+            users = CustomUser.objects.values_list('email', flat=True)
 
-            self.stdout.write(self.style.SUCCESS('Emails sent successfully!'))
+            for email in users:
+                # Render the email message for each user
+                html_message = html_message_template
+                
+                email_message = EmailMessage(
+                    subject,
+                    html_message,
+                    settings.DEFAULT_FROM_EMAIL,  
+                    [email],
+                )
+                email_message.content_subtype = "html"
+                
+                # Attempt to send the email
+                try:
+                    email_message.send(fail_silently=False)
+                    self.stdout.write(self.style.SUCCESS(f'Email sent to {email} successfully!'))
+                except Exception as e:
+                    # Log the error for each failed email
+                    logger.error(f"Failed to send email to {email}: {str(e)}")
+                    self.stdout.write(self.style.ERROR(f"Failed to send email to {email}: {str(e)}"))
 
         except Exception as e:
-            # Log the error
-            logger.error(f"Failed to send emails: {str(e)}")
-            self.stdout.write(self.style.ERROR(f"Failed to send emails: {str(e)}"))
+            # Log the error for general issues
+            logger.error(f"Failed to process email sending: {str(e)}")
+            self.stdout.write(self.style.ERROR(f"Failed to process email sending: {str(e)}"))
