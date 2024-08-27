@@ -7,7 +7,7 @@ export default function Notifications() {
     if ("Notification" in window && Notification.permission === "granted") {
       const notification = new Notification("Hello Welcome", {
         body: "Join our telegram page for more information.",
-        icon: "/favicon-16x16.png",
+        icon: "/favicon.ico",
       });
       notification.onclick = () => {
         window.open("https://t.me/+mQ4RF188nBo5ZThk");
