@@ -1,14 +1,27 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import Script from "next/script"; // Import Script component for handling external scripts
 import HomeView from "@/views/home";
 import Layout from "@/components/layout";
 
 const Home: NextPage = () => {
   return (
-    <div className="">
+    <div>
       <Head>
         <title>Web3Lagos Sep 5 - Sep 9, 2024</title>
       </Head>
+      
+      {/* Add the Google Analytics script using the Script component */}
+      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-QZDCWPSP3K"></Script>
+      <Script id="google-analytics">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-QZDCWPSP3K');
+        `}
+      </Script>
+
       <Layout>
         <HomeView />
       </Layout>
@@ -16,18 +29,4 @@ const Home: NextPage = () => {
   );
 };
 
-
-
 export default Home;
-
-// <footer className="flex items-center justify-center w-full h-24 border-t">
-// <a
-//   className="flex items-center justify-center gap-2"
-//   href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-//   target="_blank"
-//   rel="noopener noreferrer"
-// >
-//   Powered by{' '}
-//   <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-// </a>
-// </footer>

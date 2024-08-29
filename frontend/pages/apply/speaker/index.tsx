@@ -6,7 +6,9 @@ const Speaker = () => {
     <>
     <Layout>
 
-      <ApplyAsaSpeaker />
+       {/* <ApplyAsaSpeaker /> */}
+
+      <h3 className="text-center m-auto mt-[4em] text-[#ff0000]  text-[2em]"> Registraton Closed</h3>
     </Layout>
     </>
   );

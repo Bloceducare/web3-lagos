@@ -15,7 +15,7 @@ class Command(BaseCommand):
             # Get the directory of the current script
             base_dir = os.path.dirname(os.path.abspath(__file__))
             # Construct the file paths
-            csv_file_path = os.path.join(base_dir, 'data.csv')
+            csv_file_path = os.path.join(base_dir, 'emails.csv')
             html_template_path = os.path.join(base_dir, 'email_template.html')
 
             # Read the HTML template
@@ -25,26 +25,29 @@ class Command(BaseCommand):
             # List to hold all the email messages
             email_messages = []
 
-            # Read the CSV file
+            # Read the CSV file without headers
             with open(csv_file_path, newline='') as csvfile:
-                reader = csv.DictReader(csvfile)
+                reader = csv.reader(csvfile)
                 for row in reader:
-                    name = row['Name']
-                    email = row['Email']
-                    subject = 'Welcome to the Web3Lagos Volunteer Team! 🥳💥'
-                    print(email)
-                    # Insert the user's name into the HTML template
+                    
+                    email = row[1]
+                    name = row[2]
+
+                    
                     html_message = html_template.replace('{name}', name)
 
                     from_email = settings.DEFAULT_FROM_EMAIL
+                    subject = 'Welcome to the Web3Lagos Conference 3.0 Hackerhouse! 💥'
 
                     # Create the email message
                     msg = EmailMultiAlternatives(subject, '', from_email, [email])
                     msg.attach_alternative(html_message, "text/html")
                     email_messages.append(msg)
 
+                    print(email, name)
+
             # Send all emails at once
-            connection = get_connection()  # Use the default email connection
+            connection = get_connection()  
             connection.send_messages(email_messages)
 
             self.stdout.write(self.style.SUCCESS('Successfully sent emails to all users'))
