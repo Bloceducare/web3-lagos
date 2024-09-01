@@ -15,7 +15,7 @@ class Command(BaseCommand):
             # Get the directory of the current script
             base_dir = os.path.dirname(os.path.abspath(__file__))
             # Construct the file paths
-            csv_file_path = os.path.join(base_dir, 'emails.csv')
+            csv_file_path = os.path.join(base_dir, 'accepted.csv')
             html_template_path = os.path.join(base_dir, 'email_template.html')
 
             # Read the HTML template
