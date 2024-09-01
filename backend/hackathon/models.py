@@ -34,3 +34,16 @@ class Project(models.Model):
 
     def __str__(self):
         return self.name
+    
+
+
+class Resources(models.Model):
+    """
+        Workshop resources
+    """
+    title = models.CharField(max_length=1000, default='n/a')
+    link = models.URLField(blank=True)
+    content = models.TextField(blank=True)
+    description = models.TextField(blank=True)  # Updated
+    author = models.CharField(max_length=1000, blank=True)
+

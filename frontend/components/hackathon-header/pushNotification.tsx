@@ -2,6 +2,7 @@ import { IoIosNotificationsOutline } from "react-icons/io";
 import { useState } from "react";
 import Link from "next/link";
 import { IoMdClose } from "react-icons/io";
+import { MdNotificationsActive } from "react-icons/md";
 
 type User = {
   email: string;
@@ -28,7 +29,7 @@ const PushNotify: React.FC<PushNotifyProps> = ({ user }) => {
   return (
     <div>
       <button onClick={handleModalToggle} className="">
-        <IoIosNotificationsOutline className="w-10 h-6" />
+        <MdNotificationsActive className="w-12 h-10" />
       </button>
       {isModalOpen && (
         <div
@@ -72,12 +73,15 @@ const PushNotify: React.FC<PushNotifyProps> = ({ user }) => {
                       {" "}
                       Hello, {user ? user.first_name : "Guest"}!{" "}
                     </span>
-                    <p className="text-sm text-black mt-2">
-                      Join our telegram page for more information by clicking
-                      the join telegram button.
+                    <p className="text-lg text-[#4d0f0f] mt-2 font-bold">
+                    Winnings and rewards will paid Out 21 days after the Hackathon
                     </p>
                     <p className="mt-2 text-sm text-black">
                       To update your profile click the update profile button
+                    </p>
+
+                    <p className="mt-2 text-sm text-black">
+                      Join the Telegram group for more information and questions with the button below
                     </p>
                   </div>
                 </div>

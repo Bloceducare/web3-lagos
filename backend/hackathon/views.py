@@ -3,8 +3,10 @@ from rest_framework.response import Response
 from rest_framework import viewsets, permissions, status
 from django.core.mail import send_mail
 from django.conf import settings
-from .serializers import InviteSerializer, JoinTeamSerializer, LeaveTeamSerializer, TeamSerializer, ProjectSerializer
-from .models import Team, Project
+
+from backend.permissions import IsAuthenticatedByAuthServer
+from .serializers import InviteSerializer, JoinTeamSerializer, LeaveTeamSerializer, ResourcesSerializer, TeamSerializer, ProjectSerializer
+from .models import Resources, Team, Project
 from users.models import CustomUser
 from django.db import models
 from drf_yasg.utils import swagger_auto_schema
@@ -180,3 +182,56 @@ class ProjectViewSet(viewsets.ModelViewSet):
 
         self.perform_destroy(instance)
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+
+
+
+
+
+class ResourcesViewset(viewsets.ModelViewSet):
+    queryset = Resources.objects.all()
+    serializer_class = ResourcesSerializer
+    permission_classes = [IsAuthenticatedByAuthServer]
+
+    def view(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        # Check if the user is an admin (this should be covered by the permission class as well)
+        if not request.user.is_staff:
+            return Response({"error": "Only admins can add resources."}, status=status.HTTP_403_FORBIDDEN)
+
+        # Save the resource
+        resource = serializer.save()
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+
+        # Only admins can update resources (this should also be covered by the permission class)
+        if not request.user.is_staff:
+            return Response({"error": "Only admins can update resources."}, status=status.HTTP_403_FORBIDDEN)
+
+        self.perform_update(serializer)
+        return Response(serializer.data)
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+
+        # Only admins can delete resources (again, handled by the permission class)
+        if not request.user.is_staff:
+            return Response({"error": "Only admins can delete resources."}, status=status.HTTP_403_FORBIDDEN)
+
+        self.perform_destroy(instance)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
