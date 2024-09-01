@@ -73,7 +73,7 @@ const PushNotify: React.FC<PushNotifyProps> = ({ user }) => {
                       {" "}
                       Hello, {user ? user.first_name : "Guest"}!{" "}
                     </span>
-                    <p className="text-lg text-[#250606] mt-2">
+                    <p className="text-lg text-[#4d0f0f] mt-2">
                     Winnings and rewards will paid Out 21 days after the Hackathon
                     </p>
                     <p className="mt-2 text-sm text-black">
