@@ -2,6 +2,7 @@ import { IoIosNotificationsOutline } from "react-icons/io";
 import { useState } from "react";
 import Link from "next/link";
 import { IoMdClose } from "react-icons/io";
+import { MdNotificationsActive } from "react-icons/md";
 
 type User = {
   email: string;
@@ -28,7 +29,7 @@ const PushNotify: React.FC<PushNotifyProps> = ({ user }) => {
   return (
     <div>
       <button onClick={handleModalToggle} className="">
-        <IoIosNotificationsOutline className="w-10 h-6" />
+        <MdNotificationsActive className="w-10 h-6" />
       </button>
       {isModalOpen && (
         <div
