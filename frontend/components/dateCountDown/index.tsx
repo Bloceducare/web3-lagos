@@ -71,7 +71,12 @@ const Countdown: React.FC<CountdownProps> = ({ endDate }) => {
   );
 };
 
-const endDate = new Date("2024-09-05T00:00:00");
+
+
+
+
+const endDate = new Date("2024-09-01T00:00:00");
+
 
 const DateCountDown: React.FC = () => {
   return (
