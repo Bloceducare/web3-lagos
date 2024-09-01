@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { IoMdLogOut } from "react-icons/io";
-import { MdOutlineAccountCircle } from "react-icons/md";
+import { MdNotificationsActive, MdOutlineAccountCircle } from "react-icons/md";
 import { format } from "date-fns";
 import { enUS } from "date-fns/locale";
 import PushNotify from "./pushNotification";
@@ -44,7 +44,7 @@ const HackathonHeader: React.FC<HackathonHeaderProps> = ({ user }) => {
       <div className="flex justify-end w-fit">
         <PushNotify user={user}  />
         <button onClick={toggleDropdown} className="group text-black  relative">
-          <MdOutlineAccountCircle className="w-8 h-6" />
+          <MdNotificationsActive className="w-8 h-6" />
           {isDropdownOpen && (
             <div className="absolute z-10 mt-2 rounded-lg shadow w-32 right-0  bg-[#fff]">
               <div className="py-2">

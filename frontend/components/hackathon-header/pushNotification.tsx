@@ -72,12 +72,15 @@ const PushNotify: React.FC<PushNotifyProps> = ({ user }) => {
                       {" "}
                       Hello, {user ? user.first_name : "Guest"}!{" "}
                     </span>
-                    <p className="text-sm text-black mt-2">
-                      Join our telegram page for more information by clicking
-                      the join telegram button.
+                    <p className="text-lg text-[#250606] mt-2">
+                    Winnings and rewards will paid Out 21 days after the Hackathon
                     </p>
                     <p className="mt-2 text-sm text-black">
                       To update your profile click the update profile button
+                    </p>
+
+                    <p className="mt-2 text-sm text-black">
+                      Join the Telegram group for more information and questions with the button below
                     </p>
                   </div>
                 </div>
