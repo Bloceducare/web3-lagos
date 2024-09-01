@@ -138,6 +138,16 @@ const Dashboard = () => {
             />
             <h3>Please respect our code of conduct</h3>
           </div>
+          <div className="flex items-center space-x-3 mt-4 px-4">
+            <Image
+              src={"/Vector (6).png"}
+              alt="..."
+              height={10}
+              width={20}
+              className=""
+            />
+            <h3>Winnings and rewards will paid Out 21 days after the Hackathon</h3>
+          </div>
         </div>
       </div>
     </div>

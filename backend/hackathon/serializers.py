@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Team, Project
+from .models import Resources, Team, Project
 
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
@@ -28,3 +28,7 @@ class InviteSerializer(serializers.Serializer):
     )
 
 
+class ResourcesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Resources
+        fields = ['title', 'link', 'content', 'description', 'author']
