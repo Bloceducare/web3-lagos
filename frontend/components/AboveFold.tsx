@@ -152,7 +152,7 @@ const AboveFold = () => {
               <div>The Zone, Gbagada, Lagos State.</div>
             </div>
 
-          <DateCountDown />
+            <DateCountDown endDate={new Date("2024-09-05T12:00:00")} />
 
         <div className="flex flex-wrap lg:flex-nowrap items-center gap-6 md:space-y-0 md:space-x-10 my-8 justify-between w-[88%] md:w-fit">
           <Progress Title="Attendee" number={registrations.length > 0 ? `${registrations.length}`: '--'} imageSrc="/attendees.svg" />
