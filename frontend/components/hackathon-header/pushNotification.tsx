@@ -29,7 +29,7 @@ const PushNotify: React.FC<PushNotifyProps> = ({ user }) => {
   return (
     <div>
       <button onClick={handleModalToggle} className="">
-        <MdNotificationsActive className="w-10 h-6" />
+        <MdNotificationsActive className="w-12 h-10" />
       </button>
       {isModalOpen && (
         <div
@@ -73,7 +73,7 @@ const PushNotify: React.FC<PushNotifyProps> = ({ user }) => {
                       {" "}
                       Hello, {user ? user.first_name : "Guest"}!{" "}
                     </span>
-                    <p className="text-lg text-[#4d0f0f] mt-2">
+                    <p className="text-lg text-[#4d0f0f] mt-2 font-bold">
                     Winnings and rewards will paid Out 21 days after the Hackathon
                     </p>
                     <p className="mt-2 text-sm text-black">
