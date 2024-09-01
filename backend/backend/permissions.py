@@ -12,16 +12,20 @@ class IsAuthenticatedByAuthServer(permissions.BasePermission):
 
     def has_permission(self, request, view):
         token = request.headers.get('Authorization')
+        if request.method in permissions.SAFE_METHODS:
+            print(request.method)
+            return True
+        
         if not token:
             raise AuthenticationFailed("Authentication token not provided")
-
         try:
+            print(token)
             # Verify token against authentication server
             response = requests.post(
                 f"{settings.AUTH_SERVER_URL}/api/token/verify/",
                 json={"token": token}
             )
-            
+            print(response.json())
             if response.status_code != 200:
                 raise AuthenticationFailed("Error authenticating with auth server")
 
@@ -39,3 +43,16 @@ class IsAuthenticatedByAuthServer(permissions.BasePermission):
 
         except Exception as e:
             raise APIException(f"Unexpected error: {str(e)}")
+
+
+class IsAdminOrReadOnly(permissions.BasePermission):
+    """
+    Custom permission to only allow admins to edit resources.
+    """
+    def has_permission(self, request, view):
+        # Allow read-only actions for all users (GET, HEAD, OPTIONS)
+        if request.method in permissions.SAFE_METHODS:
+            return True
+        
+        # Write permissions are only allowed to the admin users
+        return request.user and request.user.is_staff
