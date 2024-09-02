@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-// Define the type for the props
+// Define the type for the props of DateBlock
 type DateBlockProps = {
   timeStamp: number;
   text: string;
@@ -17,11 +17,12 @@ const DateBlock: React.FC<DateBlockProps> = ({ timeStamp, text }) => {
   );
 };
 
-// Countdown component
+// Define the type for the props of Countdown
 interface CountdownProps {
   endDate: Date;
 }
 
+// Countdown component
 const Countdown: React.FC<CountdownProps> = ({ endDate }) => {
   const [countdown, setCountdown] = useState<{
     days: number;
@@ -71,14 +72,12 @@ const Countdown: React.FC<CountdownProps> = ({ endDate }) => {
   );
 };
 
+// DateCountDown component now takes endDate as a prop
+interface DateCountDownProps {
+  endDate: Date;
+}
 
-
-
-
-const endDate = new Date("2024-09-01T00:00:00");
-
-
-const DateCountDown: React.FC = () => {
+const DateCountDown: React.FC<DateCountDownProps> = ({ endDate }) => {
   return (
     <div className="flex items-center justify-between my-2">
       <div>

@@ -127,11 +127,31 @@ export default function HackathonRegistration() {
   }
 
   const isSubmitDisabled = loading || !!errors.confirmpassword;
+  
+  
 
-  return (
-    <main className=" relative flex flex-col min-h-screen overflow-hidden ">
+    
+  
+    const handleGoBack = () => {
+      window.history.back();
+    };
+  
+    return (
+      <main className=" relative flex flex-col min-h-screen overflow-hidden ">
 
       <BackgroundColor />
+{/* <div className="w-full m-auto gap-8 items-center justify-center align-middle flex flex-col">
+
+        <div className="m-auto text-red-500 text-[3em]">Registration Closed</div>
+        <button
+          onClick={handleGoBack}
+          className=" hover:bg-[#0000ff] bg-[#06062f] w-fit m-auto text-white font-bold py-2 px-4 rounded-lg"
+        >
+          Go Back
+        </button>
+</div> */}
+
+  
 
       <div className="w-full mx-auto mt-10 max-w-3xl p-6">
         <div className="border border-black rounded-lg  bg-[#fff] lg:px-8 pt-6 pb-8 mb-4 shadow-[6px_6px_0px_0px_#1ACF2C]">
