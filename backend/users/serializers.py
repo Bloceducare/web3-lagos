@@ -7,7 +7,7 @@ class SignupSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = CustomUser
-        fields = ['email', 'password', 'first_name', 'other_name', 'github_username']
+        fields = ['email', 'password', 'first_name', 'other_name', 'github_username', 'web3_knowledge', 'hacking_role']
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
@@ -16,7 +16,11 @@ class SignupSerializer(serializers.ModelSerializer):
             password=validated_data['password'],
             first_name=validated_data['first_name'],
             other_name=validated_data['other_name'],
-            github_username=validated_data['github_username']
+            github_username=validated_data['github_username'],
+            web3_knowledge=validated_data['web3_knowledge'],
+            hacking_role=validated_data['hacking_role'],
+            
+
         )
         return user
 
