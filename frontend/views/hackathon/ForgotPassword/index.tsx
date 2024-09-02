@@ -65,7 +65,7 @@ export default function ForgotPassword() {
       setMessage("Email sent successfully!");
       setFormData(initialFormState);
       setIsSuccess(true); // Show success screen
-      router.push('/'); // Navigate back to homepage
+      // router.push('/'); // Navigate back to homepage
     } else {
       setErrors(data);
       setMessage("Error: check email again");
