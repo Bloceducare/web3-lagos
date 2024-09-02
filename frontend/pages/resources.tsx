@@ -57,7 +57,7 @@ const Topics = [
 
 function resources() {
   return (
-    <div className='px-3 lg:px-64'>
+    <div className='px-3 lg:px-16 xl:px-56'>
         <div>
             <header className="flex justify-between items-center w-full  py-10">
                 <div>
@@ -83,9 +83,9 @@ function resources() {
             {/* THE BODY */}
             <section>
 
-                <section className='flex gap-10 flex-wrap lg:flex-nowrap'>
+                <section className='flex justify-between gap-10 flex-wrap lg:flex-nowrap '>
                     {Articles.map((art) => (
-                        <div className='bg-[#188BE0] text-white h-auto lg:w-[425px] self-start space-y-6 px-10 py-10 rounded-2xl' key={art.id}>
+                        <div className='bg-[#188BE0] text-white h-auto xl:w-[425px] self-start space-y-6 px-5 xl:px-10 py-10 rounded-2xl' key={art.id}>
                             <h1 className='font-semibold text-3xl'>{art.title}</h1>
                             <p className='text-base leading-7 font-normal'>{art.summ}</p>
                             <button className='border px-5 py-3 text-lg rounded-xl bg-[#F8F9FB] text-[#188BE0]'>Read more</button>
@@ -94,66 +94,70 @@ function resources() {
                 </section>
 
 
-                <section className='flex gap-10 flex-wrap lg:flex-nowrap'>
-                    <div className='bg-[#188BE0] text-white h-auto lg:w-[425px] px-10 py-10 rounded-2xl space-y-5'>
-                        <h1 className='font-semibold text-3xl'>Highlights from 2022</h1>
-                        <div className='bg-[#FFFFFF] lg:w-[320px] h-[160px] flex justify-center items-center rounded-2xl'>
-                            <p className='border-4 h-[10vh] w-[10vh] flex items-center justify-center border-[#188BE0] rounded-full'>
-                                <Image src={Play} alt='play' />
-                            </p>
-                        </div>
-                        <button className='text-[#188BE0] bg-[#F8F9FB] px-5 py-3 rounded-2xl'>View Youtube</button>
-                    </div>
-                    <div>
-                        <Image src={ETH} alt='uhs' className='h-auto lg:w-[425px]' />
-                    </div>
-                    <div className='bg-[#188BE0] text-white h-auto lg:w-[425px] px-10 py-10 rounded-2xl space-y-5'>
-                        <h1 className='font-semibold text-3xl'>Highlights from 2022</h1>
-                        <div className='bg-[#FFFFFF] lg:w-[320px] h-[160px] flex justify-center items-center rounded-2xl'>
-                            <p className='border-4 h-[10vh] w-[10vh] flex items-center justify-center border-[#188BE0] rounded-full'>
-                                <Image src={Play} alt='play' />
-                            </p>
-                        </div>
-                        <button className='text-[#188BE0] bg-[#F8F9FB] px-5 py-3 rounded-2xl'>View Youtube</button>
-                    </div>
-                </section>
+                <section className="flex justify-between gap-10 flex-wrap lg:flex-nowrap mt-10">
+  <div className="bg-[#188BE0] text-white h-auto px-5 xl:px-10 py-10 rounded-2xl space-y-5 flex-grow flex-shrink-0">
+    <h1 className="font-semibold text-3xl">Highlights from 2022</h1>
+    <div className="bg-[#FFFFFF] w-full lg:w-[320px] h-[160px] flex justify-center items-center rounded-2xl">
+      <p className="border-4 h-[10vh] w-[10vh] flex items-center justify-center border-[#188BE0] rounded-full">
+        <Image src={Play} alt="play" />
+      </p>
+    </div>
+    <button className="text-[#188BE0] bg-[#F8F9FB] px-5 py-3 rounded-2xl">View Youtube</button>
+  </div>
+
+  <div className="flex-grow h-auto">
+    <Image src={ETH} alt="uhs" className="h-auto w-full object-cover rounded-2xl" />
+  </div>
+
+  <div className="bg-[#188BE0] text-white h-auto px-5 xl:px-10 py-10 rounded-2xl space-y-5 flex-grow flex-shrink-0">
+    <h1 className="font-semibold text-3xl">Highlights from 2022</h1>
+    <div className="bg-[#FFFFFF] w-full lg:w-[320px] h-[160px] flex justify-center items-center rounded-2xl">
+      <p className="border-4 h-[10vh] w-[10vh] flex items-center justify-center border-[#188BE0] rounded-full">
+        <Image src={Play} alt="play" />
+      </p>
+    </div>
+    <button className="text-[#188BE0] bg-[#F8F9FB] px-5 py-3 rounded-2xl">View Youtube</button>
+  </div>
+</section>
+
+
 
 
                
-                    <section className='flex justify-between mt-16 items-center flex-wrap lg:flex-nowrap'>
-                        <div>
-                            <p className='text-4xl font-medium lg:w-[549px] leading-[45px]'>Get the latest resources activity update into your inbox monthly</p>
-                        </div>
-                                            <div className="p-5">
-                        <p className="flex flex-col lg:flex-row lg:items-center lg:space-x-3 bg-white border-[#188BE0] rounded-xl border p-3 mt-10 lg:mt-0">
-                            <input
-                                type="email"
-                                name="email"
-                                id=""
-                                className="outline-none text-black bg-transparent flex-1 mb-3 lg:mb-0"
-                                placeholder="Enter your email"
-                            />
-                           <button className="bg-[#188BE0] px-5 py-2 rounded-lg text-white">
-                                Let&#39;s go
-                           </button>
+                <section className="flex justify-between mt-16 items-center flex-wrap lg:flex-nowrap w-full">
+  <div className="lg:flex-shrink-0 lg:w-auto">
+    <p className="text-4xl font-medium lg:w-[549px] leading-[45px]">
+      Get the latest resources activity update into your inbox monthly
+    </p>
+  </div>
+  <div className="p-5 w-full lg:w-auto">
+    <div className="flex flex-col lg:flex-row lg:items-center lg:space-x-3 bg-white border-[#188BE0] rounded-xl border p-3 mt-10 lg:mt-0 w-full lg:w-auto">
+      <input
+        type="email"
+        name="email"
+        id=""
+        className="outline-none text-black bg-transparent flex-grow mb-3 lg:mb-0"
+        placeholder="Enter your email"
+      />
+      <button className="bg-[#188BE0] px-5 py-2 rounded-lg text-white">
+        Let&#39;s go
+      </button>
+    </div>
+  </div>
+</section>
 
-                        </p>
-                    </div>
 
 
-                    </section>
-
-
-                    <section className="mt-16 px-4 md:px-8 lg:px-16">
+                    <section className="mt-16 ">
   <div className="text-center">
     <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium">Related Topics</h1>
   </div>
 
-  <section className="flex flex-wrap justify-center lg:justify-between mt-14">
+  <section className="flex flex-wrap justify-center lg:justify-between gap-5 mt-14">
     {Topics.map((topic) => (
       <div
         key={topic.title} // Add a unique key to each item
-        className="w-full md:w-[48%] lg:w-[30%] border border-[#188BE0] rounded-2xl mt-10 lg:mt-0 flex-shrink-0"
+        className="w-full md:w-[48%]  xl:w-[30%] border border-[#188BE0] rounded-2xl mt-10 lg:mt-0 flex-shrink-0"
       >
         <Image
           src={topic.img}
@@ -174,7 +178,7 @@ function resources() {
 
 
 
-                    <section className='mt-16 flex justify-between flex-wrap lg:flex-nowrap'>
+                    <section className='mt-16 flex justify-center lg:justify-end xl:justify-between flex-wrap lg:flex-nowrap'>
                         <div>
                             <div className="text-3xl md:text-6xl lg:text-4xl font-bold leading-[50px] md:leading-[56px] lg:leading-[56px]">
                 <h2>Our Success Story;</h2>
