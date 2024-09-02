@@ -84,6 +84,7 @@ export default function ForgotPassword() {
         <h1 className="text-xl lg:text-4xl font-bold mt-3">
           Enter your email address
         </h1>
+        {isSuccess && <div className="bg-[#00ff00] text-white px-2 py-3 w-full text-[1.1em]">Password reset initiated Please Check your mail</div>}
         <form onSubmit={handleSubmit} className="">
           <div className="w-full">
             <label
