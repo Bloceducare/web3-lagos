@@ -334,6 +334,7 @@ const Project: React.FC = () => {
                 <option value="Digital collectibles">Application in digital collectibles</option>
                 <option value="Financial inclusion and education">Application in financial inclusion and education</option>
                 <option value="Sustainability">Application in sustainability</option>
+                <option value="E-Identity">E - Identity</option>
               </select>
               {errors.category && <p className="text-[#dc3545]">{errors.category.join(", ")}</p>}
             </div>
