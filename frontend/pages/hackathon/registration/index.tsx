@@ -1,12 +1,13 @@
 import HackathonRegistration from "../../../views/hackathon/RegistrationForm/index"
 
 
-const registration = () => {
+const Registration = () => {
   return (
     <>
-      <HackathonRegistration/>
+      <HackathonRegistration/> 
+
     </>
   );
 };
 
-export default registration;
+export default Registration;

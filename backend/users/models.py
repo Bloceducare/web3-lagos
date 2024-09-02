@@ -11,8 +11,10 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     web3_knowledge = models.CharField(max_length=255, null=True)
     hacking_role = models.CharField(max_length=255, null=True)
 
-
-    objects = CustomUserManager()    
+    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+    is_superuser = models.BooleanField(default=False)
+    objects = CustomUserManager()   
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 

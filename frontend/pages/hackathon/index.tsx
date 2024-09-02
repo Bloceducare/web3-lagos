@@ -191,7 +191,9 @@ const Hackathon = () => {
             </div>
             <div className="flex flex-col justify-center items-center text-black w-full space-y-7 border-[1px] bg-[#fff] border-[#1E1E1E] shadow-[-5px_5px_0px_0px_rgba(0,0,0)] p-6">
               <p className="font-semibold md:text-[24px] lg:text-[34px]">Registration Ends In:</p>
-              <DateCountDown />
+              {/* <DateCountDown />
+               */}
+               <p className="text-red-500">Registration Closed</p>
             </div>
           </div>
         </section>
