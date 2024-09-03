@@ -7,7 +7,7 @@ export const blurUrl = "data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKC
 
 export const schedule = {
   thur: {
-    title: "Thursday",
+    title: "5th September",
     hall1: {
       title: "Hall 1",
       item: [
@@ -21,117 +21,136 @@ export const schedule = {
         },
         {
           time: "10:15 - 10:30 AM",
-          topic: "Introduction",
+          topic: "Introductions",
         },
         {
           time: "10:30 - 11:15 AM",
-          topic: "Understanding Blockchain for Beginners",
+          topic: "Introduction to Blockchain",
           speaker: "Hezekiah Suleman - Hall 1",
         },
         {
-          time: "11:15 - 12:00 PM",
-          topic: "Growing a career in Blockchain",
-          speaker: "Michael Jerry - Hall 1",
+          time: "11:15 - 11:40 AM",
+          topic: "Empowering Underserved Markets Onchain: An Exposition to Real-World Assets (RWAs)",
+          speaker: "Oluwole Kayode - Hall 1",
         },
         {
-          time: "12:00 - 12:20 PM",
-          topic: "Web3: Community and Protocol",
-          speaker: "Ayodele Aransiola - Hall 1",
+          time: "11:40 - 11:50 AM",
+          topic: "The Role of Social Media in Building Web3 Communities: Best Practices and Pitfalls",
+          speaker: "Amara Achusi - Hall 1",
         },
         {
-          time: "12:20 - 12:45 PM",
-          topic: "Understanding & contributing to DAO",
-          speaker: "Odebunmi Fiyinfoluwa - Hall 1",
+          time: "11:50 AM - 12:05 PM",
+          topic: "Adoption in Africa: Improvement of Africa Educational System Using Blockchain Technology",
+          speaker: "David Amodu - Hall 1",
         },
         {
-          time: "12:45 - 1:15 PM",
-          topic: "Decentralized Disruption: How Web3 is Revolutionizing Marketing",
-          speaker: "Adeola Adesina - Hall 1",
+          time: "12:05 - 12:35 PM",
+          topic: "Blockchain Policies in Nigeria",
+          speaker: "Beverly Agbakoba - Hall 1",
         },
         {
-          time: "1:15 - 1:30 PM",
-          topic: "Break",
+          time: "12:35 - 12:45 PM",
+          topic: "The Future of Data in Web3",
+          speaker: "Ivy Elebesunu - Hall 1",
         },
         {
-          time: "1:30 - 2:00 PM",
-          topic: "Technical Content Creation: The Key To Popular Participation in Web3",
-          speaker: "John Olamide - Hall 1",
+          time: "12:45 - 12:55 PM",
+          topic: "Working as a writer in Web3: How to build their brand",
+          speaker: "Toluwalope Ajetunmobi - Hall 1",
         },
         {
-          time: "2:00 - 2:30 PM",
-          topic: "Web3 Marketing & growth hacking",
-          speaker: "Olatinwo Barakat Anuoluwapo - Hall 1",
+          time: "12:55 - 1:10 PM",
+          topic: "Real World Assets (Fluke or For-real)",
+          speaker: "Emmanuel Tope - Hall 1",
         },
         {
-          time: "2:30 - 2:55 PM",
-          topic: "Hall 1 Q & A",
+          time: "1:10 - 1:30 PM",
+          topic: "Science on the blockchain - Introduction to Decentralized Science",
+          speaker: "Scott Itepu - Hall 1",
         },
         {
-          time: "3:05 - 3:45 PM",
-          topic: "Understanding the Public and Doing it",
-          speaker: "Kevin Owocki - Hall 1",
+          time: "1:30 - 1:50 PM",
+          topic: "Making Cryptocurrency White Papers More Accessible through Retrieval-Augmented Generation (RAG)",
+          speaker: "Seunfunmi Adegoke - Hall 1",
         },
         {
-          time: "3:45 - 4:00 PM",
-          topic: "The Future of Web3 Hacking",
-          speaker: "Ogunsakin Emmanuel - Hall 1",
+          time: "1:50 - 2:05 PM",
+          topic: "Product Roadmaps and Team Management in a Decentralized World",
+          speaker: "Adedoyinsolami Adeyeye - Hall 1",
         },
-        // {
-        //   time: "4:00 - 4:30 PM",
-        //   topic: "Understanding Base ecosystem",
-        //   speaker: "Jesse Pollak - Hall 1",
-        // },
-       
+        {
+          time: "2:05 - 2:20 PM",
+          topic: "A DePIN protocol for unlocking Africa's solar energy potential and solving Energy Poverty",
+          speaker: "Ifeanyi Christwin - Hall 1",
+        },
+        {
+          time: "2:20 - 3:30 PM",
+          topic: "End of Day 1 AMA & Round Table",
+        },
       ],
     },
     hall2: {
       title: "Hall 2",
       item: [
         {
-          time: "12:00 - 12:20 PM",
-          topic: "Introduction to formal Verification and symbolic execution for smart contract",
-          speaker: "Temitayo Daniel - Hall 2",
+          time: "11:50 AM - 12:05 PM",
+          topic: "From Web2 to Web3: Web3.js - Your Developer Passport to the Decentralized Future",
+          speaker: "Adefisayo Adejumo - Hall 2",
+        },
+        {
+          time: "12:05 - 12:20 PM",
+          topic: "Building the Future: Decentralized Computing Infrastructure for Web 3.0",
+          speaker: "Uchechukwu Azubuko - Hall 2",
         },
         {
           time: "12:20 - 12:35 PM",
-          topic: "Understanding Web3 Frontend",
-          speaker: "Blessing Samuel - Hall 2",
+          topic: "Improving web3 User experience through chain abstraction",
+          speaker: "Collins Enebeli - Hall 2",
         },
         {
           time: "12:35 - 12:55 PM",
-          topic: "Starknet under the hood",
-          speaker: "Godspower Eze - Hall 2",
+          topic: "Building Scalable Web3 Applications: Integrating Decentralized Technologies with Modern Frontend Frameworks",
+          speaker: "Amani Kanu - Hall 2",
         },
         {
-          time: "12:55 - 1:15 PM",
-          topic: "Smart contract Audit",
-          speaker: "David Uzochukwu - Hall 2",
+          time: "12:55 - 1:05 PM",
+          topic: "Harnessing the Power of Trusted Execution Environments (TEEs) to Revolutionize Blockchain Security",
+          speaker: "Liam Quinn - Hall 2",
         },
         {
-          time: "1:15 - 1:30 PM",
-          topic: "Secret Network",
-          speaker: "Pope Black  - Hall 2",
+          time: "1:05 - 1:20 PM",
+          topic: "The Future of Technical Communication in Web3",
+          speaker: "Victoris Adedayo - Hall 2",
         },
         {
-          time: "1:30 - 1:50 PM",
-          topic: "Filecoin",
+          time: "1:20 - 1:35 PM",
+          topic: "Build On Bitcoin Leveraging Rootstock",
+          speaker: "Chukwuebe Peters - Hall 2",
         },
         {
-          time: "1:50 - 2:15 PM",
-          topic: "Invariant testing",
-          speaker: "Abimbola Adebayo - Hall 2",
+          time: "1:35 - 1:55 PM",
+          topic: "Building Decentralized App quickly",
+          speaker: "KC Pele - Hall 2",
+        },
+        {
+          time: "1:55 - 2:15 PM",
+          topic: "Invariants Testing for Smart Contracts in the World of Medusa",
+          speaker: "Joshua Adesanya - Hall 2",
         },
         {
           time: "2:15 - 3:00 PM",
-          topic: "Understanding Account Abstraction",
-          speaker: "Nonse Odion - Hall 2",
+          topic: "Understanding the Lisk Protocol",
         },
-
+        {
+          time: "3:00 - 3:45 PM",
+          topic: "ZK Workshop",
+          speaker: "PSE team - Hall 2",
+        },
       ],
     },
   },
   fri: {
-    title: "Friday",
+    title: "6th September",
     hall1: {
       title: "Hall 1",
       item: [
@@ -144,50 +163,106 @@ export const schedule = {
           topic: "Welcome address",
         },
         {
-          time: "10:15 - 10:35 AM",
-          topic: "Why Web 3.0 matters - Demystifying D'web",
-          speaker:"Charles Freeborn - Hall 1"
+          time: "10:15 - 10:30 AM",
+          topic: "Introductions",
         },
         {
-          time: "10:35 - 11:05 AM",
-          topic: "Embracing the bears",
-          speaker:"Chidubem Emelumadu - Hall 1"
+          time: "10:30 - 10:40 AM",
+          topic: "Introduction to Arbitrum",
+          speaker: "Oluwafemi Samuel - Hall 1",
         },
         {
-          time: "11:05 - 12:00 PM",
-          topic: "Unlocking prosperity in AFrica; Business model considerations for building innovative web3 solutions",
-          speaker:"Toyin Bamidele - Hall 1"
+          time: "10:40 - 10:55 AM",
+          topic: "The Role of User Experience in Web3 Adoption",
+          speaker: "Favour Ohanekwu - Hall 1",
         },
         {
-          time: "12:00 - 12:45 PM",
-          topic: "-",
+          time: "10:55 - 11:10 AM",
+          topic: "Web3 UX from a Wallet point of view",
+          speaker: "John Odey - Hall 1",
         },
         {
-          time: "12:45 - 1:00 PM",
-          topic: "Understanding the value of Governance Contracts",
-          speaker:"Kenechukwu eze - Hall 1"
+          time: "11:10 - 11:25 PM",
+          topic: "How to write content that connects with Target audience",
+          speaker: "Victor Fawole - Hall 1",
         },
         {
-          time: "1:00 - 1:20 PM",
-          topic: "Break",
+          time: "11:25 - 11:35 PM",
+          topic: "NFTs: a Catalyst of Finance",
+          speaker: "Boluwatfife Ogunshina - Hall 1",
         },
         {
-          time: "1:20 - 1:50 PM",
-          topic: "Practical marketing and community management: Getting your first job in Web3",
-          speaker:"Rasheed Ahmed Ademuyiwa - Hall 1"
+          time: "11:35 - 11:45 PM",
+          topic: "Fragmentation of the cryptocurrency landscape",
+          speaker: "Nnamdi Moses - Hall 1",
+        },
+        {
+          time: "11:45 - 12:10 PM",
+          topic: "Partners spotlight",
+        },
+        {
+          time: "12:10 - 12:25 PM",
+          topic: "Landing your first crypto gig - The no-b*llshit method",
+          speaker: "Ubong Ephraim - Hall 1",
+        },
+        {
+          time: "12:25 - 12:40 PM",
+          topic: "The Future of Social Media for Blockchain Startups: Integrating AI to Build and Grow in Web3",
+          speaker: "Motolani Omotuyi - Hall 1",
+        },
+        {
+          time: "12:40 - 12:55 PM",
+          topic: "From Ancestors to Algorithms: Harmonizing Trust-Based Cultures with Trustless Technologies in Africa",
+          speaker: "Abidemi Adenle - Hall 1",
+        },
+        {
+          time: "12:55 - 1:05 PM",
+          topic: "DeSci: Web3 and the Future of Scientific Collaboration",
+          speaker: "Daniel Anomfueme - Hall 1",
+        },
+        {
+          time: "1:05 - 1:20 PM",
+          topic: "Exploring Career Paths in Web3: An Introductory Guide for Beginners",
+          speaker: "Glory Praise - Hall 1",
+        },
+        {
+          time: "1:20 - 1:35 PM",
+          topic: "The Future of Digital Trust: Leveraging Ceramic for Global Trust System",
+          speaker: "Kenechukwu Orjiene - Hall 1",
+        },
+        {
+          time: "1:35 - 1:50 PM",
+          topic: "Building beyond the Hype",
+          speaker: "Titus Adenugba - Hall 1",
         },
         {
           time: "1:50 - 2:10 PM",
-          topic: "Marketing Web3 in Africa / Web3 and its economic effects on Africa ",
-          speaker:"Babatunde Ayomide Ifedapo - Hall 1"
+          topic: "Web3 Documentation Best Practices: Lessons from Rootstock",
+          speaker: "Wisdom Nwokocha - Hall 1",
         },
         {
-          time: "2:10 - 2:30 PM",
-          topic: "My Web3bridge story",
+          time: "2:10 - 2:25 PM",
+          topic: "Scaling Blockchain: Leveraging Advanced Consensus Mechanisms and Emerging Technologies",
+          speaker: "Oyindamola Abiola - Hall 1",
         },
         {
-          time: "2:30 - 3:30 PM",
-          topic: "Q & A / Network session",
+          time: "2:25 - 2:40 PM",
+          topic: "Striking the Balance: Why Programmable Confidentiality Trumps Absolute Transparency or Privacy",
+          speaker: "Jobin Ayathil - Hall 1",
+        },
+        {
+          time: "2:40 - 2:55 PM",
+          topic: "Reimagining Decentralization: The power of Utopia and Chain Fusion on the Internet Computer",
+          speaker: "Adebayo Adebajo - Hall 1",
+        },
+        {
+          time: "2:55 - 3:10 PM",
+          topic: "Web2 to web3 For Designers and Builders",
+          speaker: "Victor Uzoma (Takeoutsguy) - Hall 1",
+        },
+        {
+          time: "3:10 - 4:00 PM",
+          topic: "End of Day 2 AMA & Round Table",
         },
       ],
     },
@@ -195,196 +270,208 @@ export const schedule = {
       title: "Hall 2",
       item: [
         {
-          time: "10:30 - 10:50 PM",
-          topic: "Invariant Testing",
-          speaker: "Adebayo Abimbola - Hall 2",
+          time: "11:20 - 11:35 AM",
+          topic: "Scaling Blockchain: Leveraging Advanced Consensus Mechanisms and Emerging Technologies",
+          speaker: "Oyindamola Abiola - Hall 2",
         },
         {
-          time: "10:50 - 11:30 PM",
-          topic: "Introduction to Foundry",
-          speaker: "Timidan - Hall 2",
+          time: "11:35 - 11:55 PM",
+          topic: "Interchain applications: Cosmos and the IBC",
+          speaker: "Peter Anyaogu - Hall 2",
         },
         {
-          time: "11:30 - 12:00 PM",
-          topic: "Understanding Ethereum node",
-          speaker: "Griffin - Hall 2",
+          time: "11:55 - 12:10 PM",
+          topic: "Security considerations and mitigations in decentralized custody solutions",
+          speaker: "Peter Olawuyi - Hall 2",
         },
         {
-          time: "12:00 - 12:20 PM",
-          topic: "From Lag to Lightning: Harnessing the Power of Redux-Multicall for Real-Time DAPPs",
-          speaker: "Adekunle Michael - Hall 2",
+          time: "12:10 - 12:30 PM",
+          topic: "Analyzing Web3 Security Report",
+          speaker: "David Drounz - Hall 2",
         },
         {
-          time: "12:20 - 12:40 PM",
-          topic: "Nethermind session",
-          speaker: "Jelilat Anofiu - Hall 2",
+          time: "12:30 - 12:50 PM",
+          topic: "Creating encrypted L2 on Ethereum with TEE",
+          speaker: "ZIga Kokelj - Hall 2",
         },
         {
-          time: "12:40 - 1:00 PM",
-          topic: "Building fullstack interchain dApp",
-          speaker: "Idris Olubisi - Hall 2",
+          time: "12:50 - 1:10 PM",
+          topic: "Kickstart Your Blockchain Journey: Hands-On with the Fuse Web SDK",
+          speaker: "Emmanuel Oaikhan - Hall 2",
         },
         {
-          time: "1:00 - 1:20 PM",
-          topic: "Blockops Workshop",
+          time: "1:10 - 1:30 PM",
+          topic: "Field Notes from the Trenches: Ensuring High-Availability and Resilience in Blockchain Node Operations",
+          speaker: "Ukeme David Eseme - Hall 2",
         },
         {
-          time: "1:20 - 1:40 PM",
-          topic: "Hands-on pratice with the new Cairo syntax",
-          speaker: "Ademola Kelvin - Hall 2",
+          time: "1:30 - 2:00 PM",
+          topic: "Remix IDE Session",
         },
         {
-          time: "1:40 - 2:00 PM",
-          topic: "Remix for Hackathons workshop",
-          speaker:"David Disu"
+          time: "2:00 - 2:30 PM",
+          topic: "Scroll Technical workshop",
         },
         {
-          time: "2:00 - 5:00 PM",
-          topic: "Catch the flag - CTF",
+          time: "2:30 - 3:00 PM",
+          topic: "EVM dive with w3: simulation, tracing and smart contract interaction",
+          speaker: "Jesse Raymond - Hall 2",
         },
         {
-          time: "5:00 - 5:50 PM",
-          topic: "Understanding the base ecosystem",
-          speaker:"Jesse Pollak"
+          time: "3:00 - 3:30 PM",
+          topic: "Solana Workshop",
+        },
+        {
+          time: "3:30 - 4:15 PM",
+          topic: "PSE Workshop",
         },
       ],
     },
   },
   sat: {
-    title: "Saturday",
-    item: [
-      {
-        time: "9:00 - 9:30 AM",
-        topic: "Arrival & Registration",
-      },
-      {
-        time: "9:30 - 9:45 AM",
-        topic: "Welcome address",
-      },
-      {
-        time: "9:45 - 10:00 AM",
-        topic: "A placeholder: Why African young minds must shape the future of the next billion people to abundance",
-        speaker:"Eric Anaan"
-      },
-      {
-        time: "10:00 - 10:50 AM",
-        topic: "Q & A with Vitalik Buterin",
-      },
-      {
-        time: "10:50 - 11:05 AM",
-        topic: "Implications of the National Policy of Blockchain in Nigeria on the growth of the Web3 ecosystem",
-        speaker:"Senator Ihenyen"
-      },
-      {
-        time: "11:05 - 11:20 AM",
-        topic: "Co-creating a prosperous Africa powered by web3 innovation",
-        speaker:"Toyin Bamidele"
-      },
-      {
-        time: "11:20 - 11:40 AM",
-        topic: "Web3 Africa: State of affairs and the way forward",
-        speaker:"Panel 1:  Lucky Henry,\n Eric Anaan,\n Harri Obi,\n Pishiken Tukura,\n Yvonne kagondu"
-      },
-      {
-        time: "11:40 - 11:50 AM",
-        topic: "Blockchain for Africans: Why should we care?",
-        speaker:"Amarachi Amaechi"
-      },
-      {
-        time: "11:50 - 12:00 PM",
-        topic: "Beyond Hype and Hacks: Building impactful and Disrupting Products with Blockchain Technology",
-        speaker:"Isaac Ijuo"
-      },
-      {
-        time: "12:00 - 12:15 PM",
-        topic: "Building the social infrastructure for web3 & beyond - The tales of Zuzalu",
-        speaker:"Marine Andraud"
-      },
-      {
-        time: "12:15 - 12:30 PM",
-        topic: "Blockchain Interoperability",
-        speaker:"David Salami"
-      },
-      {
-        time: "12:30 - 12:40 PM",
-        topic: "Project Zero: Starting from the scratch to becoming IDAN in tech. '\n If you no make am, no evidence say you try.\n' ",
-        speaker:"Jolade Okunlade"
-      },
-      {
-        time: "12:40 - 12:55 PM",
-        topic: "Biometric no-seedphrase wallet and Stateless zkrollup",
-        speaker:"Njoku Emmanuel & Leona Hioki"
-      },
-      {
-        time: "12:55 - 1:15 PM",
-        topic: "Onboard discussion",
-        speaker:"Nestcoin"
-      },
-      {
-        time: "1:15 - 1:30 PM",
-        topic: "Alphaday",
-      },
-      {
-        time: "1:30 - 1:50 PM",
-        topic: "Panel Session: Role of blockchain campus clubs in increasing community onboarding",
-        speaker:"Campus club representative"
-      },
-      {
-        time: "1:50 - 2:05 PM",
-        topic: "Scaling Ethereum with Starknet",
-        speaker:"Paul Emmanuel"
-      },
-      {
-        time: "2:05 - 2:30 PM",
-        topic: "Understanding Ethereum Foundation Next Billion Agenda",
-        speaker:"Panel session"
-      },
-      {
-        time: "2:30 - 2:45 PM",
-        topic: "Building in Web3: The Good, The Bad, The Ugly",
-        speaker:"Franklin Okpako"
-      },
-      {
-        time: "2:45 - 2:55 PM",
-        topic: "Navigating the Web3 Job Market",
-        speaker:"Olumide Aderinwale"
-      },
-      {
-        time: "2:55 - 3:10 PM",
-        topic: "Importance of Web3 Security and the role of QuillAudits",
-        speaker:"Jesulayomi Adetola"
-      },
-      {
-        time: "3:10 - 3:20 PM",
-        topic: "Pushing the boundaries of Web3 UX",
-        speaker:"Richa Joshi"
-      },
-      {
-        time: "3:20 - 3:30 PM",
-        topic: "Breaking into Devrel",
-        speaker:"Idris Olubisi"
-      },
-      {
-        time: "3:30 - 3:40 PM",
-        topic: "Understanding IQ WIKi",
-        speaker:"Bakare Damilare"
-      },
-      {
-        time: "3:30 - 3:45 PM",
-        topic: "Cloudp2p",
-      },
-      {
-        time: "3:45 - 4:00 PM",
-        topic: "Demystifying the Arweave Protocol",
-        speaker:"Abasi-ibiangake Udoka"
-      },
-      {
-        time: "4:00 PM",
-        topic: "Closing Remarks",
-      },
-    ],
+    title: "7th September",
+    hall1: {
+      title: "Hall 1",
+      item: [
+        {
+          time: "9:00 - 9:45 AM",
+          topic: "Arrival and Registration",
+        },
+        {
+          time: "9:45 - 10:00 AM",
+          topic: "Welcome address",
+        },
+        {
+          time: "10:00 - 10:15 AM",
+          topic: "Build In Public; The Web3 Advantage",
+          speaker: "Kevin Chibuoyem - Hall 1",
+        },
+        {
+          time: "10:15 - 10:30 AM",
+          topic: "DePIN in Africa: Blockchain Solutions for Real-World Challenges",
+          speaker: "Idris Olubisi - Hall 1",
+        },
+        {
+          time: "10:30 - 10:40 AM",
+          topic: "Exploring Blockchain Use Cases",
+          speaker: "Femi Adegolu - Hall 1",
+        },
+        {
+          time: "10:40 - 10:50 AM",
+          topic: "Empowering Communities with Social Money",
+          speaker: "Shantelle Awonmoyi - Hall 1",
+        },
+        {
+          time: "10:50 - 11:00 AM",
+          topic: "Building Scalable Dapps",
+          speaker: "Israel Rex - Hall 1",
+        },
+        {
+          time: "11:00 - 11:15 AM",
+          topic: "Lisk Session",
+          speaker: "Erwan Mismaque - Hall 1",
+        },
+        {
+          time: "11:15 - 11:30 AM",
+          topic: "Sponsors Session 1: ICP Hub, RootStock Lab",
+        },
+        {
+          time: "11:30 - 11:45 AM",
+          topic: "From migrant to Devrel: How Web3 changed my life",
+          speaker: "Santiago Trujillo Zuluaga - Hall 1",
+        },
+        {
+          time: "11:45 - 12:00 PM",
+          topic: "Running an Ethereum Node In Africa",
+          speaker: "David Pius - Hall 1",
+        },
+        {
+          time: "12:00 - 12:15 PM",
+          topic: "Web3bridge Journey: A look into the Future",
+          speaker: "Ayodeji Awosika - Hall 1",
+        },
+        {
+          time: "12:15 - 12:45 PM",
+          topic: "Sponsors Session 2: Stellar West Africa, Solana, Core DAO",
+        },
+        {
+          time: "12:45 - 1:00 PM",
+          topic: "DAOs and Onchain Governance",
+          speaker: "Fiyin Odebunmi - Hall 1",
+        },
+        {
+          time: "1:00 - 1:30 PM",
+          topic: "Partners Spotlight 1",
+        },
+        {
+          time: "1:30 - 1:45 PM",
+          topic: "Genius Yinka",
+        },
+        {
+          time: "1:45 - 2:00 PM",
+          topic: "Building a Global Web3 Community - The SuperTeam Case Study",
+          speaker: "Harri Obi - Hall 1",
+        },
+        {
+          time: "2:00 - 2:30 PM",
+          topic: "Understanding the East African Ecosystem",
+          speaker: "David Lumala & Joan Jerop - Hall 1",
+        },
+        {
+          time: "2:30 - 3:00 PM",
+          topic: "The Rise of Degen Culture: Origin, Impact and Risk-taking Psychology",
+          speaker: "Defi Princess, Chocs, DebarFX - Hall 1",
+        },
+        {
+          time: "3:00 - 3:10 PM",
+          topic: "How to Sell/market web3 product to the African Market",
+          speaker: "Miracle J. Ogbuehi - Hall 1",
+        },
+        {
+          time: "3:10 - 3:20 PM",
+          topic: "Meet Push Notification",
+          speaker: "Push Ambassador - Hall 1",
+        },
+        {
+          time: "3:20 - 3:30 PM",
+          topic: "Announcing Hackathon winners",
+          speaker: "Faith Roberts & Idris Olubisi - Hall 1",
+        },
+        {
+          time: "3:30 PM",
+          topic: "Meet the team behind Web3 Lagos Conference/Closing talk",
+        },
+        {
+          time: "4:00 PM",
+          topic: "Meet and Greet",
+        },
+      ],
+    },
+    hall2: {
+      title: "Hall 2",
+      item: [
+        {
+          time: "1:00 - 1:30 PM",
+          topic: "Mental Model for Building Smart Contracts on Bitcoin",
+          speaker: "Abimbola Adebayo - Hall 2",
+        },
+        {
+          time: "1:30 - 2:00 PM",
+          topic: "Supercharging User Onboarding: Building with Social Logins and Smart-Wallet as a Service",
+          speaker: "Ayomitan Pamilerin - Hall 2",
+        },
+        {
+          time: "2:00 - 2:20 PM",
+          topic: "Beyond DX: Building World-Class Developer Documentation for Web3",
+          speaker: "Owanate Amachree - Hall 2",
+        }
+      ],
+    },
   },
 };
+
+
+
 
 export const headerLink = [
   {

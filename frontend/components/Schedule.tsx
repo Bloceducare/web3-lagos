@@ -40,7 +40,10 @@ const Schedule = () => {
   const friHall2 = schedule.fri.hall2.item.map((item, i) => (
     <SheduleItem key={i} {...item} />
   ));
-  const sat = schedule.sat.item.map((item, i) => <SheduleItem key={i} {...item} />);
+  const sathall1 = schedule.sat.hall1.item.map((item, i) => (
+    <SheduleItem key={i} {...item} />
+  ));
+  const sathall2 = schedule.sat.hall2.item.map((item, i) => <SheduleItem key={i} {...item} />);
 
   return (
     <>
@@ -53,7 +56,8 @@ const Schedule = () => {
               <Tab>{schedule.thur.title} - Hall 2</Tab>
               <Tab>{schedule.fri.title} - Hall 1</Tab>
               <Tab>{schedule.fri.title} - Hall 2</Tab>
-              <Tab>{schedule.sat.title}</Tab>
+              <Tab>{schedule.sat.title} - Hall 1</Tab>
+              <Tab>{schedule.sat.title} - Hall 2</Tab>
             </TabList>
 
             <TabPanel>
@@ -80,7 +84,8 @@ const Schedule = () => {
             </TabPanel>
             <TabPanel>{hallIndex === 0 ? friHall1 : friHall2}</TabPanel>
             <TabPanel>{hallIndex === 0 ? friHall2 : friHall1}</TabPanel>
-            <TabPanel>{sat}</TabPanel>
+            <TabPanel>{hallIndex === 0 ? sathall1 : sathall2}</TabPanel>
+            <TabPanel>{hallIndex === 0 ? sathall2 : sathall1}</TabPanel>
           </Tabs>
           {/* <div className="text-white mt-4">
             Toggle between halls: */}
