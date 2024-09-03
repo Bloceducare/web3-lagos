@@ -3,9 +3,9 @@ import img1 from './ETHOS.png';
 import img2 from './Lisklogo.png';
 import img3 from './Stellar_Stacked.png';
 import img4 from './webjs.png';
-import img5 from './Frame 17.png';
-import img6 from './Frame 18.png';
-import img7 from './Frame 19.png';
+import img5 from './icp.png';
+import img6 from './scroll.svg';
+import img7 from './coredao.png';
 import img8 from './Frame 20.png';
 import img9 from './Frame 21.png';
 import img10 from './Frame 22.png';
@@ -20,9 +20,9 @@ export default [
   img2,
   img3,
   img4,
-  // img5,
-  // img6,
-  // img7,
+  img5,
+  img6,
+  img7,
   // img8,
   // img9,
   // img10,
