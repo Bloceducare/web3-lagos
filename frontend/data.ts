@@ -402,5 +402,9 @@ export const headerLink = [
   {
     name: "Resources",
     route: "/resources"
+  },
+  {
+    name: "LiveStream",
+    route: "/livestream"
   }
 ]
