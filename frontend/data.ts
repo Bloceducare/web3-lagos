@@ -398,13 +398,13 @@ export const headerLink = [
   {
     name:"Hackathon",
     route:"/hackathon"
-  },
-  {
-    name: "Resources",
-    route: "/resources"
-  },
-  {
-    name: "LiveStream",
-    route: "/livestream"
   }
+  // {
+  //   name: "Resources",
+  //   route: "/resources"
+  // },
+  // {
+  //   name: "LiveStream",
+  //   route: "/livestream"
+  // }
 ]
