@@ -1,10 +1,10 @@
 import React from 'react'
 import Archive from '@/views/Livestream/Archive/Archive'
 
-const page = () => {
+function index() {
   return (
-   <Archive />
+    <Archive />
   )
 }
 
-export default page
+export default index
