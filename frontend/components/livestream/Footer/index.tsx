@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import twitter from "../../../../public/SocialIconsTwitter.png"
+
 
 
 const Footer = () => {
@@ -11,7 +11,7 @@ const Footer = () => {
           <p>Enquiries/Details: event@web3bridge.com</p>
         </Link>
         <Link href="https://x.com/Web3LagosCon">
-          <Image src={twitter} alt="" width={0} height={0} className="w-6" />
+          <Image src={'/SocialIconsTwitter.png'} alt="" width={0} height={0} className="w-6" />
         </Link>
       </div>
     </footer>

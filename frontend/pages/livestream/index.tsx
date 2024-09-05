@@ -1,6 +1,6 @@
 import HomePage from '@/views/Livestream/homePage/HomePage';
-import  Header from './components/Header';
-import  Footer from './components/Footer';
+import  Header from '../../components/livestream/Header';
+import  Footer from '../../components/livestream/Footer';
 
 
 function Home() {
