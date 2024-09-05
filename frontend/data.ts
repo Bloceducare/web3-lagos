@@ -13,78 +13,94 @@ export const schedule = {
       item: [
         {
           time: "9:00 - 10:00 AM",
+          duration: "60 minutes",
           topic: "Arrival & Registration",
         },
         {
           time: "10:00 - 10:15 AM",
+          duration: "15 minutes",
           topic: "Welcome address",
         },
         {
           time: "10:15 - 10:30 AM",
+          duration: "15 minutes",
           topic: "Introductions",
         },
         {
           time: "10:30 - 11:15 AM",
+          duration: "45 minutes",
           topic: "Introduction to Blockchain",
           speaker: "Hezekiah Suleman - Hall 1",
         },
         {
           time: "11:15 - 11:40 AM",
+          duration: "25 minutes",
           topic: "Empowering Underserved Markets Onchain: An Exposition to Real-World Assets (RWAs)",
           speaker: "Oluwole Kayode - Hall 1",
         },
         {
           time: "11:40 - 11:50 AM",
+          duration: "10 minutes",
           topic: "The Role of Social Media in Building Web3 Communities: Best Practices and Pitfalls",
           speaker: "Amara Achusi - Hall 1",
         },
         {
           time: "11:50 AM - 12:05 PM",
+          duration: "15 minutes",
           topic: "Adoption in Africa: Improvement of Africa Educational System Using Blockchain Technology",
           speaker: "David Amodu - Hall 1",
         },
         {
           time: "12:05 - 12:35 PM",
+          duration: "30 minutes",
           topic: "Blockchain Policies in Nigeria",
           speaker: "Beverly Agbakoba - Hall 1",
         },
         {
           time: "12:35 - 12:45 PM",
+          duration: "10 minutes",
           topic: "The Future of Data in Web3",
           speaker: "Ivy Elebesunu - Hall 1",
         },
         {
           time: "12:45 - 12:55 PM",
+          duration: "10 minutes",
           topic: "Working as a writer in Web3: How to build their brand",
           speaker: "Toluwalope Ajetunmobi - Hall 1",
         },
         {
           time: "12:55 - 1:10 PM",
+          duration: "15 minutes",
           topic: "Real World Assets (Fluke or For-real)",
           speaker: "Emmanuel Tope - Hall 1",
         },
         {
           time: "1:10 - 1:30 PM",
+          duration: "20 minutes",
           topic: "Science on the blockchain - Introduction to Decentralized Science",
           speaker: "Scott Itepu - Hall 1",
         },
         {
           time: "1:30 - 1:50 PM",
+          duration: "20 minutes",
           topic: "Making Cryptocurrency White Papers More Accessible through Retrieval-Augmented Generation (RAG)",
           speaker: "Seunfunmi Adegoke - Hall 1",
         },
         {
           time: "1:50 - 2:05 PM",
+          duration: "15 minutes",
           topic: "Product Roadmaps and Team Management in a Decentralized World",
           speaker: "Adedoyinsolami Adeyeye - Hall 1",
         },
         {
           time: "2:05 - 2:20 PM",
+          duration: "15 minutes",
           topic: "A DePIN protocol for unlocking Africa's solar energy potential and solving Energy Poverty",
           speaker: "Ifeanyi Christwin - Hall 1",
         },
         {
           time: "2:20 - 3:30 PM",
+          duration: "70 minutes",
           topic: "End of Day 1 AMA & Round Table",
         },
       ],
@@ -94,55 +110,71 @@ export const schedule = {
       item: [
         {
           time: "11:50 AM - 12:05 PM",
+          duration: "15 minutes",
           topic: "From Web2 to Web3: Web3.js - Your Developer Passport to the Decentralized Future",
           speaker: "Adefisayo Adejumo - Hall 2",
         },
         {
           time: "12:05 - 12:20 PM",
+          duration: "15 minutes",
           topic: "Building the Future: Decentralized Computing Infrastructure for Web 3.0",
           speaker: "Uchechukwu Azubuko - Hall 2",
         },
         {
           time: "12:20 - 12:35 PM",
+          duration: "15 minutes",
           topic: "Improving web3 User experience through chain abstraction",
           speaker: "Collins Enebeli - Hall 2",
         },
         {
           time: "12:35 - 12:55 PM",
+          duration: "20 minutes",
           topic: "Building Scalable Web3 Applications: Integrating Decentralized Technologies with Modern Frontend Frameworks",
           speaker: "Amani Kanu - Hall 2",
         },
         {
           time: "12:55 - 1:05 PM",
+          duration: "10 minutes",
           topic: "Harnessing the Power of Trusted Execution Environments (TEEs) to Revolutionize Blockchain Security",
           speaker: "Liam Quinn - Hall 2",
         },
         {
           time: "1:05 - 1:20 PM",
+          duration: "15 minutes",
           topic: "The Future of Technical Communication in Web3",
           speaker: "Victoris Adedayo - Hall 2",
         },
         {
           time: "1:20 - 1:35 PM",
+          duration: "15 minutes",
           topic: "Build On Bitcoin Leveraging Rootstock",
           speaker: "Chukwuebe Peters - Hall 2",
         },
         {
-          time: "1:35 - 1:55 PM",
+          time: "1:35 - 1:50 PM",
+          duration: "15 minutes",
           topic: "Building Decentralized App quickly",
           speaker: "KC Pele - Hall 2",
         },
         {
-          time: "1:55 - 2:15 PM",
+          time: "1:50 - 2:10 PM",
+          duration: "20 minutes",
           topic: "Invariants Testing for Smart Contracts in the World of Medusa",
           speaker: "Joshua Adesanya - Hall 2",
         },
         {
-          time: "2:15 - 3:00 PM",
+          time: "2:10 - 2:45 PM",
+          duration: "35 minutes",
           topic: "Understanding the Lisk Protocol",
         },
         {
+          time: "2:45 - 3:15 PM",
+          duration: "30 minutes",
+          topic: "CoreDAO workshop",
+        },
+        {
           time: "3:00 - 3:45 PM",
+          duration: "45 minutes",
           topic: "ZK Workshop",
           speaker: "PSE team - Hall 2",
         },
@@ -247,17 +279,17 @@ export const schedule = {
         },
         {
           time: "2:25 - 2:40 PM",
-          topic: "Striking the Balance: Why Programmable Confidentiality Trumps Absolute Transparency or Privacy",
-          speaker: "Jobin Ayathil - Hall 1",
+          topic: "Governance in Blockchain and Decentralised Decision Making Power",
+          speaker: "Garba Nasir - Hall 1",
         },
         {
           time: "2:40 - 2:55 PM",
-          topic: "Reimagining Decentralization: The power of Utopia and Chain Fusion on the Internet Computer",
+          topic: "Reimagining Decentralization: The Power of Utopia and Chain Fusion on the Internet Computer",
           speaker: "Adebayo Adebajo - Hall 1",
         },
         {
           time: "2:55 - 3:10 PM",
-          topic: "Web2 to web3 For Designers and Builders",
+          topic: "Web2 to Web3 For Designers and Builders",
           speaker: "Victor Uzoma (Takeoutsguy) - Hall 1",
         },
         {
@@ -276,12 +308,12 @@ export const schedule = {
         },
         {
           time: "11:35 - 11:55 PM",
-          topic: "Interchain applications: Cosmos and the IBC",
+          topic: "Interchain Applications: Cosmos and the IBC",
           speaker: "Peter Anyaogu - Hall 2",
         },
         {
           time: "11:55 - 12:10 PM",
-          topic: "Security considerations and mitigations in decentralized custody solutions",
+          topic: "Security Considerations and Mitigations in Decentralized Custody Solutions",
           speaker: "Peter Olawuyi - Hall 2",
         },
         {
@@ -291,7 +323,7 @@ export const schedule = {
         },
         {
           time: "12:30 - 12:50 PM",
-          topic: "Creating encrypted L2 on Ethereum with TEE",
+          topic: "Creating Encrypted L2 on Ethereum with TEE",
           speaker: "ZIga Kokelj - Hall 2",
         },
         {
@@ -310,11 +342,11 @@ export const schedule = {
         },
         {
           time: "2:00 - 2:30 PM",
-          topic: "Scroll Technical workshop",
+          topic: "Scroll Technical Workshop",
         },
         {
           time: "2:30 - 3:00 PM",
-          topic: "EVM dive with w3: simulation, tracing and smart contract interaction",
+          topic: "EVM Dive with w3: Simulation, Tracing, and Smart Contract Interaction",
           speaker: "Jesse Raymond - Hall 2",
         },
         {
@@ -339,7 +371,7 @@ export const schedule = {
         },
         {
           time: "9:45 - 10:00 AM",
-          topic: "Welcome address",
+          topic: "Welcome Address",
         },
         {
           time: "10:00 - 10:15 AM",
@@ -377,17 +409,17 @@ export const schedule = {
         },
         {
           time: "11:30 - 11:45 AM",
-          topic: "From migrant to Devrel: How Web3 changed my life",
+          topic: "From Migrant to DevRel: How Web3 Changed My Life",
           speaker: "Santiago Trujillo Zuluaga - Hall 1",
         },
         {
           time: "11:45 - 12:00 PM",
-          topic: "Running an Ethereum Node In Africa",
+          topic: "Running an Ethereum Node in Africa",
           speaker: "David Pius - Hall 1",
         },
         {
           time: "12:00 - 12:15 PM",
-          topic: "Web3bridge Journey: A look into the Future",
+          topic: "Web3bridge Journey: A Look into the Future",
           speaker: "Ayodeji Awosika - Hall 1",
         },
         {
@@ -400,7 +432,17 @@ export const schedule = {
           speaker: "Fiyin Odebunmi - Hall 1",
         },
         {
-          time: "1:00 - 1:30 PM",
+          time: "1:00 - 1:10 PM",
+          topic: "The State of Web3 Startup Investment in Africa",
+          speaker: "Uchenna Edeoga - Hall 1",
+        },
+        {
+          time: "1:10 - 1:25 PM",
+          topic: "Building a Global Career in Web3 - The Opportunities",
+          speaker: "Somehcrypto - Hall 1",
+        },
+        {
+          time: "1:25 - 1:30 PM",
           topic: "Partners Spotlight 1",
         },
         {
@@ -419,12 +461,12 @@ export const schedule = {
         },
         {
           time: "2:30 - 3:00 PM",
-          topic: "The Rise of Degen Culture: Origin, Impact and Risk-taking Psychology",
+          topic: "The Rise of Degen Culture: Origin, Impact, and Risk-Taking Psychology",
           speaker: "Defi Princess, Chocs, DebarFX - Hall 1",
         },
         {
           time: "3:00 - 3:10 PM",
-          topic: "How to Sell/market web3 product to the African Market",
+          topic: "How to Sell/Market Web3 Products to the African Market",
           speaker: "Miracle J. Ogbuehi - Hall 1",
         },
         {
@@ -434,12 +476,12 @@ export const schedule = {
         },
         {
           time: "3:20 - 3:30 PM",
-          topic: "Announcing Hackathon winners",
+          topic: "Announcing Hackathon Winners",
           speaker: "Faith Roberts & Idris Olubisi - Hall 1",
         },
         {
           time: "3:30 PM",
-          topic: "Meet the team behind Web3 Lagos Conference/Closing talk",
+          topic: "Meet the Team Behind Web3 Lagos Conference/Closing Talk",
         },
         {
           time: "4:00 PM",
@@ -464,11 +506,13 @@ export const schedule = {
           time: "2:00 - 2:20 PM",
           topic: "Beyond DX: Building World-Class Developer Documentation for Web3",
           speaker: "Owanate Amachree - Hall 2",
-        }
+        },
       ],
     },
   },
 };
+
+
 
 
 
