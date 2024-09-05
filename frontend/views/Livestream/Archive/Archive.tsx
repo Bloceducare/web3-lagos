@@ -49,25 +49,9 @@ function Archive() {
   return (
     <div className='px-3 lg:px-16 xl:px-56'>
 
-    <header className="flex flex-col md:flex-row justify-between items-center w-full py-10">
-        <div className="flex items-center gap-2">
-            <Link href="/">
-           
-                    <Image src={Logo} alt="" width={0} height={0} className="w-[50px] md:w-[100px]" />
-                    <p className='font-semibold text-xl md:text-2xl'>Web3lagos Event</p>
-            </Link>
-        </div>
-        <div className='flex flex-wrap gap-4 mt-4 md:mt-0'>
-            <Link href="#">Live Stream</Link>
-            <Link href="#">Archived Stream</Link>
-            <Link href="#">About Us</Link>
-            <Link href="#">Register Here</Link>
-        </div>
-    </header>
-
     <section className='flex flex-col md:flex-row justify-between gap-10 md:gap-20 mt-10 mb-10'>
         {/* First Detail */}
-        <div className='flex-1 md:w-[726px] xl:w-[1024px]'>
+        <div className='flex-1 md:w-[1200px] xl:w-[1600px]'>
             <div className='flex items-center text-[#0096FF]'>
                 <p>Archived</p>
                 <p className='text-black font-bold mx-2'>{'>>'}</p>

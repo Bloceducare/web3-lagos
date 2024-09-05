@@ -1,10 +1,15 @@
-import React from 'react'
-import Archive from '@/views/Livestream/Archive/Archive'
+import HomePage from '@/views/Livestream/homePage/HomePage';
+import { Header, Footer } from './components'
 
-function index() {
+
+function Home() {
   return (
-    <Archive />
+    <div className="bg-gradient-to-b from-[#ffffff] to-[#ECF3FE]">
+      <Header />
+      <HomePage />
+      <Footer />
+    </div>
   )
 }
 
-export default index
+export default Home;
