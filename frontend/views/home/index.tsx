@@ -1,5 +1,6 @@
 import { AboveFold, EventDetails, SpeakersCards, Schedule, Team, Sponsors, Gallery, About, YoutubeIframe } from "@/components";
 
+
 const HomeView = () => {
   return (
 
@@ -17,7 +18,7 @@ const HomeView = () => {
       <Sponsors />
       {/* <SpeakersCards /> */}
       <Gallery />
-      {/* <Schedule /> */}
+      <Schedule />
       <Team />
     </div>
   );
