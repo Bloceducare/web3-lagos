@@ -64,10 +64,10 @@ const Countdown: React.FC<CountdownProps> = ({ endDate }) => {
 
   return (
     <div className="bg-[#000] border-[2px] rounded-[10px] text-[0.8em] font-bold flex items-center justify-between text-center">
-      <DateBlock timeStamp={countdown.days} text="Days" />:{" "}
-      <DateBlock timeStamp={countdown.hours} text="Hours" />:
-      <DateBlock timeStamp={countdown.minutes} text="Mins" />:{" "}
-      <DateBlock timeStamp={countdown.seconds} text="Secs" />
+      <DateBlock timeStamp={0} text="Days" />:{" "}
+      <DateBlock timeStamp={0} text="Hours" />:
+      <DateBlock timeStamp={0} text="Mins" />:{" "}
+      <DateBlock timeStamp={0} text="Secs" />
     </div>
   );
 };
