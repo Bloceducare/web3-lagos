@@ -7,6 +7,7 @@ function Home() {
     <div className="bg-gradient-to-b from-[#ffffff] to-[#ECF3FE]">
       <Header />
       <HomePage />
+      
       <Footer />
     </div>
   )
