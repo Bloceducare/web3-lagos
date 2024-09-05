@@ -1,5 +1,6 @@
 import HomePage from '@/views/Livestream/homePage/HomePage';
-import { Header, Footer } from './components'
+import  Header from './components/Header';
+import  Footer from './components/Footer';
 
 
 function Home() {
@@ -7,7 +8,7 @@ function Home() {
     <div className="bg-gradient-to-b from-[#ffffff] to-[#ECF3FE]">
       <Header />
       <HomePage />
-      
+
       <Footer />
     </div>
   )

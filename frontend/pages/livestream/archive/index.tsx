@@ -1,5 +1,6 @@
 import Archive from '@/views/Livestream/Archive/Archive'
-import { Header, Footer } from '@/pages/livestream/components'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
 
 const page = () => {
   return (

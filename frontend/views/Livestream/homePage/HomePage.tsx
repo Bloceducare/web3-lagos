@@ -1,4 +1,4 @@
-import { Toggle } from "@/pages/livestream/components";
+import Toggle from "@/pages/livestream/components/ToggleButton";
 import demoImage from "@/public/mainStream.png";
 import Image from "next/image";
 

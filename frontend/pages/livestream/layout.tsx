@@ -1,6 +1,6 @@
 "use client"
 import type { Metadata } from "next";
-import { Header } from './components';
+import Header from './components/Header'
 
 import Image from "next/image";
 

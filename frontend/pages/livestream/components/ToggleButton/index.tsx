@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useState } from "react";
-import { Streams } from "@/pages/livestream/components";
+import  Streams  from  "../Archive"
 import demoImage from "@/public/mainStream.png"
 
 const  Toggle = () => {
