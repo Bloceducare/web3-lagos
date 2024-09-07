@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,28 +12,31 @@ interface StreamProps {
   label2: string;
 }
 
-const Streams: React.FC<StreamProps> = ({image1, image2, label1, label2, link1,  link2}) => {
-
+const Streams: React.FC<StreamProps> = ({
+  image1,
+  image2,
+  label1,
+  label2,
+  link1,
+  link2,
+}) => {
   const labelStyle = "p-4";
   const card = "shadow-md rounded-lg w-full md:w-[48%]";
   const imageStyle = "w-full bg-[#ccc] rounded-t-lg h-[250px]";
 
   return (
-    <div className="flex flex-col w-[85%] gap-y-10 md:gap-y-0 md:flex-row md:w-[1200px] md:px-8 lg:w-[1000px] justify-between">
-      <div className={`${card}`}>
-        <Link href={link1} className="">
-          <Image src={image1} alt={label1} className={`${imageStyle}`} />
-          <p className={`${labelStyle}`}>{label1}</p>
-        </Link>
-      </div>
-      <div className={`${card}`}>
-        <Link href={link2} className="">
-          <Image src={image2} alt={label2} className={`${imageStyle}`} />
-          <p className={`${labelStyle}`}>{label2}</p>
-        </Link>
+    <div className="flex flex-col md:flex-row md:w-[1200px] md:px-8 lg:w-[1000px]">
+      <div className="aspect-video min-h-[400px] h-[600px] max-h-[600px]">
+        <iframe
+          src="https://streameth-platform-ur2bq6e34-streameth.vercel.app/embed/?stage=66d916d84f2179fbae7c65b4&vod=false&streamId=&playerName=Emerald+Hall"
+          width="100%"
+          height="100%"
+          allow="autoplay; fullscreen"
+          allowFullScreen
+        ></iframe>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Streams;
