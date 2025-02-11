@@ -15,7 +15,9 @@
     "ag-grid-react": "^32.0.1",
     "axios": "^1.7.2",
     "bcryptjs": "^2.4.3",
+    "class-variance-authority": "^0.7.1",
     "cloudinary": "^2.2.0",
+    "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
     "handlebars": "^4.7.8",
     "lucide-react": "^0.408.0",
@@ -30,7 +32,9 @@
     "react-icons": "^5.2.1",
     "react-share": "^5.1.0",
     "react-tabs": "^6.0.2",
-    "react-youtube": "^10.1.0"
+    "react-youtube": "^10.1.0",
+    "tailwind-merge": "^3.0.1",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
