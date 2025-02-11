@@ -1,6 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
 import Link from "next/link";
 import useTotalParticipants from "@/views/home/hooks/useTotalParticipants";
+import LekkiImg from '../images/lekki.png'
+import Bridge from '../images/bridge.png'
 
 import Button from "./button";
 import { BsFillPeopleFill } from "react-icons/bs";
@@ -99,7 +101,16 @@ const AboveFold = () => {
 
 
   return (
-    <div className="w-full h-fit flex items-center bg-top bg-no-repeat bg-gradient-to-br from-[#0096FF] to-[#000] pt-[9rem] pb-[3rem] justify-center px-4 sm:px-8 py-4">
+    <>
+    <div className="relative w-full h-screen">
+  <Image src={LekkiImg} alt="lekki" className="w-full h-[110vh] sm:h-[70vh] md:h-[80vh] mt-28 sm:mt-24 ml-[15%] md:ml-[20%] object-contain relative  " />
+
+  <div className="absolute inset-0 top-[400px] w-full h-full">
+    <Image src={Bridge} alt="bridge" className="w-full h-full object-cover" />
+  </div>
+</div>
+
+    <div className="w-full h-fit flex items-center bg-top bg-no-repeat text-black pt-[9rem] pb-[3rem] justify-center px-4 sm:px-5 py-4">
     <section className="flex flex-col justify-center space-y-7 items-center text-center lg:max-w-screen-lg xl:max-w-screen-xl">
       {/* <div className="w-full flex text-white m-auto justify-between"> */}
         {/* <div className="flex flex-col justify-center w-full"> */}
@@ -107,66 +118,66 @@ const AboveFold = () => {
           <TextContainer Content="100% Remote Discord" />
           <TextContainer Content="Friday, June 28th @4pm (GMT-3) to Sunday, June 30thRemote Discord" />
         </div> */}
+        
+        <section className="relative w-[90%] md:w-[60%]">
+        <div className="absolute top-[-650px]">
 
-
-        <div className="text-[2.6rem] lg:text-[3.5rem]">
-          <div className=" flex flex-col justify-center w-fit font-bold">
-            <h1 className="leading-[4rem] text-white">Web3 Lagos Conference 
-              <span className="text-[2.6rem] lg:text-[4rem] md:text-3xl lg:text-4xl font-normal">
-                  {" "}
-                  3.0
-                </span>
-            </h1> 
+          <div className=" w-full px-4 lg:w-[70%] xl:w-full text-[1.1em] lg:my-5 leading-8  ">
+            <p>
+            The Web3 Lagos Conference is the largest Web3 Event in Lagos, Nigeria. This conference will bring together Web3 enthusiasts from all over Nigeria and beyond.
+            </p>
+            {/* <p>
+            Here, community meets technology for three days of intensive Networking and Learning experiences. Future of money, you deserve to be in the know!
+            </p> */}
           </div>
-        </div>
+          <div className="flex justify-between flex-wrap md:flex-nowrap">
+          <div className="flex items-center text-[1.1em] lg:text-[1em] font-medium">
+            <FaMapMarkerAlt className="text-[#188BE0] mr-2" />
+            <div>The Zone, Gbagada, Lagos State.</div>
+          </div>
+          <div className="flex items-center text-[1.1em] lg:text-[1em] font-medium">
+            <FaRegCalendarAlt className="text-[#188BE0] mr-2" />
+            <div>September 05 - September 07, 2024</div>
+          </div>
 
-        <div className=" w-full px-4 lg:w-[70%] xl:w-[60%] text-[1.1em] lg:my-5 leading-8 text-white">
-          <p>
-            The Web3 Lagos Conference is the largest Web3 Event in Lagos,
-            Nigeria. This conference will bring together Web3 enthusiasts from all over
-            Nigeria and beyond.
-          </p>
-          <p>
-          Here, community meets technology for three days of intensive Networking and Learning experiences. Future of money, you deserve to be in the know!
-          </p>
-        </div>
-        <div className="flex flex-col space-y-4 items-center md:space-y-0 md:flex-row justify-center space-x-0 md:space-x-10 md:justify-between">
-          <Link href="/apply/registration">
-            <Button className="bg-[#000] text-white lg:text-xl rounded-lg px-6">
-              Register Here
-            </Button>
-          </Link>
-
-          <Link href="https://drive.google.com/file/d/12NdPRIdl13EW6X8sX7Hrzr-M4WfAkW06/view" target="_blank">
-            <Button className="border-[2px] w-full px-5 border-solid border-[#fff] text-white rounded-lg">
-              Sponsor's Deck
-            </Button>
-          </Link>
-        </div>
-
-        <div className=" w-fit mt-10 flex flex-col gap-4 text-white">
-
-          <div className="flex flex-col items-center w-fit justify-center gap-3">
-            <div className="flex items-center text-[1.1em] lg:text-[1.4em] font-medium">
-              <FaMapMarkerAlt className="text-[#fff] mr-2" />
-              <div>The Zone, Gbagada, Lagos State.</div>
             </div>
+          <div className="flex flex-col space-y-4 items-center md:space-y-0 md:flex-row justify-center space-x-0 md:space-x-10 md:gap-10 mt-10">
+            <Link href="/apply/registration">
+              <Button className="bg-[#188BE0] text-white lg:text-xl rounded-lg px-6">
+                Register Here
+              </Button>
+            </Link>
 
-            <DateCountDown endDate={new Date("2024-09-05T12:00:00")} />
+            <Link href="https://drive.google.com/file/d/12NdPRIdl13EW6X8sX7Hrzr-M4WfAkW06/view" target="_blank">
+              <Button className="border-[2px] w-full px-5 border-solid border-[#188BE0] text-[#188BE0] rounded-lg">
+                Sponsor's Deck
+              </Button>
+            </Link>
+          </div>
 
-        <div className="flex flex-wrap lg:flex-nowrap items-center gap-6 md:space-y-0 md:space-x-10 my-8 justify-between w-[88%] md:w-fit">
-          <Progress Title="Attendee" number={registrations.length > 0 ? `${registrations.length}`: '--'} imageSrc="/attendees.svg" />
-          <Progress Title="Speakers" number={speakers.length > 0 ? `${speakers.length}`: '--'} imageSrc="/speakers.svg" />
-          <Progress Title="Sponsors" number="6+" imageSrc="/sponsor.svg" />
-          <Progress Title="Hackers" number={hackers.length > 0 ? `${hackers.length}` : '--'} imageSrc={null} />
           </div>
-          </div>
-        </div>
+        </section>
+       
+        <div className="w-screen mt-10 flex flex-col gap-4 text-black bg-[#188BE0]">
+  <div className="flex flex-col items-center w-full justify-center gap-3">
+    <DateCountDown endDate={new Date("2024-09-05T12:00:00")} />
+
+    <div className="flex flex-wrap lg:flex-nowrap items-center gap-6 md:space-y-0 md:space-x-10 my-8 justify-between w-full px-4 md:px-10">
+      <Progress Title="Attendee" number={registrations.length > 0 ? `${registrations.length}` : '--'} imageSrc="/attendees.svg" />
+      <Progress Title="Speakers" number={speakers.length > 0 ? `${speakers.length}` : '--'} imageSrc="/speakers.svg" />
+      <Progress Title="Sponsors" number="6+" imageSrc="/sponsor.svg" />
+      {/* <Progress Title="Hackers" number={hackers.length > 0 ? `${hackers.length}` : '--'} imageSrc={null} /> */}
+    </div>
+  </div>
+</div>
+
+
 
       {/* </div> */}
       {/* </div> */}
     </section>
   </div>
+  </>
   );
 };
 
