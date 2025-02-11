@@ -103,7 +103,7 @@ const AboveFold = () => {
   return (
     <>
     <div className="relative w-full h-screen">
-  <Image src={LekkiImg} alt="lekki" className="w-full h-[80vh] mt-16 ml-[20%] object-contain relative " />
+  <Image src={LekkiImg} alt="lekki" className="w-full h-[110vh] sm:h-[70vh] md:h-[80vh] mt-28 sm:mt-24 ml-[15%] md:ml-[20%] object-contain relative  " />
 
   <div className="absolute inset-0 top-[400px] w-full h-full">
     <Image src={Bridge} alt="bridge" className="w-full h-full object-cover" />
@@ -119,7 +119,7 @@ const AboveFold = () => {
           <TextContainer Content="Friday, June 28th @4pm (GMT-3) to Sunday, June 30thRemote Discord" />
         </div> */}
         
-        <section className="relative w-[60%]">
+        <section className="relative w-[90%] md:w-[60%]">
         <div className="absolute top-[-650px]">
 
           <div className=" w-full px-4 lg:w-[70%] xl:w-full text-[1.1em] lg:my-5 leading-8  ">
@@ -130,7 +130,7 @@ const AboveFold = () => {
             Here, community meets technology for three days of intensive Networking and Learning experiences. Future of money, you deserve to be in the know!
             </p> */}
           </div>
-          <div className="flex justify-between">
+          <div className="flex justify-between flex-wrap md:flex-nowrap">
           <div className="flex items-center text-[1.1em] lg:text-[1em] font-medium">
             <FaMapMarkerAlt className="text-[#188BE0] mr-2" />
             <div>The Zone, Gbagada, Lagos State.</div>
