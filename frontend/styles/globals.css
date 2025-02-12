@@ -1,148 +1,30 @@
-/* globals.css */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Put imports after Tailwind directives */
 @import url("./speakers.css");
 @import url("./schedule.css");
 @import url("./hero.css");
 @import url("./stats.css");
 
-/* https://ifonts.xyz/nekst-font.html */
-
-@font-face {
-  font-family: "ProductSans";
-  src: url("/assets/fonts/Product-Sans/ProductSans-Medium.ttf");
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "AcidGrotesk";
-  src: url("/assets/fonts/Acid-Grotesk/AcidGrotesRegular.otf");
-  font-weight: 400;
-  font-style: normal;
-}
-
-html,
-body {
-  font-family: AcidGrotesk, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
-    Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-.bg-gradient {
-  background: #1c92d2;
-  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #f2fcfe, #1c92d2);
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #f2fcfe, #1c92d2);
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
-
-.blue-bg-gradient {
-  background-color: #f0f4ff;
-}
-
-input[type="radio"] {
-  opacity: 0;
-}
-
-input[type="radio"]:focus + label,
-input[type="radio"]:checked + label {
-  background-color: #2d3035;
-  color: #fff;
-}
-
-input[type="radio"] + label {
-  cursor: pointer;
-  margin-left: -0.5rem;
-  margin-right: 0.35rem;
-  padding: 0.2rem 0.4rem;
-  border-radius: 6px;
-  border: 1px solid grey;
-}
-
-.odometer-block > span {
-  margin-right: 1.5rem;
-  font-size: 2rem;
-  font-weight: semi-bold;
-}
-
-@media only screen and (max-width: 600px) {
-  .odometer-block > span {
-    margin: 0.5rem 0rem;
-    display: block;
-  }
-}
-.sidebar__wrapper {
-  position: fixed;
-}
-
-.sidebar {
-  width: 15rem;
-  height: 100vh;
-
-  background-color: #0096ff;
-  padding: 1rem;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-}
-
-.sidebar__top {
-  width: max-content;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding-bottom: 1rem;
-  margin-bottom: 1rem;
-  border-bottom: 1px solid var(--color-border);
-}
-
-.sidebar__logo {
-  width: 3.5rem;
-  height: 3.5rem;
-  object-fit: contain;
-  border-radius: 1rem;
-}
-
-.sidebar__logo-name {
-  font-size: 1.2rem;
-  font-weight: 600;
-}
-
-.sidebar__list {
-  list-style: none;
-}
-
-.sidebar__link {
-  display: inline-block;
-  font-size: 1rem;
-  text-decoration: none;
-  color: #000;
-  padding: 0.8rem 1rem;
-  display: flex;
-  background-color: var(--color-sidebar-item);
-  margin-bottom: 1rem;
-  border-radius: 0.8rem;
-}
-
-.sidebar__link--active {
-  color: #141414;
-  background-color: #fff;
-}
-
-.sidebar__icon {
-  display: inline-block;
-  font-size: 1.2rem;
-}
-
-.sidebar__name {
-  margin-left: 0.5rem;
-}
-
 @layer base {
+  /* Font faces belong in the base layer */
+  @font-face {
+    font-family: "ProductSans";
+    src: url("/assets/fonts/Product-Sans/ProductSans-Medium.ttf");
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "AcidGrotesk";
+    src: url("/assets/fonts/Acid-Grotesk/AcidGrotesRegular.otf");
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  /* CSS Variables */
   :root {
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
@@ -170,6 +52,7 @@ input[type="radio"] + label {
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
+
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -196,13 +79,134 @@ input[type="radio"] + label {
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
-}
 
-@layer base {
+  /* Base styles */
+  html,
+  body {
+    font-family: AcidGrotesk, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
+      Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  }
+
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@layer components {
+  /* Component classes */
+  .bg-gradient {
+    background: #1c92d2;
+    background: -webkit-linear-gradient(to right, #f2fcfe, #1c92d2);
+    background: linear-gradient(to right, #f2fcfe, #1c92d2);
+  }
+
+  .blue-bg-gradient {
+    background-color: #f0f4ff;
+  }
+
+  .sidebar {
+    width: 15rem;
+    height: 100vh;
+    background-color: #0096ff;
+    padding: 1rem;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+  }
+
+  .sidebar__top {
+    width: max-content;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .sidebar__logo {
+    width: 3.5rem;
+    height: 3.5rem;
+    object-fit: contain;
+    border-radius: 1rem;
+  }
+
+  .sidebar__logo-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  .sidebar__list {
+    list-style: none;
+  }
+
+  .sidebar__link {
+    display: inline-block;
+    font-size: 1rem;
+    text-decoration: none;
+    color: #000;
+    padding: 0.8rem 1rem;
+    display: flex;
+    background-color: var(--color-sidebar-item);
+    margin-bottom: 1rem;
+    border-radius: 0.8rem;
+  }
+
+  .sidebar__link--active {
+    color: #141414;
+    background-color: #fff;
+  }
+
+  .sidebar__icon {
+    display: inline-block;
+    font-size: 1.2rem;
+  }
+
+  .sidebar__name {
+    margin-left: 0.5rem;
+  }
+}
+
+@layer utilities {
+  /* Utility classes */
+  .sidebar__wrapper {
+    position: fixed;
+  }
+
+  .odometer-block > span {
+    margin-right: 1.5rem;
+    font-size: 2rem;
+    font-weight: semi-bold;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .odometer-block > span {
+      margin: 0.5rem 0rem;
+      display: block;
+    }
+  }
+}
+
+/* Radio button styles - keeping outside layers since they're specific CSS selectors */
+input[type="radio"] {
+  opacity: 0;
+}
+
+input[type="radio"]:focus + label,
+input[type="radio"]:checked + label {
+  background-color: #2d3035;
+  color: #fff;
+}
+
+input[type="radio"] + label {
+  cursor: pointer;
+  margin-left: -0.5rem;
+  margin-right: 0.35rem;
+  padding: 0.2rem 0.4rem;
+  border-radius: 6px;
+  border: 1px solid grey;
 }
