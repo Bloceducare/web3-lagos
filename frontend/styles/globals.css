@@ -1,49 +1,197 @@
-/* globals.css */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Put imports after Tailwind directives */
 @import url("./speakers.css");
 @import url("./schedule.css");
 @import url("./hero.css");
 @import url("./stats.css");
 
-/* https://ifonts.xyz/nekst-font.html */
+@layer base {
+  /* Font faces belong in the base layer */
+  @font-face {
+    font-family: "ProductSans";
+    src: url("/assets/fonts/Product-Sans/ProductSans-Medium.ttf");
+    font-weight: 400;
+    font-style: normal;
+  }
 
-@font-face {
-  font-family: "ProductSans";
-  src: url("/assets/fonts/Product-Sans/ProductSans-Medium.ttf");
-  font-weight: 400;
-  font-style: normal;
+  @font-face {
+    font-family: "AcidGrotesk";
+    src: url("/assets/fonts/Acid-Grotesk/AcidGrotesRegular.otf");
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  /* CSS Variables */
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+
+  /* Base styles */
+  html,
+  body {
+    font-family: AcidGrotesk, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
+      Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
 }
 
-@font-face {
-  font-family: "AcidGrotesk";
-  src: url("/assets/fonts/Acid-Grotesk/AcidGrotesRegular.otf");
-  font-weight: 400;
-  font-style: normal;
+@layer components {
+  /* Component classes */
+  .bg-gradient {
+    background: #1c92d2;
+    background: -webkit-linear-gradient(to right, #f2fcfe, #1c92d2);
+    background: linear-gradient(to right, #f2fcfe, #1c92d2);
+  }
+
+  .blue-bg-gradient {
+    background-color: #f0f4ff;
+  }
+
+  .sidebar {
+    width: 15rem;
+    height: 100vh;
+    background-color: #0096ff;
+    padding: 1rem;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+  }
+
+  .sidebar__top {
+    width: max-content;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .sidebar__logo {
+    width: 3.5rem;
+    height: 3.5rem;
+    object-fit: contain;
+    border-radius: 1rem;
+  }
+
+  .sidebar__logo-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  .sidebar__list {
+    list-style: none;
+  }
+
+  .sidebar__link {
+    display: inline-block;
+    font-size: 1rem;
+    text-decoration: none;
+    color: #000;
+    padding: 0.8rem 1rem;
+    display: flex;
+    background-color: var(--color-sidebar-item);
+    margin-bottom: 1rem;
+    border-radius: 0.8rem;
+  }
+
+  .sidebar__link--active {
+    color: #141414;
+    background-color: #fff;
+  }
+
+  .sidebar__icon {
+    display: inline-block;
+    font-size: 1.2rem;
+  }
+
+  .sidebar__name {
+    margin-left: 0.5rem;
+  }
 }
 
-html,
-body {
-  font-family: AcidGrotesk, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
-    Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+@layer utilities {
+  /* Utility classes */
+  .sidebar__wrapper {
+    position: fixed;
+  }
+
+  .odometer-block > span {
+    margin-right: 1.5rem;
+    font-size: 2rem;
+    font-weight: semi-bold;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .odometer-block > span {
+      margin: 0.5rem 0rem;
+      display: block;
+    }
+  }
 }
 
-.bg-gradient {
-  background: #1c92d2;
-  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #f2fcfe, #1c92d2);
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #f2fcfe, #1c92d2);
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
-
-.blue-bg-gradient {
-  background-color: #f0f4ff;
-}
-
+/* Radio button styles - keeping outside layers since they're specific CSS selectors */
 input[type="radio"] {
   opacity: 0;
 }
@@ -61,83 +209,4 @@ input[type="radio"] + label {
   padding: 0.2rem 0.4rem;
   border-radius: 6px;
   border: 1px solid grey;
-}
-
-.odometer-block > span {
-  margin-right: 1.5rem;
-  font-size: 2rem;
-  font-weight: semi-bold;
-}
-
-@media only screen and (max-width: 600px) {
-  .odometer-block > span {
-    margin: 0.5rem 0rem;
-    display: block;
-  }
-}
-.sidebar__wrapper {
-  position: fixed;
-}
-
-.sidebar {
-  width: 15rem;
-  height: 100vh;
-
-  background-color: #0096ff;
-  padding: 1rem;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-}
-
-.sidebar__top {
-  width: max-content;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding-bottom: 1rem;
-  margin-bottom: 1rem;
-  border-bottom: 1px solid var(--color-border);
-}
-
-.sidebar__logo {
-  width: 3.5rem;
-  height: 3.5rem;
-  object-fit: contain;
-  border-radius: 1rem;
-}
-
-.sidebar__logo-name {
-  font-size: 1.2rem;
-  font-weight: 600;
-}
-
-.sidebar__list {
-  list-style: none;
-}
-
-.sidebar__link {
-  display: inline-block;
-  font-size: 1rem;
-  text-decoration: none;
-  color: #000;
-  padding: 0.8rem 1rem;
-  display: flex;
-  background-color: var(--color-sidebar-item);
-  margin-bottom: 1rem;
-  border-radius: 0.8rem;
-}
-
-.sidebar__link--active {
-  color: #141414;
-  background-color: #fff;
-}
-
-.sidebar__icon {
-  display: inline-block;
-  font-size: 1.2rem;
-}
-
-.sidebar__name {
-  margin-left: 0.5rem;
 }

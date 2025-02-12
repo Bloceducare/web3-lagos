@@ -1,11 +1,3 @@
-export { default as AboveFold } from "./AboveFold";
-export { default as EventDetails } from "./EventDetails";
-export { default as SpeakersCards } from "./SpeakersCards";
-export { default as Schedule } from "./Schedule";
-export { default as Team } from "./Team";
-export { default as Sponsors } from "./Sponsors";
-export { default as Gallery } from "./Gallery";
 export { default as About } from "./About";
 export { default as Contact } from "./Contact";
 export { default as DataFetcher } from "./DataFetcher";
-export { default as YoutubeIframe } from "./Iframe";
