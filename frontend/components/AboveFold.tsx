@@ -103,14 +103,14 @@ const AboveFold = () => {
   return (
     <>
     <div className="relative w-full h-screen">
-  <Image src={LekkiImg} alt="lekki" className="w-full h-[110vh] sm:h-[70vh] md:h-[80vh] mt-28 sm:mt-24 ml-[15%] md:ml-[20%] object-contain relative  " />
+  <Image src={LekkiImg} alt="lekki" className="w-full h-[110vh] sm:h-[70vh] md:h-[100vh]  xl:h-[92vh] mt-28 sm:mt-24 ml-[15%] lg:ml-[10%] xl:ml-[20%] object-contain relative  " />
 
-  <div className="absolute inset-0 top-[400px] w-full h-full">
-    <Image src={Bridge} alt="bridge" className="w-full h-full object-cover" />
+  <div className="absolute inset-0 top-[300px] md:top-[450px] w-full h-full">
+    <Image src={Bridge} alt="bridge" className="w-full h-full object-contain" />
   </div>
 </div>
 
-    <div className="w-full h-fit flex items-center bg-top bg-no-repeat text-black pt-[9rem] pb-[3rem] justify-center px-4 sm:px-5 py-4">
+    <div className="w-full h-fit flex items-center bg-top bg-no-repeat text-black pt-[9rem] pb-[3rem] justify-center px-4 sm:px-5 py-4 font-sans md:-mt-10 xl:mt-14 lg:mt-24">
     <section className="flex flex-col justify-center space-y-7 items-center text-center lg:max-w-screen-lg xl:max-w-screen-xl">
       {/* <div className="w-full flex text-white m-auto justify-between"> */}
         {/* <div className="flex flex-col justify-center w-full"> */}
@@ -119,10 +119,10 @@ const AboveFold = () => {
           <TextContainer Content="Friday, June 28th @4pm (GMT-3) to Sunday, June 30thRemote Discord" />
         </div> */}
         
-        <section className="relative w-[90%] md:w-[60%]">
-        <div className="absolute top-[-650px]">
+        <section className="relative w-[95%] lg:w-[70%]">
+        <div className="absolute top-[-500px] md:top-[-700px] lg:top-[-500px] xl:top-[-650px]">
 
-          <div className=" w-full px-4 lg:w-[70%] xl:w-full text-[1.1em] lg:my-5 leading-8  ">
+          <div className=" w-full px-4 lg:w-[100%] xl:w-full text-sm md:text-[1.1em] lg:my-5 leading-8  ">
             <p>
             The Web3 Lagos Conference is the largest Web3 Event in Lagos, Nigeria. This conference will bring together Web3 enthusiasts from all over Nigeria and beyond.
             </p>
@@ -130,18 +130,18 @@ const AboveFold = () => {
             Here, community meets technology for three days of intensive Networking and Learning experiences. Future of money, you deserve to be in the know!
             </p> */}
           </div>
-          <div className="flex justify-between flex-wrap md:flex-nowrap">
-          <div className="flex items-center text-[1.1em] lg:text-[1em] font-medium">
+          <div className="flex justify-center gap-2 md:gap-10 flex-wrap md:flex-nowrap mt-5">
+          <div className="flex items-center text-sm md:text-[1.1em] lg:text-[16px] font-medium">
             <FaMapMarkerAlt className="text-[#188BE0] mr-2" />
             <div>The Zone, Gbagada, Lagos State.</div>
           </div>
-          <div className="flex items-center text-[1.1em] lg:text-[1em] font-medium">
+          <div className="flex items-center text-sm md:text-[1.1em] lg:text-[1em] font-medium">
             <FaRegCalendarAlt className="text-[#188BE0] mr-2" />
             <div>September 05 - September 07, 2024</div>
           </div>
 
             </div>
-          <div className="flex flex-col space-y-4 items-center md:space-y-0 md:flex-row justify-center space-x-0 md:space-x-10 md:gap-10 mt-10">
+          <div className="flex items-center gap-5 justify-center space-x-0 md:space-x-10 md:gap-10 mt-10">
             <Link href="/apply/registration">
               <Button className="bg-[#188BE0] text-white lg:text-xl rounded-lg px-6">
                 Register Here
@@ -158,11 +158,13 @@ const AboveFold = () => {
           </div>
         </section>
        
-        <div className="w-screen mt-10 flex flex-col gap-4 text-black bg-[#188BE0]">
+        <div className="w-screen mt-10 flex flex-col gap-4 text-black bg-[#188BE0] h-[280px] xl:h-[230px]">
   <div className="flex flex-col items-center w-full justify-center gap-3">
-    <DateCountDown endDate={new Date("2024-09-05T12:00:00")} />
+    <div className="relative  mr-[80%]">
+    <DateCountDown endDate={new Date("2025-09-05T12:00:00")} />
+    </div>
 
-    <div className="flex flex-wrap lg:flex-nowrap items-center gap-6 md:space-y-0 md:space-x-10 my-8 justify-between w-full px-4 md:px-10">
+    <div className="flex flex-wrap lg:flex-nowrap items-center gap-6 md:space-y-0 md:space-x-10 my-8 justify-between w-full px-4 md:px-32 mt-28 md:mt-40 xl:mt-28">
       <Progress Title="Attendee" number={registrations.length > 0 ? `${registrations.length}` : '--'} imageSrc="/attendees.svg" />
       <Progress Title="Speakers" number={speakers.length > 0 ? `${speakers.length}` : '--'} imageSrc="/speakers.svg" />
       <Progress Title="Sponsors" number="6+" imageSrc="/sponsor.svg" />
