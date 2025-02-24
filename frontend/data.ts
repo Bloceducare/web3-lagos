@@ -519,23 +519,23 @@ export const schedule = {
 
 export const headerLink = [
   {
-    name:"Home",
+    name:"Register",
     route:"/"
   },
   {
-    name:"Insights",
-    route:"/insight"
+    name:"Become a Sponsor",
+    route:"/"
   },
-  {
-    name:"Hackathon",
-    route:"/hackathon"
-  },
+  // {
+  //   name:"Hackathon",
+  //   route:"/hackathon"
+  // },
   // {
   //   name: "Resources",
   //   route: "/resources"
   // },
-  {
-    name: "LiveStream",
-    route: "/livestream"
-  }
+  // {
+  //   name: "LiveStream",
+  //   route: "/livestream"
+  // }
 ]

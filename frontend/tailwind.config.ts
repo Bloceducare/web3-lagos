@@ -100,6 +100,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+          fontFamily: {
+            federo: ['Federo', 'serif'],
+            dmSans: ['DM Sans', 'sans-serif'],
+      },      
       backgroundImage: {
         'custom-gradient': 'linear-gradient(90deg, #C96C4E 9.5%, #AC615D 27%, #895470 37%, #3E3797 70%, #BD6854 84%, #3E3797 100%)'
       },
