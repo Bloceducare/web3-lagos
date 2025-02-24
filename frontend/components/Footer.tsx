@@ -24,7 +24,7 @@ const Footer = () => {
               rel="noopener noreferrer"
               className="text-gray-600 hover:text-blue-300 transition-colors"
             >
-              <Image src={x} alt="Twitter" width={20} className="" />
+              <Image src={x} alt="Twitter" width={30} className="" />
             </Link>
           </div>
         </div>
