@@ -47,6 +47,21 @@ function Header() {
       )}
     </div>
       </nav>
+
+      {menuOpen ? (
+        <div className="flex flex-col justify-center gap-5 items-center mt-10">
+             <Link href="" className="text-[16px] ">
+        Register
+        </Link>
+
+        <Link href="" className="text-[16px] ">
+        Become a Sponsor
+                </Link>
+        </div>
+      ) : (
+        <div></div>
+      )
+      }
     
     </header>
   );

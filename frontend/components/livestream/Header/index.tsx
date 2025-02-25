@@ -4,9 +4,9 @@ import Link from 'next/link'
 import Logo from "@/public/hackathon/Group545.png"
 
 const Home_Page = "/livestream"
-const Live_Stream = "#";
+const Live_Stream = "/livestream/live";
 const Archived_Stream = "/livestream/archive";
-const About_Us = "#";
+const About_Us = "/livestream/about";
 const Register_Here = "#";
 
 const Header = () => {
