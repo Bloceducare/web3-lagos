@@ -137,7 +137,7 @@ const AboveFold = () => {
           </div>
           <div className="flex items-center text-sm md:text-[1.1em] lg:text-[1em] font-medium">
             <FaRegCalendarAlt className="text-[#188BE0] mr-2" />
-            <div>September 05 - September 07, 2024</div>
+            <div>August 28 - August 30, 2025</div>
           </div>
 
             </div>
