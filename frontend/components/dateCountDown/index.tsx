@@ -63,11 +63,11 @@ const Countdown: React.FC<CountdownProps> = ({ endDate }) => {
   }, [endDate]);
 
   return (
-    <div className="bg-[#ffffff] w-[80vw] md:w-[80vw] h-[14vh] text-black border-[4px] py-16 rounded-[10px] text-[0.8em] font-bold flex items-center justify-between text-center border-[#188BE0] pr-10 md:pr-5 xl:px-60">
-      <DateBlock timeStamp={0} text="Days" />:{" "}
-      <DateBlock timeStamp={0} text="Hours" />:
-      <DateBlock timeStamp={0} text="Mins" />:{" "}
-      <DateBlock timeStamp={0} text="Secs" />
+    <div className="bg-[#ffffff] w-[85vw] md:w-[80vw] h-[14vh] text-black border-[4px] py-16 rounded-[10px] text-[0.8em] font-bold flex items-center justify-between text-center border-[#188BE0] pr-5 md:pr-5 xl:px-60">
+      <DateBlock timeStamp={countdown.days} text="Days" />:{" "}
+      <DateBlock timeStamp={countdown.hours} text="Hours" />:
+      <DateBlock timeStamp={countdown.minutes} text="Mins" />:{" "}
+      <DateBlock timeStamp={countdown.seconds} text="Secs" />
     </div>
   );
 };
