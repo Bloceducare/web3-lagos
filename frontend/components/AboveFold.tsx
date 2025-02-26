@@ -105,7 +105,7 @@ const AboveFold = () => {
     <div className="relative w-full h-screen">
   <Image src={LekkiImg} alt="lekki" className="w-full h-[110vh] sm:h-[70vh] md:h-[100vh]  xl:h-[92vh] mt-28 sm:mt-24 ml-[15%] lg:ml-[10%] xl:ml-[20%] object-contain relative  " />
 
-  <div className="absolute inset-0 top-[300px]  sm:top-[230px] md:top-[430px] lg:top-[450px] w-full h-full">
+  <div className="absolute inset-0 top-[300px]  sm:top-[230px] md:top-[400px] lg:top-[450px] w-full h-full">
     <Image src={Bridge} alt="bridge" className="w-full h-full object-contain" />
   </div>
 </div>
@@ -158,13 +158,13 @@ const AboveFold = () => {
           </div>
         </section>
        
-        <div className="w-screen mt-10 flex flex-col gap-4 text-black bg-[#188BE0] h-[280px] xl:h-[230px]">
+        <div className="w-screen flex flex-col gap-4 text-black bg-[#188BE0] h-[280px] xl:h-[230px]">
   <div className="flex flex-col items-center w-full justify-center gap-3">
     <div className="relative  mr-[80%]">
-    <DateCountDown endDate={new Date("2025-09-05T12:00:00")} />
+    <DateCountDown endDate={new Date("2025-08-28T00:00:00")} />
     </div>
 
-    <div className="flex flex-wrap lg:flex-nowrap items-center gap-6 md:space-y-0 md:space-x-10 my-8 justify-between w-full px-4 md:px-32 mt-28 md:mt-40 xl:mt-28">
+    <div className="flex flex-wrap lg:flex-nowrap items-center gap-6 md:space-y-0 md:space-x-10 my-8 justify-between w-full px-4 md:px-32 mt-32 md:mt-48 xl:mt-32">
       <Progress Title="Attendee" number={registrations.length > 0 ? `${registrations.length}` : '--'} imageSrc="/attendees.svg" />
       <Progress Title="Speakers" number={speakers.length > 0 ? `${speakers.length}` : '--'} imageSrc="/speakers.svg" />
       <Progress Title="Sponsors" number="6+" imageSrc="/sponsor.svg" />
