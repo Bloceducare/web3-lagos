@@ -103,14 +103,14 @@ const AboveFold = () => {
   return (
     <>
     <div className="relative w-full h-screen">
-  <Image src={LekkiImg} alt="lekki" className="w-full h-[110vh] sm:h-[70vh] md:h-[100vh]  xl:h-[92vh] mt-28 sm:mt-24 ml-[15%] lg:ml-[10%] xl:ml-[20%] object-contain relative  " />
+  <Image src={LekkiImg} alt="lekki" className="w-full h-[45%]   sm:h-[70vh] md:h-[100vh]  xl:h-[92vh] mt-44 sm:mt-24 ml-[15%] lg:ml-[10%] xl:ml-[20%] object-contain relative  " />
 
-  <div className="absolute inset-0 top-[300px]  sm:top-[230px] md:top-[400px] lg:top-[450px] w-full h-full">
+  <div className="absolute inset-0 top-[100px] md-custom:top-[150px]  sm:top-[230px] md:top-[400px] lg:top-[450px] w-full h-full">
     <Image src={Bridge} alt="bridge" className="w-full h-full object-contain" />
   </div>
 </div>
 
-    <div className="w-full h-fit flex items-center bg-top bg-no-repeat text-black pt-[9rem] pb-[3rem] justify-center px-4 sm:px-5 py-4 md:-mt-10 xl:mt-14 lg:mt-24 font-dmSans">
+    <div className="w-full sm:h-fit flex items-center -mt-72 sm:bg-top bg-no-repeat text-black pt-[9rem] pb-[3rem] justify-center px-4 sm:-mt-40 sm:px-5 py-4 md:-mt-10 xl:mt-14 lg:mt-24 font-dmSans">
     <section className="flex flex-col justify-center space-y-7 items-center text-center lg:max-w-screen-lg xl:max-w-screen-xl">
       {/* <div className="w-full flex text-white m-auto justify-between"> */}
         {/* <div className="flex flex-col justify-center w-full"> */}
@@ -120,7 +120,7 @@ const AboveFold = () => {
         </div> */}
         
         <section className="relative w-[95%] lg:w-[70%]">
-        <div className="absolute top-[-500px] md:top-[-500px] lg:top-[-650px] xl:top-[-650px]">
+        <div className="absolute top-[-400px] md:top-[-500px] lg:top-[-650px] xl:top-[-650px]">
 
           <div className=" w-full px-4 lg:w-[100%] xl:w-full text-sm md:text-[1.1em] lg:my-5 leading-6  ">
             <p>
@@ -148,7 +148,7 @@ const AboveFold = () => {
               </Button>
             </Link>
 
-            <Link href="https://drive.google.com/file/d/12NdPRIdl13EW6X8sX7Hrzr-M4WfAkW06/view" target="_blank">
+            <Link href="https://drive.google.com/file/d/1_OfxyQ2MTWCkLQkai5y0LfCvnjkruOEr/view?usp=sharing" target="_blank">
               <Button className="border-[2px] w-full px-5 border-solid border-[#188BE0] text-[#188BE0] rounded-lg">
                 Sponsor's Deck
               </Button>

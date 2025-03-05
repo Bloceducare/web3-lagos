@@ -100,6 +100,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        "md-custom": { max: "650px", min: "520px" }, 
+      },
           fontFamily: {
             federo: ['Federo', 'serif'],
             dmSans: ['DM Sans', 'sans-serif'],
