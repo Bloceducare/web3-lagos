@@ -109,12 +109,13 @@ const NavBar = () => {
           <div className="bg-white divide-y-2 rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 divide-gray-50">
             <div className="px-5 pt-5 pb-6">
               <div className="flex items-center justify-between">
-                <div>
+              <div>
                   <img
+                    alt="logo"
                     className="w-auto h-8"
                     src="https://upload.wikimedia.org/wikipedia/commons/0/01/Ethereum_logo_translucent.svg"
                   />
-                </div>
+                </div>  
                 <div className="-mr-2">
                   <button
                     type="button"

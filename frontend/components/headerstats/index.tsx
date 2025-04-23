@@ -17,9 +17,9 @@ function Header() {
 
 
   return (
-    <header className="fixed top-0 left-0 right-0 bg-[#fdfefff6] shadow-md z-10 py-4  border-[2px] font-dmSans px-4 md:px-14">
+    <header className="fixed top-0 left-0 right-0 bg-[#fdfefff6] shadow-md z-10 py-4  border-[2px] font-dmSans px-5 lg:px-14 w-full">
 
-      <nav className="flex justify-between items-center">
+      <nav className="flex justify-between items-center max-w-screen-2xl mx-auto">
       <div>
         <Link href="/" className="flex items-center gap-4">
         <Image src={Event} alt="event" />

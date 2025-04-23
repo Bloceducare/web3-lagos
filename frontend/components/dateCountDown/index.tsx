@@ -63,7 +63,7 @@ const Countdown: React.FC<CountdownProps> = ({ endDate }) => {
   }, [endDate]);
 
   return (
-    <div className="bg-[#ffffff] w-[85vw] md:w-[80vw] h-[14vh] text-black border-[4px] py-16 rounded-[10px] text-[0.8em] font-bold flex items-center justify-between text-center border-[#188BE0] pr-5 md:pr-5 xl:px-60">
+    <div className="bg-[#ffffff] w-full h-[100px] md:h-[140px] text-black border-[4px] rounded-[10px] text-[0.8em] font-bold flex items-center justify-between text-center border-[#188BE0] md:px-5 xl:px-40">
       <DateBlock timeStamp={countdown.days} text="Days" />:{" "}
       <DateBlock timeStamp={countdown.hours} text="Hours" />:
       <DateBlock timeStamp={countdown.minutes} text="Mins" />:{" "}
@@ -79,11 +79,8 @@ interface DateCountDownProps {
 
 const DateCountDown: React.FC<DateCountDownProps> = ({ endDate }) => {
   return (
-    <div className="flex items-center justify-between my-2 absolute -top-14 ">
-      <div>
-        <div className="flex items-center justify-between"></div>
-        <Countdown endDate={endDate} />
-      </div>
+    <div className="flex items-center justify-between w-full">
+      <Countdown endDate={endDate} />
     </div>
   );
 };
