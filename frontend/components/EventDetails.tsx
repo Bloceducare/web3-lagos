@@ -57,7 +57,7 @@ const EventDetails = () => {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div className="max-w-screen-xl mx-auto px-5 lg:px-14 py-12">
       {/* Top Grid Section */}
       <div className="grid md:grid-cols-2 gap-8 mb-16">
         <Card className="p-6">
