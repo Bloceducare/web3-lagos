@@ -20,10 +20,10 @@ function Header() {
     <header className="fixed top-0 left-0 right-0 bg-[#fdfefff6] shadow-md z-10 py-4  border-[2px] font-dmSans px-5 lg:px-14 w-full">
 
       <nav className="flex justify-between items-center max-w-screen-2xl mx-auto">
-      <div>
+      <div className="shadow-xl text-[#188BE0] px-3">
         <Link href="/" className="flex items-center gap-4">
         <Image src={Event} alt="event" />
-        <p className="text-[20px] font-medium text-[#000000]">Web3lagos Event</p>
+        <p className="text-[20px] font-semibold">Web3lagos Event</p>
         </Link>
       </div>
 

@@ -28,12 +28,12 @@ const Progress: React.FC<ProgressProps> = ({ Title, number, imageSrc }) => {
         {imageSrc ? (
           <Image alt="stats-icon" width="49" height="49" decoding="async" data-nimg="1" src={imageSrc} />
         ) : (
-          <FaUserNinja className="text-3xl text-[#F0EFDA]" />  
+          <FaUserNinja className="text-3xl text-[#1E1E1E]" />  
         )}
       </div>
       <div>
-        <span className="block text-[#F0EFDA] text-2xl md:text-3xl leading-tight font-semibold">{number}</span>
-        <span className="font-normal text-sm md:text-base leading-tight text-[#F0EFDA]">{Title}</span>
+        <span className="block text-[#1E1E1E] text-2xl md:text-3xl leading-tight font-semibold">{number}</span>
+        <span className="font-normal text-sm md:text-base leading-tight text-[#1E1E1E]">{Title}</span>
       </div>
     </div>
   );
@@ -209,7 +209,7 @@ const AboveFold = () => {
           </div>
         </section>
        
-        <div className="flex flex-col w-screen items-center gap-4 text-black bg-[#188BE0]">
+        <div className="flex flex-col w-screen items-center gap-4 text-black">
           <div className="flex flex-col items-center justify-center gap-3 w-full max-w-screen-xl px-5 lg:px-14">
             <div className="w-full -mt-[50px] md:-mt-[70px] lg:-mt-[80px] z-[1]">
               <DateCountDown endDate={new Date("2025-08-28T00:00:00")} />
