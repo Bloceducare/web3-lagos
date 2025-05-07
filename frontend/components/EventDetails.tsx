@@ -162,9 +162,9 @@ const EventDetails = () => {
     <Card className="p-6 w-full sm:w-[45%] h-full shadow-xl border-[#E0182C] border-2 mb-4 sm:mb-0">
       <Speaker className="mb-2" />
       <h2 className="text-2xl font-bold mb-4">Attend The Event</h2>
-      <p className="mb-4">
-        Whether you're a beginner or a blockchain native, the Web3 Lagos Conference is for you. Register now to learn, connect, and grow in a dynamic 3-day experience that blends education with real opportunities.
-      </p>
+          <p className="mb-4">
+      Whether you&apos;re a beginner or a blockchain native, the Web3 Lagos Conference is for you. Register now to learn, connect, and grow in a dynamic 3-day experience that blends education with real opportunities.
+    </p>
       <button className="px-6 py-2 bg-[#188BE0] text-white rounded-md hover:bg-[#31a3fa]">
         Click here
       </button>
