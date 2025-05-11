@@ -199,7 +199,7 @@ const AboveFold = () => {
               </Button>
             </Link>
 
-            <Link href="https://drive.google.com/file/d/1_OfxyQ2MTWCkLQkai5y0LfCvnjkruOEr/view?usp=sharing" target="_blank">
+            <Link href="https://drive.google.com/file/d/1z7qMHbH0HQ8pkiI77XFDNDpIQikCH0ig/view?usp=drivesdk" target="_blank">
               <Button className="border-[2px] w-full px-5 border-solid bg-white border-[#188BE0] text-[#188BE0] rounded-lg">
                 Sponsor's Deck
               </Button>
