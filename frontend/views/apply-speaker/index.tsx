@@ -6,6 +6,8 @@ import axios from "axios";
 import SuccessScreen from "./successScreen";
 import React from "react";
 import Category from "./category";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 type FormData = {
   firstname: string;
@@ -130,10 +132,12 @@ export default function ApplyAsaSpeaker() {
 
     if (response.ok) {
       setMessage("Registration successful!");
+      toast.success("Registration successful!");
       setFormData(initialFormState);
       setIsSuccess(true); // Show success screen
     } else {
       setErrors(data);
+      toast.error("Registration failed. Please try again.");
       setMessage("Registration failed. Please try again.");
     }
 
@@ -164,6 +168,7 @@ export default function ApplyAsaSpeaker() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 p-3 pt-[8rem]">
+      <ToastContainer />
       <div className="w-full flex-col flex items-center justify-center text-center">
         <h1 className="mb-2 w-full bg-gradient-to-r text-[2em] text-transparent bg-clip-text text-center font-semibold from-[#895470] via-[#BD6854] to-[#3E3797]">
           Web3 Lagos Conference 3.0: Speaker Form
