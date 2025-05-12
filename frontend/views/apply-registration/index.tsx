@@ -130,8 +130,10 @@ export default function PersonalDetailForm() {
           Fill in the information carefully
         </p>
       </div>
+     
       <hr className="font-bold text-black mb-4" />
-      <div className="formcontainer w-full flex flex-col justify-between space-y-6 sm:px-8">
+      <section className="max-w-7xl mx-auto mb-10">
+      <div className="formcontainer w-full flex flex-col  justify-between space-y-6 sm:px-8">
         <h1 className="font-bold text-[1.5em]">Personal Details</h1>
         <div className="text-center">
           {!!message && (
@@ -144,7 +146,7 @@ export default function PersonalDetailForm() {
           )}
         </div>
 
-        <div className="sm:px-10 p-4 mx-auto bg-white rounded-lg shadow w-full">
+        <div className="sm:px-10 p-4 mx-auto bg-white rounded-lg shadow-xl w-full">
           <form onSubmit={handleSubmit}>
             <div className="mb-5">
               <label
@@ -354,6 +356,8 @@ export default function PersonalDetailForm() {
           </form>
         </div>
       </div>
+   </section>
+
     </div>
   );
 }
