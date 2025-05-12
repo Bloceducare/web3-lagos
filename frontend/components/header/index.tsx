@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import { ReactNode, useState } from "react";
 import { HiSpeakerphone, HiOutlineNewspaper, HiCalendar } from "react-icons/hi";
 import Link from "next/link";

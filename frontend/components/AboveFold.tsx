@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
+/* eslint-disable @next/next/no-html-link-for-pages */
 import Link from "next/link";
 import useTotalParticipants from "@/views/home/hooks/useTotalParticipants";
 import LekkiImg from '../images/lekki.png'
