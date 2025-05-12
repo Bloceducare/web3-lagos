@@ -27,15 +27,29 @@ function Header() {
         </Link>
       </div>
 
+      <div className="justify-between gap-5 items-center hidden md:flex">
+        <Link href="/apply/registration" className="text-[16px]  font-semibold ">
+        Event
+        </Link>
 
-      <div className="justify-between gap-10 hidden md:flex">
-        <Link href="" className="text-[16px] ">
+        <Link href="/livestream" className="text-[16px]  font-semibold ">
+        Live Stream
+        </Link>
+
+        <Link href="#" className="text-[16px]  font-semibold ">
+        Resources
+        </Link>
+      </div>
+
+
+      <div className="justify-between gap-7 items-center hidden md:flex">
+        <Link href="/apply/registration" className="text-[16px] bg-[#0096FF] text-white px-6 py-2 rounded-md font-semibold ">
         Register
         </Link>
 
-        <Link href="" className="text-[16px] ">
+        <Link href="https://drive.google.com/file/d/1z7qMHbH0HQ8pkiI77XFDNDpIQikCH0ig/view?usp=drivesdk" target="_blank" className="text-[16px] text-[#0096FF] border px-6 py-2 rounded-md font-semibold">
         Become a Sponsor
-                </Link>
+        </Link>
       </div>
 
 
