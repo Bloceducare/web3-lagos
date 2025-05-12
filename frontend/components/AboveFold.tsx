@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
+/* eslint-disable @next/next/no-html-link-for-pages */
 import Link from "next/link";
 import useTotalParticipants from "@/views/home/hooks/useTotalParticipants";
 import LekkiImg from '../images/lekki.png'
@@ -193,11 +194,11 @@ const AboveFold = () => {
 
             </div>
           <div className="flex items-center gap-5 justify-center md:gap-10 mt-10">
-            <Link href="/apply/registration">
+            <a href="/apply/registration">
               <Button className="bg-[#188BE0] text-white lg:text-xl rounded-lg px-6">
                 Register Here
               </Button>
-            </Link>
+            </a>
 
             <Link href="https://drive.google.com/file/d/1z7qMHbH0HQ8pkiI77XFDNDpIQikCH0ig/view?usp=drivesdk" target="_blank">
               <Button className="border-[2px] w-full px-5 border-solid bg-white border-[#188BE0] text-[#188BE0] rounded-lg">

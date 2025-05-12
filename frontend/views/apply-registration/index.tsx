@@ -3,6 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import axios from "axios";
 import SuccessScreen from "../successScreen";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 type FormData = {
   name: string;
@@ -76,32 +78,41 @@ export default function PersonalDetailForm() {
     setLoading(true);
     setMessage("");
     setErrors(initialFormErrors);
-
-    const response = await fetch(
-      "https://web3lagosbackend.onrender.com/api/general-registrations/",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+  
+    try {
+      const response = await fetch(
+        "https://web3lagosbackend.onrender.com/api/general-registrations/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+  
+      // Check if response is not OK
+      if (!response.ok) {
+        const errorData = await response.json();
+        setErrors(errorData);
+        setMessage(errorData.message || "Registration failed. Please check your input.");
+        return;
       }
-    );
-
-    const data = await response.json();
-
-    if (response.ok) {
-      setMessage("Registration successful!");
+  
+      const data = await response.json();
+      toast.success("Registration successful!");
+      // setMessage("Registration successful!");
       setFormData(initialFormState);
-      setIsSuccess(true); // Show success screen
-    } else {
-      setErrors(data);
-      setMessage("Registration failed. Please try again.");
+      setIsSuccess(true); 
+    } catch (error: any) {
+      // setMessage("An unexpected error occurred. Please try again later.");
+      toast.error("An unexpected error occurred. Please try again later.");
+      console.error("Error:", error.message);
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
-
+  
   const handleDelete = () => {
     setFormData(initialFormState);
   };
@@ -116,6 +127,7 @@ export default function PersonalDetailForm() {
 
   return (
     <div className="px-3 pt-[8rem]">
+      <ToastContainer />
       <div className="w-full flex-col flex items-center justify-center text-center">
         <h1 className="mb-2 w-full bg-gradient-to-r text-[2em] text-transparent bg-clip-text text-center font-semibold from-[#895470] via-[#BD6854] to-[#3E3797]">
           Web3 Lagos Conference 3.0: Registration Form
