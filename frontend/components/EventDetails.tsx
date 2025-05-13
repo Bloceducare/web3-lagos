@@ -5,6 +5,9 @@ import Link from "next/link";
 import L1 from "@/assets/fonts/landingpage/L1.png";
 import L2 from "@/assets/fonts/landingpage/L2.png";
 import L3 from "@/assets/fonts/landingpage/L3.png";
+import Mission from "@/public/mission.png";
+import Speakers from "@/public/speak.png"
+import Attend from "@/public/attend.png"
 import Ethereum from "@/public/ethereum.png"
 import { Card } from "@/components/ui/card";
 import { Goal, CalendarDays, Smile, Speaker } from "lucide-react";
@@ -83,7 +86,7 @@ const EventDetails = () => {
     </Card>
     <div className="relative aspect-video w-full sm:w-[50%]">
       <Image
-        src={L1}
+        src={Mission}
         alt="Event image 1"
         fill
         className="object-cover"
@@ -96,7 +99,7 @@ const EventDetails = () => {
   <div className="flex flex-wrap-reverse justify-between items-center mb-16 mt-20">
     <div className="relative aspect-video w-full sm:w-[50%]">
       <Image
-        src={L3}
+        src={Speakers}
         alt="Event image 2"
         fill
         className="object-cover"
@@ -152,7 +155,7 @@ const EventDetails = () => {
   <div className="flex flex-wrap-reverse justify-between items-center mb-16 mt-20">
     <div className="relative aspect-video w-full sm:w-[50%]">
       <Image
-        src={L2}
+        src={Attend}
         alt="Event image 5"
         fill
         className="object-cover"

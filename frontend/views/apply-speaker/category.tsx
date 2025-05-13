@@ -39,12 +39,12 @@ const Category: React.FC<CategoryProps> = ({ id, name, value, onChange }) => {
         <option value="" disabled>
           Please Select an Option
         </option>
-        <option value="beginner">I am new to Blockchain/Web3</option>
+        <option value="beginner">Web3 beginner</option>
         <option value="developer">Developer</option>
         <option value="designer">Designer</option>
-        <option value="content">Content Creator</option>
-        <option value="community">Community Manager</option>
-        <option value="investor">Investor</option>
+        <option value="content">Content Creators</option>
+        <option value="community">Community Builders/Manager</option>
+        {/* <option value="investor">Investor</option> */}
         <option value="researcher">Researcher</option>
         <option value="others">Others</option>
       </select>
