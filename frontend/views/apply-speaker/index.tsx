@@ -6,11 +6,14 @@ import axios from "axios";
 import SuccessScreen from "./successScreen";
 import React from "react";
 import Category from "./category";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 type FormData = {
   firstname: string;
   other_name: string;
   email: string;
+  title: string;
   phone_number: string;
   company_name: string;
   website_or_portfolio: string;
@@ -37,6 +40,7 @@ const initialFormState: FormData = {
   firstname: "",
   other_name: "",
   email: "",
+  title: "",
   phone_number: "",
   company_name: "",
   website_or_portfolio: "",
@@ -71,11 +75,9 @@ const roles = [
   "Other",
 ];
 const sessiontype = [
-  "Talk (25 + 5 QA)(30 minutes)",
+  "Talk (15 + 5 QA)(20 minutes)",
   "Workshop 1hr",
-  "Workshop 1hr (30 minutes)",
-  "Workshop 2hrs",
-  "Lightning Talk (10 minutes",
+  "Lightning Talk (5-10 minutes",
   "Panel",
 ];
 
@@ -86,60 +88,111 @@ export default function ApplyAsaSpeaker() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [errors, setErrors] = useState<FormErrors>(initialFormErrors);
 
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >
-  ) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-    setErrors({
-      ...errors,
-      [name]: undefined,
-    });
+  const uploadImageToCloudinary = async (imageFile: File): Promise<string> => {
+    const formData = new FormData();
+    formData.append('file', imageFile);
+    formData.append(
+      'upload_preset',
+      process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET as string
+    );
+  
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_CLOUDINARY_API_URL}/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
+        {
+          method: 'POST',
+          body: formData,
+        }
+      );
+  
+      if (!response.ok) {
+        throw new Error('Image upload failed');
+      }
+  
+      const data = await response.json();
+      return data.secure_url; // Return the URL of the uploaded image
+    } catch (error) {
+      console.error('Image upload error:', error);
+      throw new Error('Image upload failed');
+    }
   };
+  
+
+  const handleChange = async (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value, files } = e.target as HTMLInputElement;
+  
+    if (name === 'profilepicurl' && files && files[0]) {
+      try {
+        const imageUrl = await uploadImageToCloudinary(files[0]);
+        setFormData((prev) => ({
+          ...prev,
+          profilepicurl: imageUrl,
+        }));
+        toast.success('Image uploaded successfully!');
+      } catch (error) {
+        toast.error('Image upload failed. Please try again.');
+      }
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
+  
+    setErrors((prev) => ({
+      ...prev,
+      [name]: undefined,
+    }));
+  };
+  
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const updatedFormData = {
-      ...formData,
-      available_at_any_day:
-        formData.available_at_any_day === "false" ? false : true,
-      spoken_at_web3_before:
-        formData.spoken_at_web3_before === "false" ? false : true,
-    };
     setLoading(true);
-    setMessage("");
+    setMessage('');
     setErrors(initialFormErrors);
 
-    const response = await fetch(
-      "https://web3lagosbackend.onrender.com/api/speaker-registrations/",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedFormData),
+  
+  
+    try {
+      const updatedFormData = {
+        ...formData,
+        available_at_any_day: formData.available_at_any_day === 'true',
+        spoken_at_web3_before: formData.spoken_at_web3_before === 'true',
+      };
+  
+      const response = await fetch(
+        'https://web3lagosbackend.onrender.com/api/speaker-registrations/',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(updatedFormData),
+        }
+      );
+  
+      const data = await response.json();
+  
+      if (response.ok) {
+        toast.success('Registration successful!');
+        setMessage('Registration successful!');
+        setFormData(initialFormState);
+        setIsSuccess(true);
+      } else {
+        setErrors(data);
+        toast.error('Registration failed. Please try again.');
+        setMessage('Registration failed. Please try again.');
       }
-    );
-
-    const data = await response.json();
-
-    if (response.ok) {
-      setMessage("Registration successful!");
-      setFormData(initialFormState);
-      setIsSuccess(true); // Show success screen
-    } else {
-      setErrors(data);
-      setMessage("Registration failed. Please try again.");
+    } catch (error) {
+      toast.error('An error occurred. Please try again.');
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
-
+  
   const handleDelete = () => {
     setFormData(initialFormState);
   };
@@ -164,6 +217,7 @@ export default function ApplyAsaSpeaker() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 p-3 pt-[8rem]">
+      <ToastContainer />
       <div className="w-full flex-col flex items-center justify-center text-center">
         <h1 className="mb-2 w-full bg-gradient-to-r text-[2em] text-transparent bg-clip-text text-center font-semibold from-[#895470] via-[#BD6854] to-[#3E3797]">
           Web3 Lagos Conference 3.0: Speaker Form
@@ -195,7 +249,7 @@ export default function ApplyAsaSpeaker() {
         <form onSubmit={handleSubmit} className="">
           <div className="">
             <div className="flex flex-col sm:flex-row justify-center items-center space-y-6 sm:space-x-6 sm:space-y-0">
-              <div className="w-full sm:w-1/2">
+              <div className="w-full sm:w-1/3">
                 <label className="block mb-2 font-bold text-gray-600">
                   First Name <span className="text-red-600">* </span>
                 </label>
@@ -210,7 +264,7 @@ export default function ApplyAsaSpeaker() {
                   required
                 />
               </div>
-              <div className="w-full sm:w-1/2">
+              <div className="w-full sm:w-1/3">
                 <label
                   htmlFor="other_name"
                   className="block mb-2 font-bold text-gray-600">
@@ -224,6 +278,22 @@ export default function ApplyAsaSpeaker() {
                   placeholder="Other names"
                   className="w-full p-3 border border-gray-300 rounded-xl shadow"
                   value={formData.other_name}
+                />
+              </div>
+              <div className="w-full sm:w-1/3">
+                <label
+                  htmlFor="other_name"
+                  className="block mb-2 font-bold text-gray-600">
+                  Your Title<span className="text-red-600">* </span>
+                </label>
+                <input
+                  type="text"
+                  id="title"
+                  name="title"
+                  onChange={handleChange}
+                  placeholder="Your title e.g(Mr, Mrs, Dr, Prof etc)"
+                  className="w-full p-3 border border-gray-300 rounded-xl shadow"
+                  value={formData.title}
                 />
               </div>
             </div>
@@ -512,21 +582,21 @@ export default function ApplyAsaSpeaker() {
                 </select>
               </div>
               <div className="w-full sm:w-1/2">
-                <label
-                  htmlFor="profilepicurl"
-                  className="block mb-2 font-bold text-gray-600 my-5">
-                  Profile Pic Url <span className="text-red-600">* </span>
-                </label>
-                <input
-                  type="text"
-                  id="profilepicurl"
-                  name="profilepicurl"
-                  onChange={handleChange}
-                  placeholder="Enter the url of your profile picture."
-                  className="w-full p-3 border rounded-xl shadow"
-                  value={formData.profilepicurl}
-                />
-              </div>
+            <label
+              htmlFor="profilepicurl"
+              className="block mb-2 font-bold text-gray-600 my-5">
+              Profile Pic <span className="text-red-600">*</span>
+            </label>
+            <input
+              type="file"
+              id="profilepicurl"
+              name="profilepicurl"
+              accept="image/*"
+              onChange={handleChange}
+              className="w-full p-3 border rounded-xl shadow"
+            />
+          </div>
+
             </div>
             <div className="flex items-center justify-between mt-12">
               <button

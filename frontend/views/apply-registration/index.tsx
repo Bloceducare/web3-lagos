@@ -96,6 +96,8 @@ export default function PersonalDetailForm() {
         const errorData = await response.json();
         setErrors(errorData);
         setMessage(errorData.message || "Registration failed. Please check your input.");
+        toast.error(errorData.message || "Registration failed. Please check your input.");
+
         return;
       }
   
