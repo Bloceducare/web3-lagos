@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
-import React from "react";
-import Image from "next/image";
+import React, { useState } from "react";
+import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import L1 from "@/assets/fonts/landingpage/L1.png";
 import L2 from "@/assets/fonts/landingpage/L2.png";
@@ -12,6 +12,8 @@ import Ethereum from "@/public/ethereum.png"
 import { Card } from "@/components/ui/card";
 import { Goal, CalendarDays, Smile, Speaker } from "lucide-react";
 import YoutubeIframe from "./Iframe";
+import { PicYear2022, PicYear2023, PicYear2024 } from "@/data";
+import ImageGallery from "./ImageGallery";
 interface GoalProps {
   title: string;
   description: string;
@@ -36,6 +38,8 @@ interface SuccessStory {
 }
 
 const EventDetails = () => {
+  const [selectedYear, setSelectedYear] = useState<number | null>(null);
+
   const goals: GoalProps = {
     icon: <Goal size={24} />,
     title: "Our Mission at Web3bridge",
@@ -58,12 +62,28 @@ const EventDetails = () => {
   };
 
   const successStories: SuccessStory[] = [
-    { year: 2022, link: "#" },
-    { year: 2023, link: "#" },
+    { year: 2022, link: "" },
+    { year: 2023, link: " " },
   ];
 
+  const getImagesByYear = (year: number): StaticImageData[] => {
+    switch (year) {
+      case 2021:
+        return PicYear2022;
+      case 2022:
+        return PicYear2023;
+      case 2023:
+        return  PicYear2023;
+      default:
+        return [];
+    }
+  };
+
   return (
-    <div className="py-12">
+    <section>
+      {selectedYear === null ? (
+        <>
+          <div className="py-12">
   <div className="max-w-screen-2xl mx-auto px-5 lg:px-12">
   <div className="mb-8 text-center">
   <h1 className="text-[20px] sm:text-[32px] md:text-[36px] text-[#188BE0] py-4 shadow-xl font-medium">
@@ -214,6 +234,7 @@ const EventDetails = () => {
               <Link
                 key={story.year}
                 href={story.link}
+                onClick={() => setSelectedYear(story.year)}
                 className="block mb-2 text-black font-semibold"
               >
                 ➔ W3LC {story.year}: Link Here
@@ -275,7 +296,13 @@ const EventDetails = () => {
       </div>
     </div>
   </section>
-</div>
+   </div>
+        </>
+        ) : (
+          <ImageGallery year={selectedYear} images={getImagesByYear(selectedYear)} />
+        )}
+    </section>
+  
 
 
   );
