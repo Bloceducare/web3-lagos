@@ -13,6 +13,9 @@ import Img1223 from '@/public/2023/_BBS7631.png'
 import Img1323 from '@/public/2023/_BBS7613.png'
 import img1423 from '@/public/2023/_BBS7617.png'
 import img1523 from '@/public/2023/BBS_7492.png'
+import img1623 from '@/public/2023/BBS_7229.png'
+import img1723 from '@/public/2023/BBS_7206.png'
+import img1823 from '@/public/2023/BBS_6910.png'
 
 
 
@@ -566,9 +569,9 @@ export const PicYear2022 =  [
 export const PicYear2021 =  [
   Img123, Img123,  Img123
 ]
-export const PicYear2023 = [
-  Img223, Img123, Img423,  Img323, Img523, Img623, Img723, Img823, Img923, Img1023, Img1123, Img1223, Img1323, img1423, img1523
+export const PicYear2024 = [
+  Img223, Img123, Img423,  Img323, Img523, Img623, Img723, Img823, Img923, Img1023, Img1123, Img1223, Img1323, img1423, img1523, img1623, img1723, img1823
 ]
-export const PicYear2024 =  [
+export const PicYear2023 =  [
   Img123, Img123,  Img123
 ]

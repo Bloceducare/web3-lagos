@@ -64,16 +64,18 @@ const EventDetails = () => {
   const successStories: SuccessStory[] = [
     { year: 2022, link: "" },
     { year: 2023, link: " " },
+    { year: 2024, link: " " },
+
   ];
 
   const getImagesByYear = (year: number): StaticImageData[] => {
     switch (year) {
       case 2021:
         return PicYear2022;
-      case 2022:
-        return PicYear2023;
       case 2023:
-        return  PicYear2023;
+        return PicYear2023;
+      case 2024:
+        return  PicYear2024;
       default:
         return [];
     }

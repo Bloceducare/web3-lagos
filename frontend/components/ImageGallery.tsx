@@ -8,7 +8,7 @@ interface ImageGalleryProps {
 
 const ImageGallery: React.FC<ImageGalleryProps> = ({ year, images }) => {
   return (
-    <div className="p-4">
+    <div className="px-10 py-4">
       <h1 className="text-2xl font-bold mb-4">Web3 Lagos Conference {year}</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {images.map((image, index) => (
