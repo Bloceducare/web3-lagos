@@ -3,6 +3,7 @@ from django.db import models
 
 class SpeakerRegistration(models.Model):
     firstname = models.CharField(max_length=100)
+    title = models.CharField(max_length=100, blank=True, null=True)
     other_name = models.CharField(max_length=100, blank=True, null=True)
     last_name = models.CharField(max_length=100, blank=True, null=True)
     email = models.EmailField(unique=True)
