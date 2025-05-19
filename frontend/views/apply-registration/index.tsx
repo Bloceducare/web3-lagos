@@ -132,7 +132,7 @@ export default function PersonalDetailForm() {
       <ToastContainer />
       <div className="w-full flex-col flex items-center justify-center text-center">
         <h1 className="mb-2 w-full bg-gradient-to-r text-[2em] text-transparent bg-clip-text text-center font-semibold from-[#895470] via-[#BD6854] to-[#3E3797]">
-          Web3 Lagos Conference 3.0: Registration Form
+          Web3 Lagos Conference 4.0: Registration Form
         </h1>
         <p className="bg-gradient-to-r text-transparent bg-clip-text text-[1.5em] text-center font-semibold from-[#3E3797] via-[#895470] to-[#3E3797]">
           Register Now!

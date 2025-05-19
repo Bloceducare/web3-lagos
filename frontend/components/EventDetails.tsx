@@ -57,13 +57,11 @@ const EventDetails = () => {
 
   const highlights: HighlightStats = {
     attendees: 600,
-    year: 2023,
+    year: 2024,
     keynoteSpeaker: "Chief Norman at PeerBridge",
   };
 
   const successStories: SuccessStory[] = [
-    { year: 2022, link: "" },
-    { year: 2023, link: " " },
     { year: 2024, link: " " },
 
   ];
@@ -83,7 +81,6 @@ const EventDetails = () => {
 
   return (
     <section>
-      {selectedYear === null ? (
         <>
           <div className="py-12">
   <div className="max-w-screen-2xl mx-auto px-5 lg:px-12">
@@ -210,9 +207,9 @@ const EventDetails = () => {
       <div className="flex justify-center gap-10 items-center mb-4 flex-wrap">
         <div className="w-full md:w-[45%] text-center space-y-4 border-[#1E1E1E] shadow-xl border-2 rounded-2xl px-5 text-[#1E1E1E] py-4">
           <p>
-            In 2023, Web3 Lagos brought together over 1,500 blockchain enthusiasts, builders, and innovators for an unforgettable 3-day experience. The event featured 50+ speakers, interactive breakout sessions, and a powerful keynote by Ayodeji Awosika, Chief Mechanic at Web3bridge.
+            In 2024, Web3 Lagos brought together over 1,500 blockchain enthusiasts, builders, and innovators for an unforgettable 3-day experience. The event featured 50+ speakers, interactive breakout sessions, and a powerful keynote by Ayodeji Awosika, Chief Mechanic at Web3bridge.
           </p>
-          <p>🎥 Want to relive the moments? Watch the Web3 Lagos 2023 Recap on YouTube — see the energy, insights, and community that made it all unforgettable.</p>
+          <p>🎥 Want to relive the moments? Watch the Web3 Lagos 2024 Recap on YouTube — see the energy, insights, and community that made it all unforgettable.</p>
         </div>
 
         <div className="w-full md:w-[35%]">
@@ -298,11 +295,17 @@ const EventDetails = () => {
       </div>
     </div>
   </section>
+
+  {selectedYear && (
+  <ImageGallery
+    year={selectedYear}
+    images={getImagesByYear(selectedYear)}
+    onClose={() => setSelectedYear(null)}
+  />
+)}
+
    </div>
         </>
-        ) : (
-          <ImageGallery year={selectedYear} images={getImagesByYear(selectedYear)} />
-        )}
     </section>
   
 
