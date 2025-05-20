@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import axios from "axios";
@@ -60,6 +60,7 @@ export default function PersonalDetailForm() {
   const [message, setMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
   const [errors, setErrors] = useState<FormErrors>(initialFormErrors);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -75,13 +76,68 @@ export default function PersonalDetailForm() {
     });
   };
 
+  const validate = () => {
+    const newErrors: Record<string, string[]> = {};
+  
+    const urlRegex = /^(https?:\/\/)?([\w-]+\.)+[\w-]+(\/[\w-]*)*\/?$/i;
+  
+    if (formData.role === "Developer/Builder") {
+      if (!formData.github || !urlRegex.test(formData.github)) {
+        newErrors.github = ["Please enter a valid URL (like https://github.com/your-profile)"];
+      }
+    }
+  
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+  
+
+  //This is to add the error mesages to the toast
+  useEffect(() => {
+    if (hasSubmitted && errors && typeof errors === 'object') {
+      Object.entries(errors).forEach(([field, messages]) => {
+        //conditional statement to check if user chosses the developer/builder 
+        if (field === "github" && formData.role !== "Developer/Builder") return;
+  
+        if (Array.isArray(messages)) {
+          messages.forEach((msg) => {
+            toast.error(msg);
+          });
+        }
+      });
+  
+      setHasSubmitted(false);
+    }
+  }, [errors, hasSubmitted, formData.role]);
+  
+  
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setMessage("");
     setErrors(initialFormErrors);
+    const isValid = validate();
+    if (!isValid) {
+      setLoading(false); 
+      setHasSubmitted(true);
+
+      return;
+    }
   
     try {
+      //I am checking if the formdata.github contains any data if not it should delete if it contsins it should proceed to send.
+      //Spreading the data
+      const dataToSend = { ...formData };
+
+      //Conditional statement
+      if (!dataToSend.github || dataToSend.github.trim() === "") {
+        delete dataToSend.github;
+      } else {
+        dataToSend.github = dataToSend.github.trim(); 
+      }
+
+
       const response = await fetch(
         "https://web3lagosbackend.onrender.com/api/general-registrations/",
         {
@@ -89,7 +145,7 @@ export default function PersonalDetailForm() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(formData),
+          body: JSON.stringify(dataToSend),
         }
       );
   
@@ -352,20 +408,20 @@ export default function PersonalDetailForm() {
             {formData.role === "Developer/Builder" && (
               <div className="mt-4 mb-8">
                 <label className="block mb-2 font-bold text-gray-600">
-                  GitHub or Figma URL
+                  Your Portfolio
                 </label>
                 <input
                   type="url"
                   name="github"
-                  placeholder="Enter your GitHub or Figma URL"
+                  placeholder="Enter your GitHub, Figma, Behance.....etc"
                   value={formData.github || ""}
                   onChange={handleChange}
                   className="w-full p-3 bg-white rounded-lg border-[0.7px] outline-none"
                   required
                 />
-                {errors.github && (
+                  {formData.role === "Developer/Builder" && errors.github && (
                   <span className="text-red-500">{errors.github.join(", ")}</span>
-                )}
+              )}
               </div>
             )}
             <div className="w-full justify-between flex">
