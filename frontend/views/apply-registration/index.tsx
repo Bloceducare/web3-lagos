@@ -15,6 +15,7 @@ type FormData = {
   telegramusername: string;
   xhandle: string;
   role: string;
+  github?: string;
   gender: string;
 };
 
@@ -31,13 +32,14 @@ const initialFormState: FormData = {
   telegramusername: "",
   xhandle: "",
   role: "",
+  github: "",
   gender: "",
 };
 
 const initialFormErrors: FormErrors = {};
 
 const roles = [
-  "Developer",
+  "Developer/Builder",
   "Investor",
   "Community Manager/Community Builder",
   "Trader",
@@ -174,7 +176,7 @@ export default function PersonalDetailForm() {
                 name="name"
                 onChange={handleChange}
                 placeholder="put in your full name"
-                className="w-full p-3 rounded-lg border-[0.7px]"
+                className="w-full p-3 rounded-lg border-[0.7px] outline-none"
                 value={formData.name}
                 required
               />
@@ -195,7 +197,7 @@ export default function PersonalDetailForm() {
                 name="email"
                 onChange={handleChange}
                 placeholder="Put in your email."
-                className="w-full p-3 rounded-lg border-[0.7px]"
+                className="w-full p-3 rounded-lg border-[0.7px] outline-none"
                 value={formData.email}
                 required
               />
@@ -215,7 +217,7 @@ export default function PersonalDetailForm() {
                 name="phone"
                 onChange={handleChange}
                 placeholder="Put in your phone number."
-                className="w-full p-3 rounded-lg border-[0.7px]"
+                className="w-full p-3 rounded-lg border-[0.7px] outline-none"
                 value={formData.phone}
                 required
               />
@@ -232,7 +234,7 @@ export default function PersonalDetailForm() {
                 type="text"
                 name="country"
                 placeholder="The country you're coming from e.g Nigeria"
-                className="w-full p-3 rounded-lg border-[0.7px]"
+                className="w-full p-3 rounded-lg border-[0.7px] outline-none"
                 onChange={handleChange}
                 value={formData.country}
                 required
@@ -251,7 +253,7 @@ export default function PersonalDetailForm() {
                 type="text"
                 name="location"
                 placeholder="e.g Lagos"
-                className="w-full p-3 rounded-lg border-[0.7px]"
+                className="w-full p-3 rounded-lg border-[0.7px] outline-none"
                 onChange={handleChange}
                 value={formData.location}
                 required
@@ -271,7 +273,7 @@ export default function PersonalDetailForm() {
                 type="text"
                 name="telegramusername"
                 placeholder="Put in your telegram ID"
-                className="w-full p-3 rounded-lg border-[0.7px]"
+                className="w-full p-3 rounded-lg border-[0.7px] outline-none"
                 onChange={handleChange}
                 value={formData.telegramusername}
               />
@@ -290,7 +292,7 @@ export default function PersonalDetailForm() {
                 type="text"
                 name="xhandle"
                 placeholder="Put in your X handle"
-                className="w-full p-3 rounded-lg border-[0.7px]"
+                className="w-full p-3 rounded-lg border-[0.7px] outline-none"
                 onChange={handleChange}
                 value={formData.xhandle}
               />
@@ -305,7 +307,7 @@ export default function PersonalDetailForm() {
                 Gender
               </label>
               <select
-                className="w-full p-3 bg-white rounded-lg border-[0.7px]"
+                className="w-full p-3 bg-white rounded-lg border-[0.7px] outline-none"
                 name="gender"
                 onChange={handleChange}
                 value={formData.gender}
@@ -328,7 +330,7 @@ export default function PersonalDetailForm() {
                 What Best Describes Your Role In Web3
               </label>
               <select
-                className="w-full p-3 bg-white rounded-lg border-[0.7px]"
+                className="w-full p-3 bg-white rounded-lg border-[0.7px] outline-none"
                 name="role"
                 onChange={handleChange}
                 value={formData.role}
@@ -346,6 +348,26 @@ export default function PersonalDetailForm() {
                 <span className="text-red-500">{errors.role.join(", ")}</span>
               )}
             </div>
+
+            {formData.role === "Developer/Builder" && (
+              <div className="mt-4 mb-8">
+                <label className="block mb-2 font-bold text-gray-600">
+                  GitHub or Figma URL
+                </label>
+                <input
+                  type="url"
+                  name="github"
+                  placeholder="Enter your GitHub or Figma URL"
+                  value={formData.github || ""}
+                  onChange={handleChange}
+                  className="w-full p-3 bg-white rounded-lg border-[0.7px] outline-none"
+                  required
+                />
+                {errors.github && (
+                  <span className="text-red-500">{errors.github.join(", ")}</span>
+                )}
+              </div>
+            )}
             <div className="w-full justify-between flex">
               <button
                 type="button"
