@@ -223,18 +223,18 @@ const EventDetails = () => {
     <h1 className="text-center text-[40px] font-medium">Our Success Story Through the Years</h1>
     <div className="mt-5 bg-blue-800 py-10">
       <div className="max-w-screen-2xl mx-auto px-5 lg:px-12">
-        <p className="text-2xl mb-4">
+        <p className="text-2xl mb-4 text-white ">
           Each year, Web3 Lagos grows stronger — empowering more people, sparking new ideas, and deepening the impact of blockchain in Africa. From groundbreaking keynotes to vibrant community moments, our past events tell a story of progress, passion, and purpose.
         </p>
         <div className="grid md:grid-cols-2 gap-8">
           <div>
-            <p className="text-black mb-4">Check gallery from the previous event</p>
+            <p className="text-white mb-4">Check gallery from the previous event</p>
             {successStories.map((story) => (
               <Link
                 key={story.year}
                 href={story.link}
                 onClick={() => setSelectedYear(story.year)}
-                className="block mb-2 text-black font-semibold"
+                className="block mb-2 text-white font-semibold"
               >
                 ➔ W3LC {story.year}: Link Here
               </Link>
