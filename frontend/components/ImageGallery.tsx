@@ -13,7 +13,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ year, images, onClose }) =>
 
   return (
     <>
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-5 md:px-0">
         <div className="relative w-full max-w-6xl p-6 bg-white rounded-lg shadow-lg max-h-[700px] flex flex-col">
           {/* Close gallery button */}
           <button
