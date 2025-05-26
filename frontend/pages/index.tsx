@@ -9,7 +9,7 @@ const Home: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>Web3Lagos Sep 5 - Sep 9, 2024</title>
+        <title>Web3Lagos Aug 28 - Aug 30, 2025</title>
       </Head>
       
       {/* Add the Google Analytics script using the Script component */}
