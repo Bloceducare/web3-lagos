@@ -1,3 +1,25 @@
+import Img123 from '@/public/2023/_DSC0064.png'
+import Img223 from '@/public/2023/_DSC0067.png'
+import Img323 from '@/public/2023/_DSC0077.png'
+import Img423 from '@/public/2023/_DSC0114.png'
+import Img523 from '@/public/2023/_DSC0129.png'
+import Img623 from '@/public/2023/_DSC0202.png'
+import Img723 from '@/public/2023/BBS_7112.png'
+import Img823 from '@/public/2023/BBS_7109.png'
+import Img923 from '@/public/2023/BBS_7256.png'
+import Img1023 from '@/public/2023/BBS_7414.png'
+import Img1123 from '@/public/2023/BBS_7461.png'
+import Img1223 from '@/public/2023/_BBS7631.png'
+import Img1323 from '@/public/2023/_BBS7613.png'
+import img1423 from '@/public/2023/_BBS7617.png'
+import img1523 from '@/public/2023/BBS_7492.png'
+import img1623 from '@/public/2023/BBS_7229.png'
+import img1723 from '@/public/2023/BBS_7206.png'
+import img1823 from '@/public/2023/BBS_6910.png'
+
+
+
+
 
 export const speakersImg=['/isaac.png', '/justin.png', '/tutu.png', '/lanre.png', '/trust.png', '/jude.png', '/mayowa.png', '/lucky.png', '/tim.png','/oluchi.png', '/idris.png'] 
 
@@ -538,4 +560,18 @@ export const headerLink = [
   //   name: "LiveStream",
   //   route: "/livestream"
   // }
+]
+
+
+export const PicYear2022 =  [
+  Img123, Img123,  Img123
+]
+export const PicYear2021 =  [
+  Img123, Img123,  Img123
+]
+export const PicYear2024 = [
+  Img223, Img123, Img423,  Img323, Img523, Img623, Img723, Img823, Img923, Img1023, Img1123, Img1223, Img1323, img1423, img1523, img1623, img1723, img1823
+]
+export const PicYear2023 =  [
+  Img123, Img123,  Img123
 ]

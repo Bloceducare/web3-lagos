@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import axios from "axios";
@@ -15,6 +15,7 @@ type FormData = {
   telegramusername: string;
   xhandle: string;
   role: string;
+  github?: string;
   gender: string;
 };
 
@@ -31,13 +32,14 @@ const initialFormState: FormData = {
   telegramusername: "",
   xhandle: "",
   role: "",
+  github: "",
   gender: "",
 };
 
 const initialFormErrors: FormErrors = {};
 
 const roles = [
-  "Developer",
+  "Developer/Builder",
   "Investor",
   "Community Manager/Community Builder",
   "Trader",
@@ -58,6 +60,7 @@ export default function PersonalDetailForm() {
   const [message, setMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
   const [errors, setErrors] = useState<FormErrors>(initialFormErrors);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -73,13 +76,68 @@ export default function PersonalDetailForm() {
     });
   };
 
+  const validate = () => {
+    const newErrors: Record<string, string[]> = {};
+  
+    const urlRegex = /^(https?:\/\/)?([\w-]+\.)+[\w-]+(\/[\w-]*)*\/?$/i;
+  
+    if (formData.role === "Developer/Builder") {
+      if (!formData.github || !urlRegex.test(formData.github)) {
+        newErrors.github = ["Please enter a valid URL (like https://github.com/your-profile)"];
+      }
+    }
+  
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+  
+
+  //This is to add the error mesages to the toast
+  useEffect(() => {
+    if (hasSubmitted && errors && typeof errors === 'object') {
+      Object.entries(errors).forEach(([field, messages]) => {
+        //conditional statement to check if user chosses the developer/builder 
+        if (field === "github" && formData.role !== "Developer/Builder") return;
+  
+        if (Array.isArray(messages)) {
+          messages.forEach((msg) => {
+            toast.error(msg);
+          });
+        }
+      });
+  
+      setHasSubmitted(false);
+    }
+  }, [errors, hasSubmitted, formData.role]);
+  
+  
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setMessage("");
     setErrors(initialFormErrors);
+    const isValid = validate();
+    if (!isValid) {
+      setLoading(false); 
+      setHasSubmitted(true);
+
+      return;
+    }
   
     try {
+      //I am checking if the formdata.github contains any data if not it should delete if it contsins it should proceed to send.
+      //Spreading the data
+      const dataToSend = { ...formData };
+
+      //Conditional statement
+      if (!dataToSend.github || dataToSend.github.trim() === "") {
+        delete dataToSend.github;
+      } else {
+        dataToSend.github = dataToSend.github.trim(); 
+      }
+
+
       const response = await fetch(
         "https://web3lagosbackend.onrender.com/api/general-registrations/",
         {
@@ -87,7 +145,7 @@ export default function PersonalDetailForm() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(formData),
+          body: JSON.stringify(dataToSend),
         }
       );
   
@@ -132,7 +190,7 @@ export default function PersonalDetailForm() {
       <ToastContainer />
       <div className="w-full flex-col flex items-center justify-center text-center">
         <h1 className="mb-2 w-full bg-gradient-to-r text-[2em] text-transparent bg-clip-text text-center font-semibold from-[#895470] via-[#BD6854] to-[#3E3797]">
-          Web3 Lagos Conference 3.0: Registration Form
+          Web3 Lagos Conference 4.0: Registration Form
         </h1>
         <p className="bg-gradient-to-r text-transparent bg-clip-text text-[1.5em] text-center font-semibold from-[#3E3797] via-[#895470] to-[#3E3797]">
           Register Now!
@@ -174,7 +232,7 @@ export default function PersonalDetailForm() {
                 name="name"
                 onChange={handleChange}
                 placeholder="put in your full name"
-                className="w-full p-3 rounded-lg border-[0.7px]"
+                className="w-full p-3 rounded-lg border-[0.7px] outline-none"
                 value={formData.name}
                 required
               />
@@ -195,7 +253,7 @@ export default function PersonalDetailForm() {
                 name="email"
                 onChange={handleChange}
                 placeholder="Put in your email."
-                className="w-full p-3 rounded-lg border-[0.7px]"
+                className="w-full p-3 rounded-lg border-[0.7px] outline-none"
                 value={formData.email}
                 required
               />
@@ -215,7 +273,7 @@ export default function PersonalDetailForm() {
                 name="phone"
                 onChange={handleChange}
                 placeholder="Put in your phone number."
-                className="w-full p-3 rounded-lg border-[0.7px]"
+                className="w-full p-3 rounded-lg border-[0.7px] outline-none"
                 value={formData.phone}
                 required
               />
@@ -232,7 +290,7 @@ export default function PersonalDetailForm() {
                 type="text"
                 name="country"
                 placeholder="The country you're coming from e.g Nigeria"
-                className="w-full p-3 rounded-lg border-[0.7px]"
+                className="w-full p-3 rounded-lg border-[0.7px] outline-none"
                 onChange={handleChange}
                 value={formData.country}
                 required
@@ -251,7 +309,7 @@ export default function PersonalDetailForm() {
                 type="text"
                 name="location"
                 placeholder="e.g Lagos"
-                className="w-full p-3 rounded-lg border-[0.7px]"
+                className="w-full p-3 rounded-lg border-[0.7px] outline-none"
                 onChange={handleChange}
                 value={formData.location}
                 required
@@ -271,7 +329,7 @@ export default function PersonalDetailForm() {
                 type="text"
                 name="telegramusername"
                 placeholder="Put in your telegram ID"
-                className="w-full p-3 rounded-lg border-[0.7px]"
+                className="w-full p-3 rounded-lg border-[0.7px] outline-none"
                 onChange={handleChange}
                 value={formData.telegramusername}
               />
@@ -290,7 +348,7 @@ export default function PersonalDetailForm() {
                 type="text"
                 name="xhandle"
                 placeholder="Put in your X handle"
-                className="w-full p-3 rounded-lg border-[0.7px]"
+                className="w-full p-3 rounded-lg border-[0.7px] outline-none"
                 onChange={handleChange}
                 value={formData.xhandle}
               />
@@ -305,7 +363,7 @@ export default function PersonalDetailForm() {
                 Gender
               </label>
               <select
-                className="w-full p-3 bg-white rounded-lg border-[0.7px]"
+                className="w-full p-3 bg-white rounded-lg border-[0.7px] outline-none"
                 name="gender"
                 onChange={handleChange}
                 value={formData.gender}
@@ -328,7 +386,7 @@ export default function PersonalDetailForm() {
                 What Best Describes Your Role In Web3
               </label>
               <select
-                className="w-full p-3 bg-white rounded-lg border-[0.7px]"
+                className="w-full p-3 bg-white rounded-lg border-[0.7px] outline-none"
                 name="role"
                 onChange={handleChange}
                 value={formData.role}
@@ -346,6 +404,26 @@ export default function PersonalDetailForm() {
                 <span className="text-red-500">{errors.role.join(", ")}</span>
               )}
             </div>
+
+            {formData.role === "Developer/Builder" && (
+              <div className="mt-4 mb-8">
+                <label className="block mb-2 font-bold text-gray-600">
+                  Your Portfolio
+                </label>
+                <input
+                  type="url"
+                  name="github"
+                  placeholder="Enter your GitHub, Figma, Behance.....etc"
+                  value={formData.github || ""}
+                  onChange={handleChange}
+                  className="w-full p-3 bg-white rounded-lg border-[0.7px] outline-none"
+                  required
+                />
+                  {formData.role === "Developer/Builder" && errors.github && (
+                  <span className="text-red-500">{errors.github.join(", ")}</span>
+              )}
+              </div>
+            )}
             <div className="w-full justify-between flex">
               <button
                 type="button"

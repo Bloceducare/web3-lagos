@@ -31,6 +31,7 @@ class GeneralRegistration(models.Model):
     country = models.CharField(max_length=100)  
     location = models.CharField(max_length=200, null=True)
     gender = models.CharField(max_length=200, null=True)
+    github = models.URLField(max_length=100, null=True)
     telegramusername = models.CharField(max_length=200, null=True)
     xhandle = models.CharField(max_length=200, null=True)
     role = models.CharField(max_length=2000, null=True)
