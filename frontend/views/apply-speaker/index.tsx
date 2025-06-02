@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import axios from "axios";
@@ -8,6 +8,18 @@ import React from "react";
 import Category from "./category";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {
+  validateEmail,
+  validatePhoneNumber,
+  validateURL,
+  validateXHandle,
+  validateTelegramId,
+  validateRequired,
+  validateTextLength,
+  validateSessionAbstract,
+  validatePitchStory,
+  validateProfilePic
+} from '../../utils/validation';
 
 type FormData = {
   firstname: string;
@@ -33,7 +45,7 @@ type FormData = {
 };
 
 type FormErrors = {
-  [key in keyof FormData]?: string[];
+  [key: string]: string[] | undefined;
 };
 
 const initialFormState: FormData = {
@@ -81,12 +93,92 @@ const sessiontype = [
   "Panel",
 ];
 
+const validateForm = (formData: FormData): FormErrors => {
+  const errors: FormErrors = {};
+
+  // Required fields validation
+  if (!validateRequired(formData.firstname)) {
+    errors.firstname = ['First name is required'];
+  }
+
+  if (!validateRequired(formData.other_name)) {
+    errors.other_name = ['Other names are required'];
+  }
+
+  if (!validateRequired(formData.title)) {
+    errors.title = ['Title is required'];
+  }
+
+  if (!validateEmail(formData.email)) {
+    errors.email = ['Please enter a valid email address'];
+  }
+
+  if (!validatePhoneNumber(formData.phone_number)) {
+    errors.phone_number = ['Please enter a valid phone number'];
+  }
+
+  if (!validateURL(formData.website_or_portfolio)) {
+    errors.website_or_portfolio = ['Please enter a valid URL'];
+  }
+
+  if (!validateXHandle(formData.x_handle)) {
+    errors.x_handle = ['Please enter a valid X handle (e.g., @username) or X/Twitter profile URL'];
+  }
+
+  if (!validateRequired(formData.lecture_title)) {
+    errors.lecture_title = ['Lecture title is required'];
+  }
+
+  if (!validateRequired(formData.category)) {
+    errors.category = ['Category is required'];
+  }
+
+  if (!validateSessionAbstract(formData.session_abstract)) {
+    errors.session_abstract = ['Session abstract must be between 1000 and 10000 characters, or N/A if not applicable'];
+  }
+
+  if (!validateRequired(formData.web3_role)) {
+    errors.web3_role = ['Web3 role is required'];
+  }
+
+  if (!validateRequired(formData.location)) {
+    errors.location = ['Location is required'];
+  }
+
+  if (!validateTelegramId(formData.telegram_id)) {
+    errors.telegram_id = ['Please enter a valid Telegram ID'];
+  }
+
+  if (!validatePitchStory(formData.pitch_story)) {
+    errors.pitch_story = ['Pitch story must be between 300 and 5000 characters, or N/A if not applicable'];
+  }
+
+  if (!validateRequired(formData.gender)) {
+    errors.gender = ['Gender is required'];
+  }
+
+  if (!validateRequired(formData.session_type)) {
+    errors.session_type = ['Session type is required'];
+  }
+
+  return errors;
+};
+
+interface CategoryProps {
+  id: string;
+  name: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => Promise<void>;
+  value: string;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => void;
+}
+
 export default function ApplyAsaSpeaker() {
   const [formData, setFormData] = useState<FormData>(initialFormState);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
   const [errors, setErrors] = useState<FormErrors>(initialFormErrors);
+  const [touched, setTouched] = useState<{ [key: string]: boolean }>({});
 
   const uploadImageToCloudinary = async (imageFile: File): Promise<string> => {
     const formData = new FormData();
@@ -118,12 +210,21 @@ export default function ApplyAsaSpeaker() {
   };
   
 
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name } = e.target;
+    setTouched(prev => ({ ...prev, [name]: true }));
+  };
+
   const handleChange = async (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
     const { name, value, files } = e.target as HTMLInputElement;
   
     if (name === 'profilepicurl' && files && files[0]) {
+      if (!validateProfilePic(files[0])) {
+        toast.error('Please upload a valid image file (JPEG, PNG, or GIF) under 5MB');
+        return;
+      }
       try {
         const imageUrl = await uploadImageToCloudinary(files[0]);
         setFormData((prev) => ({
@@ -141,21 +242,42 @@ export default function ApplyAsaSpeaker() {
       }));
     }
   
-    setErrors((prev) => ({
+    // Validate the field immediately
+    const fieldErrors = validateForm({ ...formData, [name]: value });
+    setErrors(prev => ({
       ...prev,
-      [name]: undefined,
+      [name]: fieldErrors[name],
     }));
   };
   
 
+  const scrollToError = (fieldName: string) => {
+    const element = document.getElementById(fieldName);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      element.focus();
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate all fields
+    const validationErrors = validateForm(formData);
+    setErrors(validationErrors);
+    
+    // Check if there are any errors
+    if (Object.keys(validationErrors).length > 0) {
+      toast.error('Please fix the errors in the form');
+      // Scroll to the first error
+      const firstErrorField = Object.keys(validationErrors)[0];
+      scrollToError(firstErrorField);
+      return;
+    }
+
     setLoading(true);
     setMessage('');
-    setErrors(initialFormErrors);
 
-  
-  
     try {
       const updatedFormData = {
         ...formData,
@@ -182,12 +304,39 @@ export default function ApplyAsaSpeaker() {
         setFormData(initialFormState);
         setIsSuccess(true);
       } else {
-        setErrors(data);
-        toast.error('Registration failed. Please try again.');
-        setMessage('Registration failed. Please try again.');
+        // Handle different types of backend errors
+        if (data.email && data.email.includes('already exists')) {
+          setErrors({ email: ['This email is already registered as a speaker'] });
+          toast.error('This email is already registered as a speaker');
+          scrollToError('email');
+        } else if (data.non_field_errors) {
+          // Handle general non-field errors
+          toast.error(data.non_field_errors.join(', '));
+        } else {
+          // Handle field-specific errors
+          const formattedErrors: FormErrors = {};
+          Object.keys(data).forEach(key => {
+            if (Array.isArray(data[key])) {
+              formattedErrors[key] = data[key];
+            } else {
+              formattedErrors[key] = [data[key]];
+            }
+          });
+          setErrors(formattedErrors);
+          
+          // Show the first error in a toast and scroll to it
+          const firstErrorField = Object.keys(formattedErrors)[0];
+          const firstError = formattedErrors[firstErrorField]?.[0];
+          if (firstError) {
+            toast.error(firstError);
+            scrollToError(firstErrorField);
+          }
+        }
+        setMessage('Registration failed. Please check the errors above.');
       }
     } catch (error) {
-      toast.error('An error occurred. Please try again.');
+      toast.error('An error occurred while submitting the form. Please try again.');
+      setMessage('An error occurred. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -258,11 +407,15 @@ export default function ApplyAsaSpeaker() {
                   id="firstname"
                   name="firstname"
                   onChange={handleChange}
+                  onBlur={handleBlur}
                   placeholder="Enter your first name"
-                  className="w-full p-3 border border-gray-300 rounded-xl shadow"
+                  className={`w-full p-3 border ${errors.firstname && touched.firstname ? 'border-red-500' : 'border-gray-300'} rounded-xl shadow`}
                   value={formData.firstname}
                   required
                 />
+                {errors.firstname && touched.firstname && (
+                  <p className="text-red-500 text-sm mt-1">{errors.firstname}</p>
+                )}
               </div>
               <div className="w-full sm:w-1/3">
                 <label
@@ -275,10 +428,14 @@ export default function ApplyAsaSpeaker() {
                   id="other_name"
                   name="other_name"
                   onChange={handleChange}
+                  onBlur={handleBlur}
                   placeholder="Other names"
-                  className="w-full p-3 border border-gray-300 rounded-xl shadow"
+                  className={`w-full p-3 border ${errors.other_name && touched.other_name ? 'border-red-500' : 'border-gray-300'} rounded-xl shadow`}
                   value={formData.other_name}
                 />
+                {errors.other_name && touched.other_name && (
+                  <p className="text-red-500 text-sm mt-1">{errors.other_name}</p>
+                )}
               </div>
               <div className="w-full sm:w-1/3">
                 <label
@@ -291,10 +448,14 @@ export default function ApplyAsaSpeaker() {
                   id="title"
                   name="title"
                   onChange={handleChange}
+                  onBlur={handleBlur}
                   placeholder="Your title e.g(Mr, Mrs, Dr, Prof etc)"
-                  className="w-full p-3 border border-gray-300 rounded-xl shadow"
+                  className={`w-full p-3 border ${errors.title && touched.title ? 'border-red-500' : 'border-gray-300'} rounded-xl shadow`}
                   value={formData.title}
                 />
+                {errors.title && touched.title && (
+                  <p className="text-red-500 text-sm mt-1">{errors.title}</p>
+                )}
               </div>
             </div>
             <div className="flex flex-col sm:flex-row justify-center items-center space-y-6 sm:space-x-6 sm:space-y-0">
@@ -309,11 +470,15 @@ export default function ApplyAsaSpeaker() {
                   id="email"
                   name="email"
                   onChange={handleChange}
+                  onBlur={handleBlur}
                   placeholder="Enter your email."
-                  className="w-full p-3 border rounded-xl shadow"
+                  className={`w-full p-3 border ${errors.email && touched.email ? 'border-red-500' : 'border-gray-300'} rounded-xl shadow`}
                   value={formData.email}
                   required
                 />
+                {errors.email && touched.email && (
+                  <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+                )}
               </div>
               <div className="w-full sm:w-1/2 ">
                 <label
@@ -326,11 +491,15 @@ export default function ApplyAsaSpeaker() {
                   id="phone_number"
                   name="phone_number"
                   onChange={handleChange}
+                  onBlur={handleBlur}
                   placeholder="Enter your phone number."
-                  className="w-full p-3 border rounded-xl "
+                  className={`w-full p-3 border ${errors.phone_number && touched.phone_number ? 'border-red-500' : 'border-gray-300'} rounded-xl`}
                   value={formData.phone_number}
                   required
                 />
+                {errors.phone_number && touched.phone_number && (
+                  <p className="text-red-500 text-sm mt-1">{errors.phone_number}</p>
+                )}
               </div>
             </div>
 
@@ -344,11 +513,15 @@ export default function ApplyAsaSpeaker() {
                   type="text"
                   id="company_name"
                   name="company_name"
+                  onBlur={handleBlur}
                   placeholder="Enter your company name."
-                  className="w-full p-3 border rounded-xl shadow"
+                  className={`w-full p-3 border ${errors.company_name && touched.company_name ? 'border-red-500' : 'border-gray-300'} rounded-xl shadow`}
                   onChange={handleChange}
                   value={formData.company_name}
                 />
+                {errors.company_name && touched.company_name && (
+                  <p className="text-red-500 text-sm mt-1">{errors.company_name}</p>
+                )}
               </div>
 
               <div className="w-full sm:w-1/2">
@@ -359,10 +532,14 @@ export default function ApplyAsaSpeaker() {
                   type="text"
                   id="website_or_portfolio"
                   name="website_or_portfolio"
-                  className="w-full p-3 border rounded-xl shadow"
+                  onBlur={handleBlur}
+                  className={`w-full p-3 border ${errors.website_or_portfolio && touched.website_or_portfolio ? 'border-red-500' : 'border-gray-300'} rounded-xl shadow`}
                   onChange={handleChange}
                   value={formData.website_or_portfolio}
                 />
+                {errors.website_or_portfolio && touched.website_or_portfolio && (
+                  <p className="text-red-500 text-sm mt-1">{errors.website_or_portfolio}</p>
+                )}
               </div>
             </div>
             <div className="flex flex-col sm:flex-row justify-center items-center space-y-6 sm:space-x-6 sm:space-y-0">
@@ -376,11 +553,15 @@ export default function ApplyAsaSpeaker() {
                   type="text"
                   id="x_handle"
                   name="x_handle"
-                  onChange={handleChange}
+                  onBlur={handleBlur}
                   placeholder="Your X handle"
-                  className="w-full p-3 border rounded-xl shadow"
+                  className={`w-full p-3 border ${errors.x_handle && touched.x_handle ? 'border-red-500' : 'border-gray-300'} rounded-xl shadow`}
+                  onChange={handleChange}
                   value={formData.x_handle}
                 />
+                {errors.x_handle && touched.x_handle && (
+                  <p className="text-red-500 text-sm mt-1">{errors.x_handle}</p>
+                )}
               </div>
               <div className="w-full sm:w-1/2">
                 <label className="block mb-2 font-bold text-gray-600 my-5">
@@ -390,12 +571,16 @@ export default function ApplyAsaSpeaker() {
                   type="text"
                   id="lecture_title"
                   name="lecture_title"
-                  onChange={handleChange}
+                  onBlur={handleBlur}
                   placeholder="The title of your lecture."
-                  className="w-full p-3 border rounded-xl shadow"
+                  className={`w-full p-3 border ${errors.lecture_title && touched.lecture_title ? 'border-red-500' : 'border-gray-300'} rounded-xl shadow`}
+                  onChange={handleChange}
                   value={formData.lecture_title}
                   required
                 />
+                {errors.lecture_title && touched.lecture_title && (
+                  <p className="text-red-500 text-sm mt-1">{errors.lecture_title}</p>
+                )}
               </div>
             </div>
             <div className="flex flex-col sm:flex-row justify-center items-center space-y-6 mt-6 sm:space-x-6 sm:space-y-0">
@@ -403,13 +588,17 @@ export default function ApplyAsaSpeaker() {
                 <Category
                   id="category"
                   name="category"
+                  onBlur={handleBlur}
                   onChange={handleChange}
                   value={formData.category}
                 />
+                {errors.category && touched.category && (
+                  <p className="text-red-500 text-sm mt-1">{errors.category}</p>
+                )}
               </div>
               <div className="w-full">
                 <label
-                  htmlFor="web3_role"
+                  htmlFor="session_type"
                   className="block mb-2 font-bold text-gray-600">
                   Session Type
                   <span className="text-red-600">* </span>
@@ -417,8 +606,9 @@ export default function ApplyAsaSpeaker() {
                 <select
                   id="session_type"
                   name="session_type"
+                  onBlur={handleBlur}
                   onChange={handleChange}
-                  className="w-full p-3 border rounded-xl shadow"
+                  className={`w-full p-3 border ${errors.session_type && touched.session_type ? 'border-red-500' : 'border-gray-300'} rounded-xl shadow`}
                   value={formData.session_type}
                   required>
                   <option value="">Select your session type</option>
@@ -428,6 +618,9 @@ export default function ApplyAsaSpeaker() {
                     </option>
                   ))}
                 </select>
+                {errors.session_type && touched.session_type && (
+                  <p className="text-red-500 text-sm mt-1">{errors.session_type}</p>
+                )}
               </div>
 
             </div>
@@ -441,12 +634,16 @@ export default function ApplyAsaSpeaker() {
                 <textarea
                   id="session_abstract"
                   name="session_abstract"
+                  onBlur={handleBlur}
                   onChange={handleChange}
                   placeholder="Brief description of your session."
-                  className="w-full p-3 border rounded-xl shadow"
+                  className={`w-full p-3 border ${errors.session_abstract && touched.session_abstract ? 'border-red-500' : 'border-gray-300'} rounded-xl shadow`}
                   value={formData.session_abstract}
                   rows={8}
                 />
+                {errors.session_abstract && touched.session_abstract && (
+                  <p className="text-red-500 text-sm mt-1">{errors.session_abstract}</p>
+                )}
               </div>
             
       
@@ -461,8 +658,9 @@ export default function ApplyAsaSpeaker() {
                 <select
                   id="web3_role"
                   name="web3_role"
+                  onBlur={handleBlur}
                   onChange={handleChange}
-                  className="w-full p-3 border rounded-xl shadow"
+                  className={`w-full p-3 border ${errors.web3_role && touched.web3_role ? 'border-red-500' : 'border-gray-300'} rounded-xl shadow`}
                   value={formData.web3_role}
                   required>
                   <option value="">Select your role</option>
@@ -472,6 +670,9 @@ export default function ApplyAsaSpeaker() {
                     </option>
                   ))}
                 </select>
+                {errors.web3_role && touched.web3_role && (
+                  <p className="text-red-500 text-sm mt-1">{errors.web3_role}</p>
+                )}
               </div>
               <div className="w-full sm:w-1/2">
                 <label
@@ -482,13 +683,17 @@ export default function ApplyAsaSpeaker() {
                 <select
                   id="available_at_any_day"
                   name="available_at_any_day"
+                  onBlur={handleBlur}
                   onChange={handleChange}
-                  className="w-full p-3 border rounded-xl shadow"
+                  className={`w-full p-3 border ${errors.available_at_any_day && touched.available_at_any_day ? 'border-red-500' : 'border-gray-300'} rounded-xl shadow`}
                   value={String(formData.available_at_any_day)}
                   required>
                   <option value="true">Yes</option>
                   <option value="false">No</option>
                 </select>
+                {errors.available_at_any_day && touched.available_at_any_day && (
+                  <p className="text-red-500 text-sm mt-1">{errors.available_at_any_day}</p>
+                )}
               </div>
             </div>
 
@@ -503,11 +708,16 @@ export default function ApplyAsaSpeaker() {
                   type="text"
                   id="location"
                   name="location"
+                  onBlur={handleBlur}
                   onChange={handleChange}
                   placeholder="Enter your location"
-                  className="w-full p-3 border rounded-xl shadow"
-                  value={formData.location}
+                  className={`w-full p-3 border ${errors.location && touched.location ? 'border-red-500' : 'border-gray-300'} rounded-xl shadow`}
+                  value={formData.location || ''}
+                  required
                 />
+                {errors.location && touched.location && (
+                  <p className="text-red-500 text-sm mt-1">{errors.location}</p>
+                )}
               </div>
 
               <div className="w-full sm:w-1/2">
@@ -520,11 +730,16 @@ export default function ApplyAsaSpeaker() {
                   type="text"
                   id="telegram_id"
                   name="telegram_id"
+                  onBlur={handleBlur}
                   onChange={handleChange}
                   placeholder="Enter your telegram id."
-                  className="w-full p-3 border rounded-xl shadow"
-                  value={formData.telegram_id}
+                  className={`w-full p-3 border ${errors.telegram_id && touched.telegram_id ? 'border-red-500' : 'border-gray-300'} rounded-xl shadow`}
+                  value={formData.telegram_id || ''}
+                  required
                 />
+                {errors.telegram_id && touched.telegram_id && (
+                  <p className="text-red-500 text-sm mt-1">{errors.telegram_id}</p>
+                )}
               </div>
             </div>
             <div className="flex flex-col sm:flex-row justify-center items-center space-y-6 sm:space-x-6 sm:space-y-0">
@@ -537,11 +752,15 @@ export default function ApplyAsaSpeaker() {
                 <textarea
                   id="pitch_story"
                   name="pitch_story"
+                  onBlur={handleBlur}
                   onChange={handleChange}
                   placeholder="Share your story with us."
-                  className="w-full p-3 border rounded-xl shadow"
+                  className={`w-full p-3 border ${errors.pitch_story && touched.pitch_story ? 'border-red-500' : 'border-gray-300'} rounded-xl shadow`}
                   value={formData.pitch_story}
                 />
+                {errors.pitch_story && touched.pitch_story && (
+                  <p className="text-red-500 text-sm mt-1">{errors.pitch_story}</p>
+                )}
               </div>
               <div className="w-full sm:w-1/2">
                 <label
@@ -552,13 +771,17 @@ export default function ApplyAsaSpeaker() {
                 <select
                   id="spoken_at_web3_before"
                   name="spoken_at_web3_before"
+                  onBlur={handleBlur}
                   onChange={handleChange}
-                  className="w-full p-3 border rounded-xl shadow"
+                  className={`w-full p-3 border ${errors.spoken_at_web3_before && touched.spoken_at_web3_before ? 'border-red-500' : 'border-gray-300'} rounded-xl shadow`}
                   value={String(formData.spoken_at_web3_before)}
                   required>
                   <option value="true">Yes</option>
                   <option value="false">No</option>
                 </select>
+                {errors.spoken_at_web3_before && touched.spoken_at_web3_before && (
+                  <p className="text-red-500 text-sm mt-1">{errors.spoken_at_web3_before}</p>
+                )}
               </div>
             </div>
             <div className="flex flex-col sm:flex-row justify-center items-center space-y-6 sm:space-x-6 sm:space-y-0">
@@ -571,8 +794,9 @@ export default function ApplyAsaSpeaker() {
                 <select
                   id="gender"
                   name="gender"
+                  onBlur={handleBlur}
                   onChange={handleChange}
-                  className="w-full p-3 border rounded-xl shadow"
+                  className={`w-full p-3 border ${errors.gender && touched.gender ? 'border-red-500' : 'border-gray-300'} rounded-xl shadow`}
                   value={formData.gender}
                   required>
                   <option value="">Select your gender</option>
@@ -580,6 +804,9 @@ export default function ApplyAsaSpeaker() {
                   <option value="female">Female</option>
                   <option value="female">Others</option>
                 </select>
+                {errors.gender && touched.gender && (
+                  <p className="text-red-500 text-sm mt-1">{errors.gender}</p>
+                )}
               </div>
               <div className="w-full sm:w-1/2">
             <label
@@ -591,10 +818,14 @@ export default function ApplyAsaSpeaker() {
               type="file"
               id="profilepicurl"
               name="profilepicurl"
+              onBlur={handleBlur}
               accept="image/*"
               onChange={handleChange}
-              className="w-full p-3 border rounded-xl shadow"
+              className={`w-full p-3 border ${errors.profilepicurl && touched.profilepicurl ? 'border-red-500' : 'border-gray-300'} rounded-xl shadow`}
             />
+            {errors.profilepicurl && touched.profilepicurl && (
+              <p className="text-red-500 text-sm mt-1">{errors.profilepicurl}</p>
+            )}
           </div>
 
             </div>

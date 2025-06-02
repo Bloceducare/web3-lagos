@@ -1,13 +1,14 @@
-import React, { useState, ChangeEvent } from "react";
+import React, { useState, ChangeEvent, FocusEvent } from "react";
 
 type CategoryProps = {
   id: string;
   name: string;
   value: string;
   onChange: (e: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => void;
+  onBlur?: (e: FocusEvent<HTMLSelectElement | HTMLInputElement>) => void;
 };
 
-const Category: React.FC<CategoryProps> = ({ id, name, value, onChange }) => {
+const Category: React.FC<CategoryProps> = ({ id, name, value, onChange, onBlur }) => {
   const [category, setCategory] = useState<string>(value);
   const [otherCategory, setOtherCategory] = useState<string>("");
 
@@ -35,7 +36,8 @@ const Category: React.FC<CategoryProps> = ({ id, name, value, onChange }) => {
         id={id}
         name={name}
         value={category}
-        onChange={handleSelectChange}>
+        onChange={handleSelectChange}
+        onBlur={onBlur}>
         <option value="" disabled>
           Please Select an Option
         </option>
@@ -61,6 +63,7 @@ const Category: React.FC<CategoryProps> = ({ id, name, value, onChange }) => {
             name="otherCategory"
             value={otherCategory}
             onChange={handleOtherChange}
+            onBlur={onBlur}
             className="block w-full p-3 mt-1 border rounded-xl"
           />
         </div>
