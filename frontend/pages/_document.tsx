@@ -9,6 +9,15 @@ export default function Document() {
   return (
     <Html>
       <Head>
+        {/* <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P6C4Q9GY24"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P6C4Q9GY24');
+</script> */}
         <meta name="application-name" content={APP_NAME} />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -43,6 +52,22 @@ export default function Document() {
         />
         <link rel="manifest" href="/site.webmanifest" />
 
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-P6C4Q9GY24"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-P6C4Q9GY24', {
+                page_path: window.location.pathname,
+              });
+            `,
+          }}
+        />
 
       </Head>
       <body>
