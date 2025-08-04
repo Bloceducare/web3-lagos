@@ -1,35 +1,42 @@
-import Image from "next/image";
-import images from "../public/Sponsors/imageImports"; 
+import { sponsors } from "../data/sponsors";
 
 type UIProps = {
   title: string;
+};
 
-}
-
-const SponsorUI:React.FC<UIProps> = ({title}) => {
+const SponsorUI: React.FC<UIProps> = ({ title }) => {
   return (
-    <div className="p-0 md:py-10 xl:px-10 xl:mx-10">
-      <h1 className="text-[42px] md:text-[54px] text-center leading-[70px] font-bold text-[#23242A] flex justify-center mb-10 tracking-wide md:mb-10">
+    <div className="py-8 md:py-12 xl:py-16 px-4 md:px-8 xl:px-12 mx-auto max-w-7xl">
+      <h1 className="text-3xl md:text-4xl lg:text-5xl text-center font-bold text-gray-800 mb-8 md:mb-12 tracking-tight">
         {title}
       </h1>
-      <div className="flex flex-wrap w-full justify-between px-6 gap-y-5 ">
-        {images.map((image, index) => (
-          <Image src={image} key={index} alt="sponsor" className="w-[130px] lg:w-[180px] h-[70px] lg:h-[100px] shadow p-4 " />
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 md:gap-8">
+        {sponsors.map((partner, index) => (
+          <div
+            key={index}
+            className="flex flex-col items-center bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
+          >
+            <div className="relative w-32 h-20 mb-4">
+              <img
+                src={partner.logo}
+                alt={`${partner.name} logo`}
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <p className="text-sm md:text-base font-semibold text-gray-700 text-center">
+              {partner.name}
+            </p>
+          </div>
         ))}
       </div>
-  </div>
+    </div>
   );
-}
+};
 
-const Sponsors = () => {
+export const Sponsors = () => {
   return (
-    <section className="container py-10 mx-auto xl:px-4">
+    <section className="container py-10 mx-auto">
       <SponsorUI title="Our Sponsors" />
-
-      {/* <div className="border-t linear my-8"></div> */}
-
-      {/* <SponsorUI title="Community Partners" /> */}
     </section>
   );
 };
-export default Sponsors;

@@ -14,6 +14,9 @@ import { Goal, CalendarDays, Smile, Speaker } from "lucide-react";
 import YoutubeIframe from "./Iframe";
 import { PicYear2022, PicYear2023, PicYear2024 } from "@/data";
 import ImageGallery from "./ImageGallery";
+import Sponsor from "@/pages/apply/sponsor";
+import { Sponsors } from "./Sponsors";
+import { Partners } from "./Partners";
 interface GoalProps {
   title: string;
   description: string;
@@ -196,6 +199,8 @@ const EventDetails = () => {
   </div>
 </div>
 
+<Sponsors />
+{/* <Partners /> */}
 
   {/* Highlights Section */}
   <div className="mb-16 py-5 bg-[#F2FAFF]">

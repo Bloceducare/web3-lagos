@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Script from "next/script"; // Import Script component for handling external scripts
-import HomeView from "@/views/home";
-import Layout from "@/components/layout";
+import HomeView from "@/views/home/index";
+import Layout from "@/components/layout/index";
 
 
 const Home: NextPage = () => {
