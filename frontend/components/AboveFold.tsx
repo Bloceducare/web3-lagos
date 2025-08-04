@@ -11,7 +11,7 @@ import { BsFillPeopleFill } from "react-icons/bs";
 import DateCountDown from "./dateCountDown";
 import { FaPaperPlane, FaMapMarkerAlt, FaRegCalendarAlt, FaUserNinja } from "react-icons/fa";
 
-import Sponsors from "./Sponsors";
+import {Sponsors} from "./Sponsors";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
