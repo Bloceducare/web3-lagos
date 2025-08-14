@@ -200,7 +200,7 @@ const EventDetails = () => {
 </div>
 
 <Sponsors />
-{/* <Partners /> */}
+<Partners />
 
   {/* Highlights Section */}
   <div className="mb-16 py-5 bg-[#F2FAFF]">
