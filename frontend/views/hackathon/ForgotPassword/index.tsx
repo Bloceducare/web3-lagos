@@ -49,7 +49,7 @@ export default function ForgotPassword() {
     setErrors(initialFormErrors);
 
     const response = await fetch(
-      "https://web3lagosbackend.onrender.com/users/password_reset/",
+      "https://giant-dorice-web3bridge-89722e9a.koyeb.app/users/password_reset/",
       {
         method: "POST",
         headers: {

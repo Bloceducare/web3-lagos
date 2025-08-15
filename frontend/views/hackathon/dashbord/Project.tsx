@@ -79,7 +79,7 @@ const Project: React.FC = () => {
         if (userString && yourToken) {
           const users = JSON.parse(userString);
           const response = await fetch(
-            `https://web3lagosbackend.onrender.com/hackathon/teams/my-teams/`,
+            `https://giant-dorice-web3bridge-89722e9a.koyeb.app/hackathon/teams/my-teams/`,
             {
               method: "GET",
               headers: {
@@ -149,7 +149,7 @@ const Project: React.FC = () => {
     setErrors(initialFormErrors);
     const yourToken = localStorage.getItem("token");
     const response = await fetch(
-      "https://web3lagosbackend.onrender.com/hackathon/project/",
+      "https://giant-dorice-web3bridge-89722e9a.koyeb.app/hackathon/project/",
       {
         method: "POST",
         headers: {
@@ -190,7 +190,7 @@ const Project: React.FC = () => {
       }, {} as FormData);
       
       const response = await fetch(
-        `https://web3lagosbackend.onrender.com/hackathon/project/${formData.id}/`,
+        `https://giant-dorice-web3bridge-89722e9a.koyeb.app/hackathon/project/${formData.id}/`,
         {
           method: "PUT",
           headers: {
@@ -226,7 +226,7 @@ const Project: React.FC = () => {
 
     if (isCreator) {
       const response = await fetch(
-        `https://web3lagosbackend.onrender.com/hackathon/teams/${teamData?.id}/`,
+        `https://giant-dorice-web3bridge-89722e9a.koyeb.app/hackathon/teams/${teamData?.id}/`,
         {
           method: "DELETE",
           headers: {
@@ -260,7 +260,7 @@ const Project: React.FC = () => {
     const yourToken = localStorage.getItem("token");
 
     const response = await fetch(
-      `https://web3lagosbackend.onrender.com/hackathon/teams/leave/`,
+      `https://giant-dorice-web3bridge-89722e9a.koyeb.app/hackathon/teams/leave/`,
       {
         method: "POST",
         headers: {

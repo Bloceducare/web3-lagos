@@ -52,7 +52,7 @@ export default function UpdateUser() {
           const yourToken = localStorage.getItem("token");
       
           const response = await fetch(
-            `https://web3lagosbackend.onrender.com/users/users/${parsedUser.id}/`,
+            `https://giant-dorice-web3bridge-89722e9a.koyeb.app/users/users/${parsedUser.id}/`,
             {
               method: "GET",
               headers: {
@@ -108,7 +108,7 @@ export default function UpdateUser() {
     });
 
     const response = await fetch(
-      `https://web3lagosbackend.onrender.com/users/users/${user?.id}/`,
+      `https://giant-dorice-web3bridge-89722e9a.koyeb.app/users/users/${user?.id}/`,
       {
         method: "PUT",
         headers: {

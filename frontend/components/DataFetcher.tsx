@@ -23,14 +23,14 @@ const DataFetcher: React.FC<DataFetcherProps> = ({ children }) => {
   useEffect(() => {
     async function fetchRegistrations() {
       try {
-        const generalRegistrations = await fetch('https://web3lagosbackend.onrender.com/api/general-registrations/', {
+        const generalRegistrations = await fetch('https://giant-dorice-web3bridge-89722e9a.koyeb.app/api/general-registrations/', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
           },
         });
 
-        const speakerRegistrations = await fetch('https://web3lagosbackend.onrender.com/api/speaker-registrations/', {
+        const speakerRegistrations = await fetch('https://giant-dorice-web3bridge-89722e9a.koyeb.app/api/speaker-registrations/', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

@@ -139,7 +139,7 @@ export default function PersonalDetailForm() {
 
 
       const response = await fetch(
-        "https://web3lagosbackend.onrender.com/api/general-registrations/",
+        "https://giant-dorice-web3bridge-89722e9a.koyeb.app/api/general-registrations/",
         {
           method: "POST",
           headers: {

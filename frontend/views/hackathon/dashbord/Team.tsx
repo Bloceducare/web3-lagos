@@ -105,7 +105,7 @@ const Team: React.FC = () => {
           const user = JSON.parse(userString);
           if (user && user.id) {
             const response = await fetch(
-              `https://web3lagosbackend.onrender.com/hackathon/teams/my-teams/`,
+              `https://giant-dorice-web3bridge-89722e9a.koyeb.app/hackathon/teams/my-teams/`,
               {
                 method: "GET",
                 headers: {
@@ -142,7 +142,7 @@ const Team: React.FC = () => {
 
     const yourToken = localStorage.getItem('token');
     const response = await fetch(
-      "https://web3lagosbackend.onrender.com/hackathon/teams/",
+      "https://giant-dorice-web3bridge-89722e9a.koyeb.app/hackathon/teams/",
       {
         method: "POST",
         headers: {
@@ -184,7 +184,7 @@ const Team: React.FC = () => {
     if (userString && yourToken) {
       
     const response = await fetch(
-      `https://web3lagosbackend.onrender.com/hackathon/teams/leave/`,
+      `https://giant-dorice-web3bridge-89722e9a.koyeb.app/hackathon/teams/leave/`,
       {
         method: "POST",
         headers: {
@@ -219,7 +219,7 @@ const Team: React.FC = () => {
   
     if (yourToken && data) {
       const response = await fetch(
-        `https://web3lagosbackend.onrender.com/hackathon/teams/${data.id}/`,
+        `https://giant-dorice-web3bridge-89722e9a.koyeb.app/hackathon/teams/${data.id}/`,
         {
           method: "DELETE",
           headers: {
@@ -252,7 +252,7 @@ const Team: React.FC = () => {
     if (yourToken && userString) {
       const user = JSON.parse(userString);
       const response = await fetch(
-        `https://web3lagosbackend.onrender.com/hackathon/teams/${data?.id}/invite/`,
+        `https://giant-dorice-web3bridge-89722e9a.koyeb.app/hackathon/teams/${data?.id}/invite/`,
         {
           method: "POST",
           headers: {
@@ -293,7 +293,7 @@ const Team: React.FC = () => {
 
     if (yourToken && userString) {
       const response = await fetch(
-        `https://web3lagosbackend.onrender.com/hackathon/teams/join/`,
+        `https://giant-dorice-web3bridge-89722e9a.koyeb.app/hackathon/teams/join/`,
         {
           method: "POST",
           headers: {
