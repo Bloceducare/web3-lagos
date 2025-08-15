@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 
 // Define the type for the props of DateBlock
 type DateBlockProps = {
@@ -36,7 +36,7 @@ const Countdown: React.FC<CountdownProps> = ({ endDate }) => {
     seconds: 0,
   });
 
-  const getTimeRemaining = (
+  const getTimeRemaining = useCallback((
     endDate: Date
   ): { days: number; hours: number; minutes: number; seconds: number } => {
     const total = endDate.getTime() - new Date().getTime();
@@ -46,12 +46,12 @@ const Countdown: React.FC<CountdownProps> = ({ endDate }) => {
     const days = Math.floor(total / (1000 * 60 * 60 * 24));
 
     return { days, hours, minutes, seconds };
-  };
+  }, []);
 
-  const updateCountdown = (endDate: Date): void => {
+  const updateCountdown = useCallback((endDate: Date): void => {
     const remainingTime = getTimeRemaining(endDate);
     setCountdown(remainingTime);
-  };
+  }, [getTimeRemaining]);
 
   useEffect(() => {
     updateCountdown(endDate);
