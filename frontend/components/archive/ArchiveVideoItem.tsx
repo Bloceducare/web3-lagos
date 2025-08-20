@@ -1,5 +1,5 @@
 import React from "react";
-import { ScheduleItem } from "../../data/scheduleData";
+import { ScheduleItem } from "../../lib/api";
 
 interface ArchiveVideoItemProps {
   video: ScheduleItem;
@@ -30,12 +30,14 @@ const ArchiveVideoItem: React.FC<ArchiveVideoItemProps> = ({
             {video.speaker || "Speaker TBD"}
           </p>
           <div className="flex items-center gap-2">
-            <span className="text-xs text-gray-500">{video.year}</span>
+            <span className="text-xs text-gray-500">
+              {video.conference_year}
+            </span>
             <span className="text-xs text-gray-400">•</span>
-            <span className="text-xs text-gray-500">{video.hall}</span>
+            <span className="text-xs text-gray-500">{video.hall_name}</span>
             <span className="text-xs text-gray-400">•</span>
             <span className="text-xs text-gray-500">
-              {video.duration || "Duration TBD"}
+              {new Date(video.start_datetime).toLocaleDateString()}
             </span>
           </div>
         </div>
