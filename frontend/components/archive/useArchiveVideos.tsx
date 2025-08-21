@@ -1,46 +1,40 @@
 import { useMemo } from "react";
-import {
-  getArchiveVideos,
-  ScheduleItem,
-  getConferenceYears,
-  conferenceData,
-  ConferenceEdition,
-  DaySchedule,
-  HallSchedule,
-} from "../../data/scheduleData";
+import { useArchivedSessions } from "../../hooks/useScheduleData";
 
 export const useArchiveVideos = () => {
-  // Get all archived videos from all years
-  const archiveVideos = useMemo(() => {
-    return getArchiveVideos();
-  }, []);
+  const { loading, error, archivedSessions } = useArchivedSessions();
 
-  // Get unique years for filter (sorted newest first)
   const years = useMemo(() => {
-    return getConferenceYears();
-  }, []);
+    if (!archivedSessions.length) return [];
+
+    const yearSet = new Set<number>();
+    archivedSessions.forEach((video) => {
+      if (video.conference_year) {
+        yearSet.add(video.conference_year);
+      }
+    });
+    return Array.from(yearSet).sort((a, b) => b - a);
+  }, [archivedSessions]);
 
   // Get unique halls for filter
   const halls = useMemo(() => {
+    if (!archivedSessions.length) return [];
+
     const hallSet = new Set<string>();
-
-    Object.values(conferenceData).forEach((yearData: ConferenceEdition) => {
-      Object.values(yearData.days).forEach((day: DaySchedule) => {
-        Object.values(day.halls).forEach((hall: HallSchedule) => {
-          if (hall.items.some((item: ScheduleItem) => item.youtubeId)) {
-            hallSet.add(hall.title);
-          }
-        });
-      });
+    archivedSessions.forEach((video) => {
+      if (video.hall_name) {
+        hallSet.add(video.hall_name);
+      }
     });
-
     return Array.from(hallSet).sort();
-  }, []);
+  }, [archivedSessions]);
 
   return {
-    archiveVideos,
+    archiveVideos: archivedSessions,
     years,
     halls,
+    loading,
+    error,
   };
 };
 

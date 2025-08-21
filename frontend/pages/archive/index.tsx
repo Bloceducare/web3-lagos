@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/router";
 import Header from "../../components/live/Layout/Header";
 import Footer from "../../components/live/Layout/Footer";
-import { ScheduleItem } from "../../data/scheduleData";
+import { ScheduleItem } from "../../lib/api";
 import {
   ArchiveVideoPlayer,
   ArchiveSidebar,
@@ -17,7 +17,6 @@ const Archive = () => {
 
   // Get archive videos and filter options from custom hook
   const { archiveVideos, years, halls } = useArchiveVideos();
-
   const [selectedVideo, setSelectedVideo] = useState<ScheduleItem | null>(null);
   const [selectedYear, setSelectedYear] = useState<number | null>(null);
   const [selectedHall, setSelectedHall] = useState<string | null>(null);
@@ -27,8 +26,8 @@ const Archive = () => {
   const updateVideoInURL = useCallback(
     (video: ScheduleItem) => {
       const params = new URLSearchParams();
-      params.set("video", video.youtubeId || "");
-      params.set("id", video.id);
+      params.set("video", video.youtube_id || "");
+      params.set("id", video.id.toString());
       // Update URL without page reload
       router.replace(`/archive?${params.toString()}`, undefined, {
         shallow: true,
@@ -80,15 +79,16 @@ const Archive = () => {
 
     if (idParam && typeof idParam === "string") {
       foundVideo =
-        archiveVideos.find((video: ScheduleItem) => video.id === idParam) ||
-        null;
+        archiveVideos.find(
+          (video: ScheduleItem) => video.id.toString() === idParam
+        ) || null;
     }
 
     // Find by YouTube ID
     if (!foundVideo && videoParam && typeof videoParam === "string") {
       foundVideo =
         archiveVideos.find(
-          (video: ScheduleItem) => video.youtubeId === videoParam
+          (video: ScheduleItem) => video.youtube_id === videoParam
         ) || null;
     }
 
@@ -99,9 +99,9 @@ const Archive = () => {
   }, [videoParam, idParam]);
 
   // Filter videos based on selected filters and search
-  const filteredVideos = archiveVideos.filter((video: ScheduleItem) => {
-    const matchesYear = !selectedYear || video.year === selectedYear;
-    const matchesHall = !selectedHall || video.hall === selectedHall;
+  const filteredVideos = archiveVideos.filter((video) => {
+    const matchesYear = !selectedYear || video.conference_year === selectedYear;
+    const matchesHall = !selectedHall || video.hall_name === selectedHall;
     const matchesSearch =
       !searchTerm ||
       video.topic.toLowerCase().includes(searchTerm.toLowerCase()) ||

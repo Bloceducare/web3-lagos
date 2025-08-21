@@ -1,15 +1,16 @@
 import React from "react";
+import { ConferenceDay } from "../../utils/conferenceUtils";
 
 export interface Day {
-  key: "thur" | "fri" | "sat";
+  key: ConferenceDay;
   label: string;
   date: string;
 }
 
 interface DaySelectorProps {
   days: Day[];
-  selectedDay: "thur" | "fri" | "sat";
-  onDaySelect: (day: "thur" | "fri" | "sat") => void;
+  selectedDay: ConferenceDay;
+  onDaySelect: (day: ConferenceDay) => void;
   className?: string;
 }
 

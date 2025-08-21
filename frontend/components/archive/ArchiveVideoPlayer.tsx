@@ -1,5 +1,5 @@
 import React from "react";
-import { ScheduleItem } from "../../data/scheduleData";
+import { ScheduleItem } from "../../lib/api";
 
 interface ArchiveVideoPlayerProps {
   selectedVideo: ScheduleItem;
@@ -16,7 +16,7 @@ const ArchiveVideoPlayer: React.FC<ArchiveVideoPlayerProps> = ({
       <div className="bg-black rounded-lg overflow-hidden shadow-lg mb-4">
         <div className="aspect-video">
           <iframe
-            src={`https://www.youtube.com/embed/${selectedVideo.youtubeId}`}
+            src={`https://www.youtube.com/embed/${selectedVideo.youtube_id}`}
             width="100%"
             height="100%"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -31,16 +31,16 @@ const ArchiveVideoPlayer: React.FC<ArchiveVideoPlayerProps> = ({
       <div className="bg-white rounded-lg p-6 shadow-lg">
         <div className="flex items-center gap-2 mb-2">
           <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-full">
-            {selectedVideo.year}
+            {selectedVideo.conference_year}
           </span>
           <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
-            {selectedVideo.day}
+            {new Date(selectedVideo.start_datetime).toLocaleDateString()}
           </span>
           <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
-            {selectedVideo.hall}
+            {selectedVideo.hall_name}
           </span>
           <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
-            {selectedVideo.duration}
+            {selectedVideo.type}
           </span>
         </div>
 

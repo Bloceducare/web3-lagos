@@ -1,6 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import { Day } from "./DaySelector";
+import { ConferenceDay } from "../../utils/conferenceUtils";
 
 interface MetadataConfig {
   title: string;
@@ -13,7 +14,7 @@ interface MetadataConfig {
 
 interface LiveMetadataProps {
   stageTitle: string;
-  selectedDay: "thur" | "fri" | "sat";
+  selectedDay: ConferenceDay;
   days: Day[];
 }
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { ScheduleItem } from "../../data/scheduleData";
+import { ScheduleItem } from "../../lib/api";
 import ArchiveFilters from "./ArchiveFilters";
 import ArchiveVideoList from "./ArchiveVideoList";
 
