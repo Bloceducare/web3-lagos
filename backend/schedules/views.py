@@ -31,6 +31,10 @@ class ScheduleItemViewSet(viewsets.ModelViewSet):
             
         is_archived = self.request.query_params.get('is_archived', None)
         if is_archived is not None:
-            queryset = queryset.filter(is_archived=is_archived.lower() == 'true')
+            if is_archived.lower() == 'true':
+                # Show only sessions with youtube_id (archived sessions)
+                queryset = queryset.exclude(youtube_id='').exclude(youtube_id__isnull=True)
+            else:
+                queryset = queryset.filter(youtube_id='') | queryset.filter(youtube_id__isnull=True)
             
         return queryset

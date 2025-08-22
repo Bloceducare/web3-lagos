@@ -145,12 +145,7 @@ class ApiClient {
         return [];
       }
 
-      // Filter for sessions that have video content
-      const archivedSessions = sessions.filter(
-        (session) => session.is_archived || session.youtube_id
-      );
-
-      return archivedSessions;
+      return sessions;
     } catch (error) {
       console.error("API: Error fetching archived sessions:", error);
       return [];
