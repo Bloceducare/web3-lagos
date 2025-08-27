@@ -223,7 +223,7 @@ const LiveStage = () => {
             <LiveVideoPlayer
               embedUrl={stageHall.embed_url}
               stageTitle={stageHall.name}
-              className="lg:col-span-2"
+              className="lg:col-span-2 h-fit"
             />
 
             {/* Schedule Sidebar */}

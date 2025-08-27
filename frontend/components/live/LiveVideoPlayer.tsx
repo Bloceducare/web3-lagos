@@ -27,7 +27,9 @@ const LiveVideoPlayer: React.FC<LiveVideoPlayerProps> = ({
         ></iframe>
       </div>
       <div className="p-4 bg-gray-900 text-white">
-        <h2 className="text-xl font-bold">Web3 Lagos 2025 - {stageTitle}</h2>
+        <h2 className="text-xl font-bold">
+          Web3 Lagos Conference 2025 - {stageTitle}
+        </h2>
         <p className="text-gray-300 text-sm mt-1">Live Stream</p>
       </div>
     </div>

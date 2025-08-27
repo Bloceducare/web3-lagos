@@ -99,17 +99,20 @@ const Archive = () => {
   }, [videoParam, idParam]);
 
   // Filter videos based on selected filters and search
-  const filteredVideos = archiveVideos.filter((video) => {
-    const matchesYear = !selectedYear || video.conference_year === selectedYear;
-    const matchesHall = !selectedHall || video.hall_name === selectedHall;
-    const matchesSearch =
-      !searchTerm ||
-      video.topic.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      (video.speaker &&
-        video.speaker.toLowerCase().includes(searchTerm.toLowerCase()));
+  const filteredVideos = archiveVideos
+    .filter((video) => {
+      const matchesYear =
+        !selectedYear || video.conference_year === selectedYear;
+      const matchesHall = !selectedHall || video.hall_name === selectedHall;
+      const matchesSearch =
+        !searchTerm ||
+        video.topic.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (video.speaker &&
+          video.speaker.toLowerCase().includes(searchTerm.toLowerCase()));
 
-    return matchesYear && matchesHall && matchesSearch;
-  });
+      return matchesYear && matchesHall && matchesSearch;
+    })
+    .reverse();
 
   if (!selectedVideo) {
     return (

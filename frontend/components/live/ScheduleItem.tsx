@@ -23,11 +23,14 @@ const ScheduleItemComponent: React.FC<ScheduleItemProps> = ({
     >
       <div className="flex flex-col">
         <div className="flex items-center justify-between mb-1">
-          <div className="text-sm text-blue-600 font-medium">
-            {item.time}
-            {item.duration && (
-              <span className="text-gray-500 ml-2">({item.duration})</span>
-            )}
+          <div className="flex items-center gap-2">
+            <div className="text-sm text-blue-600 font-medium">
+              {item.time}
+              {item.duration && (
+                <span className="text-gray-500 ml-2">({item.duration})</span>
+              )}
+            </div>
+            <span className="text-xs text-gray-400 font-mono">#{item.id}</span>
           </div>
           {item.youtubeId && (
             <span className="text-xs text-blue-500 font-medium">
