@@ -1,4 +1,5 @@
 from rest_framework import viewsets, permissions
+from rest_framework.pagination import PageNumberPagination
 from .models import Conference, Hall, ScheduleItem
 from .serializers import ConferenceSerializer, HallSerializer, ScheduleItemSerializer
 from backend.permissions import IsAuthenticatedByAuthServer
@@ -13,9 +14,29 @@ class HallViewSet(viewsets.ModelViewSet):
     serializer_class = HallSerializer
     permission_classes = [IsAuthenticatedByAuthServer]  
 
+    def get_queryset(self):
+        queryset = Hall.objects.all()
+        
+        conference_id = self.request.query_params.get('conference', None)
+        if conference_id:
+            queryset = queryset.filter(conference_id=conference_id)
+            
+        return queryset
+
+class OptionalPagination(PageNumberPagination):
+    page_size = 20
+    page_size_query_param = 'page_size'
+    max_page_size = 1000
+    
+    def paginate_queryset(self, queryset, request, view=None):
+        if request.query_params.get('all') == 'true':
+            return None
+        return super().paginate_queryset(queryset, request, view)
+
 class ScheduleItemViewSet(viewsets.ModelViewSet):
     queryset = ScheduleItem.objects.all()
     serializer_class = ScheduleItemSerializer
+    pagination_class = OptionalPagination  # Add this
     permission_classes = [IsAuthenticatedByAuthServer]  
     
     def get_queryset(self):

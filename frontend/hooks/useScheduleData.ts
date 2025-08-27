@@ -19,7 +19,7 @@ export const useScheduleData = () => {
 
         setConference(conference);
         setHalls(halls);
-        setSessions(sessions);
+        setSessions(sessions as unknown as ScheduleItem[]);
       } catch (err) {
         setError(
           err instanceof Error ? err.message : "Failed to fetch schedule data"
@@ -44,7 +44,7 @@ export const useScheduleData = () => {
 
       setConference(conference);
       setHalls(halls);
-      setSessions(sessions);
+      setSessions(sessions as unknown as ScheduleItem[]);
     } catch (err) {
       setError(
         err instanceof Error ? err.message : "Failed to fetch schedule data"

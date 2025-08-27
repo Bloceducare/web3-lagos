@@ -71,7 +71,7 @@ const Live = () => {
   }
 
   const mainStageHall =
-    halls.find((hall) => hall.name.toLowerCase().includes("main")) || halls[0];
+    halls.find((hall) => hall.name.toLowerCase().includes("main")) || halls[3];
 
   const getDayFromDateTime = (startDateTime: string): ConferenceDay => {
     if (!conference) return "day1";
@@ -146,7 +146,7 @@ const Live = () => {
             <LiveVideoPlayer
               embedUrl={mainStageHall?.embed_url}
               stageTitle={mainStageHall?.name || "Main Stage"}
-              className="lg:col-span-2"
+              className="lg:col-span-2 h-fit"
             />
 
             {/* Schedule Sidebar */}

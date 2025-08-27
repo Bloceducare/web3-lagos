@@ -113,7 +113,9 @@ class ApiClient {
     hall?: number;
     type?: string;
     is_archived?: boolean;
-  }): Promise<ScheduleItem[]> {
+    page?: number;
+    all?: boolean;
+  }): Promise<PaginatedResponse<ScheduleItem>> {
     const params = new URLSearchParams();
     if (filters?.conference)
       params.append("conference", filters.conference.toString());
@@ -121,31 +123,30 @@ class ApiClient {
     if (filters?.type) params.append("type", filters.type);
     if (filters?.is_archived !== undefined)
       params.append("is_archived", filters.is_archived.toString());
+    if (filters?.page) params.append("page", filters.page.toString());
+    if (filters?.all) params.append("all", "true");
 
     const endpoint = `/sessions${
       params.toString() ? `?${params.toString()}` : ""
     }`;
 
-    const response = await this.request<PaginatedResponse<ScheduleItem>>(
-      endpoint
-    );
-    return response.results;
+    return await this.request<PaginatedResponse<ScheduleItem>>(endpoint);
   }
 
   async getSession(id: number): Promise<ScheduleItem> {
     return this.request<ScheduleItem>(`/sessions?id=${id}`);
   }
 
-  async getArchivedSessions(): Promise<ScheduleItem[]> {
+  async getArchivedSessions(page?: number): Promise<ScheduleItem[]> {
     try {
-      const sessions = await this.getSessions({ is_archived: true });
+      const sessions = await this.getSessions({ is_archived: true, all: true });
 
-      if (!Array.isArray(sessions)) {
-        console.error("API: Sessions is not an array:", sessions);
-        return [];
-      }
+      // if (!Array.isArray(sessions)) {
+      //   console.error("API: Sessions is not an array:", sessions);
+      //   return [];
+      // }
 
-      return sessions;
+      return sessions as unknown as ScheduleItem[];
     } catch (error) {
       console.error("API: Error fetching archived sessions:", error);
       return [];
@@ -155,7 +156,7 @@ class ApiClient {
   async getCurrentConference(): Promise<{
     conference: Conference;
     halls: Hall[];
-    sessions: ScheduleItem[];
+    sessions: PaginatedResponse<ScheduleItem>;
   }> {
     try {
       const conferences = await this.getConferences();
@@ -169,7 +170,7 @@ class ApiClient {
 
       const [halls, sessions] = await Promise.all([
         this.getHalls(currentConference.id),
-        this.getSessions({ conference: currentConference.id }),
+        this.getSessions({ conference: currentConference.id, all: true }),
       ]);
 
       return {
