@@ -53,7 +53,7 @@ const SchedulePreviewContent = () => {
           </div>
           <div className="text-center">
             <p className="text-red-600 mb-4">Failed to load schedule data</p>
-            <p className="text-gray-600">{error}</p>
+            {/* <p className="text-gray-600">{error}</p> */}
             <p className="text-gray-500 mt-4">
               Please check back later or visit the live page for the most up-to-date schedule.
             </p>
