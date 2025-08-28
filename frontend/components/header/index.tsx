@@ -2,6 +2,7 @@
 import { ReactNode, useState } from "react";
 import { HiSpeakerphone, HiOutlineNewspaper, HiCalendar } from "react-icons/hi";
 import Link from "next/link";
+import Image from "next/image";
 
 interface IiconWrapperProps {
   children: ReactNode;
@@ -22,18 +23,18 @@ const NavBar = () => {
         <div className="px-4 mx-auto max-w-7xl sm:px-6">
           <div className="flex items-center justify-between py-6 md:justify-start md:space-x-10">
             <div className="flex justify-start lg:w-0 lg:flex-1">
-              <Link href="/">
-                <a className="flex items-center">
-                  <span className="sr-only">Workflow</span>
-                  <img
-                    className="w-auto h-8 mr-1 sm:h-10"
-                    src="https://upload.wikimedia.org/wikipedia/commons/0/01/Ethereum_logo_translucent.svg"
-                    alt=""
-                  />
-                  <span className="font-mono text-xl font-semibold ">
-                    Lagos
-                  </span>
-                </a>
+              <Link href="/" className="flex items-center">
+                <span className="sr-only">Workflow</span>
+                <Image
+                  className="w-auto h-8 mr-1 sm:h-10"
+                  src="https://upload.wikimedia.org/wikipedia/commons/0/01/Ethereum_logo_translucent.svg"
+                  alt="Ethereum Logo"
+                  width={32}
+                  height={32}
+                />
+                <span className="font-mono text-xl font-semibold ">
+                  Lagos
+                </span>
               </Link>
             </div>
             <div className="-my-2 -mr-2 md:hidden">
@@ -62,21 +63,15 @@ const NavBar = () => {
               </button>
             </div>
             <nav className="hidden space-x-10 md:flex">
-              <Link href="/agenda">
-                <a className="text-base font-medium text-gray-500 hover:text-gray-900">
-                  Agenda
-                </a>
+              <Link href="/agenda" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                Agenda
               </Link>
 
-              <Link href="/speakers">
-                <a className="text-base font-medium text-gray-500 hover:text-gray-900">
-                  Speakers
-                </a>
+              <Link href="/speakers" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                Speakers
               </Link>
-              <Link href="/eventbrite">
-                <a className="text-base font-medium text-gray-500 hover:text-gray-900">
-                  Event Brite
-                </a>
+              <Link href="/eventbrite" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                Event Brite
               </Link>
             </nav>
             <div className="items-center justify-end hidden md:flex md:flex-1 lg:w-0">
@@ -111,10 +106,12 @@ const NavBar = () => {
             <div className="px-5 pt-5 pb-6">
               <div className="flex items-center justify-between">
               <div>
-                  <img
+                  <Image
                     alt="logo"
                     className="w-auto h-8"
                     src="https://upload.wikimedia.org/wikipedia/commons/0/01/Ethereum_logo_translucent.svg"
+                    width={32}
+                    height={32}
                   />
                 </div>  
                 <div className="-mr-2">
@@ -146,35 +143,29 @@ const NavBar = () => {
               <div className="mt-6">
                 <nav className="grid gap-y-8">
                   <IconWrapper>
-                    <Link href="/speakers">
-                      <a className="flex items-center p-3 -m-3 rounded-md hover:bg-gray-50">
-                        <HiSpeakerphone />
-                        <span className="ml-3 text-base font-medium text-gray-900">
-                          Speakers
-                        </span>
-                      </a>
+                    <Link href="/speakers" className="flex items-center p-3 -m-3 rounded-md hover:bg-gray-50">
+                      <HiSpeakerphone />
+                      <span className="ml-3 text-base font-medium text-gray-900">
+                        Speakers
+                      </span>
                     </Link>
                   </IconWrapper>
 
                   <IconWrapper>
-                    <Link href="/agenda">
-                      <a className="flex items-center p-3 -m-3 rounded-md hover:bg-gray-50">
-                        <HiOutlineNewspaper />
-                        <span className="ml-3 text-base font-medium text-gray-900">
-                          Agenda
-                        </span>
-                      </a>
+                    <Link href="/agenda" className="flex items-center p-3 -m-3 rounded-md hover:bg-gray-50">
+                      <HiOutlineNewspaper />
+                      <span className="ml-3 text-base font-medium text-gray-900">
+                        Agenda
+                      </span>
                     </Link>
                   </IconWrapper>
 
                   <IconWrapper>
-                    <Link href="/eventbrite">
-                      <a className="flex items-center p-3 -m-3 rounded-md hover:bg-gray-50">
-                        <HiCalendar />
-                        <span className="ml-3 text-base font-medium text-gray-900">
-                          EventBrite
-                        </span>
-                      </a>
+                    <Link href="/eventbrite" className="flex items-center p-3 -m-3 rounded-md hover:bg-gray-50">
+                      <HiCalendar />
+                      <span className="ml-3 text-base font-medium text-gray-900">
+                        EventBrite
+                      </span>
                     </Link>
                   </IconWrapper>
                 </nav>

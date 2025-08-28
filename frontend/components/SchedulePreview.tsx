@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import Link from "next/link";
 import { useScheduleData } from "../hooks/useScheduleData";
 import { useDaysConfig } from "./live/useDaysConfig";
 import {
@@ -57,12 +58,12 @@ const SchedulePreviewContent = () => {
             <p className="text-gray-500 mt-4">
               Please check back later or visit the live page for the most up-to-date schedule.
             </p>
-            <a
+            <Link
               href="/live"
               className="inline-flex items-center px-8 py-3 bg-[#188BE0] text-white rounded-md hover:bg-[#31a3fa] transition-colors font-medium mt-4"
             >
               Go to Live Stream
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -156,12 +157,12 @@ const SchedulePreviewContent = () => {
                   })}
                 </p>
               </div>
-              <a
+              <Link
                 href="/live"
                 className="px-6 py-2 bg-[#188BE0] text-white rounded-md hover:bg-[#31a3fa] transition-colors"
               >
                 View Live
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -246,12 +247,12 @@ const SchedulePreviewContent = () => {
           <p className="text-gray-600 mb-4">
             Want to see the full schedule and join the live stream?
           </p>
-          <a
+          <Link
             href="/live"
             className="inline-flex items-center px-8 py-3 bg-[#E0182C] text-white rounded-md hover:bg-[#ff3246] transition-colors font-medium"
           >
             Go to Live Stream
-          </a>
+          </Link>
         </div>
       </div>
     </section>
