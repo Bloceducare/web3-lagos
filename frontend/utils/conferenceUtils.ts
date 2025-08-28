@@ -6,6 +6,7 @@ import {
   format,
   differenceInMinutes,
 } from "date-fns";
+import { formatInTimezone } from "./timezone";
 
 export type ConferenceDay = "day1" | "day2" | "day3" | "day4" | "day5";
 
@@ -69,8 +70,7 @@ export const getConferenceDayDisplayName = (
 };
 
 export const formatSessionTime = (datetime: string): string => {
-  const date = parseDate(datetime);
-  return format(date, "h:mm a");
+  return formatInTimezone(datetime, "h:mm a");
 };
 
 /**
