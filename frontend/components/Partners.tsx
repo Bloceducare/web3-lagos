@@ -22,16 +22,7 @@ export const Partners = () => {
               src={logo}
               alt={name}
               fill
-              // className={`${imageFit === 'cover' ? 'object-cover' : 'object-contain'} drop-shadow-sm`}
               className=' object-contain  '
-              // onLoadingComplete={(img) => {
-              //   const ratio = img.naturalWidth / img.naturalHeight;
-              //   if (ratio > 0.9 && ratio < 1.6) {
-              //     setImageFit('cover');
-              //   } else {
-              //     setImageFit('contain');
-              //   }
-              // }}
               onError={() => setImageError(true)}
               sizes="(max-width: 640px) 160px, (max-width: 768px) 200px, 240px"
               priority={false}
@@ -45,15 +36,13 @@ export const Partners = () => {
         <div className="mt-2 text-center">
           <h3 className="text-lg  md:text-sm font-bold truncate" title={name}>{name}</h3>
           {twitter && (
-            <a
-              href={`https://twitter.com/${twitter.replace('@', '')}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center mt-1 text-blue-400 hover:text-blue-500"
+            <button
+              onClick={() => window.open(`https://twitter.com/${twitter.replace('@', '')}`, '_blank', 'noopener,noreferrer')}
+              className="inline-flex items-center justify-center mt-1 text-blue-400 hover:text-blue-500 cursor-pointer"
               aria-label={`${name} on X/Twitter`}
             >
               <FaTwitter size={14} />
-            </a>
+            </button>
           )}
         </div>
       </div>

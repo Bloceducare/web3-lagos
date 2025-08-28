@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
-const API_BASE_URL = process.env.API_URL;
+const API_BASE_URL = process.env.API_URL || 'https://giant-dorice-web3bridge-89722e9a.koyeb.app/api';
 
 const cache = new Map<string, { data: any; timestamp: number }>();
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes

@@ -168,7 +168,10 @@ const AboveFold = () => {
         <div className="flex flex-col w-screen items-center gap-4 text-black">
           <div className="flex flex-col items-center justify-center gap-3 w-full max-w-screen-xl px-5 lg:px-14">
             <div className="w-full -mt-[50px] md:-mt-[70px] lg:-mt-[80px] z-[1]">
-              <DateCountDown endDate={new Date("2025-08-28T00:00:00")} />
+              <DateCountDown 
+                endDate={new Date("2025-08-28T00:00:00")} 
+                eventPassedMessage="Event Has Started!"
+              />
             </div>
 
             <div className="flex flex-wrap lg:flex-nowrap items-center justify-between w-full gap-10 pb-10 pt-5 px-5 lg:px-14 md:py-10">
