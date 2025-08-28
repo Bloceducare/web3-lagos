@@ -106,21 +106,28 @@ const LiveStage = () => {
     return getConferenceDayFromDateTime(conference, startDateTime);
   };
 
-  const stageSessions = sessions.filter((session) => {
-    const sessionHallMatch =
-      session.hall_slug === stage || // Direct slug match
-      session.hall === stageHall?.id || // Hall ID match
-      (session.hall_name && // Generate slug from hall name and match
-        session.hall_name
-          .toLowerCase()
-          .replace(/\s+/g, "-")
-          .replace(/[^a-z0-9-]/g, "") === stage);
+  const stageSessions = sessions
+    .filter((session) => {
+      const sessionHallMatch =
+        session.hall_slug === stage || // Direct slug match
+        session.hall === stageHall?.id || // Hall ID match
+        (session.hall_name && // Generate slug from hall name and match
+          session.hall_name
+            .toLowerCase()
+            .replace(/\s+/g, "-")
+            .replace(/[^a-z0-9-]/g, "") === stage);
 
-    const sessionDay = getDayFromDateTime(session.start_datetime);
-    const dayMatch = sessionDay === selectedDay;
+      const sessionDay = getDayFromDateTime(session.start_datetime);
+      const dayMatch = sessionDay === selectedDay;
 
-    return sessionHallMatch && dayMatch;
-  });
+      return sessionHallMatch && dayMatch;
+    })
+    .sort((a, b) => {
+      return (
+        new Date(a.start_datetime).getTime() -
+        new Date(b.start_datetime).getTime()
+      );
+    });
 
   const getSelectedDayDate = (): Date => {
     if (!conference) return new Date();

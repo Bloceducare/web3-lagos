@@ -79,13 +79,20 @@ const Live = () => {
   };
 
   // Filter sessions for the main stage and selected day
-  const mainStageSessions = sessions.filter((session) => {
-    const sessionHallMatch = session.hall === mainStageHall?.id;
-    const sessionDay = getDayFromDateTime(session.start_datetime);
-    const dayMatch = sessionDay === selectedDay;
+  const mainStageSessions = sessions
+    .filter((session) => {
+      const sessionHallMatch = session.hall === mainStageHall?.id;
+      const sessionDay = getDayFromDateTime(session.start_datetime);
+      const dayMatch = sessionDay === selectedDay;
 
-    return sessionHallMatch && dayMatch;
-  });
+      return sessionHallMatch && dayMatch;
+    })
+    .sort((a, b) => {
+      return (
+        new Date(a.start_datetime).getTime() -
+        new Date(b.start_datetime).getTime()
+      );
+    });
 
   // Get the actual date for the selected day
   const getSelectedDayDate = (): Date => {

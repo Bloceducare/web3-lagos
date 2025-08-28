@@ -58,7 +58,7 @@ const Archive = () => {
   // Initialize selectedVideo when archiveVideos is available
   useEffect(() => {
     if (archiveVideos.length > 0 && !selectedVideo) {
-      const firstVideo = archiveVideos[0];
+      const firstVideo = archiveVideos[archiveVideos.length - 2];
       setSelectedVideo(firstVideo);
       // Only update URL if there are no existing params
       if (!videoParam && !idParam && !topicParam) {
