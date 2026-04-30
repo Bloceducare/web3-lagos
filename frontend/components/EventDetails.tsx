@@ -40,7 +40,11 @@ interface SuccessStory {
   link: string;
 }
 
-const EventDetails = () => {
+interface EventDetailsProps {
+  archiveMode?: boolean;
+}
+
+const EventDetails: React.FC<EventDetailsProps> = ({ archiveMode = false }) => {
   const [selectedYear, setSelectedYear] = useState<number | null>(null);
 
   const goals: GoalProps = {
@@ -117,31 +121,30 @@ const EventDetails = () => {
     </div>
   </div>
 
-  {/* Registration Section */}
-  <div className="flex flex-wrap-reverse justify-between items-center mb-16 mt-20">
-    <div className="relative aspect-video w-full sm:w-[50%]">
-      <Image
-        src={Speakers}
-        alt="Event image 2"
-        fill
-        className="object-cover"
-        sizes="(max-width: 768px) 100vw, 50vw"
-      />
-    </div>
+  {!archiveMode && (
+    <div className="flex flex-wrap-reverse justify-between items-center mb-16 mt-20">
+      <div className="relative aspect-video w-full sm:w-[50%]">
+        <Image
+          src={Speakers}
+          alt="Event image 2"
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 50vw"
+        />
+      </div>
 
-    {/* Register As Speaker */}
-    <Card className="p-6 w-full sm:w-[45%] h-full shadow-xl border-[#E0182C] border-2 mb-4 sm:mb-0">
-      <Speaker className="mb-2" />
-      <h2 className="text-2xl font-bold mb-4">Be a Speaker</h2>
-      <p className="mb-4">
-        Passionate about blockchain and eager to share your knowledge? Join us as a speaker at the Web3 Lagos Conference and contribute to driving awareness, learning, and real-world use cases of blockchain and Ethereum.
-      </p>
-      <button className="px-6 py-2 bg-[#E0182C] text-white rounded-md hover:bg-[#ff3246]" >
-      <a href="/apply/speaker">
-      Click here</a> 
-      </button>
-    </Card>
-  </div>
+      <Card className="p-6 w-full sm:w-[45%] h-full shadow-xl border-[#E0182C] border-2 mb-4 sm:mb-0">
+        <Speaker className="mb-2" />
+        <h2 className="text-2xl font-bold mb-4">Be a Speaker</h2>
+        <p className="mb-4">
+          Passionate about blockchain and eager to share your knowledge? Join us as a speaker at the Web3 Lagos Conference and contribute to driving awareness, learning, and real-world use cases of blockchain and Ethereum.
+        </p>
+        <button className="px-6 py-2 bg-[#E0182C] text-white rounded-md hover:bg-[#ff3246]" >
+          <a href="/speakers">Click here</a>
+        </button>
+      </Card>
+    </div>
+  )}
 
   <div className="flex flex-wrap justify-between items-center mb-16 mt-20">
     <Card className="p-6 w-full sm:w-[50%] h-full shadow-xl border-[#E0182C] border-2 mb-4 sm:mb-0">
@@ -174,29 +177,30 @@ const EventDetails = () => {
     </div>
   </div>
 
-  <div className="flex flex-wrap-reverse justify-between items-center mb-16 mt-20">
-    <div className="relative aspect-video w-full sm:w-[50%]">
-      <Image
-        src={Attend}
-        alt="Event image 5"
-        fill
-        className="object-cover"
-        sizes="(max-width: 768px) 100vw, 33vw"
-      />
-    </div>
+  {!archiveMode && (
+    <div className="flex flex-wrap-reverse justify-between items-center mb-16 mt-20">
+      <div className="relative aspect-video w-full sm:w-[50%]">
+        <Image
+          src={Attend}
+          alt="Event image 5"
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 33vw"
+        />
+      </div>
 
-    {/* Register As Speaker */}
-    <Card className="p-6 w-full sm:w-[45%] h-full shadow-xl border-[#E0182C] border-2 mb-4 sm:mb-0">
-      <Speaker className="mb-2" />
-      <h2 className="text-2xl font-bold mb-4">Attend The Event</h2>
-          <p className="mb-4">
-      Whether you&apos;re a beginner or a blockchain native, the Web3 Lagos Conference is for you. Register now to learn, connect, and grow in a dynamic 3-day experience that blends education with real opportunities.
-    </p>
-      <button className="px-6 py-2 bg-[#188BE0] text-white rounded-md hover:bg-[#31a3fa]">
-       <a href="/apply/registration">Click here</a> 
-      </button>
-    </Card>
-  </div>
+      <Card className="p-6 w-full sm:w-[45%] h-full shadow-xl border-[#E0182C] border-2 mb-4 sm:mb-0">
+        <Speaker className="mb-2" />
+        <h2 className="text-2xl font-bold mb-4">Attend The Event</h2>
+        <p className="mb-4">
+          Whether you&apos;re a beginner or a blockchain native, the Web3 Lagos Conference is for you. Register now to learn, connect, and grow in a dynamic 3-day experience that blends education with real opportunities.
+        </p>
+        <button className="px-6 py-2 bg-[#188BE0] text-white rounded-md hover:bg-[#31a3fa]">
+          <a href="/register">Click here</a>
+        </button>
+      </Card>
+    </div>
+  )}
 </div>
 
 <Sponsors />

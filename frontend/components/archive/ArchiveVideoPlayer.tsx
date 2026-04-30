@@ -2,7 +2,7 @@ import React from "react";
 import { ScheduleItem } from "../../lib/api";
 
 interface ArchiveVideoPlayerProps {
-  selectedVideo: ScheduleItem;
+  selectedVideo: ScheduleItem | null;
   className?: string;
 }
 
@@ -10,6 +10,23 @@ const ArchiveVideoPlayer: React.FC<ArchiveVideoPlayerProps> = ({
   selectedVideo,
   className = "",
 }) => {
+  if (!selectedVideo) {
+    return (
+      <div className={className}>
+        <div className="bg-gray-100 rounded-lg border border-gray-200 aspect-video flex items-center justify-center mb-4">
+          <p className="text-gray-600 px-6 text-center">
+            Choose a session from the archive list to watch the recording.
+          </p>
+        </div>
+        <div className="bg-white rounded-lg p-6 shadow-lg">
+          <p className="text-gray-500 text-sm">
+            Use the year and stage filters, or search by speaker or topic.
+          </p>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className={className}>
       {/* Video Player */}

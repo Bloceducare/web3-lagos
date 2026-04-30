@@ -92,7 +92,7 @@ const SchedulePreviewContent = () => {
       return (
         new Date(a.start_datetime).getTime() -
         new Date(b.start_datetime).getTime()
-      );
+      ); 
     });
 
   // Get the actual date for the selected day

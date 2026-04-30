@@ -9,6 +9,7 @@
 @import url("./stats.css");
 
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Federo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 
 @layer base {
   /* Font faces belong in the base layer */
@@ -29,7 +30,7 @@
   /* CSS Variables */
   :root {
     --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
     --card: 0 0% 100%;
     --card-foreground: 0 0% 3.9%;
     --popover: 0 0% 100%;
@@ -211,4 +212,18 @@ input[type="radio"] + label {
   padding: 0.2rem 0.4rem;
   border-radius: 6px;
   border: 1px solid grey;
+}
+
+:root {
+  --black: #060810;
+  --black2: #0c0f1e;
+  --black3: #121629;
+  --blue: #1565d8;
+  --blue-bright: #2979ff;
+  --teal: #00c2a0;
+  --orange: #ff6b35;
+  --white: #f0f2ff;
+  --mid: #7a7f99;
+  --border2: rgba(255, 255, 255, 0.14);
+  --red: #e53935;
 }

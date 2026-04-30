@@ -52,7 +52,11 @@ const TextContainer:React.FC<containerProps> = ({Content}) => (
   </div>
 )
 
-const AboveFold = () => {
+interface AboveFoldProps {
+  archiveMode?: boolean;
+}
+
+const AboveFold: React.FC<AboveFoldProps> = ({ archiveMode = false }) => {
   const [registrations, setRegistrations] = useState([]);
   const [speakers, setSpeakers] = useState([]);
   const [hackers, setHackers] = useState([]);
@@ -148,19 +152,21 @@ const AboveFold = () => {
           </div>
 
             </div>
-          <div className="flex items-center gap-5 justify-center md:gap-10 mt-10">
-            <a href="/apply/registration">
-              <Button className="bg-[#188BE0] text-white lg:text-xl rounded-lg px-6">
-                Register Here
-              </Button>
-            </a>
+          {!archiveMode && (
+            <div className="flex items-center gap-5 justify-center md:gap-10 mt-10">
+              <a href="/apply/registration">
+                <Button className="bg-[#188BE0] text-white lg:text-xl rounded-lg px-6">
+                  Register Here
+                </Button>
+              </a>
 
-            <Link href="https://drive.google.com/file/d/1z7qMHbH0HQ8pkiI77XFDNDpIQikCH0ig/view?usp=drivesdk" target="_blank">
-              <Button className="border-[2px] w-full px-5 border-solid bg-white border-[#188BE0] text-[#188BE0] rounded-lg">
-                Sponsor's Deck
-              </Button>
-            </Link>
-          </div>
+              <Link href="https://drive.google.com/file/d/1z7qMHbH0HQ8pkiI77XFDNDpIQikCH0ig/view?usp=drivesdk" target="_blank">
+                <Button className="border-[2px] w-full px-5 border-solid bg-white border-[#188BE0] text-[#188BE0] rounded-lg">
+                  Sponsor's Deck
+                </Button>
+              </Link>
+            </div>
+          )}
 
           </div>
         </section>
@@ -170,7 +176,7 @@ const AboveFold = () => {
             <div className="w-full -mt-[50px] md:-mt-[70px] lg:-mt-[80px] z-[1]">
               <DateCountDown 
                 endDate={new Date("2025-08-28T00:00:00")} 
-                eventPassedMessage="Event Has Started!"
+                eventPassedMessage="Event Ended"
               />
             </div>
 

@@ -1,33 +1,27 @@
-import type { NextPage } from "next";
-import Head from "next/head";
-import Script from "next/script"; // Import Script component for handling external scripts
-import HomeView from "@/views/home/index";
-import Layout from "@/components/layout/index";
+import Head from 'next/head'
+import Navbar from '@/components/web3lagos2026/Navbar'
+import Hero from '@/components/web3lagos2026/Hero'
+import Ticker from '@/components/web3lagos2026/Ticker'
+import About from '@/components/web3lagos2026/About'
+import Archive from '@/components/web3lagos2026/Archive'
+import CTA from '@/components/web3lagos2026/CTA'
+import Footer from '@/components/web3lagos2026/Footer'
 
-
-const Home: NextPage = () => {
+export default function Home() {
   return (
-    <div>
+    <>
       <Head>
-        <title>Web3Lagos Aug 28 - Aug 30, 2025</title>
+        <title>Web3Lagos Aug 27 - Aug 29, 2026</title>
       </Head>
-      
-      {/* Add the Google Analytics script using the Script component */}
-      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-QZDCWPSP3K"></Script>
-      <Script id="google-analytics">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-QZDCWPSP3K');
-        `}
-      </Script>
-
-      <Layout>
-        <HomeView />
-      </Layout>
-    </div>
-  );
-};
-
-export default Home;
+      <Navbar />
+      <main>
+        <Hero />
+        <Ticker />
+        <About />
+        <Archive />
+        <CTA />
+      </main>
+      <Footer />
+    </>
+  )
+}
