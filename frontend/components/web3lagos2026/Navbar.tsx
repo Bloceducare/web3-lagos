@@ -34,8 +34,11 @@ export default function Navbar() {
 
   return (
     <>
-      <nav style={{
+      <nav className="w3lc-nav" style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
+        width: '100%',
+        maxWidth: '100%',
+        boxSizing: 'border-box',
         height: 68, padding: '0 5%',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         background: scrolled ? 'rgba(6,8,16,0.97)' : 'rgba(6,8,16,0.85)',
@@ -75,21 +78,26 @@ export default function Navbar() {
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <Link href="/speakers" style={{
-            background: 'transparent', color: '#fff',
-            fontWeight: 600, fontSize: 13, padding: '9px 16px',
-            borderRadius: 6, border: '1px solid var(--border2)',
-            transition: 'all 0.2s', whiteSpace: 'nowrap',
-          }}>
-            Call for Speakers
-          </Link>
-          <span style={{
-            background: 'rgba(255,255,255,0.06)', color: 'var(--mid)',
-            fontWeight: 600, fontSize: 13, padding: '9px 14px',
-            borderRadius: 6, border: '1px solid var(--border2)', whiteSpace: 'nowrap',
-          }}>
-            Registration Closed
-          </span>
+          <div
+            className="nav-bar-ctas"
+            style={{ display: 'flex', alignItems: 'center', gap: 12 }}
+          >
+            <Link href="/speakers" style={{
+              background: 'transparent', color: '#fff',
+              fontWeight: 600, fontSize: 13, padding: '9px 16px',
+              borderRadius: 6, border: '1px solid var(--border2)',
+              transition: 'all 0.2s', whiteSpace: 'nowrap',
+            }}>
+              Call for Speakers
+            </Link>
+            <span style={{
+              background: 'rgba(255,255,255,0.06)', color: 'var(--mid)',
+              fontWeight: 600, fontSize: 13, padding: '9px 14px',
+              borderRadius: 6, border: '1px solid var(--border2)', whiteSpace: 'nowrap',
+            }}>
+              Registration Closed
+            </span>
+          </div>
 
           {/* Hamburger */}
           <button
@@ -148,12 +156,24 @@ export default function Navbar() {
           }}>
             Call for Speakers
           </Link>
+          <div style={{
+            marginTop: 12, padding: '12px 16px', borderRadius: 8,
+            border: '1px solid var(--border2)', color: 'var(--mid)',
+            fontSize: 14, fontWeight: 600, textAlign: 'center',
+          }}>
+            Registration closed
+          </div>
         </div>
       )}
 
       <style>{`
         @media (max-width: 768px) {
+          .w3lc-nav {
+            padding-left: max(12px, env(safe-area-inset-left)) !important;
+            padding-right: max(12px, env(safe-area-inset-right)) !important;
+          }
           .nav-desktop { display: none !important; }
+          .nav-bar-ctas { display: none !important; }
           .nav-hamburger { display: flex !important; }
         }
       `}</style>

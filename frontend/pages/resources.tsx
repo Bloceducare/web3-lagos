@@ -67,7 +67,7 @@ function resources() {
               </Link>
                 </div>
                 <div className='space-x-10 text-xl lg:text-2xl'>
-                    <Link href="/apply/registration" >
+                    <Link href="/register" >
                     Register
                     </Link>
 

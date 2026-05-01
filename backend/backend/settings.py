@@ -11,15 +11,26 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-from decouple import config
 from datetime import timedelta
+import os
 
+from decouple import Config, RepositoryEmpty, RepositoryEnv
 
-ENVIROMENT= config('ENVIROMENT')
-
-from datetime import timedelta
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# backend/backend/settings.py → Django project root is backend/
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+_env_path = BASE_DIR / ".env"
+if _env_path.is_file():
+    _repo = RepositoryEnv(str(_env_path))
+    # decouple's Config reads os.environ *before* .env; stale exports (e.g. old Render DB_*)
+    # would otherwise always win. Apply .env values into the environment so they override.
+    for _k, _v in _repo.data.items():
+        os.environ[_k] = _v
+    config = Config(_repo)
+else:
+    config = Config(RepositoryEmpty())
+
+ENVIROMENT = config("ENVIROMENT")
 
 
 # Quick-start development settings - unsuitable for production
@@ -102,6 +113,9 @@ DATABASES = {
         'PASSWORD': config('DB_PASSWORD'),
         'HOST': config('DB_HOST'),
         'PORT': config('DB_PORT', default='5432'),
+        'OPTIONS': {
+            'sslmode': config('DB_SSLMODE', default='require'),
+        },
     }
 }
 
@@ -206,9 +220,3 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=True, cast=bool)
 EMAIL_USE_SSL = config('EMAIL_USE_SSL', default=False, cast=bool)
 DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
-
-CORS_ALLOWED_ORIGINS = [
-     "http://localhost:3000",  
-    "http://localhost:3001",  
-    "http://127.0.0.1:3000",
-]

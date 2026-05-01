@@ -1,9 +1,16 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import (SpeakerRegistrationViewSet, VerifyCodeView, GeneralRegistrationViewSet,  RoadToWeb3LagosRegistrationViewSet)
+from .views import (
+    SpeakerRegistrationViewSet,
+    VerifyCodeView,
+    GeneralRegistrationViewSet,
+    RoadToWeb3LagosRegistrationViewSet,
+    SpeakerNominationViewSet,
+)
 
 router = DefaultRouter()
 router.register(r'speaker-registrations', SpeakerRegistrationViewSet)
+router.register(r'speaker-nominations', SpeakerNominationViewSet)
 router.register(r'general-registrations', GeneralRegistrationViewSet)
 router.register(r'road-to-web3-lagos-registrations', RoadToWeb3LagosRegistrationViewSet)
 

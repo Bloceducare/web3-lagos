@@ -1,5 +1,27 @@
 from django.db import models
-from django.db import models
+
+class SpeakerNomination(models.Model):
+    """Community suggestion for who should speak at Web3Lagos (nomination form)."""
+
+    speaker_name = models.CharField(max_length=200)
+    speaker_handle = models.CharField(max_length=500, blank=True)
+    speaker_org = models.CharField(max_length=200, blank=True)
+    speaker_location = models.CharField(max_length=200, blank=True)
+    topic = models.CharField(max_length=200)
+    suggested_talk = models.CharField(max_length=500, blank=True)
+    reason = models.TextField()
+    reference = models.CharField(max_length=500, blank=True)
+    your_name = models.CharField(max_length=200)
+    your_email = models.EmailField()
+    your_role = models.CharField(max_length=200, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"{self.speaker_name} (by {self.your_email})"
+
 
 class SpeakerRegistration(models.Model):
     firstname = models.CharField(max_length=100)

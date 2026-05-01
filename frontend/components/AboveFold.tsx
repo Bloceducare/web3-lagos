@@ -154,7 +154,7 @@ const AboveFold: React.FC<AboveFoldProps> = ({ archiveMode = false }) => {
             </div>
           {!archiveMode && (
             <div className="flex items-center gap-5 justify-center md:gap-10 mt-10">
-              <a href="/apply/registration">
+              <a href="/register">
                 <Button className="bg-[#188BE0] text-white lg:text-xl rounded-lg px-6">
                   Register Here
                 </Button>

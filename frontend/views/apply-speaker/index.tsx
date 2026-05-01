@@ -172,7 +172,12 @@ interface CategoryProps {
   onBlur?: (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => void;
 }
 
-export default function ApplyAsaSpeaker() {
+type ApplyAsaSpeakerProps = {
+  /** Set when the form is rendered under the 2026 site Navbar/Footer (no legacy layout). */
+  embeddedIn2026Shell?: boolean
+}
+
+export default function ApplyAsaSpeaker({ embeddedIn2026Shell = false }: ApplyAsaSpeakerProps) {
   const [formData, setFormData] = useState<FormData>(initialFormState);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
@@ -348,8 +353,11 @@ export default function ApplyAsaSpeaker() {
 
   if (isSuccess) {
     return (
-      <div className="w-full m-auto h-screen justify-center align-middle items-center flex">
-        
+      <div
+        className={`w-full m-auto justify-center align-middle items-center flex ${
+          embeddedIn2026Shell ? 'min-h-[50vh] py-12' : 'h-screen'
+        }`}
+      >
         <SuccessScreen />
       </div>
     );
@@ -365,11 +373,21 @@ export default function ApplyAsaSpeaker() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 p-3 pt-[8rem]">
+    <div
+      className={
+        embeddedIn2026Shell
+          ? 'box-border w-full max-w-none mx-0 px-0 sm:px-4 md:max-w-7xl md:mx-auto pt-6 pb-12'
+          : 'box-border w-full max-w-7xl mx-auto px-4 p-3 pt-[8rem]'
+      }
+    >
       <ToastContainer />
-      <div className="w-full flex-col flex items-center justify-center text-center">
+      <div
+        className={`w-full flex-col flex items-center justify-center text-center ${
+          embeddedIn2026Shell ? 'px-4 sm:px-0' : ''
+        }`}
+      >
         <h1 className="mb-2 w-full bg-gradient-to-r text-[2em] text-transparent bg-clip-text text-center font-semibold from-[#895470] via-[#BD6854] to-[#3E3797]">
-          Web3 Lagos Conference 4.0: Speaker Form
+          Web3 Lagos Conference 5.0: Speaker Application
         </h1>
         <p className="bg-gradient-to-r text-transparent bg-clip-text text-[1.5em] text-center font-semibold from-[#3E3797] via-[#895470] to-[#3E3797]">
           Register Now!
@@ -382,7 +400,11 @@ export default function ApplyAsaSpeaker() {
         </p>
       </div>
 
-      <div className="w-full bg-white rounded lg:px-8 pt-6 pb-8 mb-4">
+      <div
+        className={`w-full bg-white sm:rounded-xl sm:mx-auto max-w-full px-4 sm:px-8 pt-6 pb-8 mb-0 sm:mb-4 ${
+          embeddedIn2026Shell ? 'rounded-none border-0 sm:border sm:border-gray-100' : 'rounded lg:px-8 mb-4'
+        }`}
+      >
         <h1 className="font-bold text-[1.5em] mb-8">Speaker's Details</h1>
 
         <div className="text-center">

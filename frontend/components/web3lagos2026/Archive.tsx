@@ -10,7 +10,7 @@ const mediaLinks = [
 
 export default function Archive() {
   return (
-    <section id="archive" style={{ padding: '100px 5%', background: 'var(--black)' }}>
+    <section id="archive" className="w3lc-mobile-section-x" style={{ padding: '100px 5%', background: 'var(--black)', width: '100%', maxWidth: '100%', boxSizing: 'border-box' }}>
       <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontSize: 10, fontWeight: 700, letterSpacing: '3px', textTransform: 'uppercase', color: 'var(--blue-bright)', marginBottom: 16 }}>
         <span style={{ width: 20, height: 2, background: 'var(--blue-bright)', display: 'inline-block' }} />
         Archive

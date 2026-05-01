@@ -157,14 +157,14 @@ export default function RegisterPage() {
     return (
       <>
         <Navbar />
-        <main style={{ minHeight: '100vh', paddingTop: 68, background: 'var(--black)' }}>
-          <section style={{ maxWidth: 900, margin: '0 auto', padding: '90px 5%', textAlign: 'center' }}>
+        <main className="w-full max-w-full box-border overflow-x-hidden" style={{ minHeight: '100vh', paddingTop: 68, background: 'var(--black)' }}>
+          <section className="w3lc-mobile-section-x" style={{ maxWidth: 900, margin: '0 auto', padding: '90px 5%', textAlign: 'center', width: '100%', boxSizing: 'border-box' }}>
             <h1 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 'clamp(50px,8vw,90px)', lineHeight: 0.95, letterSpacing: 1, color: '#fff', marginBottom: 18 }}>
               ATTENDEE REGISTRATION<br />
               <em style={{ fontStyle: 'normal', color: 'var(--blue-bright)' }}>IS CURRENTLY CLOSED</em>
             </h1>
             <p style={{ fontSize: 16, color: 'var(--mid)', lineHeight: 1.8, maxWidth: 620, margin: '0 auto 30px' }}>
-              We are not accepting attendee applications right now. Speaker applications are still open.
+              We are not accepting attendee applications right now. You can still suggest speakers for the lineup.
             </p>
             <Link href="/speakers" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'var(--blue)', color: '#fff', fontWeight: 700, fontSize: 15, padding: '14px 28px', borderRadius: 8 }}>
               Go to Call for Speakers →
@@ -179,11 +179,12 @@ export default function RegisterPage() {
   return (
     <>
       <Navbar />
-      <main style={{ minHeight: '100vh', paddingTop: 68 }}>
+      <main className="w-full max-w-full box-border overflow-x-hidden" style={{ minHeight: '100vh', paddingTop: 68, background: 'var(--black)' }}>
         <div style={{
           display: 'grid', gridTemplateColumns: '1fr 420px',
           gap: 80, padding: '60px 5%', maxWidth: 1200, margin: '0 auto',
-        }} className="reg-grid">
+          width: '100%', boxSizing: 'border-box',
+        }} className="reg-grid w3lc-mobile-section-x">
 
           {/* Left */}
           <div>

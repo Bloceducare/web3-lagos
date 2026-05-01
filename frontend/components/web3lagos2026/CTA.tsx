@@ -3,10 +3,11 @@ import { SITE } from '@/lib/web3lagos2026-data'
 
 export default function CTA() {
   return (
-    <section id="register" style={{
+    <section id="register" className="w3lc-mobile-section-x" style={{
       background: 'var(--black)', padding: '120px 5%',
       textAlign: 'center', borderTop: '1px solid var(--border)',
       position: 'relative', overflow: 'hidden',
+      width: '100%', maxWidth: '100%', boxSizing: 'border-box',
     }}>
       <div style={{
         position: 'absolute', top: '50%', left: '50%',
@@ -29,7 +30,7 @@ export default function CTA() {
           fontSize: 17, color: 'var(--mid)', maxWidth: 480,
           margin: '24px auto 40px', lineHeight: 1.75,
         }}>
-          Attendee registration is currently closed. Speaker applications are open for Web3Lagos 5.0.
+          Attendee registration is currently closed. Nominate someone you want to hear at Web3Lagos 5.0.
         </p>
         <Link href="/speakers" style={{
           display: 'inline-flex', alignItems: 'center', gap: 8,
@@ -37,7 +38,7 @@ export default function CTA() {
           fontWeight: 700, fontSize: 15, padding: '14px 32px',
           borderRadius: 8, transition: 'all 0.25s',
         }}>
-          Apply as Speaker →
+          Suggest a Speaker →
         </Link>
         <div style={{
           display: 'inline-flex', alignItems: 'center', gap: 12,

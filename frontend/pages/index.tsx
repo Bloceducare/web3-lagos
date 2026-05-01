@@ -14,7 +14,7 @@ export default function Home() {
         <title>Web3Lagos Aug 27 - Aug 29, 2026</title>
       </Head>
       <Navbar />
-      <main>
+      <main className="overflow-x-hidden w-full max-w-full box-border">
         <Hero />
         <Ticker />
         <About />

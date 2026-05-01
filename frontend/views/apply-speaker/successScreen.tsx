@@ -10,7 +10,7 @@ const SuccessScreen = () => {
     Thank you for submitting the form!
   </h1>
   
-<Link href="/apply/speakers">
+<Link href="/apply/speaker">
   <button className='rounded-lg px-4 py-2 border-[0.8px]'>Submit another response</button>
   </Link>
     </div>

@@ -8,7 +8,7 @@ const tagColors: Record<string, { bg: string; color: string; border: string }> =
 
 export default function About() {
   return (
-    <section id="about" style={{ padding: '100px 5%', background: 'var(--black2)' }}>
+    <section id="about" className="w3lc-mobile-section-x" style={{ padding: '100px 5%', background: 'var(--black2)', width: '100%', maxWidth: '100%', boxSizing: 'border-box' }}>
       <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontSize: 10, fontWeight: 700, letterSpacing: '3px', textTransform: 'uppercase', color: 'var(--blue-bright)', marginBottom: 20 }}>
         <span style={{ width: 20, height: 2, background: 'var(--blue-bright)', display: 'inline-block' }} />
         About the Conference

@@ -10,6 +10,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Federo&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
 
 @layer base {
   /* Font faces belong in the base layer */
@@ -226,4 +227,26 @@ input[type="radio"] + label {
   --mid: #7a7f99;
   --border2: rgba(255, 255, 255, 0.14);
   --red: #e53935;
+}
+
+/* Full-width shell: stop horizontal scroll and white “gutters” from peeking on mobile */
+html {
+  overflow-x: clip;
+}
+body {
+  overflow-x: clip;
+  max-width: 100%;
+}
+#__next {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+  min-height: 100vh;
+}
+
+@media (max-width: 768px) {
+  .w3lc-mobile-section-x {
+    padding-left: max(14px, env(safe-area-inset-left)) !important;
+    padding-right: max(14px, env(safe-area-inset-right)) !important;
+  }
 }

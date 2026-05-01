@@ -4,12 +4,15 @@ import { SITE } from '@/lib/web3lagos2026-data'
 
 export default function Footer() {
   return (
-    <footer style={{
+    <footer className="w3lc-footer w3lc-mobile-section-x" style={{
       background: '#080A14',
       borderTop: '1px solid var(--border)',
       padding: '64px 5% 36px',
+      width: '100%',
+      maxWidth: '100%',
+      boxSizing: 'border-box',
     }}>
-      <div style={{
+      <div className="w3lc-footer-grid" style={{
         display: 'grid', gridTemplateColumns: '2fr 1fr 1fr',
         gap: 64, marginBottom: 40,
       }}>
@@ -66,6 +69,15 @@ export default function Footer() {
         <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.2)' }}>© 2026 Web3bridge. All rights reserved.</span>
         <a href={`mailto:${SITE.email}`} style={{ fontSize: 13, color: 'var(--blue)' }}>{SITE.email}</a>
       </div>
+      <style>{`
+        @media (max-width: 768px) {
+          .w3lc-footer { padding-top: 48px !important; padding-bottom: 28px !important; }
+          .w3lc-footer-grid {
+            grid-template-columns: 1fr !important;
+            gap: 32px !important;
+          }
+        }
+      `}</style>
     </footer>
   )
 }

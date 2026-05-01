@@ -27,7 +27,7 @@ function Header() {
         </div>
 
         <div className="justify-between gap-5 items-center hidden md:flex">
-          <a href="/apply/registration" className="text-[16px]  font-semibold ">
+          <a href="/" className="text-[16px]  font-semibold ">
             Event
           </a>
 
@@ -42,14 +42,14 @@ function Header() {
 
         <div className="justify-between gap-7 items-center hidden md:flex">
           <a
-            href="/apply/registration"
+            href="/register"
             className="text-[16px] bg-[#0096FF] text-white px-6 py-2 rounded-md font-semibold "
           >
             Register
           </a>
 
           <a
-            href="/apply/speaker"
+            href="/speakers"
             className="text-[16px] text-[#0096FF] border px-6 py-2 rounded-md font-semibold"
           >
             Register as a Speaker

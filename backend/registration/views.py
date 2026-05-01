@@ -1,18 +1,38 @@
 from rest_framework.response import Response
 from backend.permissions import IsAuthenticatedByAuthServer
-from rest_framework import viewsets, permissions, status
+from rest_framework import viewsets, permissions, status, mixins
 from rest_framework.views import APIView
 from django.core.mail import send_mail, EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.conf import settings
-from .serializers import GeneralRegistrationSerializer, AttendanceSerializer, VerifyCodeSerializer
-from.models import SpeakerRegistration,  GeneralRegistration, Attendance, RoadToWeb3LagosRegistration
-from.serializers import (SpeakerRegistrationSerializer, GeneralRegistrationSerializer, RoadToWeb3LagosRegistrationSerializer)
+from .serializers import (
+    GeneralRegistrationSerializer,
+    AttendanceSerializer,
+    VerifyCodeSerializer,
+    SpeakerRegistrationSerializer,
+    RoadToWeb3LagosRegistrationSerializer,
+    SpeakerNominationSerializer,
+)
+from .models import (
+    SpeakerRegistration,
+    GeneralRegistration,
+    Attendance,
+    RoadToWeb3LagosRegistration,
+    SpeakerNomination,
+)
 import uuid
 
 
 
 
+
+
+class SpeakerNominationViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
+    """Public POST for community speaker suggestions (nomination form)."""
+
+    queryset = SpeakerNomination.objects.all()
+    serializer_class = SpeakerNominationSerializer
+    permission_classes = [permissions.AllowAny]
 
 
 class SpeakerRegistrationViewSet(viewsets.ModelViewSet):
