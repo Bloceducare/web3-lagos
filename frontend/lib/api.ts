@@ -1,4 +1,4 @@
-const API_BASE_URL = "/api";
+const API_BASE_URL = "https://giant-dorice-web3bridge-89722e9a.koyeb.app/api/";
 
 export interface Conference {
   id: number;

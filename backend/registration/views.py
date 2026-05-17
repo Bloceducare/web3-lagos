@@ -27,7 +27,7 @@ import uuid
 
 
 
-class SpeakerNominationViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
+class SpeakerNominationViewSet(mixins.CreateModelMixin, mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
     """Public POST for community speaker suggestions (nomination form)."""
 
     queryset = SpeakerNomination.objects.all()
