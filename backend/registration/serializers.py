@@ -27,10 +27,46 @@ class GeneralRegistrationSerializer(serializers.ModelSerializer):
     role = serializers.CharField(
         required=False, allow_blank=True, allow_null=True, max_length=2000
     )
+    organisation = serializers.CharField(
+        required=False, allow_blank=True, allow_null=True, max_length=200
+    )
+    track = serializers.CharField(
+        required=False, allow_blank=True, allow_null=True, max_length=100
+    )
+    attend_type = serializers.CharField(
+        required=False, allow_blank=True, allow_null=True, max_length=50
+    )
+    visa_needed = serializers.BooleanField(required=False, default=False)
+    notes = serializers.CharField(
+        required=False, allow_blank=True, allow_null=True
+    )
+    status = serializers.ChoiceField(
+        choices=GeneralRegistration.STATUS_CHOICES,
+        required=False,
+        default=GeneralRegistration.STATUS_PENDING,
+    )
+    reviewed_at = serializers.DateTimeField(required=False, allow_null=True)
+    reviewed_by = serializers.CharField(
+        required=False, allow_blank=True, allow_null=True, max_length=200
+    )
 
     class Meta:
         model = GeneralRegistration
         exclude = ['unique_code']
+        read_only_fields = ['submitted_at']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        request = self.context.get('request')
+        is_admin_update = (
+            request
+            and request.method in ('PUT', 'PATCH')
+            and getattr(request, 'registration_admin', None)
+        )
+        if not is_admin_update:
+            self.fields['status'].read_only = True
+            self.fields['reviewed_at'].read_only = True
+            self.fields['reviewed_by'].read_only = True
 
 
 class AttendanceSerializer(serializers.ModelSerializer):

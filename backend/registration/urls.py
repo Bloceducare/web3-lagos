@@ -6,6 +6,7 @@ from .views import (
     GeneralRegistrationViewSet,
     RoadToWeb3LagosRegistrationViewSet,
     SpeakerNominationViewSet,
+    AdminLoginView,
 )
 
 router = DefaultRouter()
@@ -17,6 +18,7 @@ router.register(r'road-to-web3-lagos-registrations', RoadToWeb3LagosRegistration
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('admin/login/', AdminLoginView.as_view(), name='admin-login'),
     path('verify-code/', VerifyCodeView.as_view({'post': 'create'}), name='verify-code'),
 
 ]

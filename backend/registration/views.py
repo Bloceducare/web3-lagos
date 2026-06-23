@@ -1,10 +1,12 @@
 from rest_framework.response import Response
-from backend.permissions import IsAuthenticatedByAuthServer
+from backend.permissions import IsRegistrationAdmin
 from rest_framework import viewsets, permissions, status, mixins
 from rest_framework.views import APIView
+from django.utils import timezone
 from django.core.mail import send_mail, EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.conf import settings
+import requests
 from .serializers import (
     GeneralRegistrationSerializer,
     AttendanceSerializer,
@@ -78,26 +80,87 @@ class SpeakerRegistrationViewSet(viewsets.ModelViewSet):
 
 
 
+class AdminLoginView(APIView):
+    """Authenticate registration dashboard admins via the auth server."""
+
+    permission_classes = [permissions.AllowAny]
+
+    def post(self, request):
+        username = (request.data.get('username') or '').strip()
+        password = request.data.get('password', '')
+
+        if not username or not password:
+            return Response(
+                {'error': 'Username and password are required.'},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        if not settings.AUTH_SERVER_URL:
+            return Response(
+                {'error': 'Auth server is not configured.'},
+                status=status.HTTP_503_SERVICE_UNAVAILABLE,
+            )
+
+        try:
+            login_response = requests.post(
+                f"{settings.AUTH_SERVER_URL}/api/token/",
+                json={'username': username, 'password': password},
+                timeout=10,
+            )
+        except requests.RequestException:
+            return Response(
+                {'error': 'Could not reach auth server.'},
+                status=status.HTTP_502_BAD_GATEWAY,
+            )
+
+        if login_response.status_code != 200:
+            return Response(
+                {'error': 'Invalid credentials.'},
+                status=status.HTTP_401_UNAUTHORIZED,
+            )
+
+        login_data = login_response.json()
+        token = (
+            login_data.get('token')
+            or login_data.get('access')
+            or login_data.get('access_token')
+        )
+        if not token:
+            return Response(
+                {'error': 'Auth server did not return a token.'},
+                status=status.HTTP_502_BAD_GATEWAY,
+            )
+
+        clean_token = str(token).replace('Bearer ', '', 1).strip()
+        user_data = login_data.get('user') or {'username': username}
+
+        return Response(
+            {
+                'token': clean_token,
+                'user': user_data,
+            },
+            status=status.HTTP_200_OK,
+        )
+
+
 class GeneralRegistrationViewSet(viewsets.ModelViewSet):
-    queryset = GeneralRegistration.objects.all()
+    queryset = GeneralRegistration.objects.all().order_by('-submitted_at', '-id')
     serializer_class = GeneralRegistrationSerializer
 
     def get_permissions(self):
-        if self.action == 'destroy':
-            self.permission_classes = [IsAuthenticatedByAuthServer]
-        elif self.action in ['create', 'list', 'retrieve']:
+        if self.action == 'create':
             self.permission_classes = [permissions.AllowAny]
         else:
-            self.permission_classes = [permissions.IsAuthenticated]
+            self.permission_classes = [IsRegistrationAdmin]
         return super().get_permissions()
 
     def perform_update(self, serializer):
-        instance = self.get_object()
-        for attr, value in serializer.validated_data.items():
-            if hasattr(instance, attr):
-                setattr(instance, attr, value)
-        instance.save()
-        return Response(serializer.data)
+        admin = getattr(self.request, 'registration_admin', None) or {}
+        extra = {}
+        if 'status' in serializer.validated_data:
+            extra['reviewed_at'] = timezone.now()
+            extra['reviewed_by'] = admin.get('name') or admin.get('email') or 'Admin'
+        serializer.save(**extra)
 
     def destroy(self, request, *args, **kwargs):
         self.check_object_permissions(request, self.get_object())

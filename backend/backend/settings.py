@@ -167,7 +167,7 @@ SIMPLE_JWT = {
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
-AUTH_SERVER_URL = config('AUTH_SERVER_URL')
+AUTH_SERVER_URL = config('AUTH_SERVER_URL', default='')
 AUTH_USER_MODEL = 'users.CustomUser'
 AUTH_PASSWORD_VALIDATORS = [
     {

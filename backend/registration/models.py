@@ -47,16 +47,36 @@ class SpeakerRegistration(models.Model):
     profilepicurl = models.URLField(max_length=300, blank=True)
 
 class GeneralRegistration(models.Model):
+    STATUS_PENDING = 'pending'
+    STATUS_APPROVED = 'approved'
+    STATUS_REJECTED = 'rejected'
+    STATUS_CHOICES = [
+        (STATUS_PENDING, 'Pending'),
+        (STATUS_APPROVED, 'Approved'),
+        (STATUS_REJECTED, 'Rejected'),
+    ]
+
     name = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=15)
-    country = models.CharField(max_length=100)  
-    location = models.CharField(max_length=200, null=True)
-    gender = models.CharField(max_length=200, null=True)
-    github = models.URLField(max_length=100, null=True)
-    telegramusername = models.CharField(max_length=200, null=True)
-    xhandle = models.CharField(max_length=200, null=True)
-    role = models.CharField(max_length=2000, null=True)
+    country = models.CharField(max_length=100)
+    location = models.CharField(max_length=200, null=True, blank=True)
+    gender = models.CharField(max_length=200, null=True, blank=True)
+    github = models.URLField(max_length=100, null=True, blank=True)
+    telegramusername = models.CharField(max_length=200, null=True, blank=True)
+    xhandle = models.CharField(max_length=200, null=True, blank=True)
+    role = models.CharField(max_length=2000, null=True, blank=True)
+    organisation = models.CharField(max_length=200, null=True, blank=True)
+    track = models.CharField(max_length=100, null=True, blank=True)
+    attend_type = models.CharField(max_length=50, null=True, blank=True)
+    visa_needed = models.BooleanField(default=False)
+    notes = models.TextField(null=True, blank=True)
+    status = models.CharField(
+        max_length=20, choices=STATUS_CHOICES, default=STATUS_PENDING
+    )
+    reviewed_at = models.DateTimeField(null=True, blank=True)
+    reviewed_by = models.CharField(max_length=200, null=True, blank=True)
+    submitted_at = models.DateTimeField(auto_now_add=True, null=True)
     unique_code = models.CharField(max_length=200, blank=True, null=True)
 
 class Attendance(models.Model):

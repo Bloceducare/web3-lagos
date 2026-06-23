@@ -98,6 +98,11 @@ export default function RegisterPage() {
       telegramusername: '',
       xhandle: form.twitter.trim(),
       role: form.role.trim(),
+      organisation: form.org.trim(),
+      track: form.track,
+      attend_type: form.attend,
+      visa_needed: form.visa,
+      notes: form.notes.trim(),
       github: null as string | null,
       gender: 'Prefer not to say',
     }
@@ -123,11 +128,6 @@ export default function RegisterPage() {
         return
       }
 
-      if (typeof window !== 'undefined') {
-        const apps = JSON.parse(localStorage.getItem('w3l_applications') || '[]')
-        apps.push({ ...form, ref: r, status: 'pending', submitted: new Date().toISOString() })
-        localStorage.setItem('w3l_applications', JSON.stringify(apps))
-      }
       setSubmitted(true)
     } catch {
       setSubmitError('Network error while submitting. Please check your connection and try again.')
