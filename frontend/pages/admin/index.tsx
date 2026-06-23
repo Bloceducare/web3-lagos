@@ -36,7 +36,8 @@ type Reg = {
   submitted_at?: string | null
 }
 
-type App = Reg & {
+type App = Omit<Reg, 'status'> & {
+  status: 'pending' | 'approved' | 'rejected'
   ref: string
   firstname: string
   lastname: string
@@ -340,12 +341,16 @@ export default function AdminPage() {
                 ['Status', <span key="status-value" style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.8px', textTransform: 'uppercase', padding: '4px 10px', borderRadius: 100, background: statusColor[selected.status].bg, color: statusColor[selected.status].color }}>{selected.status}</span>],
                 ['Submitted', selected.submitted ? new Date(selected.submitted).toLocaleString() : '—'],
                 ...(selected.reviewed_at ? [['Reviewed', `${new Date(selected.reviewed_at).toLocaleString()} by ${selected.reviewed_by || 'Admin'}`]] : []),
-              ].map(([k, v]: [string, React.ReactNode]) => (
+              ].map((row) => {
+                const k = String(row[0])
+                const v = row[1] as React.ReactNode
+                return (
                 <div key={k} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', padding: '12px 0', borderBottom: '1px solid var(--border)', gap: 20 }}>
                   <div style={{ fontSize: 12, color: 'var(--mid)', fontWeight: 600, letterSpacing: '0.5px', textTransform: 'uppercase', minWidth: 130 }}>{k}</div>
                   <div style={{ fontSize: 14, textAlign: 'right', flex: 1 }}>{v}</div>
                 </div>
-              ))}
+                )
+              })}
             </div>
             <div style={{ padding: '20px 28px', borderTop: '1px solid var(--border)', display: 'flex', gap: 10 }}>
               {selected.status !== 'approved' && <button onClick={() => changeStatus(selected, 'approved')} style={{ flex: 1, padding: 12, borderRadius: 8, fontSize: 13, fontWeight: 700, border: 'none', background: 'rgba(0,194,160,.2)', color: '#00D4B0' }}>✓ Approve</button>}
