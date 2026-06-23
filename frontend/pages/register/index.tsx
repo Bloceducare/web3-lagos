@@ -32,7 +32,7 @@ function generateRef() {
 }
 
 export default function RegisterPage() {
-  const registrationOpen = false
+  const registrationOpen = true
   const [step, setStep] = useState(1)
   const [form, setForm] = useState<FormData>(initialForm)
   const [errors, setErrors] = useState<Partial<FormData>>({})

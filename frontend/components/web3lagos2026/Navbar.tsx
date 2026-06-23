@@ -90,13 +90,14 @@ export default function Navbar() {
             }}>
               Call for Speakers
             </Link>
-            <span style={{
-              background: 'rgba(255,255,255,0.06)', color: 'var(--mid)',
-              fontWeight: 600, fontSize: 13, padding: '9px 14px',
-              borderRadius: 6, border: '1px solid var(--border2)', whiteSpace: 'nowrap',
+            <Link href="/register" style={{
+              background: 'var(--blue)', color: '#fff',
+              fontWeight: 600, fontSize: 13, padding: '9px 16px',
+              borderRadius: 6, border: '1px solid var(--blue)',
+              transition: 'all 0.2s', whiteSpace: 'nowrap',
             }}>
-              Registration Closed
-            </span>
+              Register
+            </Link>
           </div>
 
           {/* Hamburger */}
@@ -156,13 +157,13 @@ export default function Navbar() {
           }}>
             Call for Speakers
           </Link>
-          <div style={{
-            marginTop: 12, padding: '12px 16px', borderRadius: 8,
-            border: '1px solid var(--border2)', color: 'var(--mid)',
-            fontSize: 14, fontWeight: 600, textAlign: 'center',
+          <Link href="/register" onClick={closeDrawer} style={{
+            marginTop: 8, background: 'var(--blue)', color: '#fff',
+            fontWeight: 600, textAlign: 'center',
+            padding: '12px 16px', borderRadius: 8,
           }}>
-            Registration closed
-          </div>
+            Register
+          </Link>
         </div>
       )}
 
