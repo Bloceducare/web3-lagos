@@ -157,12 +157,19 @@ class GeneralRegistrationViewSet(viewsets.ModelViewSet):
         return super().get_permissions()
 
     def perform_update(self, serializer):
+        instance = self.get_object()
+        previous_status = instance.status
         admin = getattr(self.request, 'registration_admin', None) or {}
         extra = {}
         if 'status' in serializer.validated_data:
             extra['reviewed_at'] = timezone.now()
             extra['reviewed_by'] = admin.get('name') or admin.get('email') or 'Admin'
-        serializer.save(**extra)
+        instance = serializer.save(**extra)
+        if (
+            previous_status != GeneralRegistration.STATUS_APPROVED
+            and instance.status == GeneralRegistration.STATUS_APPROVED
+        ):
+            self.send_approval_email(instance)
 
     def destroy(self, request, *args, **kwargs):
         self.check_object_permissions(request, self.get_object())
@@ -175,24 +182,40 @@ class GeneralRegistrationViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         instance = serializer.save()
-        self.send_confirmation_email(instance)
+        self.send_application_received_email(instance)
 
-    def send_confirmation_email(self, instance):
-        subject = 'Registration Confirmation'
+    def _first_name(self, full_name: str) -> str:
+        return (full_name or '').strip().split(' ')[0] or 'there'
+
+    def send_application_received_email(self, instance):
+        subject = "We've received your Web3Lagos 2026 application"
         registration_count = GeneralRegistration.objects.count()
         unique_code = None
 
         if registration_count <= 500:
             unique_code = str(uuid.uuid4()) + str(uuid.uuid4())
             instance.unique_code = unique_code
-            instance.save()
+            instance.save(update_fields=['unique_code'])
 
         context = {
+            'first_name': self._first_name(instance.name),
             'name': instance.name,
             'unique_code': unique_code,
         }
 
-        message_html = render_to_string('registration/general_registration_confirmation_email.html', context)
+        message_html = render_to_string(
+            'registration/general_registration_confirmation_email.html', context
+        )
+        email = EmailMultiAlternatives(subject, '', settings.DEFAULT_FROM_EMAIL, [instance.email])
+        email.attach_alternative(message_html, 'text/html')
+        email.send()
+
+    def send_approval_email(self, instance):
+        subject = "You're in. Welcome to Web3Lagos 2026"
+        context = {'first_name': self._first_name(instance.name), 'name': instance.name}
+        message_html = render_to_string(
+            'registration/general_registration_approval_email.html', context
+        )
         email = EmailMultiAlternatives(subject, '', settings.DEFAULT_FROM_EMAIL, [instance.email])
         email.attach_alternative(message_html, 'text/html')
         email.send()
