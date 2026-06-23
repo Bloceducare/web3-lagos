@@ -146,6 +146,8 @@ class AdminLoginView(APIView):
 class GeneralRegistrationViewSet(viewsets.ModelViewSet):
     queryset = GeneralRegistration.objects.all().order_by('-submitted_at', '-id')
     serializer_class = GeneralRegistrationSerializer
+    # Auth-server tokens are not local SimpleJWT — verify in IsRegistrationAdmin instead.
+    authentication_classes = []
 
     def get_permissions(self):
         if self.action == 'create':

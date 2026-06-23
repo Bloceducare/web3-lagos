@@ -85,6 +85,8 @@ export default function AdminPage() {
   const [selected, setSelected] = useState<App | null>(null)
   const [toast, setToast] = useState('')
 
+  const [loadErr, setLoadErr] = useState('')
+
   const showToast = (msg: string) => {
     setToast(msg)
     setTimeout(() => setToast(''), 3000)
@@ -92,6 +94,7 @@ export default function AdminPage() {
 
   const loadApps = useCallback(async (authToken: string) => {
     setLoading(true)
+    setLoadErr('')
     try {
       const res = await fetch(`${API_BASE}/general-registrations/`, {
         headers: { Authorization: `Bearer ${authToken}` },
@@ -106,12 +109,9 @@ export default function AdminPage() {
       const list = Array.isArray(data) ? data : data.results || []
       setApps(list.map(toApp))
     } catch (err) {
-      showToast(err instanceof Error ? err.message : 'Failed to load registrations')
-      sessionStorage.removeItem('w3l_admin_token')
-      sessionStorage.removeItem('w3l_admin_user')
-      setLoggedIn(false)
-      setToken('')
-      setAdminName('')
+      const msg = err instanceof Error ? err.message : 'Failed to load registrations'
+      setLoadErr(msg)
+      showToast(msg)
     } finally {
       setLoading(false)
     }
@@ -242,6 +242,11 @@ export default function AdminPage() {
           Review, approve or reject registrations for Web3Lagos Conference 5.0
           {loading ? ' — loading...' : ''}
         </p>
+        {loadErr && (
+          <div style={{ background: 'rgba(229,57,53,.1)', border: '1px solid rgba(229,57,53,.3)', borderRadius: 8, padding: '12px 16px', marginBottom: 24, fontSize: 13, color: '#E53935' }}>
+            {loadErr}
+          </div>
+        )}
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 14, marginBottom: 36 }}>
           {[

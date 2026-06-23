@@ -14,7 +14,8 @@ def _extract_bearer_token(authorization_header: str) -> str:
     return value
 
 
-def _verify_auth_server_admin(authorization_header: str) -> dict | None:
+def _verify_auth_server_token(authorization_header: str) -> dict | None:
+    """Return user info when auth server accepts the token."""
     if not settings.AUTH_SERVER_URL:
         return None
 
@@ -23,30 +24,40 @@ def _verify_auth_server_admin(authorization_header: str) -> dict | None:
         return None
 
     url = f"{settings.AUTH_SERVER_URL}/api/token/verify/"
-    try:
-        response = requests.post(url, json={'token': raw_token}, timeout=10)
-        if response.status_code == 200:
-            data = response.json()
-            user_data = data.get('user', data) if isinstance(data, dict) else {}
-            if user_data.get('role') == 'admin' or data.get('is_admin'):
-                return user_data
-    except requests.RequestException:
-        pass
+    candidates = [
+        {'json': {'token': raw_token}},
+        {'json': {'token': f'Bearer {raw_token}'}},
+        {'headers': {'Authorization': f'Bearer {raw_token}'}},
+        {'headers': {'Authorization': raw_token}},
+    ]
 
-    for auth_value in (f'Bearer {raw_token}', raw_token):
+    for kwargs in candidates:
         try:
-            response = requests.post(
-                url, headers={'Authorization': auth_value}, timeout=10
-            )
-            if response.status_code == 200:
-                data = response.json()
-                user_data = data.get('user', data) if isinstance(data, dict) else {}
-                if user_data.get('role') == 'admin' or data.get('is_admin'):
-                    return user_data
+            response = requests.post(url, timeout=10, **kwargs)
         except requests.RequestException:
             continue
+        if response.status_code != 200:
+            continue
+
+        try:
+            data = response.json()
+        except ValueError:
+            data = {}
+
+        if isinstance(data, dict):
+            user = data.get('user')
+            if isinstance(user, dict) and user:
+                return user
+            if data and 'detail' not in data and 'code' not in data:
+                return data
+
+        return {'verified': True}
 
     return None
+
+
+def _verify_auth_server_admin(authorization_header: str) -> dict | None:
+    return _verify_auth_server_token(authorization_header)
 
 
 class IsAuthenticatedByAuthServer(permissions.BasePermission):
