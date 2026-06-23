@@ -9,6 +9,25 @@ from .models import (
 )
 
 class GeneralRegistrationSerializer(serializers.ModelSerializer):
+    location = serializers.CharField(
+        required=False, allow_blank=True, allow_null=True, max_length=200
+    )
+    gender = serializers.CharField(
+        required=False, allow_blank=True, allow_null=True, max_length=200
+    )
+    github = serializers.CharField(
+        required=False, allow_blank=True, allow_null=True, max_length=100
+    )
+    telegramusername = serializers.CharField(
+        required=False, allow_blank=True, allow_null=True, max_length=200
+    )
+    xhandle = serializers.CharField(
+        required=False, allow_blank=True, allow_null=True, max_length=200
+    )
+    role = serializers.CharField(
+        required=False, allow_blank=True, allow_null=True, max_length=2000
+    )
+
     class Meta:
         model = GeneralRegistration
         exclude = ['unique_code']
