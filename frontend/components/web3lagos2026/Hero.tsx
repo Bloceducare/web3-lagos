@@ -69,7 +69,7 @@ export default function Hero() {
           }} className="hero-meta-row">
             {[
               { label: 'DATE', value: SITE.date },
-              { label: 'VENUE', value: SITE.venue, muted: true },
+              { label: 'VENUE', value: SITE.venue },
               { label: 'FORMAT', value: SITE.format },
             ].map(m => (
               <div key={m.label}>
@@ -81,11 +81,20 @@ export default function Hero() {
                 </div>
               </div>
             ))}
-            <div className="hero-meta-cta-wrap" style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap' }}>
-              <Link href="/speakers" className="hero-meta-cta" style={{
+            <div className="hero-meta-cta-wrap" style={{ display: 'flex', gap: 12, alignItems: 'stretch', flexWrap: 'wrap' }}>
+              <Link href="/register" className="hero-meta-cta hero-meta-cta-primary" style={{
                 background: 'var(--blue)', color: '#fff',
                 fontWeight: 700, fontSize: 14, padding: '14px 28px',
                 borderRadius: 8, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+                transition: 'all 0.25s',
+              }}>
+                Register →
+              </Link>
+              <Link href="/speakers" className="hero-meta-cta hero-meta-cta-secondary" style={{
+                background: 'transparent', color: '#fff',
+                fontWeight: 600, fontSize: 14, padding: '14px 28px',
+                borderRadius: 8, border: '1px solid var(--border2)',
+                display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8,
                 transition: 'all 0.25s',
               }}>
                 Call for Speakers →
@@ -139,8 +148,13 @@ export default function Hero() {
             grid-template-columns: 1fr !important;
             gap: 28px !important;
           }
-          .hero-meta-cta-wrap { width: 100%; }
+          .hero-meta-cta-wrap {
+            width: 100%;
+            flex-direction: column;
+            order: 10;
+          }
           .hero-meta-cta { width: 100%; box-sizing: border-box; }
+          .hero-meta-cta-secondary { margin-top: 4px; }
           .w3lc-hero-title {
             font-size: clamp(2.1rem, 11.2vw, 5.5rem) !important;
             letter-spacing: -0.04em !important;

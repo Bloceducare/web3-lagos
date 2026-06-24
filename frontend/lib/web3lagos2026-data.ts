@@ -4,7 +4,7 @@ export const SITE = {
   tagline: "One of Africa's Most Impactful Web3 Conferences",
   date: 'August 27 – 29, 2026',
   dateShort: 'Aug 27–29, 2026',
-  venue: 'TBA — Lagos, Nigeria',
+  venue: 'Glover Memorial Hall, CMS Lagos',
   format: 'Hybrid (Physical + Virtual)',
   email: 'event@web3bridge.com',
   twitter: 'https://x.com/Web3LagosCon',

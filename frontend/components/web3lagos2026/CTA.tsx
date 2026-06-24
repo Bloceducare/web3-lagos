@@ -46,7 +46,7 @@ export default function CTA() {
           border: '1px solid var(--border)', padding: '12px 24px',
           borderRadius: 100, fontSize: 13, color: 'var(--mid)',
         }}>
-          📅 {SITE.dateShort} &nbsp;·&nbsp; <strong style={{ color: 'rgba(255,255,255,0.85)' }}>Venue TBA, Lagos, Nigeria</strong>
+          📅 {SITE.dateShort} &nbsp;·&nbsp; <strong style={{ color: 'rgba(255,255,255,0.85)' }}>{SITE.venue}</strong>
         </div>
       </div>
     </section>

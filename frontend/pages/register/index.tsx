@@ -201,7 +201,7 @@ export default function RegisterPage() {
 
             {[
               { icon: '📅', title: `${SITE.date}`, desc: 'Three days of keynotes, workshops, networking and a 24-hour hackathon.', color: 'rgba(21,101,216,.2)' },
-              { icon: '📍', title: `Venue TBA — Lagos, Nigeria`, desc: 'Physical + virtual hybrid. Virtual link shared upon approval.', color: 'rgba(0,194,160,.15)' },
+              { icon: '📍', title: SITE.venue, desc: 'Physical + virtual hybrid. Virtual link shared upon approval.', color: 'rgba(0,194,160,.15)' },
               { icon: '✅', title: 'Approval-Based Access', desc: "All applications are reviewed. You'll receive a confirmation once confirmed.", color: 'rgba(255,107,53,.15)' },
             ].map(c => (
               <div key={c.title} style={{ display: 'flex', gap: 16, background: 'var(--black3)', border: '1px solid var(--border)', borderRadius: 10, padding: '18px 20px', marginBottom: 12 }}>
