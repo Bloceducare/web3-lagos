@@ -68,9 +68,9 @@ export default function Hero() {
             paddingBottom: 64, alignItems: 'end',
           }} className="hero-meta-row">
             {[
-              { label: 'DATE', value: SITE.date },
-              { label: 'VENUE', value: SITE.venue },
-              { label: 'FORMAT', value: SITE.format },
+              { label: 'DATE', value: SITE.date, muted: false },
+              { label: 'VENUE', value: SITE.venue, muted: false },
+              { label: 'FORMAT', value: SITE.format, muted: false },
             ].map(m => (
               <div key={m.label}>
                 <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--mid)', marginBottom: 6 }}>
