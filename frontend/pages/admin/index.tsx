@@ -89,6 +89,7 @@ export default function AdminPage() {
   const [pass, setPass] = useState('')
   const [loginErr, setLoginErr] = useState('')
   const [loading, setLoading] = useState(false)
+  const [allApps, setAllApps] = useState<App[]>([])
   const [apps, setApps] = useState<App[]>([])
   const [filter, setFilter] = useState('all')
   const [search, setSearch] = useState('')
@@ -97,44 +98,43 @@ export default function AdminPage() {
 
   const [loadErr, setLoadErr] = useState('')
   const [page, setPage] = useState(1)
-  const [totalCount, setTotalCount] = useState(0)
-  const [hasNext, setHasNext] = useState(false)
-  const [hasPrev, setHasPrev] = useState(false)
 
   const showToast = (msg: string) => {
     setToast(msg)
     setTimeout(() => setToast(''), 3000)
   }
 
-  const loadApps = useCallback(async (authToken: string, pageNum = 1) => {
+  const loadApps = useCallback(async (authToken: string) => {
     setLoading(true)
     setLoadErr('')
     try {
-      const res = await fetch(`${API_BASE}/general-registrations/?page=${pageNum}`, {
-        headers: { Authorization: `Bearer ${authToken}` },
-      })
-      const data = await res.json()
-      if (!res.ok) {
-        const msg = res.status === 403
-          ? 'Your account does not have admin access.'
-          : (data.detail || data.error || 'Failed to load registrations')
-        throw new Error(msg)
+      const collected: App[] = []
+      let nextUrl: string | null = `${API_BASE}/general-registrations/?page=1`
+
+      while (nextUrl) {
+        const res = await fetch(nextUrl, {
+          headers: { Authorization: `Bearer ${authToken}` },
+        })
+        const data = await res.json()
+        if (!res.ok) {
+          const msg = res.status === 403
+            ? 'Your account does not have admin access.'
+            : (data.detail || data.error || 'Failed to load registrations')
+          throw new Error(msg)
+        }
+
+        if (Array.isArray(data)) {
+          collected.push(...data.map(toApp))
+          nextUrl = null
+        } else {
+          const paginated = data as PaginatedResponse
+          collected.push(...(paginated.results || []).map(toApp))
+          nextUrl = paginated.next
+        }
       }
-      if (Array.isArray(data)) {
-        setApps(data.map(toApp))
-        setTotalCount(data.length)
-        setHasNext(false)
-        setHasPrev(false)
-        setPage(1)
-      } else {
-        const paginated = data as PaginatedResponse
-        const list = paginated.results || []
-        setApps(list.map(toApp))
-        setTotalCount(paginated.count ?? list.length)
-        setHasNext(Boolean(paginated.next))
-        setHasPrev(Boolean(paginated.previous))
-        setPage(pageNum)
-      }
+
+      setAllApps(collected)
+      setPage(1)
     } catch (err) {
       const msg = err instanceof Error ? err.message : 'Failed to load registrations'
       setLoadErr(msg)
@@ -188,20 +188,18 @@ export default function AdminPage() {
     sessionStorage.removeItem('w3l_admin_user')
     setLoggedIn(false)
     setToken('')
+    setAllApps([])
     setApps([])
     setSelected(null)
     setAdminName('')
     setPage(1)
-    setTotalCount(0)
-    setHasNext(false)
-    setHasPrev(false)
   }
 
   const goToPage = (pageNum: number) => {
-    if (!token || pageNum < 1 || loading) return
-    const totalPages = Math.max(1, Math.ceil(totalCount / PAGE_SIZE))
+    if (pageNum < 1 || loading) return
+    const totalPages = Math.max(1, Math.ceil(filteredApps.length / PAGE_SIZE))
     if (pageNum > totalPages) return
-    loadApps(token, pageNum)
+    setPage(pageNum)
   }
 
   const changeStatus = async (app: App, status: 'approved' | 'rejected') => {
@@ -215,7 +213,7 @@ export default function AdminPage() {
       const data = await res.json()
       if (!res.ok) throw new Error(data.detail || data.error || 'Update failed')
       const mapped = toApp(data)
-      setApps(prev => prev.map(a => (a.id === app.id ? mapped : a)))
+      setAllApps(prev => prev.map(a => (a.id === app.id ? mapped : a)))
       if (selected?.id === app.id) setSelected(mapped)
       showToast(status === 'approved' ? '✓ Application approved' : '✗ Application rejected')
     } catch (err) {
@@ -227,25 +225,6 @@ export default function AdminPage() {
     if (!token) return
     setLoading(true)
     try {
-      const allApps: App[] = []
-      let pageNum = 1
-      let hasMore = true
-      while (hasMore) {
-        const res = await fetch(`${API_BASE}/general-registrations/?page=${pageNum}`, {
-          headers: { Authorization: `Bearer ${token}` },
-        })
-        const data = await res.json()
-        if (!res.ok) throw new Error(data.detail || data.error || 'Export failed')
-        if (Array.isArray(data)) {
-          allApps.push(...data.map(toApp))
-          hasMore = false
-        } else {
-          const paginated = data as PaginatedResponse
-          allApps.push(...(paginated.results || []).map(toApp))
-          hasMore = Boolean(paginated.next)
-          pageNum += 1
-        }
-      }
       const headers = ['Ref','First Name','Last Name','Email','Phone','Country','City','Org','Role','Twitter','Track','Attend','Visa','Status','Submitted']
       const rows = allApps.map(a => [a.ref,a.firstname,a.lastname,a.email,a.phone,a.country,a.city,a.org||'',a.role||'',a.twitter||'',TRACK_LABELS[a.track||'']||a.track||'',ATTEND_LABELS[a.attend]||a.attend||'',a.visa?'Yes':'No',a.status,a.submitted].map(v=>`"${String(v).replace(/"/g,'""')}"`).join(','))
       const csv = [headers.join(','), ...rows].join('\n')
@@ -260,15 +239,34 @@ export default function AdminPage() {
     }
   }
 
-  const filtered = apps
+  const filteredApps = allApps
     .filter(a => filter === 'all' || a.status === filter)
     .filter(a => !search || `${a.firstname} ${a.lastname} ${a.email}`.toLowerCase().includes(search.toLowerCase()))
 
+  useEffect(() => {
+    const start = (page - 1) * PAGE_SIZE
+    const nextPageApps = filteredApps.slice(start, start + PAGE_SIZE)
+    setApps(nextPageApps)
+
+    const totalPages = Math.max(1, Math.ceil(filteredApps.length / PAGE_SIZE))
+    if (page > totalPages) {
+      setPage(totalPages)
+    }
+  }, [filteredApps, page])
+
+  const totalCount = filteredApps.length
   const totalPages = Math.max(1, Math.ceil(totalCount / PAGE_SIZE))
   const rangeStart = totalCount === 0 ? 0 : (page - 1) * PAGE_SIZE + 1
   const rangeEnd = Math.min(page * PAGE_SIZE, totalCount)
+  const hasPrev = page > 1
+  const hasNext = page < totalPages
 
-  const stats = { total: totalCount, pending: apps.filter(a=>a.status==='pending').length, approved: apps.filter(a=>a.status==='approved').length, rejected: apps.filter(a=>a.status==='rejected').length }
+  const stats = {
+    total: allApps.length,
+    pending: allApps.filter(a=>a.status==='pending').length,
+    approved: allApps.filter(a=>a.status==='approved').length,
+    rejected: allApps.filter(a=>a.status==='rejected').length,
+  }
 
   const input: React.CSSProperties = { width: '100%', background: 'var(--black3)', border: '1px solid var(--border2)', borderRadius: 8, padding: '11px 14px', fontFamily: "'Space Grotesk',sans-serif", fontSize: 14, color: '#fff', outline: 'none' }
 
@@ -334,7 +332,7 @@ export default function AdminPage() {
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 24, flexWrap: 'wrap' }}>
           {['all','pending','approved','rejected'].map(f => (
-            <button key={f} onClick={() => { setFilter(f); if (token) loadApps(token, 1) }} style={{
+            <button key={f} onClick={() => { setFilter(f); setPage(1) }} style={{
               padding: '8px 18px', borderRadius: 100, fontSize: 12, fontWeight: 600,
               letterSpacing: '0.5px', textTransform: 'uppercase',
               background: filter === f ? 'var(--blue)' : 'transparent',
@@ -347,7 +345,7 @@ export default function AdminPage() {
           <input
             style={{ marginLeft: 'auto', background: 'var(--black3)', border: '1px solid var(--border2)', borderRadius: 8, padding: '9px 14px 9px 36px', fontSize: 13, color: '#fff', outline: 'none', width: 240 }}
             placeholder="🔍 Search name or email..."
-            value={search} onChange={e => setSearch(e.target.value)}
+            value={search} onChange={e => { setSearch(e.target.value); setPage(1) }}
           />
           <button onClick={exportCSV} style={{ padding: '9px 18px', borderRadius: 8, fontSize: 13, fontWeight: 600, background: 'var(--black3)', border: '1px solid var(--border2)', color: 'var(--mid)' }}>⬇ Export CSV</button>
         </div>
@@ -390,7 +388,7 @@ export default function AdminPage() {
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 20, flexWrap: 'wrap', gap: 12 }}>
             <div style={{ fontSize: 13, color: 'var(--mid)' }}>
               Showing {rangeStart}–{rangeEnd} of {totalCount} applications
-              {filter !== 'all' || search ? ' (filtered on this page)' : ''}
+              {filter !== 'all' || search ? ' matching current filters' : ''}
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <button
