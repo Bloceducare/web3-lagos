@@ -16,6 +16,8 @@ const ATTEND_LABELS: Record<string, string> = {
   physical: 'In-Person', virtual: 'Virtual', undecided: 'Not Sure',
 }
 
+const PAGE_SIZE = 20
+
 type Reg = {
   id: number
   name: string
@@ -34,6 +36,13 @@ type Reg = {
   reviewed_at?: string | null
   reviewed_by?: string | null
   submitted_at?: string | null
+}
+
+type PaginatedResponse = {
+  count: number
+  next: string | null
+  previous: string | null
+  results: Reg[]
 }
 
 type App = Omit<Reg, 'status'> & {
@@ -87,17 +96,21 @@ export default function AdminPage() {
   const [toast, setToast] = useState('')
 
   const [loadErr, setLoadErr] = useState('')
+  const [page, setPage] = useState(1)
+  const [totalCount, setTotalCount] = useState(0)
+  const [hasNext, setHasNext] = useState(false)
+  const [hasPrev, setHasPrev] = useState(false)
 
   const showToast = (msg: string) => {
     setToast(msg)
     setTimeout(() => setToast(''), 3000)
   }
 
-  const loadApps = useCallback(async (authToken: string) => {
+  const loadApps = useCallback(async (authToken: string, pageNum = 1) => {
     setLoading(true)
     setLoadErr('')
     try {
-      const res = await fetch(`${API_BASE}/general-registrations/`, {
+      const res = await fetch(`${API_BASE}/general-registrations/?page=${pageNum}`, {
         headers: { Authorization: `Bearer ${authToken}` },
       })
       const data = await res.json()
@@ -107,8 +120,21 @@ export default function AdminPage() {
           : (data.detail || data.error || 'Failed to load registrations')
         throw new Error(msg)
       }
-      const list = Array.isArray(data) ? data : data.results || []
-      setApps(list.map(toApp))
+      if (Array.isArray(data)) {
+        setApps(data.map(toApp))
+        setTotalCount(data.length)
+        setHasNext(false)
+        setHasPrev(false)
+        setPage(1)
+      } else {
+        const paginated = data as PaginatedResponse
+        const list = paginated.results || []
+        setApps(list.map(toApp))
+        setTotalCount(paginated.count ?? list.length)
+        setHasNext(Boolean(paginated.next))
+        setHasPrev(Boolean(paginated.previous))
+        setPage(pageNum)
+      }
     } catch (err) {
       const msg = err instanceof Error ? err.message : 'Failed to load registrations'
       setLoadErr(msg)
@@ -165,6 +191,17 @@ export default function AdminPage() {
     setApps([])
     setSelected(null)
     setAdminName('')
+    setPage(1)
+    setTotalCount(0)
+    setHasNext(false)
+    setHasPrev(false)
+  }
+
+  const goToPage = (pageNum: number) => {
+    if (!token || pageNum < 1 || loading) return
+    const totalPages = Math.max(1, Math.ceil(totalCount / PAGE_SIZE))
+    if (pageNum > totalPages) return
+    loadApps(token, pageNum)
   }
 
   const changeStatus = async (app: App, status: 'approved' | 'rejected') => {
@@ -186,20 +223,52 @@ export default function AdminPage() {
     }
   }
 
-  const exportCSV = () => {
-    const headers = ['Ref','First Name','Last Name','Email','Phone','Country','City','Org','Role','Twitter','Track','Attend','Visa','Status','Submitted']
-    const rows = apps.map(a => [a.ref,a.firstname,a.lastname,a.email,a.phone,a.country,a.city,a.org||'',a.role||'',a.twitter||'',TRACK_LABELS[a.track||'']||a.track||'',ATTEND_LABELS[a.attend]||a.attend||'',a.visa?'Yes':'No',a.status,a.submitted].map(v=>`"${String(v).replace(/"/g,'""')}"`).join(','))
-    const csv = [headers.join(','), ...rows].join('\n')
-    const url = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }))
-    Object.assign(document.createElement('a'), { href: url, download: 'w3lc-applications.csv' }).click()
-    URL.revokeObjectURL(url)
+  const exportCSV = async () => {
+    if (!token) return
+    setLoading(true)
+    try {
+      const allApps: App[] = []
+      let pageNum = 1
+      let hasMore = true
+      while (hasMore) {
+        const res = await fetch(`${API_BASE}/general-registrations/?page=${pageNum}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        const data = await res.json()
+        if (!res.ok) throw new Error(data.detail || data.error || 'Export failed')
+        if (Array.isArray(data)) {
+          allApps.push(...data.map(toApp))
+          hasMore = false
+        } else {
+          const paginated = data as PaginatedResponse
+          allApps.push(...(paginated.results || []).map(toApp))
+          hasMore = Boolean(paginated.next)
+          pageNum += 1
+        }
+      }
+      const headers = ['Ref','First Name','Last Name','Email','Phone','Country','City','Org','Role','Twitter','Track','Attend','Visa','Status','Submitted']
+      const rows = allApps.map(a => [a.ref,a.firstname,a.lastname,a.email,a.phone,a.country,a.city,a.org||'',a.role||'',a.twitter||'',TRACK_LABELS[a.track||'']||a.track||'',ATTEND_LABELS[a.attend]||a.attend||'',a.visa?'Yes':'No',a.status,a.submitted].map(v=>`"${String(v).replace(/"/g,'""')}"`).join(','))
+      const csv = [headers.join(','), ...rows].join('\n')
+      const url = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }))
+      Object.assign(document.createElement('a'), { href: url, download: 'w3lc-applications.csv' }).click()
+      URL.revokeObjectURL(url)
+      showToast(`Exported ${allApps.length} applications`)
+    } catch (err) {
+      showToast(err instanceof Error ? err.message : 'Export failed')
+    } finally {
+      setLoading(false)
+    }
   }
 
   const filtered = apps
     .filter(a => filter === 'all' || a.status === filter)
     .filter(a => !search || `${a.firstname} ${a.lastname} ${a.email}`.toLowerCase().includes(search.toLowerCase()))
 
-  const stats = { total: apps.length, pending: apps.filter(a=>a.status==='pending').length, approved: apps.filter(a=>a.status==='approved').length, rejected: apps.filter(a=>a.status==='rejected').length }
+  const totalPages = Math.max(1, Math.ceil(totalCount / PAGE_SIZE))
+  const rangeStart = totalCount === 0 ? 0 : (page - 1) * PAGE_SIZE + 1
+  const rangeEnd = Math.min(page * PAGE_SIZE, totalCount)
+
+  const stats = { total: totalCount, pending: apps.filter(a=>a.status==='pending').length, approved: apps.filter(a=>a.status==='approved').length, rejected: apps.filter(a=>a.status==='rejected').length }
 
   const input: React.CSSProperties = { width: '100%', background: 'var(--black3)', border: '1px solid var(--border2)', borderRadius: 8, padding: '11px 14px', fontFamily: "'Space Grotesk',sans-serif", fontSize: 14, color: '#fff', outline: 'none' }
 
@@ -265,7 +334,7 @@ export default function AdminPage() {
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 24, flexWrap: 'wrap' }}>
           {['all','pending','approved','rejected'].map(f => (
-            <button key={f} onClick={() => setFilter(f)} style={{
+            <button key={f} onClick={() => { setFilter(f); if (token) loadApps(token, 1) }} style={{
               padding: '8px 18px', borderRadius: 100, fontSize: 12, fontWeight: 600,
               letterSpacing: '0.5px', textTransform: 'uppercase',
               background: filter === f ? 'var(--blue)' : 'transparent',
@@ -316,6 +385,34 @@ export default function AdminPage() {
             </div>
           ))}
         </div>
+
+        {totalCount > 0 && (
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 20, flexWrap: 'wrap', gap: 12 }}>
+            <div style={{ fontSize: 13, color: 'var(--mid)' }}>
+              Showing {rangeStart}–{rangeEnd} of {totalCount} applications
+              {filter !== 'all' || search ? ' (filtered on this page)' : ''}
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <button
+                onClick={() => goToPage(page - 1)}
+                disabled={!hasPrev || loading}
+                style={{ padding: '8px 16px', borderRadius: 8, fontSize: 13, fontWeight: 600, background: 'var(--black3)', border: '1px solid var(--border2)', color: hasPrev && !loading ? '#fff' : 'var(--mid)', opacity: hasPrev && !loading ? 1 : 0.5 }}
+              >
+                ← Previous
+              </button>
+              <span style={{ fontSize: 13, color: 'var(--mid)', padding: '0 8px' }}>
+                Page {page} of {totalPages}
+              </span>
+              <button
+                onClick={() => goToPage(page + 1)}
+                disabled={!hasNext || loading}
+                style={{ padding: '8px 16px', borderRadius: 8, fontSize: 13, fontWeight: 600, background: 'var(--black3)', border: '1px solid var(--border2)', color: hasNext && !loading ? '#fff' : 'var(--mid)', opacity: hasNext && !loading ? 1 : 0.5 }}
+              >
+                Next →
+              </button>
+            </div>
+          </div>
+        )}
       </div>
 
       {selected && (
