@@ -30,7 +30,7 @@ export default function CTA() {
           fontSize: 17, color: 'var(--mid)', maxWidth: 480,
           margin: '24px auto 40px', lineHeight: 1.75,
         }}>
-          Attendee registration is currently closed. Nominate someone you want to hear at Web3Lagos 5.0.
+          Nominate someone you want to hear at Web3Lagos 5.0.
         </p>
         <Link href="/speakers" style={{
           display: 'inline-flex', alignItems: 'center', gap: 8,

@@ -28,10 +28,6 @@ export default function SpeakersPage() {
               Back to Home
             </Link>
           </div>
-
-          <div style={{ marginTop: 36, background: 'var(--black2)', border: '1px solid var(--border2)', borderRadius: 12, padding: '20px 22px', color: 'var(--mid)', fontSize: 14, lineHeight: 1.7 }}>
-            Community nominations are open. Attendee registration is currently closed.
-          </div>
         </section>
       </main>
       <Footer />
