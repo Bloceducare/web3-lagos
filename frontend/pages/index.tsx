@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Web3Lagos Aug 27 - Aug 29, 2026</title>
+        <title>Web3Lagos Aug 28 - Aug 29, 2026</title>
       </Head>
       <Navbar />
       <main className="overflow-x-hidden w-full max-w-full box-border">
