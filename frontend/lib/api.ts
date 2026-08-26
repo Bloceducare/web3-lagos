@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://giant-dorice-web3bridge-89722e9a.koyeb.app/api/";
+const API_BASE_URL = "https://giant-dorice-web3bridge-89722e9a.koyeb.app/api";
 
 export interface Conference {
   id: number;
@@ -52,19 +52,25 @@ export interface PaginatedResponse<T> {
   results: T[];
 }
 
+function joinApiUrl(baseUrl: string, endpoint: string): string {
+  const base = baseUrl.replace(/\/+$/, "");
+  const path = endpoint.startsWith("/") ? endpoint : `/${endpoint}`;
+  return `${base}${path}`;
+}
+
 // API Client
 class ApiClient {
   private baseUrl: string;
 
   constructor(baseUrl: string = API_BASE_URL) {
-    this.baseUrl = baseUrl;
+    this.baseUrl = baseUrl.replace(/\/+$/, "");
   }
 
   private async request<T>(
     endpoint: string,
     options: RequestInit = {}
   ): Promise<T> {
-    const url = `${this.baseUrl}${endpoint}`;
+    const url = joinApiUrl(this.baseUrl, endpoint);
 
     const headers: Record<string, string> = {
       "Content-Type": "application/json",
@@ -89,7 +95,7 @@ class ApiClient {
 
   async getConferences(): Promise<Conference[]> {
     const response = await this.request<PaginatedResponse<Conference> | Conference[]>(
-      "/conferences"
+      "/conferences/"
     );
     return this.normalizeList(response);
   }
@@ -105,8 +111,8 @@ class ApiClient {
 
   async getHalls(conferenceId?: number): Promise<Hall[]> {
     const endpoint = conferenceId
-      ? `/halls?conference=${conferenceId}`
-      : "/halls";
+      ? `/halls/?conference=${conferenceId}`
+      : "/halls/";
     const response = await this.request<PaginatedResponse<Hall> | Hall[]>(
       endpoint
     );
@@ -135,7 +141,7 @@ class ApiClient {
     if (filters?.page) params.append("page", filters.page.toString());
     if (filters?.all) params.append("all", "true");
 
-    const endpoint = `/sessions${
+    const endpoint = `/sessions/${
       params.toString() ? `?${params.toString()}` : ""
     }`;
 
