@@ -360,12 +360,12 @@ export default function AdminPage() {
               <div key={h} style={{ fontSize: 10, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--mid)' }}>{h}</div>
             ))}
           </div>
-          {!filtered.length && (
+          {!filteredApps.length && (
             <div style={{ textAlign: 'center', padding: '64px 20px', fontSize: 14, color: 'var(--mid)' }}>
               {loading ? 'Loading applications...' : 'No applications found.'}
             </div>
           )}
-          {filtered.map(a => (
+          {apps.map(a => (
             <div key={a.id} onClick={() => setSelected(a)} style={{ display: 'grid', gridTemplateColumns: '2fr 2fr 1.2fr 1.2fr 1fr 1.2fr', padding: '16px 20px', borderBottom: '1px solid var(--border)', cursor: 'pointer', transition: 'background 0.15s', alignItems: 'center' }}>
               <div>
                 <div style={{ fontSize: 14, fontWeight: 600 }}>{a.firstname} {a.lastname}</div>
