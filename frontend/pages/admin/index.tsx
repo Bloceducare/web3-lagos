@@ -297,6 +297,10 @@ export default function AdminPage() {
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <span style={{ fontWeight: 700, fontSize: 15 }}>W3LC Admin</span>
           <span style={{ fontSize: 9, fontWeight: 700, background: 'var(--blue)', color: '#fff', padding: '2px 6px', borderRadius: 4 }}>5.0</span>
+          <nav style={{ display: 'flex', gap: 12, marginLeft: 8 }}>
+            <a href="/admin" style={{ fontSize: 12, color: 'var(--blue-bright)', fontWeight: 700 }}>Applications</a>
+            <a href="/admin/livestream" style={{ fontSize: 12, color: 'var(--mid)' }}>Livestream</a>
+          </nav>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
           <span style={{ fontSize: 12, color: 'var(--mid)' }}>{adminName}</span>

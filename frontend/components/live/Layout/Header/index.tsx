@@ -3,26 +3,27 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Logo from "../../../../images/hero.svg";
+import { Hall } from "../../../../lib/api";
 
-const Header = () => {
+interface HeaderProps {
+  halls?: Hall[];
+}
+
+const Header = ({ halls = [] }: HeaderProps) => {
   const router = useRouter();
 
-  const isActive = (path: string) => {
-    if (path === "/live" && router.pathname === "/live") {
-      return true;
-    }
-    if (
-      path === "/live/emerald" &&
-      router.pathname === "/live/[stage]" &&
-      router.query.stage === "emerald"
-    ) {
-      return true;
-    }
-    if (path === "/archive" && router.pathname === "/archive") {
-      return true;
-    }
-    return false;
-  };
+  const isMainActive = router.pathname === "/live";
+  const isArchiveActive = router.pathname === "/archive";
+  const activeStage =
+    router.pathname === "/live/[stage]"
+      ? String(router.query.stage || "")
+      : "";
+
+  const stageHalls = halls.filter((h) => {
+    const slug = (h.slug || "").toLowerCase();
+    const name = h.name.toLowerCase();
+    return !(slug.includes("main") || name.includes("main"));
+  });
 
   return (
     <header className="max-w-7xl p-4 flex justify-between sticky top-0 bg-[#ffffff] w-full mx-auto shadow-sm z-50">
@@ -39,27 +40,35 @@ const Header = () => {
         <Link
           href="/live"
           className={`transition-all duration-200 ${
-            isActive("/live")
+            isMainActive
               ? "border-b-2 border-[#0096FF] text-[#0096FF]"
               : "hover:text-[#0096FF]"
           }`}
         >
           Main Stage
         </Link>
-        <Link
-          href="/live/emerald"
-          className={`transition-all duration-200 ${
-            isActive("/live/emerald")
-              ? "border-b-2 border-[#0096FF] text-[#0096FF]"
-              : "hover:text-[#0096FF]"
-          }`}
-        >
-          Emerald
-        </Link>
+        {stageHalls.map((hall) => {
+          const slug = hall.slug || "";
+          if (!slug) return null;
+          const active = activeStage === slug;
+          return (
+            <Link
+              key={hall.id}
+              href={`/live/${slug}`}
+              className={`transition-all duration-200 ${
+                active
+                  ? "border-b-2 border-[#0096FF] text-[#0096FF]"
+                  : "hover:text-[#0096FF]"
+              }`}
+            >
+              {hall.name}
+            </Link>
+          );
+        })}
         <Link
           href="/archive"
           className={`transition-all duration-200 ${
-            isActive("/archive")
+            isArchiveActive
               ? "border-b-2 border-[#0096FF] text-[#0096FF]"
               : "hover:text-[#0096FF]"
           }`}
@@ -68,7 +77,7 @@ const Header = () => {
         </Link>
         <button className="px-5 py-2 text-white rounded-[10px] bg-[#0096FF]">
           <Link target="_blank" href={"https://web3bridge.com/"}>
-            Join the next Cohort
+            About Us
           </Link>
         </button>
       </div>

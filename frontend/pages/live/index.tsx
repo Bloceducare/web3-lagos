@@ -14,6 +14,10 @@ import {
   formatSessionTime,
   getSessionDuration,
 } from "../../utils/conferenceUtils";
+import {
+  mapSessionToScheduleItem,
+  resolveMainStageHall,
+} from "../../utils/liveHallUtils";
 
 const Live = () => {
   const router = useRouter();
@@ -22,9 +26,10 @@ const Live = () => {
   const { loading, error, conference, halls, sessions } = useScheduleData();
 
   const handleTalkClick = (item: any) => {
-    if (item.youtube_id) {
+    const youtubeId = item.youtubeId || item.youtube_id;
+    if (youtubeId) {
       const params = new URLSearchParams();
-      params.set("video", item.youtube_id);
+      params.set("video", youtubeId);
       params.set("id", item.id.toString());
       router.push(`/archive?${params.toString()}`);
     }
@@ -32,7 +37,6 @@ const Live = () => {
 
   const days = useDaysConfig(conference);
 
-  // Show loading state
   if (loading) {
     return (
       <LiveLayout>
@@ -48,7 +52,6 @@ const Live = () => {
     );
   }
 
-  // Show error state
   if (error || !conference) {
     return (
       <LiveLayout>
@@ -70,40 +73,31 @@ const Live = () => {
     );
   }
 
-  const mainStageHall =
-    halls.find((hall) => hall.name.toLowerCase().includes("main")) || halls[3];
+  const mainStageHall = resolveMainStageHall(halls);
 
   const getDayFromDateTime = (startDateTime: string): ConferenceDay => {
     if (!conference) return "day1";
     return getConferenceDayFromDateTime(conference, startDateTime);
   };
 
-  // Filter sessions for the main stage and selected day
   const mainStageSessions = sessions
     .filter((session) => {
       const sessionHallMatch = session.hall === mainStageHall?.id;
       const sessionDay = getDayFromDateTime(session.start_datetime);
-      const dayMatch = sessionDay === selectedDay;
-
-      return sessionHallMatch && dayMatch;
+      return sessionHallMatch && sessionDay === selectedDay;
     })
-    .sort((a, b) => {
-      return (
+    .sort(
+      (a, b) =>
         new Date(a.start_datetime).getTime() -
         new Date(b.start_datetime).getTime()
-      );
-    });
+    );
 
-  // Get the actual date for the selected day
   const getSelectedDayDate = (): Date => {
     if (!conference) return new Date();
-
     const conferenceStartDate = new Date(conference.start_date);
-    const dayOffset = parseInt(selectedDay.replace("day", "")) - 1; // day1 = 0, day2 = 1, etc.
-
+    const dayOffset = parseInt(selectedDay.replace("day", "")) - 1;
     const selectedDate = new Date(conferenceStartDate);
     selectedDate.setDate(conferenceStartDate.getDate() + dayOffset);
-
     return selectedDate;
   };
 
@@ -116,24 +110,16 @@ const Live = () => {
     halls: {
       hall1: {
         title: mainStageHall?.name || "Main Stage",
-        items: mainStageSessions.map((session) => ({
-          id: session.id.toString(),
-          time: formatSessionTime(session.start_datetime),
-          topic: session.topic,
-          speaker: session.speaker,
-          youtube_id: session.youtube_id,
-          description: session.description,
-          hall: session.hall_name,
-          day: selectedDay,
-          year: session.conference_year,
-          duration: getSessionDuration(
-            session.start_datetime,
-            session.end_datetime
-          ),
-          speakerBio: session.speaker_bio,
-          speakerImage: session.speaker_image,
-          type: session.type,
-        })),
+        items: mainStageSessions.map((session) =>
+          mapSessionToScheduleItem(session, {
+            time: formatSessionTime(session.start_datetime),
+            day: selectedDay,
+            duration: getSessionDuration(
+              session.start_datetime,
+              session.end_datetime
+            ),
+          })
+        ),
       },
     },
   };
@@ -142,21 +128,22 @@ const Live = () => {
   return (
     <>
       <LiveMetadata
-        stageTitle="Main Stage"
+        stageTitle={mainStageHall?.name || "Main Stage"}
         selectedDay={selectedDay}
         days={days}
+        conferenceYear={conference.year}
       />
-      <LiveLayout>
+      <LiveLayout halls={halls}>
         <div className="w-full max-w-7xl mx-auto px-4 py-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* YouTube Player */}
             <LiveVideoPlayer
               embedUrl={mainStageHall?.embed_url}
+              isLive={Boolean(mainStageHall?.is_live)}
               stageTitle={mainStageHall?.name || "Main Stage"}
+              conferenceYear={conference.year}
               className="lg:col-span-2 h-fit"
             />
 
-            {/* Schedule Sidebar */}
             <ScheduleSidebar
               days={days}
               selectedDay={selectedDay}

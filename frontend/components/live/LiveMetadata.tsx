@@ -16,25 +16,28 @@ interface LiveMetadataProps {
   stageTitle: string;
   selectedDay: ConferenceDay;
   days: Day[];
+  conferenceYear?: number | string;
 }
 
 const LiveMetadata: React.FC<LiveMetadataProps> = ({
   stageTitle,
   selectedDay,
   days,
+  conferenceYear,
 }) => {
   const currentDay = days.find((d) => d.key === selectedDay);
+  const year = conferenceYear ?? new Date().getFullYear();
 
   const metadata: MetadataConfig = {
-    title: `${stageTitle} - Web3 Lagos 2025 Live Stream`,
-    description: `Watch the ${stageTitle} live stream from Web3 Lagos 2025 conference. ${
+    title: `${stageTitle} - Web3 Lagos ${year} Live Stream`,
+    description: `Watch the ${stageTitle} live stream from Web3 Lagos ${year} conference. ${
       currentDay
         ? `Currently showing ${currentDay.label} (${currentDay.date})`
         : ""
     } schedule and sessions.`,
     keywords: `Web3 Lagos, ${stageTitle}, blockchain conference, live stream, cryptocurrency, decentralized technology`,
-    ogTitle: `${stageTitle} Live Stream - Web3 Lagos 2025`,
-    ogDescription: `Join us live at the ${stageTitle} for Web3 Lagos 2025 - Africa's premier blockchain conference.`,
+    ogTitle: `${stageTitle} Live Stream - Web3 Lagos ${year}`,
+    ogDescription: `Join us live at the ${stageTitle} for Web3 Lagos ${year} - Africa's premier blockchain conference.`,
     ogImage: "/web3lagos.jpg",
   };
 

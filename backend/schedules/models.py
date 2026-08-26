@@ -25,17 +25,27 @@ class Hall(models.Model):
     slug = models.SlugField(max_length=100, blank=True, null=True, help_text="URL-friendly identifier like 'main-stage', 'hall-2'")
     conference = models.ForeignKey(Conference, on_delete=models.CASCADE, related_name='halls')
     embed_url = models.URLField(blank=True, help_text="YouTube embed URL for this hall's live stream")
-    
+    is_live = models.BooleanField(
+        default=False,
+        help_text="When true and embed_url is set, the public live page shows the stream",
+    )
+
     class Meta:
         unique_together = ['slug', 'conference']
-    
+        ordering = ['id']
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)
         super().save(*args, **kwargs)
-    
+
     def __str__(self):
         return f"{self.name} - {self.conference.name}"
+
+    @property
+    def stream_active(self):
+        """True when this hall should show a live embed on the public site."""
+        return bool(self.is_live and self.embed_url)
 
 class ScheduleItem(models.Model):
     TALK_TYPES = [

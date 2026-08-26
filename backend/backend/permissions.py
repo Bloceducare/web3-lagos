@@ -60,40 +60,45 @@ def _verify_auth_server_admin(authorization_header: str) -> dict | None:
     return _verify_auth_server_token(authorization_header)
 
 
+def _is_admin_role(user_data: dict | None) -> bool:
+    """Accept verified tokens; if a role is present, require an admin-like role."""
+    if not user_data or not isinstance(user_data, dict):
+        return False
+    role = user_data.get('role')
+    if role is None:
+        # Auth server verified the token but did not return a role (same as registration admin).
+        return True
+    return str(role).lower() in {'admin', 'staff', 'superadmin', 'superuser'}
+
+
 class IsAuthenticatedByAuthServer(permissions.BasePermission):
     """
-    Custom permission to allow access only to authenticated users
-    whose credentials are validated by the authentication server.
+    Public read; writes require a token verified by the auth server.
+    Uses the same resilient verify flow as registration admin so
+    /api/admin/login/ tokens work for halls/conferences/sessions.
     """
 
     def has_permission(self, request, view):
-        token = request.headers.get('Authorization')
         if request.method in permissions.SAFE_METHODS:
             return True
 
-        if not token:
+        auth_header = request.headers.get('Authorization', '')
+        if not auth_header:
             raise AuthenticationFailed("Authentication token not provided")
+
         try:
-            response = requests.post(
-                f"{settings.AUTH_SERVER_URL}/api/token/verify/",
-                json={"token": token},
-                timeout=10,
-            )
-            if response.status_code != 200:
-                raise AuthenticationFailed("Error authenticating with auth server")
-
-            response_data = response.json()
-            user_data = response_data.get("user", {})
-
-            if user_data.get("role") == "admin":
-                return True
-            return False
-
-        except requests.RequestException as e:
+            user_data = _verify_auth_server_token(auth_header)
+        except Exception as e:
             raise APIException(f"Error communicating with auth server: {str(e)}")
 
-        except Exception as e:
-            raise APIException(f"Unexpected error: {str(e)}")
+        if not user_data:
+            raise AuthenticationFailed("Admin authentication required")
+
+        if not _is_admin_role(user_data):
+            return False
+
+        request.auth_user = user_data
+        return True
 
 
 class IsRegistrationAdmin(permissions.BasePermission):

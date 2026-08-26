@@ -18,6 +18,8 @@ export interface Hall {
   slug: string | null;
   conference: number;
   embed_url: string;
+  is_live?: boolean;
+  stream_active?: boolean;
 }
 
 export interface ScheduleItem {
@@ -86,26 +88,33 @@ class ApiClient {
   }
 
   async getConferences(): Promise<Conference[]> {
-    const response = await this.request<PaginatedResponse<Conference>>(
+    const response = await this.request<PaginatedResponse<Conference> | Conference[]>(
       "/conferences"
     );
-    return response.results; // Extract the results array from pagination
+    return this.normalizeList(response);
   }
 
   async getConference(id: number): Promise<Conference> {
-    return this.request<Conference>(`/conferences?id=${id}`);
+    return this.request<Conference>(`/conferences/${id}/`);
+  }
+
+  private normalizeList<T>(data: PaginatedResponse<T> | T[]): T[] {
+    if (Array.isArray(data)) return data;
+    return data?.results || [];
   }
 
   async getHalls(conferenceId?: number): Promise<Hall[]> {
     const endpoint = conferenceId
       ? `/halls?conference=${conferenceId}`
       : "/halls";
-    const response = await this.request<PaginatedResponse<Hall>>(endpoint);
-    return response.results;
+    const response = await this.request<PaginatedResponse<Hall> | Hall[]>(
+      endpoint
+    );
+    return this.normalizeList(response);
   }
 
   async getHall(id: number): Promise<Hall> {
-    return this.request<Hall>(`/halls?id=${id}`);
+    return this.request<Hall>(`/halls/${id}/`);
   }
 
   async getSessions(filters?: {
@@ -115,7 +124,7 @@ class ApiClient {
     is_archived?: boolean;
     page?: number;
     all?: boolean;
-  }): Promise<PaginatedResponse<ScheduleItem>> {
+  }): Promise<ScheduleItem[]> {
     const params = new URLSearchParams();
     if (filters?.conference)
       params.append("conference", filters.conference.toString());
@@ -130,23 +139,19 @@ class ApiClient {
       params.toString() ? `?${params.toString()}` : ""
     }`;
 
-    return await this.request<PaginatedResponse<ScheduleItem>>(endpoint);
+    const response = await this.request<
+      PaginatedResponse<ScheduleItem> | ScheduleItem[]
+    >(endpoint);
+    return this.normalizeList(response);
   }
 
   async getSession(id: number): Promise<ScheduleItem> {
-    return this.request<ScheduleItem>(`/sessions?id=${id}`);
+    return this.request<ScheduleItem>(`/sessions/${id}/`);
   }
 
-  async getArchivedSessions(page?: number): Promise<ScheduleItem[]> {
+  async getArchivedSessions(): Promise<ScheduleItem[]> {
     try {
-      const sessions = await this.getSessions({ is_archived: true, all: true });
-
-      // if (!Array.isArray(sessions)) {
-      //   console.error("API: Sessions is not an array:", sessions);
-      //   return [];
-      // }
-
-      return sessions as unknown as ScheduleItem[];
+      return await this.getSessions({ is_archived: true, all: true });
     } catch (error) {
       console.error("API: Error fetching archived sessions:", error);
       return [];
@@ -156,13 +161,13 @@ class ApiClient {
   async getCurrentConference(): Promise<{
     conference: Conference;
     halls: Hall[];
-    sessions: PaginatedResponse<ScheduleItem>;
+    sessions: ScheduleItem[];
   }> {
     try {
       const conferences = await this.getConferences();
       const currentConference =
         conferences.find((c) => c.year === new Date().getFullYear()) ||
-        conferences[0]; // Fallback to first conference
+        conferences[0];
 
       if (!currentConference) {
         throw new Error("No conferences found");
