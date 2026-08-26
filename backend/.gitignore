@@ -13,11 +13,10 @@ backendEnv
 # Byte-compiled / optimized / DLL files
 
 __pycache__/
-__migrations__/
-**migrations/
+
 *.py[cod]
 *$py.class
-blog/migrations/
+
 .github/
 # C extensions
 *.so
