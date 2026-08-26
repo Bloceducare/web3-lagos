@@ -96,7 +96,7 @@ class SpeakerRegistrationViewSet(viewsets.ModelViewSet):
 
 
 class AdminLoginView(APIView):
-    """Authenticate registration dashboard admins via the auth server."""
+    """Authenticate admin console users via the separate auth server sign-in."""
 
     permission_classes = [permissions.AllowAny]
 
@@ -116,19 +116,30 @@ class AdminLoginView(APIView):
                 status=status.HTTP_503_SERVICE_UNAVAILABLE,
             )
 
+        base = settings.AUTH_SERVER_URL.rstrip('/')
+        # Auth server sign-in (preferred), then legacy token endpoint as fallback.
+        login_urls = [
+            f'{base}/accounts/signin/',
+            f'{base}/api/token/',
+        ]
+
+        login_response = None
         try:
-            login_response = requests.post(
-                f"{settings.AUTH_SERVER_URL}/api/token/",
-                json={'username': username, 'password': password},
-                timeout=10,
-            )
+            for url in login_urls:
+                login_response = requests.post(
+                    url,
+                    json={'username': username, 'password': password},
+                    timeout=10,
+                )
+                if login_response.status_code == 200:
+                    break
         except requests.RequestException:
             return Response(
                 {'error': 'Could not reach auth server.'},
                 status=status.HTTP_502_BAD_GATEWAY,
             )
 
-        if login_response.status_code != 200:
+        if login_response is None or login_response.status_code != 200:
             return Response(
                 {'error': 'Invalid credentials.'},
                 status=status.HTTP_401_UNAUTHORIZED,
@@ -136,9 +147,9 @@ class AdminLoginView(APIView):
 
         login_data = login_response.json()
         token = (
-            login_data.get('token')
+            login_data.get('access_token')
+            or login_data.get('token')
             or login_data.get('access')
-            or login_data.get('access_token')
         )
         if not token:
             return Response(
@@ -149,9 +160,10 @@ class AdminLoginView(APIView):
         clean_token = str(token).replace('Bearer ', '', 1).strip()
         user_data = login_data.get('user') or {'username': username}
 
+        # Auth server returns role like "super admin" / roles: ["super admin"].
         if not is_admin_user(user_data):
             return Response(
-                {'error': 'Admin access required. This account cannot use the admin console.'},
+                {'error': 'Admin role required. This account cannot use the admin console.'},
                 status=status.HTTP_403_FORBIDDEN,
             )
 

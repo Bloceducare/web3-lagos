@@ -4,7 +4,26 @@ import requests
 from django.conf import settings
 
 
-ADMIN_ROLES = {'admin', 'staff', 'superadmin', 'superuser'}
+# Normalized forms (lowercase, spaces/underscores/hyphens collapsed).
+ADMIN_ROLE_TOKENS = {
+    'admin',
+    'staff',
+    'superadmin',
+    'super admin',
+    'super_admin',
+    'super-admin',
+    'superuser',
+    'super user',
+}
+NON_ADMIN_ROLE_TOKENS = {
+    'user',
+    'member',
+    'attendee',
+    'guest',
+    'student',
+    'speaker',
+    'participant',
+}
 
 
 def _extract_bearer_token(authorization_header: str) -> str:
@@ -17,8 +36,67 @@ def _extract_bearer_token(authorization_header: str) -> str:
     return value
 
 
+def _normalize_role(role) -> str:
+    return ' '.join(str(role).strip().lower().replace('_', ' ').replace('-', ' ').split())
+
+
+def _compact_role(role_norm: str) -> str:
+    return role_norm.replace(' ', '')
+
+
+def _role_is_admin(role) -> bool | None:
+    """
+    True = admin, False = explicit non-admin, None = unknown / empty.
+    Handles auth-server values like "super admin".
+    """
+    if role is None:
+        return None
+    text = str(role).strip()
+    if not text:
+        return None
+
+    norm = _normalize_role(text)
+    compact = _compact_role(norm)
+
+    if norm in NON_ADMIN_ROLE_TOKENS or compact in NON_ADMIN_ROLE_TOKENS:
+        return False
+    if norm in ADMIN_ROLE_TOKENS or compact in {_compact_role(r) for r in ADMIN_ROLE_TOKENS}:
+        return True
+    # e.g. "super admin", "conference admin"
+    if 'admin' in norm:
+        return True
+    return None
+
+
+def _collect_roles(user_data: dict) -> list:
+    roles = []
+    for key in ('role', 'user_role', 'type'):
+        value = user_data.get(key)
+        if value is not None and str(value).strip():
+            roles.append(value)
+
+    raw_roles = user_data.get('roles')
+    if isinstance(raw_roles, (list, tuple)):
+        roles.extend(raw_roles)
+    elif isinstance(raw_roles, str) and raw_roles.strip():
+        roles.append(raw_roles)
+
+    nested = user_data.get('permissions') or user_data.get('meta')
+    if isinstance(nested, dict):
+        if nested.get('role'):
+            roles.append(nested.get('role'))
+        nested_roles = nested.get('roles')
+        if isinstance(nested_roles, (list, tuple)):
+            roles.extend(nested_roles)
+
+    return roles
+
+
 def _verify_auth_server_token(authorization_header: str) -> dict | None:
-    """Return user info when auth server accepts the token."""
+    """
+    Ask the separate AUTH_SERVER_URL to verify the JWT.
+    Auth server returns { user: { role, roles, ... }, access_token, message }.
+    """
     if not settings.AUTH_SERVER_URL:
         return None
 
@@ -26,12 +104,13 @@ def _verify_auth_server_token(authorization_header: str) -> dict | None:
     if not raw_token:
         return None
 
-    url = f"{settings.AUTH_SERVER_URL}/api/token/verify/"
+    base = settings.AUTH_SERVER_URL.rstrip('/')
+    url = f"{base}/api/token/verify/"
+    # Auth server's documented verify body is {"token": "<jwt>"}.
     candidates = [
         {'json': {'token': raw_token}},
         {'json': {'token': f'Bearer {raw_token}'}},
         {'headers': {'Authorization': f'Bearer {raw_token}'}},
-        {'headers': {'Authorization': raw_token}},
     ]
 
     for kwargs in candidates:
@@ -51,7 +130,7 @@ def _verify_auth_server_token(authorization_header: str) -> dict | None:
             user = data.get('user')
             if isinstance(user, dict) and user:
                 return user
-            if data and 'detail' not in data and 'code' not in data:
+            if data.get('username') or data.get('email') or data.get('role'):
                 return data
 
         return {'verified': True}
@@ -59,58 +138,38 @@ def _verify_auth_server_token(authorization_header: str) -> dict | None:
     return None
 
 
-def _truthy(value) -> bool:
-    if isinstance(value, bool):
-        return value
-    if isinstance(value, (int, float)):
-        return value != 0
-    if isinstance(value, str):
-        return value.strip().lower() in {'1', 'true', 'yes', 'y'}
-    return False
-
-
 def is_admin_user(user_data: dict | None) -> bool:
     """
-    Only admin-like accounts may use the W3LC admin console / mutating APIs.
-    Accepts common auth-server role / flag shapes.
-    Explicit non-admin roles are denied. Username/email-only payloads from a
-    successful auth-server login are allowed (matches existing admin console).
+    Require an admin-capable role from the auth server when present.
+    Accepts role="super admin" and roles=["super admin"].
     """
     if not user_data or not isinstance(user_data, dict):
         return False
 
-    # Bare verify ACK without user payload is not enough for admin access.
+    # Bare verify ACK with no user — not enough once we know the API returns roles.
     if set(user_data.keys()) <= {'verified'}:
         return False
 
-    role = user_data.get('role') or user_data.get('user_role') or user_data.get('type')
-    if role is not None and str(role).strip():
-        return str(role).strip().lower() in ADMIN_ROLES
+    decisions = [_role_is_admin(r) for r in _collect_roles(user_data)]
+    if any(d is True for d in decisions):
+        return True
+    if decisions and all(d is False for d in decisions):
+        return False
 
-    for key in ('is_admin', 'is_staff', 'is_superuser', 'admin', 'staff'):
-        if key in user_data and _truthy(user_data.get(key)):
-            return True
+    # No role fields at all (older payloads): allow username-bearing auth-server users.
+    if not _collect_roles(user_data):
+        return bool(
+            user_data.get('username')
+            or user_data.get('email')
+            or user_data.get('id')
+            or user_data.get('name')
+        )
 
-    nested = user_data.get('permissions') or user_data.get('meta')
-    if isinstance(nested, dict):
-        for key in ('is_admin', 'is_staff', 'is_superuser', 'admin'):
-            if key in nested and _truthy(nested.get(key)):
-                return True
-        nested_role = nested.get('role')
-        if nested_role and str(nested_role).strip():
-            return str(nested_role).strip().lower() in ADMIN_ROLES
-
-    # Successful auth-server user object without an explicit role.
-    return bool(
-        user_data.get('username')
-        or user_data.get('email')
-        or user_data.get('id')
-        or user_data.get('name')
-    )
+    return False
 
 
 def require_auth_server_admin(authorization_header: str) -> dict:
-    """Verify token with auth server and ensure the account is admin."""
+    """Verify JWT with AUTH_SERVER_URL and require an admin role."""
     if not authorization_header:
         raise AuthenticationFailed("Authentication token not provided")
 
@@ -129,9 +188,7 @@ def require_auth_server_admin(authorization_header: str) -> dict:
 
 
 class IsAuthenticatedByAuthServer(permissions.BasePermission):
-    """
-    Public read; writes require an auth-server admin token.
-    """
+    """Public read; writes require a token verified by the auth server."""
 
     def has_permission(self, request, view):
         if request.method in permissions.SAFE_METHODS:
@@ -143,7 +200,7 @@ class IsAuthenticatedByAuthServer(permissions.BasePermission):
 
 
 class IsRegistrationAdmin(permissions.BasePermission):
-    """Admin-only access (list/update/delete) via auth-server token."""
+    """Admin access via auth-server token (not local Django login)."""
 
     def has_permission(self, request, view):
         user_data = require_auth_server_admin(request.headers.get('Authorization', ''))
@@ -153,7 +210,7 @@ class IsRegistrationAdmin(permissions.BasePermission):
 
 
 class IsAuthServerAdmin(permissions.BasePermission):
-    """Strict admin-only for every method (e.g. /api/admin/me/)."""
+    """Auth-server token required for every method (e.g. /api/admin/me/)."""
 
     def has_permission(self, request, view):
         user_data = require_auth_server_admin(request.headers.get('Authorization', ''))
