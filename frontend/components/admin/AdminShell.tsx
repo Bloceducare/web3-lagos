@@ -5,7 +5,10 @@ import { useRouter } from 'next/router'
 
 const NAV = [
   { href: '/admin', label: 'Applications', match: (path: string) => path === '/admin' || path === '/admin/' },
+  { href: '/admin/schedule', label: 'Schedule', match: (path: string) => path.startsWith('/admin/schedule') },
+  { href: '/admin/conferences', label: 'Conferences', match: (path: string) => path.startsWith('/admin/conferences') },
   { href: '/admin/livestream', label: 'Livestream', match: (path: string) => path.startsWith('/admin/livestream') },
+  { href: '/admin/nominations', label: 'Nominations', match: (path: string) => path.startsWith('/admin/nominations') },
 ]
 
 type AdminShellProps = {
@@ -79,6 +82,24 @@ export default function AdminShell({
 
         <div style={{ borderTop: '1px solid var(--border)', paddingTop: 16, marginTop: 16 }}>
           <div style={{ fontSize: 12, color: 'var(--mid)', marginBottom: 10, padding: '0 4px' }}>{adminName}</div>
+          <Link
+            href="/live"
+            target="_blank"
+            style={{
+              display: 'block',
+              width: '100%',
+              fontSize: 12,
+              color: 'var(--blue-bright)',
+              background: 'transparent',
+              border: '1px solid var(--border2)',
+              padding: '8px 12px',
+              borderRadius: 6,
+              marginBottom: 8,
+              boxSizing: 'border-box',
+            }}
+          >
+            Open /live ↗
+          </Link>
           <button
             onClick={onLogout}
             style={{
@@ -138,4 +159,17 @@ export default function AdminShell({
       </div>
     </div>
   )
+}
+
+export const adminInputStyle: React.CSSProperties = {
+  width: '100%',
+  background: 'var(--black3)',
+  border: '1px solid var(--border2)',
+  borderRadius: 8,
+  padding: '11px 14px',
+  fontFamily: "'Space Grotesk',sans-serif",
+  fontSize: 14,
+  color: '#fff',
+  outline: 'none',
+  boxSizing: 'border-box',
 }

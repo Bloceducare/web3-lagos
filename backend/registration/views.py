@@ -1,5 +1,5 @@
 from rest_framework.response import Response
-from backend.permissions import IsRegistrationAdmin
+from backend.permissions import IsRegistrationAdmin, IsAuthServerAdmin, is_admin_user
 from rest_framework import viewsets, permissions, status, mixins
 from rest_framework.views import APIView
 from django.utils import timezone
@@ -29,17 +29,32 @@ import uuid
 
 
 
-class SpeakerNominationViewSet(mixins.CreateModelMixin, mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
-    """Public POST for community speaker suggestions (nomination form)."""
+class SpeakerNominationViewSet(viewsets.ModelViewSet):
+    """Public create; admin-only list/retrieve/update/destroy."""
 
-    queryset = SpeakerNomination.objects.all()
+    queryset = SpeakerNomination.objects.all().order_by('-id')
     serializer_class = SpeakerNominationSerializer
-    permission_classes = [permissions.AllowAny]
+    authentication_classes = []
+
+    def get_permissions(self):
+        if self.action == 'create':
+            self.permission_classes = [permissions.AllowAny]
+        else:
+            self.permission_classes = [IsRegistrationAdmin]
+        return super().get_permissions()
 
 
 class SpeakerRegistrationViewSet(viewsets.ModelViewSet):
     queryset = SpeakerRegistration.objects.all()
     serializer_class = SpeakerRegistrationSerializer
+    authentication_classes = []
+
+    def get_permissions(self):
+        if self.action == 'create':
+            self.permission_classes = [permissions.AllowAny]
+        else:
+            self.permission_classes = [IsRegistrationAdmin]
+        return super().get_permissions()
 
     def perform_update(self, serializer):
         instance = self.get_object()
@@ -134,6 +149,12 @@ class AdminLoginView(APIView):
         clean_token = str(token).replace('Bearer ', '', 1).strip()
         user_data = login_data.get('user') or {'username': username}
 
+        if not is_admin_user(user_data):
+            return Response(
+                {'error': 'Admin access required. This account cannot use the admin console.'},
+                status=status.HTTP_403_FORBIDDEN,
+            )
+
         return Response(
             {
                 'token': clean_token,
@@ -141,6 +162,17 @@ class AdminLoginView(APIView):
             },
             status=status.HTTP_200_OK,
         )
+
+
+class AdminMeView(APIView):
+    """Validate the current admin session against the auth server."""
+
+    authentication_classes = []
+    permission_classes = [IsAuthServerAdmin]
+
+    def get(self, request):
+        user = getattr(request, 'auth_user', {}) or {}
+        return Response({'user': user, 'authenticated': True}, status=status.HTTP_200_OK)
 
 
 class GeneralRegistrationViewSet(viewsets.ModelViewSet):
@@ -310,6 +342,14 @@ class AttendanceViewSet(viewsets.ModelViewSet):
 class RoadToWeb3LagosRegistrationViewSet(viewsets.ModelViewSet):
     queryset = RoadToWeb3LagosRegistration.objects.all()
     serializer_class = RoadToWeb3LagosRegistrationSerializer
+    authentication_classes = []
+
+    def get_permissions(self):
+        if self.action == 'create':
+            self.permission_classes = [permissions.AllowAny]
+        else:
+            self.permission_classes = [IsRegistrationAdmin]
+        return super().get_permissions()
 
     def perform_create(self, serializer):
         instance = serializer.save()

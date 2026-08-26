@@ -1,12 +1,8 @@
 'use client'
 import React, { useState, useEffect, useCallback, useRef } from 'react'
 import AdminShell from '../../components/admin/AdminShell'
-
-const API_HOST = (
-  process.env.API_URL?.replace(/\/api\/?$/i, '') ||
-  'https://giant-dorice-web3bridge-89722e9a.koyeb.app'
-).replace(/\/$/, '')
-const API_BASE = `${API_HOST}/api`
+import AdminLoginForm from '../../components/admin/AdminLoginForm'
+import { API_BASE, useAdminAuth } from '../../lib/adminAuth'
 
 const TRACK_LABELS: Record<string, string> = {
   defi: 'DeFi & Protocols', dev: 'Developer Tools', nft: 'NFTs & RWAs',
@@ -83,12 +79,7 @@ function toApp(reg: Reg): App {
 }
 
 export default function AdminPage() {
-  const [loggedIn, setLoggedIn] = useState(false)
-  const [token, setToken] = useState('')
-  const [adminName, setAdminName] = useState('')
-  const [username, setUsername] = useState('')
-  const [pass, setPass] = useState('')
-  const [loginErr, setLoginErr] = useState('')
+  const auth = useAdminAuth()
   const [signingIn, setSigningIn] = useState(false)
   const [loadingMore, setLoadingMore] = useState(false)
   const [allApps, setAllApps] = useState<App[]>([])
@@ -129,6 +120,10 @@ export default function AdminPage() {
         })
         const data = await res.json()
         if (!res.ok) {
+          if (res.status === 401 || res.status === 403) {
+            auth.logout()
+            throw new Error('Admin access required. Please sign in again.')
+          }
           const msg = res.status === 403
             ? 'Your account does not have admin access.'
             : (data.detail || data.error || 'Failed to load registrations')
@@ -168,57 +163,20 @@ export default function AdminPage() {
     } finally {
       if (gen === loadGenRef.current) setLoadingMore(false)
     }
-  }, [])
+  }, [auth])
 
   useEffect(() => {
-    const saved = sessionStorage.getItem('w3l_admin_token')
-    const user = sessionStorage.getItem('w3l_admin_user')
-    if (saved && user) {
-      const parsed = JSON.parse(user)
-      setToken(saved)
-      setLoggedIn(true)
-      setAdminName(parsed.name || parsed.username || 'Admin')
-      loadApps(saved)
+    if (auth.loggedIn && auth.token && auth.ready) {
+      loadApps(auth.token)
     }
-  }, [loadApps])
-
-  const login = async () => {
-    setLoginErr('')
-    setSigningIn(true)
-    try {
-      const res = await fetch(`${API_BASE}/admin/login/`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: username.trim(), password: pass }),
-      })
-      const data = await res.json()
-      if (!res.ok) throw new Error(data.error || 'Invalid credentials')
-      if (!data.token) throw new Error('Login succeeded but no token returned')
-      const user = data.user || { username }
-      sessionStorage.setItem('w3l_admin_token', data.token)
-      sessionStorage.setItem('w3l_admin_user', JSON.stringify(user))
-      setToken(data.token)
-      setLoggedIn(true)
-      setAdminName(user.name || user.username || 'Admin')
-      setPass('')
-      loadApps(data.token)
-    } catch (err) {
-      setLoginErr(err instanceof Error ? err.message : 'Invalid credentials')
-    } finally {
-      setSigningIn(false)
-    }
-  }
+  }, [auth.loggedIn, auth.token, auth.ready, loadApps])
 
   const logout = () => {
     loadGenRef.current += 1
-    sessionStorage.removeItem('w3l_admin_token')
-    sessionStorage.removeItem('w3l_admin_user')
-    setLoggedIn(false)
-    setToken('')
+    auth.logout()
     setAllApps([])
     setApps([])
     setSelected(null)
-    setAdminName('')
     setPage(1)
     setServerTotal(null)
     setPagesFetched(0)
@@ -233,13 +191,14 @@ export default function AdminPage() {
   }
 
   const changeStatus = async (app: App, status: 'approved' | 'rejected') => {
-    if (!token) { logout(); return }
+    if (!auth.token) { logout(); return }
     try {
       const res = await fetch(`${API_BASE}/general-registrations/${app.id}/`, {
         method: 'PATCH',
-        headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+        headers: { Authorization: `Bearer ${auth.token}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({ status }),
       })
+      if (res.status === 401 || res.status === 403) { logout(); throw new Error('Admin access required') }
       const data = await res.json()
       if (!res.ok) throw new Error(data.detail || data.error || 'Update failed')
       const mapped = toApp(data)
@@ -311,32 +270,33 @@ export default function AdminPage() {
     return `Loaded ${allApps.length}`
   })()
 
-  const input: React.CSSProperties = { width: '100%', background: 'var(--black3)', border: '1px solid var(--border2)', borderRadius: 8, padding: '11px 14px', fontFamily: "'Space Grotesk',sans-serif", fontSize: 14, color: '#fff', outline: 'none' }
-
-  if (!loggedIn) return (
-    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--black)' }}>
-      <div style={{ background: 'var(--black2)', border: '1px solid var(--border2)', borderRadius: 16, padding: 40, width: 360, textAlign: 'center' }}>
-        <div style={{ fontFamily: "'Bebas Neue',sans-serif", fontSize: 28, letterSpacing: 1, marginBottom: 6 }}>ADMIN ACCESS</div>
-        <div style={{ fontSize: 13, color: 'var(--mid)', marginBottom: 28 }}>Web3Lagos 5.0 — Application Dashboard</div>
-        <div style={{ marginBottom: 14, textAlign: 'left' }}>
-          <label style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.5px', textTransform: 'uppercase', color: 'var(--mid)', display: 'block', marginBottom: 6 }}>Username</label>
-          <input style={input} value={username} onChange={e => setUsername(e.target.value)} onKeyDown={e => e.key === 'Enter' && login()} placeholder="admin" autoComplete="username" />
-        </div>
-        <div style={{ marginBottom: 14, textAlign: 'left' }}>
-          <label style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.5px', textTransform: 'uppercase', color: 'var(--mid)', display: 'block', marginBottom: 6 }}>Password</label>
-          <input type="password" style={input} value={pass} onChange={e => setPass(e.target.value)} onKeyDown={e => e.key === 'Enter' && login()} placeholder="••••••••" autoComplete="current-password" />
-        </div>
-        <button onClick={login} disabled={signingIn} style={{ width: '100%', background: 'var(--blue)', color: '#fff', fontWeight: 700, fontSize: 14, padding: 13, borderRadius: 8, border: 'none', marginTop: 6, opacity: signingIn ? 0.7 : 1 }}>
-          {signingIn ? 'Signing in...' : 'Sign In →'}
-        </button>
-        {loginErr && <p style={{ fontSize: 12, color: 'var(--red)', marginTop: 10 }}>{loginErr}</p>}
+  if (!auth.ready || auth.verifying) {
+    return (
+      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--black)', color: 'var(--mid)' }}>
+        Checking admin session…
       </div>
-    </div>
-  )
+    )
+  }
+
+  if (!auth.loggedIn) {
+    return (
+      <AdminLoginForm
+        subtitle="Web3Lagos 5.0 — Application Dashboard"
+        onLogin={async (username, password) => {
+          setSigningIn(true)
+          try {
+            await auth.login(username, password)
+          } finally {
+            setSigningIn(false)
+          }
+        }}
+      />
+    )
+  }
 
   return (
     <AdminShell
-      adminName={adminName}
+      adminName={auth.adminName}
       onLogout={logout}
       title="Applications Dashboard"
       subtitle={

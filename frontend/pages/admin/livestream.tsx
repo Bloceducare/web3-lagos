@@ -1,12 +1,8 @@
 'use client'
 import React, { useState, useEffect, useCallback } from 'react'
-import AdminShell from '../../components/admin/AdminShell'
-
-const API_HOST = (
-  process.env.API_URL?.replace(/\/api\/?$/i, '') ||
-  'https://giant-dorice-web3bridge-89722e9a.koyeb.app'
-).replace(/\/$/, '')
-const API_BASE = `${API_HOST}/api`
+import AdminShell, { adminInputStyle } from '../../components/admin/AdminShell'
+import AdminLoginForm from '../../components/admin/AdminLoginForm'
+import { adminFetch, asList, useAdminAuth } from '../../lib/adminAuth'
 
 type Conference = {
   id: number
@@ -41,11 +37,6 @@ const emptyDraft = (): HallDraft => ({
   is_live: false,
 })
 
-function asList<T>(data: any): T[] {
-  if (Array.isArray(data)) return data
-  return data?.results || []
-}
-
 function slugify(value: string) {
   return value
     .toLowerCase()
@@ -55,15 +46,10 @@ function slugify(value: string) {
 }
 
 export default function LivestreamAdminPage() {
-  const [loggedIn, setLoggedIn] = useState(false)
-  const [token, setToken] = useState('')
-  const [adminName, setAdminName] = useState('')
-  const [username, setUsername] = useState('')
-  const [pass, setPass] = useState('')
-  const [loginErr, setLoginErr] = useState('')
-  const [loading, setLoading] = useState(false)
+  const auth = useAdminAuth()
   const [loadErr, setLoadErr] = useState('')
   const [toast, setToast] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const [conferences, setConferences] = useState<Conference[]>([])
   const [conferenceId, setConferenceId] = useState<number | null>(null)
@@ -78,18 +64,19 @@ export default function LivestreamAdminPage() {
     setTimeout(() => setToast(''), 3000)
   }
 
-  const authHeaders = (authToken: string) => ({
-    Authorization: `Bearer ${authToken}`,
-    'Content-Type': 'application/json',
-  })
+  const ensureAuth = (res: Response) => {
+    if (res.status === 401 || res.status === 403) {
+      auth.logout()
+      throw new Error('Admin access required. Please sign in again.')
+    }
+  }
 
   const loadData = useCallback(async (authToken: string, preferredConferenceId?: number | null) => {
     setLoading(true)
     setLoadErr('')
     try {
-      const confRes = await fetch(`${API_BASE}/conferences/`, {
-        headers: { Authorization: `Bearer ${authToken}` },
-      })
+      const confRes = await adminFetch('/conferences/', authToken)
+      ensureAuth(confRes)
       const confData = await confRes.json()
       if (!confRes.ok) {
         throw new Error(confData.detail || confData.error || 'Failed to load conferences')
@@ -114,9 +101,8 @@ export default function LivestreamAdminPage() {
 
       setConferenceId(selected.id)
 
-      const hallsRes = await fetch(`${API_BASE}/halls/?conference=${selected.id}`, {
-        headers: { Authorization: `Bearer ${authToken}` },
-      })
+      const hallsRes = await adminFetch(`/halls/?conference=${selected.id}`, authToken)
+      ensureAuth(hallsRes)
       const hallsData = await hallsRes.json()
       if (!hallsRes.ok) {
         throw new Error(hallsData.detail || hallsData.error || 'Failed to load halls')
@@ -141,57 +127,13 @@ export default function LivestreamAdminPage() {
     } finally {
       setLoading(false)
     }
-  }, [])
+  }, [auth])
 
   useEffect(() => {
-    const saved = sessionStorage.getItem('w3l_admin_token')
-    const user = sessionStorage.getItem('w3l_admin_user')
-    if (saved && user) {
-      const parsed = JSON.parse(user)
-      setToken(saved)
-      setLoggedIn(true)
-      setAdminName(parsed.name || parsed.username || 'Admin')
-      loadData(saved)
+    if (auth.loggedIn && auth.token && auth.ready) {
+      loadData(auth.token)
     }
-  }, [loadData])
-
-  const login = async () => {
-    setLoginErr('')
-    setLoading(true)
-    try {
-      const res = await fetch(`${API_BASE}/admin/login/`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: username.trim(), password: pass }),
-      })
-      const data = await res.json()
-      if (!res.ok) throw new Error(data.error || 'Invalid credentials')
-      if (!data.token) throw new Error('Login succeeded but no token returned')
-      const user = data.user || { username }
-      sessionStorage.setItem('w3l_admin_token', data.token)
-      sessionStorage.setItem('w3l_admin_user', JSON.stringify(user))
-      setToken(data.token)
-      setLoggedIn(true)
-      setAdminName(user.name || user.username || 'Admin')
-      setPass('')
-      await loadData(data.token)
-    } catch (err) {
-      setLoginErr(err instanceof Error ? err.message : 'Invalid credentials')
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  const logout = () => {
-    sessionStorage.removeItem('w3l_admin_token')
-    sessionStorage.removeItem('w3l_admin_user')
-    setLoggedIn(false)
-    setToken('')
-    setAdminName('')
-    setHalls([])
-    setConferences([])
-    setDrafts({})
-  }
+  }, [auth.loggedIn, auth.token, auth.ready, loadData])
 
   const updateDraft = (id: number, patch: Partial<HallDraft>) => {
     setDrafts((prev) => ({
@@ -201,13 +143,12 @@ export default function LivestreamAdminPage() {
   }
 
   const saveHall = async (hall: Hall, override?: Partial<HallDraft>) => {
-    if (!token || !conferenceId) return
+    if (!auth.token || !conferenceId) return
     const draft = { ...drafts[hall.id], ...override }
     setSavingId(hall.id)
     try {
-      const res = await fetch(`${API_BASE}/halls/${hall.id}/`, {
+      const res = await adminFetch(`/halls/${hall.id}/`, auth.token, {
         method: 'PATCH',
-        headers: authHeaders(token),
         body: JSON.stringify({
           name: draft.name.trim(),
           slug: (draft.slug || slugify(draft.name)).trim(),
@@ -216,6 +157,7 @@ export default function LivestreamAdminPage() {
           conference: conferenceId,
         }),
       })
+      ensureAuth(res)
       const data = await res.json()
       if (!res.ok) {
         throw new Error(data.detail || data.error || JSON.stringify(data) || 'Update failed')
@@ -245,16 +187,15 @@ export default function LivestreamAdminPage() {
   }
 
   const createHall = async () => {
-    if (!token || !conferenceId) return
+    if (!auth.token || !conferenceId) return
     if (!newHall.name.trim()) {
       showToast('Hall name is required')
       return
     }
     setCreating(true)
     try {
-      const res = await fetch(`${API_BASE}/halls/`, {
+      const res = await adminFetch('/halls/', auth.token, {
         method: 'POST',
-        headers: authHeaders(token),
         body: JSON.stringify({
           name: newHall.name.trim(),
           slug: (newHall.slug || slugify(newHall.name)).trim(),
@@ -263,13 +204,14 @@ export default function LivestreamAdminPage() {
           conference: conferenceId,
         }),
       })
+      ensureAuth(res)
       const data = await res.json()
       if (!res.ok) {
         throw new Error(data.detail || data.error || JSON.stringify(data) || 'Create failed')
       }
       setNewHall(emptyDraft())
       showToast(`Created ${data.name}`)
-      await loadData(token, conferenceId)
+      await loadData(auth.token, conferenceId)
     } catch (err) {
       showToast(err instanceof Error ? err.message : 'Could not create hall')
     } finally {
@@ -280,45 +222,24 @@ export default function LivestreamAdminPage() {
   const selectedConference = conferences.find((c) => c.id === conferenceId)
   const liveCount = halls.filter((h) => h.is_live).length
 
-  const input: React.CSSProperties = {
-    width: '100%',
-    background: 'var(--black3)',
-    border: '1px solid var(--border2)',
-    borderRadius: 8,
-    padding: '11px 14px',
-    fontFamily: "'Space Grotesk',sans-serif",
-    fontSize: 14,
-    color: '#fff',
-    outline: 'none',
-  }
+  const input = adminInputStyle
 
-  if (!loggedIn) {
+  if (!auth.ready || auth.verifying) {
     return (
-      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--black)' }}>
-        <div style={{ background: 'var(--black2)', border: '1px solid var(--border2)', borderRadius: 16, padding: 40, width: 360, textAlign: 'center' }}>
-          <div style={{ fontFamily: "'Bebas Neue',sans-serif", fontSize: 28, letterSpacing: 1, marginBottom: 6 }}>ADMIN ACCESS</div>
-          <div style={{ fontSize: 13, color: 'var(--mid)', marginBottom: 28 }}>Web3Lagos — Livestream Control</div>
-          <div style={{ marginBottom: 14, textAlign: 'left' }}>
-            <label style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.5px', textTransform: 'uppercase', color: 'var(--mid)', display: 'block', marginBottom: 6 }}>Username</label>
-            <input style={input} value={username} onChange={(e) => setUsername(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && login()} placeholder="admin" autoComplete="username" />
-          </div>
-          <div style={{ marginBottom: 14, textAlign: 'left' }}>
-            <label style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.5px', textTransform: 'uppercase', color: 'var(--mid)', display: 'block', marginBottom: 6 }}>Password</label>
-            <input type="password" style={input} value={pass} onChange={(e) => setPass(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && login()} placeholder="••••••••" autoComplete="current-password" />
-          </div>
-          <button onClick={login} disabled={loading} style={{ width: '100%', background: 'var(--blue)', color: '#fff', fontWeight: 700, fontSize: 14, padding: 13, borderRadius: 8, border: 'none', marginTop: 6, opacity: loading ? 0.7 : 1 }}>
-            {loading ? 'Signing in...' : 'Sign In →'}
-          </button>
-          {loginErr && <p style={{ fontSize: 12, color: 'var(--red)', marginTop: 10 }}>{loginErr}</p>}
-        </div>
+      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--black)', color: 'var(--mid)' }}>
+        Checking admin session…
       </div>
     )
   }
 
+  if (!auth.loggedIn) {
+    return <AdminLoginForm subtitle="Web3Lagos — Livestream Control" onLogin={async (u, p) => { await auth.login(u, p) }} />
+  }
+
   return (
     <AdminShell
-      adminName={adminName}
-      onLogout={logout}
+      adminName={auth.adminName}
+      onLogout={auth.logout}
       title="Livestream Control"
       subtitle="Set YouTube embed URLs and go live per hall. Public pages show the stream only when a hall is marked live."
       actions={
@@ -328,7 +249,7 @@ export default function LivestreamAdminPage() {
             onChange={(e) => {
               const id = Number(e.target.value)
               setConferenceId(id)
-              if (token) loadData(token, id)
+              if (auth.token) loadData(auth.token, id)
             }}
             style={{ ...input, width: 240 }}
           >

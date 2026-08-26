@@ -1,7 +1,10 @@
 from rest_framework import permissions
-from rest_framework.exceptions import AuthenticationFailed, APIException
+from rest_framework.exceptions import AuthenticationFailed, APIException, PermissionDenied
 import requests
 from django.conf import settings
+
+
+ADMIN_ROLES = {'admin', 'staff', 'superadmin', 'superuser'}
 
 
 def _extract_bearer_token(authorization_header: str) -> str:
@@ -56,73 +59,112 @@ def _verify_auth_server_token(authorization_header: str) -> dict | None:
     return None
 
 
-def _verify_auth_server_admin(authorization_header: str) -> dict | None:
-    return _verify_auth_server_token(authorization_header)
+def _truthy(value) -> bool:
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, (int, float)):
+        return value != 0
+    if isinstance(value, str):
+        return value.strip().lower() in {'1', 'true', 'yes', 'y'}
+    return False
 
 
-def _is_admin_role(user_data: dict | None) -> bool:
-    """Accept verified tokens; if a role is present, require an admin-like role."""
+def is_admin_user(user_data: dict | None) -> bool:
+    """
+    Only admin-like accounts may use the W3LC admin console / mutating APIs.
+    Accepts common auth-server role / flag shapes.
+    Explicit non-admin roles are denied. Username/email-only payloads from a
+    successful auth-server login are allowed (matches existing admin console).
+    """
     if not user_data or not isinstance(user_data, dict):
         return False
-    role = user_data.get('role')
-    if role is None:
-        # Auth server verified the token but did not return a role (same as registration admin).
-        return True
-    return str(role).lower() in {'admin', 'staff', 'superadmin', 'superuser'}
+
+    # Bare verify ACK without user payload is not enough for admin access.
+    if set(user_data.keys()) <= {'verified'}:
+        return False
+
+    role = user_data.get('role') or user_data.get('user_role') or user_data.get('type')
+    if role is not None and str(role).strip():
+        return str(role).strip().lower() in ADMIN_ROLES
+
+    for key in ('is_admin', 'is_staff', 'is_superuser', 'admin', 'staff'):
+        if key in user_data and _truthy(user_data.get(key)):
+            return True
+
+    nested = user_data.get('permissions') or user_data.get('meta')
+    if isinstance(nested, dict):
+        for key in ('is_admin', 'is_staff', 'is_superuser', 'admin'):
+            if key in nested and _truthy(nested.get(key)):
+                return True
+        nested_role = nested.get('role')
+        if nested_role and str(nested_role).strip():
+            return str(nested_role).strip().lower() in ADMIN_ROLES
+
+    # Successful auth-server user object without an explicit role.
+    return bool(
+        user_data.get('username')
+        or user_data.get('email')
+        or user_data.get('id')
+        or user_data.get('name')
+    )
+
+
+def require_auth_server_admin(authorization_header: str) -> dict:
+    """Verify token with auth server and ensure the account is admin."""
+    if not authorization_header:
+        raise AuthenticationFailed("Authentication token not provided")
+
+    try:
+        user_data = _verify_auth_server_token(authorization_header)
+    except Exception as e:
+        raise APIException(f"Error communicating with auth server: {str(e)}")
+
+    if not user_data:
+        raise AuthenticationFailed("Admin authentication required")
+
+    if not is_admin_user(user_data):
+        raise PermissionDenied("Admin role required")
+
+    return user_data
 
 
 class IsAuthenticatedByAuthServer(permissions.BasePermission):
     """
-    Public read; writes require a token verified by the auth server.
-    Uses the same resilient verify flow as registration admin so
-    /api/admin/login/ tokens work for halls/conferences/sessions.
+    Public read; writes require an auth-server admin token.
     """
 
     def has_permission(self, request, view):
         if request.method in permissions.SAFE_METHODS:
             return True
 
-        auth_header = request.headers.get('Authorization', '')
-        if not auth_header:
-            raise AuthenticationFailed("Authentication token not provided")
-
-        try:
-            user_data = _verify_auth_server_token(auth_header)
-        except Exception as e:
-            raise APIException(f"Error communicating with auth server: {str(e)}")
-
-        if not user_data:
-            raise AuthenticationFailed("Admin authentication required")
-
-        if not _is_admin_role(user_data):
-            return False
-
+        user_data = require_auth_server_admin(request.headers.get('Authorization', ''))
         request.auth_user = user_data
         return True
 
 
 class IsRegistrationAdmin(permissions.BasePermission):
-    """Admin access for registration management via auth-server token."""
+    """Admin-only access (list/update/delete) via auth-server token."""
 
     def has_permission(self, request, view):
-        auth_header = request.headers.get('Authorization', '')
-        if not auth_header:
-            raise AuthenticationFailed("Authentication token not provided")
+        user_data = require_auth_server_admin(request.headers.get('Authorization', ''))
+        request.registration_admin = user_data
+        request.auth_user = user_data
+        return True
 
-        user_data = _verify_auth_server_admin(auth_header)
-        if user_data:
-            request.registration_admin = user_data
-            return True
 
-        raise AuthenticationFailed("Admin authentication required")
+class IsAuthServerAdmin(permissions.BasePermission):
+    """Strict admin-only for every method (e.g. /api/admin/me/)."""
+
+    def has_permission(self, request, view):
+        user_data = require_auth_server_admin(request.headers.get('Authorization', ''))
+        request.auth_user = user_data
+        return True
 
 
 class IsAdminOrReadOnly(permissions.BasePermission):
-    """
-    Custom permission to only allow admins to edit resources.
-    """
+    """Django staff user for writes; public read."""
+
     def has_permission(self, request, view):
         if request.method in permissions.SAFE_METHODS:
             return True
-
-        return request.user and request.user.is_staff
+        return bool(request.user and request.user.is_staff)
