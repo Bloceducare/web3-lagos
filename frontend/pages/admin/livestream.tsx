@@ -1,6 +1,6 @@
 'use client'
 import React, { useState, useEffect, useCallback } from 'react'
-import Link from 'next/link'
+import AdminShell from '../../components/admin/AdminShell'
 
 const API_HOST = (
   process.env.API_URL?.replace(/\/api\/?$/i, '') ||
@@ -316,56 +316,39 @@ export default function LivestreamAdminPage() {
   }
 
   return (
-    <div style={{ background: 'var(--black)', minHeight: '100vh' }}>
-      <div style={{ height: 64, background: 'var(--black2)', borderBottom: '1px solid var(--border)', padding: '0 5%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'sticky', top: 0, zIndex: 50 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-          <span style={{ fontWeight: 700, fontSize: 15 }}>W3LC Admin</span>
-          <nav style={{ display: 'flex', gap: 12 }}>
-            <Link href="/admin" style={{ fontSize: 12, color: 'var(--mid)' }}>Applications</Link>
-            <Link href="/admin/livestream" style={{ fontSize: 12, color: 'var(--blue-bright)', fontWeight: 700 }}>Livestream</Link>
-          </nav>
+    <AdminShell
+      adminName={adminName}
+      onLogout={logout}
+      title="Livestream Control"
+      subtitle="Set YouTube embed URLs and go live per hall. Public pages show the stream only when a hall is marked live."
+      actions={
+        <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+          <select
+            value={conferenceId ?? ''}
+            onChange={(e) => {
+              const id = Number(e.target.value)
+              setConferenceId(id)
+              if (token) loadData(token, id)
+            }}
+            style={{ ...input, width: 240 }}
+          >
+            {conferences.map((c) => (
+              <option key={c.id} value={c.id}>
+                {c.name} ({c.year})
+              </option>
+            ))}
+          </select>
+          <a
+            href="/live"
+            target="_blank"
+            rel="noreferrer"
+            style={{ padding: '11px 16px', borderRadius: 8, fontSize: 13, fontWeight: 600, background: 'var(--black3)', border: '1px solid var(--border2)', color: '#fff', whiteSpace: 'nowrap' }}
+          >
+            Open /live ↗
+          </a>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-          <span style={{ fontSize: 12, color: 'var(--mid)' }}>{adminName}</span>
-          <button onClick={logout} style={{ fontSize: 12, color: 'var(--mid)', background: 'none', border: '1px solid var(--border2)', padding: '6px 14px', borderRadius: 6 }}>Sign Out</button>
-        </div>
-      </div>
-
-      <div style={{ padding: '40px 5%' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 20, flexWrap: 'wrap', marginBottom: 32 }}>
-          <div>
-            <h1 style={{ fontFamily: "'Bebas Neue',sans-serif", fontSize: 40, letterSpacing: 1, marginBottom: 4 }}>Livestream Control</h1>
-            <p style={{ fontSize: 13, color: 'var(--mid)' }}>
-              Set YouTube embed URLs and go live per hall. Public pages show the stream only when a hall is marked live.
-            </p>
-          </div>
-          <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
-            <select
-              value={conferenceId ?? ''}
-              onChange={(e) => {
-                const id = Number(e.target.value)
-                setConferenceId(id)
-                if (token) loadData(token, id)
-              }}
-              style={{ ...input, width: 260 }}
-            >
-              {conferences.map((c) => (
-                <option key={c.id} value={c.id}>
-                  {c.name} ({c.year})
-                </option>
-              ))}
-            </select>
-            <a
-              href="/live"
-              target="_blank"
-              rel="noreferrer"
-              style={{ padding: '11px 16px', borderRadius: 8, fontSize: 13, fontWeight: 600, background: 'var(--black3)', border: '1px solid var(--border2)', color: '#fff', whiteSpace: 'nowrap' }}
-            >
-              Open /live ↗
-            </a>
-          </div>
-        </div>
-
+      }
+    >
         {loadErr && (
           <div style={{ background: 'rgba(229,57,53,.1)', border: '1px solid rgba(229,57,53,.3)', borderRadius: 8, padding: '12px 16px', marginBottom: 24, fontSize: 13, color: '#E53935' }}>
             {loadErr}
@@ -491,13 +474,12 @@ export default function LivestreamAdminPage() {
             </button>
           </div>
         </div>
-      </div>
 
       {toast && (
         <div style={{ position: 'fixed', bottom: 28, right: 28, zIndex: 300, background: 'var(--black3)', border: '1px solid var(--border2)', borderRadius: 10, padding: '14px 20px', fontSize: 13, fontWeight: 500, boxShadow: '0 8px 32px rgba(0,0,0,0.4)' }}>
           {toast}
         </div>
       )}
-    </div>
+    </AdminShell>
   )
 }
