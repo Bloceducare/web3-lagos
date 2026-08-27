@@ -64,12 +64,14 @@ export default function LivestreamAdminPage() {
     setTimeout(() => setToast(''), 3000)
   }
 
-  const ensureAuth = (res: Response) => {
+  const logout = auth.logout
+
+  const ensureAuth = useCallback((res: Response) => {
     if (res.status === 401 || res.status === 403) {
-      auth.logout()
+      logout()
       throw new Error('Admin access required. Please sign in again.')
     }
-  }
+  }, [logout])
 
   const loadData = useCallback(async (authToken: string, preferredConferenceId?: number | null) => {
     setLoading(true)
@@ -127,7 +129,7 @@ export default function LivestreamAdminPage() {
     } finally {
       setLoading(false)
     }
-  }, [auth])
+  }, [ensureAuth])
 
   useEffect(() => {
     if (auth.loggedIn && auth.token && auth.ready) {

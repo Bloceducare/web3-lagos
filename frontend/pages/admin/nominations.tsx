@@ -27,12 +27,14 @@ export default function NominationsAdminPage() {
     setTimeout(() => setToast(''), 3000)
   }
 
+  const logout = auth.logout
+
   const ensureAuth = useCallback((res: Response) => {
     if (res.status === 401 || res.status === 403) {
-      auth.logout()
+      logout()
       throw new Error('Admin access required. Please sign in again.')
     }
-  }, [auth])
+  }, [logout])
 
   const load = useCallback(async (token: string) => {
     setLoading(true)
@@ -42,9 +44,9 @@ export default function NominationsAdminPage() {
       let nextUrl: string | null = `${API_BASE}/speaker-nominations/?page=1`
 
       while (nextUrl) {
-        const res = nextUrl.startsWith('http')
-          ? await fetch(nextUrl, { headers: { Authorization: `Bearer ${token}` } })
-          : await adminFetch(nextUrl, token)
+        const res: Response = await fetch(nextUrl, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
         ensureAuth(res)
         const data = await res.json()
         if (!res.ok) throw new Error(data.detail || data.error || 'Failed to load nominations')
@@ -54,7 +56,7 @@ export default function NominationsAdminPage() {
           nextUrl = null
         } else {
           collected.push(...asList<Nomination>(data))
-          nextUrl = data.next
+          nextUrl = typeof data.next === 'string' ? data.next : null
         }
       }
       setItems(collected)

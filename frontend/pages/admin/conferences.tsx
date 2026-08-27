@@ -48,12 +48,14 @@ export default function ConferencesAdminPage() {
     setTimeout(() => setToast(''), 3000)
   }
 
-  const ensureAuth = (res: Response) => {
+  const logout = auth.logout
+
+  const ensureAuth = useCallback((res: Response) => {
     if (res.status === 401 || res.status === 403) {
-      auth.logout()
+      logout()
       throw new Error('Admin access required. Please sign in again.')
     }
-  }
+  }, [logout])
 
   const load = useCallback(async (token: string) => {
     setLoading(true)
@@ -71,7 +73,7 @@ export default function ConferencesAdminPage() {
     } finally {
       setLoading(false)
     }
-  }, [auth])
+  }, [ensureAuth])
 
   useEffect(() => {
     if (auth.loggedIn && auth.token && auth.ready) load(auth.token)
