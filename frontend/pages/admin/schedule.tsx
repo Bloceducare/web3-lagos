@@ -1,5 +1,5 @@
 'use client'
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import AdminShell, { adminInputStyle } from '../../components/admin/AdminShell'
 import AdminLoginForm from '../../components/admin/AdminLoginForm'
 import { adminFetch, asList, useAdminAuth } from '../../lib/adminAuth'
@@ -80,6 +80,7 @@ function toIso(value: string) {
 
 export default function ScheduleAdminPage() {
   const auth = useAdminAuth()
+  const loadedTokenRef = useRef<string | null>(null)
   const [conferences, setConferences] = useState<Conference[]>([])
   const [conferenceId, setConferenceId] = useState<number | null>(null)
   const [halls, setHalls] = useState<Hall[]>([])
@@ -160,10 +161,11 @@ export default function ScheduleAdminPage() {
   }, [ensureAuth])
 
   useEffect(() => {
-    if (auth.loggedIn && auth.token && auth.ready) {
-      load(auth.token)
-    }
-  }, [auth.loggedIn, auth.token, auth.ready, load])
+    if (!auth.ready || !auth.loggedIn || !auth.token) return
+    if (loadedTokenRef.current === auth.token) return
+    loadedTokenRef.current = auth.token
+    load(auth.token)
+  }, [auth.ready, auth.loggedIn, auth.token, load])
 
   const filtered = useMemo(() => {
     return sessions
@@ -288,7 +290,7 @@ export default function ScheduleAdminPage() {
   return (
     <AdminShell
       adminName={auth.adminName}
-      onLogout={auth.logout}
+      onLogout={() => { loadedTokenRef.current = null; auth.logout() }}
       title="Schedule"
       subtitle="Create and edit sessions for each hall. Changes appear on the public live schedule."
       actions={

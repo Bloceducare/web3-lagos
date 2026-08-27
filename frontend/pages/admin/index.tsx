@@ -80,6 +80,7 @@ function toApp(reg: Reg): App {
 
 export default function AdminPage() {
   const auth = useAdminAuth()
+  const { token, loggedIn, ready, logout: authLogout } = auth
   const [signingIn, setSigningIn] = useState(false)
   const [loadingMore, setLoadingMore] = useState(false)
   const [allApps, setAllApps] = useState<App[]>([])
@@ -93,6 +94,7 @@ export default function AdminPage() {
   const [serverTotal, setServerTotal] = useState<number | null>(null)
   const [pagesFetched, setPagesFetched] = useState(0)
   const loadGenRef = useRef(0)
+  const loadedTokenRef = useRef<string | null>(null)
 
   const showToast = (msg: string) => {
     setToast(msg)
@@ -121,7 +123,7 @@ export default function AdminPage() {
         const data = await res.json()
         if (!res.ok) {
           if (res.status === 401 || res.status === 403) {
-            auth.logout()
+            authLogout()
             throw new Error('Admin access required. Please sign in again.')
           }
           const msg = res.status === 403
@@ -160,20 +162,25 @@ export default function AdminPage() {
       const msg = err instanceof Error ? err.message : 'Failed to load registrations'
       setLoadErr(msg)
       showToast(msg)
+      // Allow retry on failure for the same token.
+      if (loadedTokenRef.current === authToken) loadedTokenRef.current = null
     } finally {
       if (gen === loadGenRef.current) setLoadingMore(false)
     }
-  }, [auth])
+  }, [authLogout])
 
   useEffect(() => {
-    if (auth.loggedIn && auth.token && auth.ready) {
-      loadApps(auth.token)
-    }
-  }, [auth.loggedIn, auth.token, auth.ready, loadApps])
+    if (!ready || !loggedIn || !token) return
+    // Prevent re-fetch storms: only load once per session token.
+    if (loadedTokenRef.current === token) return
+    loadedTokenRef.current = token
+    loadApps(token)
+  }, [ready, loggedIn, token, loadApps])
 
   const logout = () => {
     loadGenRef.current += 1
-    auth.logout()
+    loadedTokenRef.current = null
+    authLogout()
     setAllApps([])
     setApps([])
     setSelected(null)

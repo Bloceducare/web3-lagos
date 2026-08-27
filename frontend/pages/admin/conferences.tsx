@@ -1,5 +1,5 @@
 'use client'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import AdminShell, { adminInputStyle } from '../../components/admin/AdminShell'
 import AdminLoginForm from '../../components/admin/AdminLoginForm'
 import { adminFetch, asList, useAdminAuth } from '../../lib/adminAuth'
@@ -34,6 +34,7 @@ const emptyForm = (): Form => ({
 
 export default function ConferencesAdminPage() {
   const auth = useAdminAuth()
+  const loadedTokenRef = useRef<string | null>(null)
   const [items, setItems] = useState<Conference[]>([])
   const [loading, setLoading] = useState(false)
   const [loadErr, setLoadErr] = useState('')
@@ -76,8 +77,11 @@ export default function ConferencesAdminPage() {
   }, [ensureAuth])
 
   useEffect(() => {
-    if (auth.loggedIn && auth.token && auth.ready) load(auth.token)
-  }, [auth.loggedIn, auth.token, auth.ready, load])
+    if (!auth.ready || !auth.loggedIn || !auth.token) return
+    if (loadedTokenRef.current === auth.token) return
+    loadedTokenRef.current = auth.token
+    load(auth.token)
+  }, [auth.ready, auth.loggedIn, auth.token, load])
 
   const openCreate = () => {
     setEditing(null)
@@ -167,7 +171,7 @@ export default function ConferencesAdminPage() {
   return (
     <AdminShell
       adminName={auth.adminName}
-      onLogout={auth.logout}
+      onLogout={() => { loadedTokenRef.current = null; auth.logout() }}
       title="Conferences"
       subtitle="Manage conference years, dates and venues used by schedule and livestream pages."
       actions={

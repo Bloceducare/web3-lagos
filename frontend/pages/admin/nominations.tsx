@@ -1,5 +1,5 @@
 'use client'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import AdminShell, { adminInputStyle } from '../../components/admin/AdminShell'
 import AdminLoginForm from '../../components/admin/AdminLoginForm'
 import { API_BASE, adminFetch, asList, useAdminAuth } from '../../lib/adminAuth'
@@ -15,6 +15,7 @@ type Nomination = {
 
 export default function NominationsAdminPage() {
   const auth = useAdminAuth()
+  const loadedTokenRef = useRef<string | null>(null)
   const [items, setItems] = useState<Nomination[]>([])
   const [loading, setLoading] = useState(false)
   const [loadErr, setLoadErr] = useState('')
@@ -70,8 +71,11 @@ export default function NominationsAdminPage() {
   }, [ensureAuth])
 
   useEffect(() => {
-    if (auth.loggedIn && auth.token && auth.ready) load(auth.token)
-  }, [auth.loggedIn, auth.token, auth.ready, load])
+    if (!auth.ready || !auth.loggedIn || !auth.token) return
+    if (loadedTokenRef.current === auth.token) return
+    loadedTokenRef.current = auth.token
+    load(auth.token)
+  }, [auth.ready, auth.loggedIn, auth.token, load])
 
   const remove = async (item: Nomination) => {
     if (!auth.token) return
@@ -111,7 +115,7 @@ export default function NominationsAdminPage() {
   return (
     <AdminShell
       adminName={auth.adminName}
-      onLogout={auth.logout}
+      onLogout={() => { loadedTokenRef.current = null; auth.logout() }}
       title="Speaker Nominations"
       subtitle="Community nominations submitted via the public form. Admin-only list."
     >

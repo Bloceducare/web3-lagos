@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, useRef } from 'react'
 import AdminShell, { adminInputStyle } from '../../components/admin/AdminShell'
 import AdminLoginForm from '../../components/admin/AdminLoginForm'
 import { adminFetch, asList, useAdminAuth } from '../../lib/adminAuth'
@@ -47,6 +47,7 @@ function slugify(value: string) {
 
 export default function LivestreamAdminPage() {
   const auth = useAdminAuth()
+  const loadedTokenRef = useRef<string | null>(null)
   const [loadErr, setLoadErr] = useState('')
   const [toast, setToast] = useState('')
   const [loading, setLoading] = useState(false)
@@ -132,10 +133,11 @@ export default function LivestreamAdminPage() {
   }, [ensureAuth])
 
   useEffect(() => {
-    if (auth.loggedIn && auth.token && auth.ready) {
-      loadData(auth.token)
-    }
-  }, [auth.loggedIn, auth.token, auth.ready, loadData])
+    if (!auth.ready || !auth.loggedIn || !auth.token) return
+    if (loadedTokenRef.current === auth.token) return
+    loadedTokenRef.current = auth.token
+    loadData(auth.token)
+  }, [auth.ready, auth.loggedIn, auth.token, loadData])
 
   const updateDraft = (id: number, patch: Partial<HallDraft>) => {
     setDrafts((prev) => ({
@@ -241,7 +243,7 @@ export default function LivestreamAdminPage() {
   return (
     <AdminShell
       adminName={auth.adminName}
-      onLogout={auth.logout}
+      onLogout={() => { loadedTokenRef.current = null; auth.logout() }}
       title="Livestream Control"
       subtitle="Set YouTube embed URLs and go live per hall. Public pages show the stream only when a hall is marked live."
       actions={

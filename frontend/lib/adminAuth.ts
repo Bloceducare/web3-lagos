@@ -1,5 +1,5 @@
 'use client'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 export const ADMIN_TOKEN_KEY = 'w3l_admin_token'
 export const ADMIN_USER_KEY = 'w3l_admin_user'
@@ -77,9 +77,11 @@ export function useAdminAuth() {
   const [user, setUser] = useState<AdminUser | null>(null)
   const [authError, setAuthError] = useState('')
   const [verifying, setVerifying] = useState(false)
+  const verifiedOnceRef = useRef(false)
 
   const logout = useCallback(() => {
     clearAdminSession()
+    verifiedOnceRef.current = false
     setLoggedIn(false)
     setToken('')
     setUser(null)
@@ -103,6 +105,7 @@ export function useAdminAuth() {
       }
       const nextUser = (data.user || getAdminUser() || {}) as AdminUser
       applySession(authToken, nextUser)
+      verifiedOnceRef.current = true
       return true
     } catch (err) {
       logout()
@@ -115,6 +118,10 @@ export function useAdminAuth() {
   }, [applySession, logout])
 
   useEffect(() => {
+    if (verifiedOnceRef.current) {
+      setReady(true)
+      return
+    }
     const saved = getAdminToken()
     const savedUser = getAdminUser()
     if (!saved) {
@@ -150,16 +157,21 @@ export function useAdminAuth() {
     return nextUser
   }, [applySession, verifySession])
 
-  return {
-    ready,
-    loggedIn,
-    token,
-    user,
-    adminName: adminDisplayName(user),
-    authError,
-    verifying,
-    login,
-    logout,
-    verifySession,
-  }
+  const adminName = useMemo(() => adminDisplayName(user), [user])
+
+  return useMemo(
+    () => ({
+      ready,
+      loggedIn,
+      token,
+      user,
+      adminName,
+      authError,
+      verifying,
+      login,
+      logout,
+      verifySession,
+    }),
+    [ready, loggedIn, token, user, adminName, authError, verifying, login, logout, verifySession]
+  )
 }
