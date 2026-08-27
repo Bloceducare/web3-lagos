@@ -1,8 +1,12 @@
 'use client'
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 
 export const ADMIN_TOKEN_KEY = 'w3l_admin_token'
 export const ADMIN_USER_KEY = 'w3l_admin_user'
+export const ADMIN_VERIFIED_AT_KEY = 'w3l_admin_verified_at'
+
+/** How often to hit /admin/me/ while browsing admin pages. */
+const VERIFY_TTL_MS = 15 * 60 * 1000
 
 export const API_HOST = (
   process.env.API_URL?.replace(/\/api\/?$/i, '') ||
@@ -35,6 +39,21 @@ export function getAdminUser(): AdminUser | null {
   }
 }
 
+function getVerifiedAt(): number {
+  if (typeof window === 'undefined') return 0
+  const raw = sessionStorage.getItem(ADMIN_VERIFIED_AT_KEY)
+  const n = raw ? Number(raw) : 0
+  return Number.isFinite(n) ? n : 0
+}
+
+function markVerifiedNow() {
+  sessionStorage.setItem(ADMIN_VERIFIED_AT_KEY, String(Date.now()))
+}
+
+function shouldRevalidate(): boolean {
+  return Date.now() - getVerifiedAt() > VERIFY_TTL_MS
+}
+
 export function setAdminSession(token: string, user: AdminUser) {
   sessionStorage.setItem(ADMIN_TOKEN_KEY, token)
   sessionStorage.setItem(ADMIN_USER_KEY, JSON.stringify(user))
@@ -43,6 +62,7 @@ export function setAdminSession(token: string, user: AdminUser) {
 export function clearAdminSession() {
   sessionStorage.removeItem(ADMIN_TOKEN_KEY)
   sessionStorage.removeItem(ADMIN_USER_KEY)
+  sessionStorage.removeItem(ADMIN_VERIFIED_AT_KEY)
 }
 
 export function adminDisplayName(user: AdminUser | null): string {
@@ -77,24 +97,26 @@ export function useAdminAuth() {
   const [user, setUser] = useState<AdminUser | null>(null)
   const [authError, setAuthError] = useState('')
   const [verifying, setVerifying] = useState(false)
-  const verifiedOnceRef = useRef(false)
 
   const logout = useCallback(() => {
     clearAdminSession()
-    verifiedOnceRef.current = false
     setLoggedIn(false)
     setToken('')
     setUser(null)
   }, [])
 
-  const applySession = useCallback((nextToken: string, nextUser: AdminUser) => {
+  const applySession = useCallback((nextToken: string, nextUser: AdminUser, opts?: { markVerified?: boolean }) => {
     setAdminSession(nextToken, nextUser)
+    if (opts?.markVerified !== false) markVerifiedNow()
     setToken(nextToken)
     setUser(nextUser)
     setLoggedIn(true)
   }, [])
 
-  const verifySession = useCallback(async (authToken: string) => {
+  const verifySession = useCallback(async (authToken: string, opts?: { force?: boolean }) => {
+    if (!opts?.force && !shouldRevalidate()) {
+      return true
+    }
     setVerifying(true)
     setAuthError('')
     try {
@@ -105,7 +127,6 @@ export function useAdminAuth() {
       }
       const nextUser = (data.user || getAdminUser() || {}) as AdminUser
       applySession(authToken, nextUser)
-      verifiedOnceRef.current = true
       return true
     } catch (err) {
       logout()
@@ -117,11 +138,8 @@ export function useAdminAuth() {
     }
   }, [applySession, logout])
 
+  // Hydrate from local session immediately; only hit /admin/me/ when TTL expired.
   useEffect(() => {
-    if (verifiedOnceRef.current) {
-      setReady(true)
-      return
-    }
     const saved = getAdminToken()
     const savedUser = getAdminUser()
     if (!saved) {
@@ -131,7 +149,11 @@ export function useAdminAuth() {
     setToken(saved)
     setUser(savedUser)
     setLoggedIn(true)
-    verifySession(saved)
+    setReady(true)
+
+    if (shouldRevalidate()) {
+      void verifySession(saved, { force: true })
+    }
   }, [verifySession])
 
   const login = useCallback(async (username: string, password: string) => {
@@ -149,13 +171,11 @@ export function useAdminAuth() {
       throw new Error('Login succeeded but no token returned')
     }
     const nextUser = (data.user || { username }) as AdminUser
+    // Login already authenticated; trust local role and skip an immediate /admin/me/.
     applySession(data.token, nextUser)
-    const ok = await verifySession(data.token)
-    if (!ok) {
-      throw new Error('Could not verify admin session')
-    }
+    setReady(true)
     return nextUser
-  }, [applySession, verifySession])
+  }, [applySession])
 
   const adminName = useMemo(() => adminDisplayName(user), [user])
 
