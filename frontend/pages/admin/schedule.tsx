@@ -8,6 +8,7 @@ type Conference = {
   id: number
   name: string
   year: number
+  start_date?: string
 }
 
 type Hall = {
@@ -140,8 +141,8 @@ function downloadTextFile(filename: string, content: string, mime = 'text/csv;ch
   URL.revokeObjectURL(url)
 }
 
-/** Minimal CSV parser: handles commas, newlines, and double-quoted fields. */
-function parseCsv(text: string): Record<string, string>[] {
+/** Minimal CSV parser — returns raw rows (handles quoted fields). */
+function parseCsvRaw(text: string): string[][] {
   const rows: string[][] = []
   let row: string[] = []
   let cell = ''
@@ -188,7 +189,12 @@ function parseCsv(text: string): Record<string, string>[] {
   }
   pushCell()
   if (row.length > 1 || (row.length === 1 && row[0] !== '')) pushRow()
+  return rows
+}
 
+/** Keyed CSV parser for the legacy admin export format. */
+function parseCsv(text: string): Record<string, string>[] {
+  const rows = parseCsvRaw(text)
   if (!rows.length) return []
   const headers = rows[0].map((h) => h.trim().toLowerCase().replace(/\s+/g, '_'))
   return rows.slice(1).filter((r) => r.some((c) => c.trim())).map((r) => {
@@ -198,6 +204,203 @@ function parseCsv(text: string): Record<string, string>[] {
     })
     return obj
   })
+}
+
+const MONTH_INDEX: Record<string, number> = {
+  january: 0, february: 1, march: 2, april: 3, may: 4, june: 5,
+  july: 6, august: 7, september: 8, october: 9, november: 10, december: 11,
+  jan: 0, feb: 1, mar: 2, apr: 3, jun: 5, jul: 6, aug: 7, sep: 8, sept: 8, oct: 9, nov: 10, dec: 11,
+}
+
+type ParsedImportRow = {
+  line: number
+  topic: string
+  description: string
+  type: string
+  hallRaw: string
+  start_datetime: string
+  end_datetime: string
+  speaker: string
+  speaker_bio: string
+  youtube_id: string
+  video_thumbnail: string
+}
+
+function isWeb3LagosScheduleCsv(rawRows: string[][]): boolean {
+  return rawRows.some((row) => {
+    const a = (row[0] || '').trim().toLowerCase()
+    const b = (row[1] || '').trim().toLowerCase()
+    return a === 'start' && b === 'end'
+  })
+}
+
+function parseEventDateFromRows(rows: string[][], fallback?: Date | null): Date | null {
+  for (const row of rows) {
+    const text = row.join(' ')
+    const m = text.match(/(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})/)
+    if (!m) continue
+    const day = Number(m[1])
+    const month = MONTH_INDEX[m[2].toLowerCase()]
+    const year = Number(m[3])
+    if (month !== undefined && day >= 1 && day <= 31) {
+      return new Date(year, month, day)
+    }
+  }
+  return fallback && !Number.isNaN(fallback.getTime()) ? fallback : null
+}
+
+function parseTime12hOnDate(timeStr: string, baseDate: Date): string | null {
+  const t = timeStr.trim()
+  if (!t) return null
+
+  const m12 = t.match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i)
+  if (m12) {
+    let hour = Number(m12[1])
+    const min = Number(m12[2])
+    const ampm = m12[3].toUpperCase()
+    if (ampm === 'PM' && hour !== 12) hour += 12
+    if (ampm === 'AM' && hour === 12) hour = 0
+    const d = new Date(baseDate)
+    d.setHours(hour, min, 0, 0)
+    return d.toISOString()
+  }
+
+  // Also accept 24h HH:MM if present
+  const m24 = t.match(/^(\d{1,2}):(\d{2})$/)
+  if (m24) {
+    const d = new Date(baseDate)
+    d.setHours(Number(m24[1]), Number(m24[2]), 0, 0)
+    return d.toISOString()
+  }
+
+  return null
+}
+
+function inferSessionTypeFromSchedule(speaker: string, topic: string): string {
+  const sp = speaker.trim()
+  const tp = topic.trim()
+  const combined = `${sp} ${tp}`.toLowerCase()
+  if (/morning break|^break$|\bbreak\b/.test(combined)) return 'break'
+  if (/^panel:/i.test(tp) || /\bpanel:/i.test(tp)) return 'panel'
+  if (/opening remarks/i.test(sp) || /opening remarks/i.test(tp)) return 'registration'
+  if (/closing remarks/i.test(sp) || /closing remarks/i.test(tp)) return 'networking'
+  if (/workshop/i.test(tp)) return 'workshop'
+  return 'talk'
+}
+
+function buildSessionTopic(speaker: string, topicNotes: string, company: string): string {
+  const notes = topicNotes.trim()
+  if (notes) return notes
+  const sp = speaker.trim()
+  const co = company.trim()
+  if (/^(morning break|break|opening remarks|closing remarks)$/i.test(sp)) return sp
+  if (co && sp) return `${sp} — ${co}`
+  return sp || co || 'Untitled session'
+}
+
+function mapWeb3LagosHeaderRow(headerRow: string[]) {
+  const cols: { start?: number; end?: number; speaker?: number; company?: number; topic?: number; extras: number[] } = {
+    extras: [],
+  }
+  headerRow.forEach((raw, idx) => {
+    const h = raw.trim().toLowerCase()
+    if (!h) {
+      cols.extras.push(idx)
+      return
+    }
+    if (h === 'start') cols.start = idx
+    else if (h === 'end') cols.end = idx
+    else if (h.includes('speaker')) cols.speaker = idx
+    else if (h.includes('company') || h.includes('project')) cols.company = idx
+    else if (h.includes('topic') || h.includes('track') || h.includes('notes')) cols.topic = idx
+    else if (!h.includes('duration')) cols.extras.push(idx)
+  })
+  return cols
+}
+
+function parseWeb3LagosScheduleCsv(
+  text: string,
+  defaultHallLabel: string,
+  fallbackDate?: Date | null
+): { rows: ParsedImportRow[]; eventDate: Date | null; notes: string[] } {
+  const rawRows = parseCsvRaw(text)
+  const headerIdx = rawRows.findIndex((row) => (row[0] || '').trim().toLowerCase() === 'start')
+  if (headerIdx < 0) return { rows: [], eventDate: null, notes: ['Could not find Start/End header row'] }
+
+  const preamble = rawRows.slice(0, headerIdx)
+  const eventDate = parseEventDateFromRows(preamble, fallbackDate)
+  const cols = mapWeb3LagosHeaderRow(rawRows[headerIdx])
+  const notes: string[] = []
+
+  if (!eventDate) {
+    notes.push('No event date found in CSV title — using conference start date if available')
+  }
+
+  const rows: ParsedImportRow[] = []
+  for (let i = headerIdx + 1; i < rawRows.length; i++) {
+    const row = rawRows[i]
+    if (!row.some((c) => c.trim())) continue
+
+    const startRaw = cols.start != null ? (row[cols.start] || '').trim() : ''
+    const endRaw = cols.end != null ? (row[cols.end] || '').trim() : ''
+    if (!startRaw || !endRaw) continue
+
+    const line = i + 1
+    const speaker = cols.speaker != null ? (row[cols.speaker] || '').trim() : ''
+    const company = cols.company != null ? (row[cols.company] || '').trim() : ''
+    const topicNotes = cols.topic != null ? (row[cols.topic] || '').trim() : ''
+    const topic = buildSessionTopic(speaker, topicNotes, company)
+
+    if (!eventDate) {
+      notes.push(`Row ${line}: skipped — no event date to attach times to`)
+      continue
+    }
+
+    const startIso = parseTime12hOnDate(startRaw, eventDate)
+    const endIso = parseTime12hOnDate(endRaw, eventDate)
+    if (!startIso || !endIso) {
+      notes.push(`Row ${line}: could not parse times “${startRaw}” / “${endRaw}”`)
+      continue
+    }
+
+    const extraMeta = cols.extras.map((idx) => (row[idx] || '').trim()).filter(Boolean)
+    const descriptionParts: string[] = []
+    if (company) descriptionParts.push(`Company / Project: ${company}`)
+    if (extraMeta.length) descriptionParts.push(extraMeta.join(' · '))
+
+    rows.push({
+      line,
+      topic,
+      description: descriptionParts.join('\n'),
+      type: inferSessionTypeFromSchedule(speaker, topic),
+      hallRaw: defaultHallLabel,
+      start_datetime: startIso,
+      end_datetime: endIso,
+      speaker,
+      speaker_bio: company,
+      youtube_id: '',
+      video_thumbnail: '',
+    })
+  }
+
+  return { rows, eventDate, notes }
+}
+
+function parseLegacyImportRows(text: string): ParsedImportRow[] {
+  const keyed = parseCsv(text)
+  return keyed.map((row, i) => ({
+    line: i + 2,
+    topic: (row.topic || '').trim(),
+    description: (row.description || '').trim(),
+    type: (row.type || 'talk').trim().toLowerCase(),
+    hallRaw: (row.hall || row.hall_name || row.hall_slug || '').trim(),
+    start_datetime: (row.start_datetime || row.start || '').trim(),
+    end_datetime: (row.end_datetime || row.end || '').trim(),
+    speaker: (row.speaker || '').trim(),
+    speaker_bio: (row.speaker_bio || '').trim(),
+    youtube_id: (row.youtube_id || row.youtube || '').trim(),
+    video_thumbnail: (row.video_thumbnail || '').trim(),
+  }))
 }
 
 function resolveHallId(halls: Hall[], value: string): number | null {
@@ -467,25 +670,17 @@ export default function ScheduleAdminPage() {
   }
 
   const downloadTemplate = () => {
-    const sampleHall = halls[0]?.name || 'Main Stage'
     const sample = [
-      CSV_HEADERS.join(','),
-      [
-        escapeCsv('Opening Keynote'),
-        escapeCsv('Welcome to Web3 Lagos'),
-        'talk',
-        escapeCsv(sampleHall),
-        '2026-09-04T09:00:00',
-        '2026-09-04T09:45:00',
-        escapeCsv('Jane Doe'),
-        escapeCsv('Founder bio here'),
-        '',
-        'dQw4w9WgXcQ',
-        '',
-      ].join(','),
+      '"Web3Lagos 5.0 — Day 1 Schedule (Friday, 28 August 2026)",,,,,,,',
+      'NOTE: Optional preamble rows are ignored.,,,,,,,',
+      'Start,End,Duration (min),Speaker(s),Company / Project,Topic / Track / Notes,,',
+      '10:00 AM,10:10 AM,10,Opening Remarks,,Welcome & housekeeping,,',
+      '10:10 AM,10:20 AM,10,Jane Doe,Acme Labs,Building onchain credit,,',
+      '10:45 AM,11:00 AM,15,MORNING BREAK,,,,',
+      '12:10 PM,12:40 PM,30,"Speaker One, Speaker Two","Org A, Org B",Panel: Example panel,,',
     ].join('\n')
-    downloadTextFile('schedule-template.csv', sample)
-    showToast('Template downloaded — hall column accepts name, slug, or id')
+    downloadTextFile('Web3Lagos-schedule-template.csv', sample)
+    showToast('Template downloaded — uses Start/End times; hall comes from filter or first hall')
   }
 
   const importCsvFile = async (file: File) => {
@@ -502,25 +697,48 @@ export default function ScheduleAdminPage() {
     setImportReport(null)
     try {
       const text = await file.text()
-      const rows = parseCsv(text)
-      if (!rows.length) {
-        showToast('CSV has no data rows')
+      const rawRows = parseCsvRaw(text)
+      const conf = conferences.find((c) => c.id === conferenceId)
+      const fallbackDate = conf?.start_date ? new Date(conf.start_date) : conf?.year ? new Date(conf.year, 7, 28) : null
+      const defaultHall =
+        hallFilter !== 'all'
+          ? halls.find((h) => String(h.id) === hallFilter) || halls[0]
+          : halls[0]
+      const defaultHallLabel = defaultHall?.name || String(defaultHall?.id || '')
+
+      let importRows: ParsedImportRow[] = []
+      let formatNotes: string[] = []
+
+      if (isWeb3LagosScheduleCsv(rawRows)) {
+        const parsed = parseWeb3LagosScheduleCsv(text, defaultHallLabel, fallbackDate)
+        importRows = parsed.rows
+        formatNotes = parsed.notes
+        if (parsed.eventDate) {
+          formatNotes.unshift(`Event date: ${parsed.eventDate.toLocaleDateString()} · Hall: ${defaultHallLabel}`)
+        }
+      } else {
+        importRows = parseLegacyImportRows(text)
+        formatNotes.push('Legacy CSV format detected (topic/hall/ISO datetimes)')
+      }
+
+      if (!importRows.length) {
+        showToast('CSV has no importable session rows')
+        setImportReport(formatNotes.join('\n') || 'No rows found')
         return
       }
 
       let ok = 0
-      const errors: string[] = []
+      const errors: string[] = [...formatNotes.filter((n) => n.startsWith('Row ') || n.includes('skipped'))]
 
-      for (let i = 0; i < rows.length; i++) {
-        const row = rows[i]
-        const line = i + 2
-        const topic = (row.topic || '').trim()
-        const hallRaw = (row.hall || row.hall_name || row.hall_slug || '').trim()
-        const start = (row.start_datetime || row.start || '').trim()
-        const end = (row.end_datetime || row.end || '').trim()
+      for (const row of importRows) {
+        const line = row.line
+        const topic = row.topic.trim()
+        const hallRaw = row.hallRaw.trim()
+        let start = row.start_datetime.trim()
+        let end = row.end_datetime.trim()
 
         if (!topic || !hallRaw || !start || !end) {
-          errors.push(`Row ${line}: topic, hall, start_datetime, end_datetime are required`)
+          errors.push(`Row ${line}: topic, hall, start, and end are required`)
           continue
         }
 
@@ -530,27 +748,38 @@ export default function ScheduleAdminPage() {
           continue
         }
 
-        const type = (row.type || 'talk').trim().toLowerCase()
+        const type = row.type.trim().toLowerCase()
         if (!SESSION_TYPES.includes(type)) {
           errors.push(`Row ${line}: invalid type “${type}”`)
           continue
         }
 
-        const yt = extractYoutubeId(row.youtube_id || row.youtube || '')
+        // Legacy rows may still have raw times — normalize if needed
+        if (!start.includes('T') && fallbackDate) {
+          const startIso = parseTime12hOnDate(start, fallbackDate)
+          const endIso = parseTime12hOnDate(end, fallbackDate)
+          if (startIso) start = startIso
+          if (endIso) end = endIso
+        } else {
+          start = toIso(start)
+          end = toIso(end)
+        }
+
+        const yt = extractYoutubeId(row.youtube_id)
         const payload = {
           topic,
-          description: (row.description || '').trim(),
+          description: row.description.trim(),
           type,
           conference: conferenceId,
           hall: hallId,
-          start_datetime: toIso(start),
-          end_datetime: toIso(end),
-          speaker: (row.speaker || '').trim(),
-          speaker_bio: (row.speaker_bio || '').trim(),
-          speaker_image: (row.speaker_image || '').trim(),
+          start_datetime: start,
+          end_datetime: end,
+          speaker: row.speaker.trim(),
+          speaker_bio: row.speaker_bio.trim(),
+          speaker_image: '',
           youtube_id: yt,
           video_thumbnail:
-            (row.video_thumbnail || '').trim() ||
+            row.video_thumbnail.trim() ||
             (yt ? `https://img.youtube.com/vi/${yt}/hqdefault.jpg` : ''),
         }
 
@@ -572,10 +801,11 @@ export default function ScheduleAdminPage() {
       }
 
       await load(auth.token, conferenceId)
-      const summary = `Imported ${ok}/${rows.length} sessions${errors.length ? ` · ${errors.length} error(s)` : ''}`
+      const summary = `Imported ${ok}/${importRows.length} sessions${errors.length ? ` · ${errors.length} issue(s)` : ''}`
+      const reportBody = [...formatNotes, ...errors.filter((e) => !formatNotes.includes(e))]
       setImportReport(
-        errors.length
-          ? `${summary}\n\n${errors.slice(0, 20).join('\n')}${errors.length > 20 ? `\n…and ${errors.length - 20} more` : ''}`
+        reportBody.length
+          ? `${summary}\n\n${reportBody.slice(0, 25).join('\n')}${reportBody.length > 25 ? `\n…and ${reportBody.length - 25} more` : ''}`
           : summary
       )
       showToast(summary)
@@ -614,7 +844,7 @@ export default function ScheduleAdminPage() {
       adminName={auth.adminName}
       onLogout={() => { loadedTokenRef.current = null; auth.logout() }}
       title="Schedule"
-      subtitle="Create and edit sessions for each hall. Click a row to preview the archive video. Changes appear on the public live schedule."
+      subtitle="Create and edit sessions for each hall. Import Web3Lagos schedule CSVs (Start/End columns) or export the legacy format. Click a row to preview archive video."
       actions={
         <div style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap' }}>
           <select
@@ -702,6 +932,9 @@ export default function ScheduleAdminPage() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
+        <div style={{ fontSize: 12, color: 'var(--mid)', alignSelf: 'center', maxWidth: 420 }}>
+          CSV import: Web3Lagos format (Start/End columns). Event date from title row; sessions go to {hallFilter !== 'all' ? halls.find((h) => String(h.id) === hallFilter)?.name || 'selected hall' : halls[0]?.name || 'first hall'}.
+        </div>
       </div>
 
       <div style={{ background: 'var(--black2)', border: '1px solid var(--border)', borderRadius: 12, overflow: 'hidden' }}>
