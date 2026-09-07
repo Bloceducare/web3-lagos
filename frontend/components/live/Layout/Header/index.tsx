@@ -12,11 +12,12 @@ interface HeaderProps {
 const Header = ({ halls = [] }: HeaderProps) => {
   const router = useRouter();
 
-  const isMainActive = router.pathname === "/live";
+  const isMainActive =
+    router.pathname === "/live" && !router.query.stage;
   const isArchiveActive = router.pathname === "/archive";
   const activeStage =
-    router.pathname === "/live/[stage]"
-      ? String(router.query.stage || "")
+    router.pathname === "/live" && typeof router.query.stage === "string"
+      ? router.query.stage
       : "";
 
   const stageHalls = halls.filter((h) => {
@@ -54,7 +55,7 @@ const Header = ({ halls = [] }: HeaderProps) => {
           return (
             <Link
               key={hall.id}
-              href={`/live/${slug}`}
+              href={`/live?stage=${encodeURIComponent(slug)}`}
               className={`transition-all duration-200 ${
                 active
                   ? "border-b-2 border-[#0096FF] text-[#0096FF]"

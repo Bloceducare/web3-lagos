@@ -1,0 +1,80 @@
+name: Deploy static
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "frontend/**"
+      - ".github/workflows/deploy.yml"
+  workflow_dispatch:
+
+env:
+  APP_NAME: web3-lagos
+  BUILD_ROOT: frontend
+  NODE_VERSION: "20"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Map branch to environment
+        id: env
+        run: |
+          REF="${GITHUB_REF_NAME}"
+          case "$REF" in
+            master|main)
+              echo "deploy_env=production" >> "$GITHUB_OUTPUT"
+              echo "doppler_config=prd" >> "$GITHUB_OUTPUT"
+              ;;
+            develop|development|staging)
+              echo "deploy_env=staging" >> "$GITHUB_OUTPUT"
+              echo "doppler_config=stg" >> "$GITHUB_OUTPUT"
+              ;;
+            *)
+              echo "Unsupported/disabled branch: $REF"
+              exit 1
+              ;;
+          esac
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: ${{ env.BUILD_ROOT }}/package-lock.json
+
+      - uses: dopplerhq/cli-action@v3
+
+      - name: Install & build
+        working-directory: ${{ env.BUILD_ROOT }}
+        env:
+          DOPPLER_TOKEN: ${{ secrets.DOPPLER_TOKEN }}
+        run: |
+          npm ci
+          if [ -n "${DOPPLER_TOKEN:-}" ]; then
+            doppler run --config "${{ steps.env.outputs.doppler_config }}" -- npm run build
+          else
+            npm run build
+          fi
+          tar -czf "${GITHUB_WORKSPACE}/artifact.tar.gz" -C out .
+
+      - uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          port: 22
+          source: artifact.tar.gz
+          target: /tmp/
+          overwrite: true
+
+      - uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          port: 22
+          script: |
+            deploy-static "${{ env.APP_NAME }}" "${{ steps.env.outputs.deploy_env }}" /tmp/artifact.tar.gz
+            rm -f /tmp/artifact.tar.gz

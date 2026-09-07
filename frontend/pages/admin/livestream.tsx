@@ -306,7 +306,7 @@ export default function LivestreamAdminPage() {
               hall.slug && (hall.slug.includes('main') || hall.name.toLowerCase().includes('main'))
                 ? '/live'
                 : hall.slug
-                  ? `/live/${hall.slug}`
+                  ? `/live?stage=${encodeURIComponent(hall.slug)}`
                   : '/live'
             return (
               <div key={hall.id} style={{ background: 'var(--black2)', border: `1px solid ${draft.is_live ? 'rgba(229,57,53,.45)' : 'var(--border)'}`, borderRadius: 12, padding: 24 }}>

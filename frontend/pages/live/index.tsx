@@ -21,6 +21,8 @@ import {
 
 const Live = () => {
   const router = useRouter();
+  const stage =
+    typeof router.query.stage === "string" ? router.query.stage : "";
   const [selectedDay, setSelectedDay] = useState<ConferenceDay>("day1");
 
   const { loading, error, conference, halls, sessions } = useScheduleData();
@@ -73,16 +75,50 @@ const Live = () => {
     );
   }
 
+  const stageHall = stage
+    ? halls.find((h) => h.slug === stage)
+    : null;
   const mainStageHall = resolveMainStageHall(halls);
+  const activeHall = stageHall || mainStageHall;
+
+  if (stage && !stageHall) {
+    return (
+      <LiveLayout halls={halls}>
+        <div className="w-full max-w-7xl mx-auto px-4 py-8">
+          <div className="flex items-center justify-center min-h-[400px]">
+            <div className="text-center">
+              <p className="text-red-600 mb-4">Stage not found</p>
+              <p className="text-gray-600">No hall found for stage: {stage}</p>
+              <button
+                onClick={() => router.push("/live")}
+                className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+              >
+                Go to Main Stage
+              </button>
+            </div>
+          </div>
+        </div>
+      </LiveLayout>
+    );
+  }
 
   const getDayFromDateTime = (startDateTime: string): ConferenceDay => {
     if (!conference) return "day1";
     return getConferenceDayFromDateTime(conference, startDateTime);
   };
 
-  const mainStageSessions = sessions
+  const filteredSessions = sessions
     .filter((session) => {
-      const sessionHallMatch = session.hall === mainStageHall?.id;
+      const sessionHallMatch = stage
+        ? session.hall_slug === stage ||
+          session.hall === stageHall?.id ||
+          (session.hall_name &&
+            session.hall_name
+              .toLowerCase()
+              .replace(/\s+/g, "-")
+              .replace(/[^a-z0-9-]/g, "") === stage)
+        : session.hall === mainStageHall?.id;
+
       const sessionDay = getDayFromDateTime(session.start_datetime);
       return sessionHallMatch && sessionDay === selectedDay;
     })
@@ -101,6 +137,9 @@ const Live = () => {
     return selectedDate;
   };
 
+  const hallKey = activeHall?.slug || "hall1";
+  const stageTitle = activeHall?.name || "Main Stage";
+
   const currentSchedule = {
     title: `Day ${selectedDay.replace("day", "")}`,
     date: getSelectedDayDate().toLocaleDateString("en-US", {
@@ -108,9 +147,9 @@ const Live = () => {
       month: "long",
     }),
     halls: {
-      hall1: {
-        title: mainStageHall?.name || "Main Stage",
-        items: mainStageSessions.map((session) =>
+      [hallKey]: {
+        title: stageTitle,
+        items: filteredSessions.map((session) =>
           mapSessionToScheduleItem(session, {
             time: formatSessionTime(session.start_datetime),
             day: selectedDay,
@@ -123,12 +162,13 @@ const Live = () => {
       },
     },
   };
-  const currentHall = currentSchedule?.halls?.hall1;
+
+  const hallSchedule = currentSchedule.halls[hallKey];
 
   return (
     <>
       <LiveMetadata
-        stageTitle={mainStageHall?.name || "Main Stage"}
+        stageTitle={stageTitle}
         selectedDay={selectedDay}
         days={days}
         conferenceYear={conference.year}
@@ -137,9 +177,9 @@ const Live = () => {
         <div className="w-full max-w-7xl mx-auto px-4 py-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <LiveVideoPlayer
-              embedUrl={mainStageHall?.embed_url}
-              isLive={Boolean(mainStageHall?.is_live)}
-              stageTitle={mainStageHall?.name || "Main Stage"}
+              embedUrl={activeHall?.embed_url}
+              isLive={Boolean(activeHall?.is_live)}
+              stageTitle={stageTitle}
               conferenceYear={conference.year}
               className="lg:col-span-2 h-fit"
             />
@@ -149,8 +189,14 @@ const Live = () => {
               selectedDay={selectedDay}
               onDaySelect={setSelectedDay}
               currentSchedule={currentSchedule}
-              stageTitle={currentHall.title}
-              hallSchedule={currentHall}
+              stageTitle={stageTitle}
+              hallSchedule={
+                stage
+                  ? hallSchedule?.items?.length
+                    ? hallSchedule
+                    : null
+                  : hallSchedule
+              }
               onTalkClick={handleTalkClick}
               className="lg:col-span-1"
             />
